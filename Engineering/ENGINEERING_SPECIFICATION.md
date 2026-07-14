@@ -1,6 +1,5 @@
 # ARC-AGI-3 LCLD Agent
 # Engineering Specification
-# Version 6.2
 
 
 
