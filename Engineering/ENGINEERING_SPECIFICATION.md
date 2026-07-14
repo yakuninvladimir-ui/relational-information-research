@@ -3,9 +3,9 @@
 
 
 
-### 0.1 V6.2 Engineering Amendment
+### 0.1  Engineering Amendment
 
-V6.2 adds three mandatory engineering changes:
+ adds three mandatory engineering changes:
 
 1. `information_gain_observed` is a verifier-side posterior uncertainty reduction metric over registered semantic variables. It is not raw grid-difference magnitude.
 2. The LLM prompt builder must use prompt-tail priority for local 7B models: `previous_attempts_feedback`, `semantic_candidate_menu`, `current_question_set`, `allowed_output_schema`, and the strict JSON instruction must appear at the end of the prompt.
