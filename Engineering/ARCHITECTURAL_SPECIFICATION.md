@@ -1,6 +1,5 @@
 # ARC-AGI-3 LCLD Agent
 # Architectural Specification
-# Version 6.2
 
 ## 0. Purpose
 
