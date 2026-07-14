@@ -17,10 +17,10 @@ Earlier and superseded materials remain archived on Zenodo.
 | Philosophy | The Algorithm of Being | Philosophical framework |
 | Physics | Causal Phase Geometry Research Program | Open research program |
 | Physics | KK–Jacobson Commutativity Note | Technical note |
-| Reasoning | Unified Implementable Model v2 | Theoretical architecture |
+| Reasoning | Unified Implementable Model | Theoretical architecture |
 | Reasoning | External Ternary Judge Adapter | Technology assessment |
-| Engineering | ARC Agent Architecture v6.2 | Architectural specification |
-| Engineering | ARC Agent Engineering v6.2 | Engineering specification |
+| Engineering | ARC Agent Architecture | Architectural specification |
+| Engineering | ARC Agent Engineering | Engineering specification |
 
 ## Status disclaimer
 
