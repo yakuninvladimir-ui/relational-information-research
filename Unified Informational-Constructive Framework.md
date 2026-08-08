@@ -5,10 +5,6 @@
 **Date:** 2026-08-08  
 **Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026)
 
-> **Version note.** This document reworks draft v0.1 (2026-08-07) following the revision of the philosophy essay. Changes: (i) the constraint triad (distinction–action–rate) replaces information monism; (ii) operational time rewritten — the former formula $d\mathcal{T} = (dI/E)\cdot\eta(M)$ is withdrawn as dimensionally invalid; (iii) consciousness reframed as recursive modeling under external verification; (iv) substrate introduced as a constraint envelope; (v) irrelevance formalized as the kernel of a descriptive map; (vi) added: the three-layer stack of the physics program, the archive document map, and thesis verification statuses.
-
----
-
 ## 1. Central Thesis
 
 Reality, consciousness, and artificial intelligence are not separate domains but different scales of one and the same process: **self-structuring under constraint**. At every level the same architecture recurs — but not on an abstract "substrate-indifferent" carrier; it runs on a material substrate with its own **constraint envelope** (power, distinction rate, noise, persistence) that parameterizes viable architectures.
