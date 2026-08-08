@@ -66,4 +66,5 @@ Kept for internal continuity; not catalogued as formal deliverables.
 
 ## License
 
-All content in this repository is released under **CC0 1.0 Universal** (public domain dedication). See [LICENSE](./LICENSE).
+All content in this repository is released under **Creative Commons Attribution 4.0
+International License** . See [LICENSE](./LICENSE).
