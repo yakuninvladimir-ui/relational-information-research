@@ -26,7 +26,10 @@ Earlier and superseded materials remain archived on Zenodo.
 │   └── old_test/                                     # internal working data (see below)
 ├── Reasoning/
 │   ├── Unified_Implementable_Model.md
-│   └── External_Ternary_Judge_Adapter.md
+│   ├── External_Ternary_Judge_Adapter.md
+│   └── Draft/                                        # experimental scratch-pad (see below)
+│       ├── Hierarchical_Ternary_KG_as_RAG_Alternative_EN.md
+│       └── ternary_judge.md
 ├── Engineering/
 │   ├── ARCHITECTURAL_SPECIFICATION.md
 │   └── ENGINEERING_SPECIFICATION.md
@@ -46,6 +49,8 @@ Earlier and superseded materials remain archived on Zenodo.
 | Physics | [KK–Jacobson Commutativity Note](./Physics/KK_Jacobson_Commutativity_Note.md) | Technical note on the 5D→4D thermodynamic bridge |
 | Reasoning | [Unified Implementable Model](./Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
 | Reasoning | [External Ternary Judge Adapter](./Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
+| **Reasoning / Draft** | [Hierarchical Ternary KG as RAG Alternative (Draft)](./Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative_EN.md) | Draft: hierarchical knowledge graph with ternary filtering — early experimental branch for testing core ideas in practice |
+| **Reasoning / Draft** | [Ternary Judge (Draft)](./Reasoning/Draft/ternary_judge.md) | Draft: Propose–Judge–Commit protocol with external state authority — early experimental branch for testing core ideas in practice |
 | Engineering | [ARCHITECTURAL_SPECIFICATION](./Engineering/ARCHITECTURAL_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent — architectural specification |
 | Engineering | [ENGINEERING_SPECIFICATION](./Engineering/ENGINEERING_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent — engineering specification |
 
@@ -53,6 +58,10 @@ Earlier and superseded materials remain archived on Zenodo.
 
 Unstructured working data from successive stages of the cosmological and astrophysical testing pipeline (scripts, plots, Cobaya reports, RAR analyses, attractor studies, etc.).  
 Kept for internal continuity; not catalogued as formal deliverables.
+
+### Reasoning/Draft
+
+Scratch-pad for a nascent experimental branch. These drafts apply ternary-verdict ideas from the main reasoning documents to concrete retrieval and agent-control problems. They are at an embryonic stage, not yet integrated into the formal thesis map, and are kept here for internal testing and feedback.
 
 ---
 
