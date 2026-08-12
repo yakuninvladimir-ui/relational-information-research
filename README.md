@@ -28,7 +28,7 @@ Earlier and superseded materials remain archived on Zenodo.
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
 │   └── Draft/                                        # experimental scratch-pad (see below)
-│       ├── Hierarchical_Ternary_KG_as_RAG_Alternative_EN.md
+│       ├── Hierarchical_Ternary_KG_as_RAG_Alternative.md
 │       └── ternary_judge.md
 ├── Engineering/
 │   ├── ARCHITECTURAL_SPECIFICATION.md
