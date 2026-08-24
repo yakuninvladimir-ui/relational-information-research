@@ -32,8 +32,8 @@ Earlier and superseded materials remain archived on Zenodo.
 │       ├── Hierarchical_Ternary_KG_as_RAG_Alternative.md
 │       └── ternary_judge.md
 ├── Engineering/
-│   ├── ARCHITECTURAL_SPECIFICATION.md
-│   └── ENGINEERING_SPECIFICATION.md
+│   ├── ARCHITECTURAL_SPECIFICATION.md               # ARC-AGI-3 LCLD Agent V10.0
+│   └── ENGINEERING_SPECIFICATION.md                 # ARC-AGI-3 LCLD Agent V10.0
 ├── LICENSE                                           # CC0 1.0 / CC-BY-4.0
 └── README.md
 ```
@@ -53,8 +53,8 @@ Earlier and superseded materials remain archived on Zenodo.
 | Reasoning | [External Ternary Judge Adapter](./Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
 | **Reasoning / Draft** | [Hierarchical Ternary KG as RAG Alternative (Draft)](./Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: hierarchical knowledge graph with ternary filtering |
 | **Reasoning / Draft** | [Ternary Judge (Draft)](./Reasoning/Draft/ternary_judge.md) | Draft: Propose–Judge–Commit protocol |
-| Engineering | [ARCHITECTURAL_SPECIFICATION](./Engineering/ARCHITECTURAL_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent — architectural specification |
-| Engineering | [ENGINEERING_SPECIFICATION](./Engineering/ENGINEERING_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent — engineering specification |
+| Engineering | [ARCHITECTURAL_SPECIFICATION](./Engineering/ARCHITECTURAL_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent **V10.0** — Tri-Agent hierarchy, isolated memory contours, Brusentsov ternary logic |
+| Engineering | [ENGINEERING_SPECIFICATION](./Engineering/ENGINEERING_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent **V10.0** — implementation contract for the same architecture |
 
 ### Physics/old_test
 
@@ -82,6 +82,7 @@ Scratch-pad for a nascent experimental branch. These drafts apply ternary-verdic
 - Thermodynamic origin shifted from classical Jacobson horizon thermodynamics to quantum relative entropy (Dorau–Mukha / Araki–Uhlmann) and the Casini link of the Bekenstein bound to relative entropy.
 - New pilot technical specification for stochastic extraction of a possible residual \(\Gamma_{\rm corr}\) under informational truncation of lattice \(U(1)\).
 - Unified Framework updated to v1.1 to reflect the single-hypothesis status and the new pilot stage.
+- **Engineering specs upgraded from V6.2 to V10.0:** Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov ternary logic (FOLLOW / NULL / OMIT), dynamic sandboxed DSL, Double-Loop error routing.
 
 ---
 
