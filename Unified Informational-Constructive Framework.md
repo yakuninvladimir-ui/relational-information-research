@@ -194,7 +194,7 @@ The substrate is also the **interface to the verifier**: a disembodied “pure i
 
 ## 5. The Engineering Level
 
-The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V6.2)** define a concrete instantiation for a task.
+The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V10.0)** define a concrete instantiation for a task.
 
 ### 5.1. Requirements as ternary constraints
 
@@ -247,7 +247,7 @@ OMIT is neither an “error” nor a “skip”: it is a deliberate decision of 
 |---|---|---|
 | **UIM v2.0** | Architectural ontology | Ternary requirement semantics, the Proposer/Binder/Verifier/Memory hierarchy, verification contracts, evidence scopes (PREDICTIVE_ONLY vs OBSERVED_TRANSITION) |
 | **External Ternary Judge Adapter** | Verification protocol | The external-verifier interface, the fixed rule interpreter, the FalseFollowRate metric |
-| **ARC-AGI-3 LCLD Agent (V6.2)** | Instantiation | A concrete agent: the epistemic loop, IRRELEVANT as a first-class policy outcome, information_gain_observed as posterior entropy reduction |
+| **ARC-AGI-3 LCLD Agent (V10.0)** | Instantiation | Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov ternary (FOLLOW / NULL / OMIT), sandboxed dynamic DSL |
 
 The three documents are three nesting levels of one principle: **an agent that is not separated from its verifier has no grounds for trusting its own transitions.** The distinction of evidence scopes (PREDICTIVE_ONLY / OBSERVED_TRANSITION) is the engineering record of a philosophical boundary: a model’s prediction is not an observed transition, and conflating these statuses is the source of hallucinations in the most precise sense of the word.
 
@@ -295,7 +295,7 @@ The archive is not a list of files but a distribution of theses across documents
 | Space of Algebras (Level 0) | The Algorithm of Being (§2); this document (§3.1) | UNDECIDED: a conjecture, not a foundation |
 | Ternary requirement semantics; authority hierarchy | Unified Implementable Model v2.0 | FOLLOW: specified |
 | External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter | FOLLOW: protocol; the empirics are in the §8 program |
-| Agent V6.2 with the epistemic loop | ARCHITECTURAL / ENGINEERING SPECIFICATION | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
+| Agent V10.0 (Tri-Agent, Brusentsov ternary) | ARCHITECTURAL / ENGINEERING SPECIFICATION | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
 
 The rule for reading the archive: **status is attached to the thesis, not to the document.** A document may be technically complete (FOLLOW as a specification) while recording open questions (UNDECIDED as empirics). Conflating these statuses is the same error as passing a prediction off as an observation.
 
@@ -312,7 +312,7 @@ The rule for reading the archive: **status is attached to the thesis, not to the
 ### 8.2. Artificial intelligence
 
 - **FalseFollowRate** — the key metric: the fraction of transitions certified as FOLLOW that fail the constraint under independent checking. The goal is a measurable reduction relative to binary baselines, via first-class OMIT/UNDECIDED.
-- **ARC-AGI-3.** Agent V6.2 is run on the benchmark; the criteria are not only task success but calibration (the match between declared confidence and observed accuracy) and the share of honest UNDECIDED versus fabricated FOLLOW.
+- **ARC-AGI-3.** Agent V10.0 is run on the benchmark; the criteria are not only task success but calibration (the match between declared confidence and observed accuracy), isolation integrity, and the share of honest UNDECIDED / OMIT versus fabricated FOLLOW.
 - **Ternary Judge track.** Independent evaluation of the adapter: rule-interpreter stability across a change of proposer, absence of semantic drift in verdicts.
 
 ### 8.3. Ontology
@@ -343,7 +343,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 | KK–Jacobson Commutativity Note | Physics | EN | Historical (5D route frozen) |
 | Unified Implementable Model v2.0 | Engineering | EN | The agent’s architectural ontology |
 | External Ternary Judge Adapter | Engineering | EN | The external-verification protocol |
-| ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications | Engineering | EN | The V6.2 instantiation |
+| ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications | Engineering | EN | The V10.0 instantiation (Tri-Agent, isolated memory contours, Brusentsov logic) |
 | Unified Informational-Constructive Framework (this document) | Synthesis | EN | The map of theses, statuses, and cross-level dependencies |
 
 ---
