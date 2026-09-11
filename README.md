@@ -28,6 +28,7 @@ Earlier and superseded materials remain archived on Zenodo.
 ├── Reasoning/
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
+│   ├── Self_Developing_Runtime_Research_Program.md   # controlled self-development runtime (v0.2)
 │   └── Draft/                                        # experimental scratch-pad
 │       ├── Hierarchical_Ternary_KG_as_RAG_Alternative.md
 │       └── ternary_judge.md
@@ -51,6 +52,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Physics | [KK–Jacobson Commutativity Note](./Physics/KK_Jacobson_Commutativity_Note.md) | Historical technical note on the 5D→4D thermodynamic bridge (route frozen) |
 | Reasoning | [Unified Implementable Model](./Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
 | Reasoning | [External Ternary Judge Adapter](./Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
+| Reasoning | [Self-Developing Runtime Research Program](./Reasoning/Self_Developing_Runtime_Research_Program.md) | Experimental architecture for controlled self-development of language models (v0.2): ternary verifier, structural continuity, authority hierarchy, phased implementation |
 | **Reasoning / Draft** | [Hierarchical Ternary KG as RAG Alternative (Draft)](./Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: hierarchical knowledge graph with ternary filtering |
 | **Reasoning / Draft** | [Ternary Judge (Draft)](./Reasoning/Draft/ternary_judge.md) | Draft: Propose–Judge–Commit protocol |
 | Engineering | [ARCHITECTURAL_SPECIFICATION](./Engineering/ARCHITECTURAL_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent **V10.0** — Tri-Agent hierarchy, isolated memory contours, Brusentsov ternary logic |
@@ -76,13 +78,11 @@ Scratch-pad for a nascent experimental branch. These drafts apply ternary-verdic
 
 ---
 
-## Recent update (August 2026)
+## Recent update (September 2026)
 
-- Physics programme narrowed to hypothesis \(H_P\) only.
-- Thermodynamic origin shifted from classical Jacobson horizon thermodynamics to quantum relative entropy (Dorau–Mukha / Araki–Uhlmann) and the Casini link of the Bekenstein bound to relative entropy.
-- New pilot technical specification for stochastic extraction of a possible residual \(\Gamma_{\rm corr}\) under informational truncation of lattice \(U(1)\).
-- Unified Framework updated to v1.1 to reflect the single-hypothesis status and the new pilot stage.
-- **Engineering specs upgraded from V6.2 to V10.0:** Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov ternary logic (FOLLOW / NULL / OMIT), dynamic sandboxed DSL, Double-Loop error routing.
+- Added **Self-Developing Runtime Research Program** (v0.2) under Reasoning/: experimental specification for a controlled self-development loop with external ternary verifier (FOLLOW / OMIT / NULL / UNDECIDED), structural continuity as admission criterion, authority hierarchy, integrity budget, control groups, and phased implementation from static baseline to substrate expansion.
+- Physics programme remains narrowed to hypothesis \(H_P\) only.
+- Engineering specs remain at V10.0 (Tri-Agent hierarchy, Brusentsov ternary logic, isolated memory contours).
 
 ---
 
