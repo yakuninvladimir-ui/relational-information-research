@@ -29,6 +29,7 @@ Earlier and superseded materials remain archived on Zenodo.
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
 │   ├── Self_Developing_Runtime_Research_Program.md   # controlled self-development runtime (v0.2)
+│   ├── latent_information_structuring.md
 │   └── Draft/                                        # experimental scratch-pad
 │       ├── Hierarchical_Ternary_KG_as_RAG_Alternative.md
 │       └── ternary_judge.md
@@ -52,6 +53,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Physics | [KK–Jacobson Commutativity Note](./Physics/KK_Jacobson_Commutativity_Note.md) | Historical technical note on the 5D→4D thermodynamic bridge (route frozen) |
 | Reasoning | [Unified Implementable Model](./Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
 | Reasoning | [External Ternary Judge Adapter](./Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
+| Reasoning | [The Law of Useful Information Structuring in Model Latent Spaces](./Reasoning/latent_information_structuring.md) | A hypothesis formulating the law of structuring useful information in latent spaces |
 | Reasoning | [Self-Developing Runtime Research Program](./Reasoning/Self_Developing_Runtime_Research_Program.md) | Experimental architecture for controlled self-development of language models (v0.2): ternary verifier, structural continuity, authority hierarchy, phased implementation |
 | **Reasoning / Draft** | [Hierarchical Ternary KG as RAG Alternative (Draft)](./Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: hierarchical knowledge graph with ternary filtering |
 | **Reasoning / Draft** | [Ternary Judge (Draft)](./Reasoning/Draft/ternary_judge.md) | Draft: Propose–Judge–Commit protocol |
