@@ -1,12 +1,12 @@
 # Unified Informational-Constructive Framework
 
-## Version 1.2
+## Version 1.3
 
 **Author:** Vladimir Yakunin
 
-**Date:** 2026-09-23
+**Date:** 2026-10-04 (v1.3 revision; v1.2: 2026-09-23)
 
-**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the single-hypothesis physics programme (August 2026), and the geometric theory of latent representations (September 2026)
+**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the single-hypothesis physics programme (August 2026), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.8 (October 2026), the Unified Latent Space of Consciousness v1.0 (October 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), and the preliminary ternary-judge MVP results (August 2026)
 
 ## 1. Central Thesis
 
@@ -110,7 +110,7 @@ No free radion, no physical fifth dimension, no KK tower. The competing physical
 
 ### 3.3. Relative-entropy origin of gravity
 
-Macroscopic gravity is obtained from quantum-information principles (Dorau–Mukha approach): the role of heat flux is played by the quantum relative entropy (Araki–Uhlmann) evaluated on a horizon. The Casini link between the Bekenstein bound and the non-negativity of relative entropy supplies the informational constraint that, after coarse-graining, yields the semi-classical Einstein equation.
+Macroscopic gravity is obtained from quantum-information principles (Dorau–Much approach [25]): the role of heat flux is played by the quantum relative entropy (Araki–Uhlmann) evaluated on a horizon. The Casini link between the Bekenstein bound and the non-negativity of relative entropy supplies the informational constraint that, after coarse-graining, yields the semi-classical Einstein equation.
 
 A classical Kullback–Leibler proxy on gauge-invariant boundary descriptors is used in the pilot numerical stage; it is **not** claimed to be the full modular relative entropy.
 
@@ -197,7 +197,7 @@ The substrate is also the **interface to the verifier**: a disembodied "pure int
 
 ## 5. The Engineering Level
 
-The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V10.0)** define a concrete instantiation for a task.
+The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V10.8)** define a concrete instantiation for a task.
 
 ### 5.1. Requirements as ternary constraints
 
@@ -250,13 +250,13 @@ OMIT is neither an "error" nor a "skip": it is a deliberate decision of non-appl
 |---|---|---|
 | **UIM v2.0** | Architectural ontology | Ternary requirement semantics, the Proposer/Binder/Verifier/Memory hierarchy, verification contracts, evidence scopes (PREDICTIVE_ONLY vs OBSERVED_TRANSITION) |
 | **External Ternary Judge Adapter** | Verification protocol | The external-verifier interface, the fixed rule interpreter, the FalseFollowRate metric |
-| **ARC-AGI-3 LCLD Agent (V10.0)** | Instantiation | Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov ternary (FOLLOW / NULL / OMIT), sandboxed dynamic DSL |
+| **ARC-AGI-3 LCLD Agent (V10.8)** | Instantiation | Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov 4-valued verdicts (FOLLOW / NULL / OMIT / UNDECIDED), sandboxed dynamic DSL |
 
 The three documents are three nesting levels of one principle: **an agent that is not separated from its verifier has no grounds for trusting its own transitions.** The distinction of evidence scopes (PREDICTIVE_ONLY / OBSERVED_TRANSITION) is the engineering record of a philosophical boundary: a model's prediction is not an observed transition, and conflating these statuses is the source of hallucinations in the most precise sense of the word.
 
 ### 5.6. Geometric substrate of the agent
 
-The agent V10.0 runs on a neural substrate whose internal representations are themselves subject to constraint. The geometric theory of latent representations (*Latent Information Structuring*) describes this substrate: how informational constraints organize the internal geometry of the neural carrier on which the agent operates. This is the engineering instantiation of the constraint-envelope principle (§4.4) applied to the representation layer.
+The agent V10.8 runs on a neural substrate whose internal representations are themselves subject to constraint. The geometric theory of latent representations (*Latent Information Structuring*) describes this substrate: how informational constraints organize the internal geometry of the neural carrier on which the agent operates. This is the engineering instantiation of the constraint-envelope principle (§4.4) applied to the representation layer.
 
 ---
 
@@ -301,11 +301,13 @@ The archive is not a list of files but a distribution of theses across documents
 | Causal-phase network $(\mathcal{C}, \prec) + U(1) \to (\mathcal{M}_4, g_{\mu\nu}, A_\mu)$ under (H_P) only | Causal Phase Geometry Research Program (Aug 2026) | UNDECIDED: active program with falsification criteria and pilot numerics |
 | Physical-radion branch (H_R) / 5D KK | KK–Jacobson Commutativity Note | NULL (frozen August 2026) |
 | $\Gamma_{\rm corr}$ as residual of informational truncation | Causal Phase Geometry Research Program; Technical Specification v0.1.1 | UNDECIDED: pilot stage v0.1 in progress |
-| Relative-entropy (Dorau–Mukha / Araki–Uhlmann / Casini) route to gravity | Causal Phase Geometry Research Program | UNDECIDED: theoretical frame; classical KL proxy used in pilot |
+| Relative-entropy (Dorau–Much [25] / Araki–Uhlmann / Casini) route to gravity | Causal Phase Geometry Research Program | UNDECIDED: theoretical frame; classical KL proxy used in pilot |
 | Space of Algebras (Level 0) | The Algorithm of Being (§2); this document (§3.1) | UNDECIDED: a conjecture, not a foundation |
 | Ternary requirement semantics; authority hierarchy | Unified Implementable Model v2.0 | FOLLOW: specified |
-| External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter | FOLLOW: protocol; the empirics are in the §8 program |
-| Agent V10.0 (Tri-Agent, Brusentsov ternary) | ARCHITECTURAL / ENGINEERING SPECIFICATION | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
+| External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter; Draft: ternary_judge.md | FOLLOW: protocol; preliminary controlled-corpus MVP empirics exist (Reasoning/Draft/ternary_judge.md, run of 2026-08-09: FFR 0.362 → 0.035 at coverage 0.81; effect depends primarily on judge competence); open-domain transfer is UNDECIDED and remains in the §8 program |
+| Agent V10.8 (Tri-Agent, Brusentsov 4-valued verdicts) | ARCHITECTURAL / ENGINEERING SPECIFICATION (Version 10.8) | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
+| Controlled self-development of a language model under an external verifier (capability growth at bounded structural continuity) | Self-Developing Runtime Research Program v0.2 (2026-09-11) | UNDECIDED: pre-implementation specification; success/failure criteria and control groups fixed |
+| Latent-space model of consciousness: relief, reasoning budget, conditions C1–C3, predictions P1–P5 | Unified Latent Space of Consciousness v1.0 (2026-10-04) | UNDECIDED: working hypothesis; all predictions untested; the hard problem is out of scope |
 | Informational minimal surfaces: $\mathbf{H} = \lambda(\nabla i)^\perp$ as stationary condition; VIM surrogates bound the variational functional | Latent Information Structuring | UNDECIDED: active experimental program (E1–E5); mathematical framework is FOLLOW |
 
 The rule for reading the archive: **status is attached to the thesis, not to the document.** A document may be technically complete (FOLLOW as a specification) while recording open questions (UNDECIDED as empirics). Conflating these statuses is the same error as passing a prediction off as an observation.
@@ -322,9 +324,9 @@ The rule for reading the archive: **status is attached to the thesis, not to the
 
 ### 8.2. Artificial intelligence
 
-- **FalseFollowRate** — the key metric: the fraction of transitions certified as FOLLOW that fail the constraint under independent checking. The goal is a measurable reduction relative to binary baselines, via first-class OMIT/UNDECIDED.
-- **ARC-AGI-3.** Agent V10.0 is run on the benchmark; the criteria are not only task success but calibration (the match between declared confidence and observed accuracy), isolation integrity, and the share of honest UNDECIDED / OMIT versus fabricated FOLLOW.
-- **Ternary Judge track.** Independent evaluation of the adapter: rule-interpreter stability across a change of proposer, absence of semantic drift in verdicts.
+- **FalseFollowRate** — the key metric: the fraction of transitions certified as FOLLOW that fail the constraint under independent checking. A preliminary live MVP on a controlled corpus (Reasoning/Draft/ternary_judge.md, run of 2026-08-09) reports an order-of-magnitude reduction relative to binary baselines (0.362 → 0.035 at coverage 0.81), with an ablation showing that the primary factor is judge competence and the certificate contract is its multiplier. Remaining goal: reproduce the effect on open domains and in the full adapter deployment, via first-class OMIT/UNDECIDED.
+- **ARC-AGI-3.** Agent V10.8 is run on the benchmark; the criteria are not only task success but calibration (the match between declared confidence and observed accuracy), isolation integrity, and the share of honest UNDECIDED / OMIT versus fabricated FOLLOW.
+- **Ternary Judge track.** The controlled-corpus MVP is complete (see above). Remaining: independent evaluation of the adapter on open domains — rule-interpreter stability across a change of proposer, absence of semantic drift in verdicts, graph persistence (OMIT-node retention, re-verification with rollback), and binary certificates for contradictions.
 - **Latent geometry track.** Experimental program E1–E5 from *Latent Information Structuring*: projection of curvature onto information gradient ($r > r_0$), curvature dynamics during training, stratification at metric degeneracies, NTK-filtered dynamics correlation, comparison of standard CE training versus explicit VIM surrogate optimization. This track tests whether the neural substrate of the agent self-organizes according to the informational minimal surface principle.
 
 ### 8.3. Ontology
@@ -355,10 +357,36 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 | KK–Jacobson Commutativity Note | Physics | EN | Historical (5D route frozen) |
 | Unified Implementable Model v2.0 | Engineering | EN | The agent's architectural ontology |
 | External Ternary Judge Adapter | Engineering | EN | The external-verification protocol |
-| ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications | Engineering | EN | The V10.0 instantiation (Tri-Agent, isolated memory contours, Brusentsov logic) |
-| Latent Information Structuring | Reasoning (substrate geometry) | RU | Geometric theory of latent representations: variational principle, VIM surrogates, NTK-filtered dynamics, experimental program (E1–E5) |
+| ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications (Version 10.8) | Engineering | EN | The V10.8 instantiation (Tri-Agent, isolated memory contours, Brusentsov 4-valued verdict logic) |
+| The Law of Useful Information Structuring in Model Latent Spaces (`Reasoning/latent_information_structuring.md`) | Reasoning (substrate geometry) | EN | Geometric theory of latent representations: variational principle, VIM surrogates, NTK-filtered dynamics, experimental program (E1–E5) |
+| Unified Latent Space of Consciousness v1.0 | Reasoning | EN | Latent-space hypothesis of consciousness-like systems (relief, reasoning budget, conditions C1–C3); predictions P1–P5; the hard problem is bracketed |
+| Self-Developing Runtime Research Program v0.2 | Reasoning | EN | Pre-implementation specification: controlled self-development of an LLM under an external verifier, with control groups and success/failure criteria |
+| Draft: Propose, Judge, Commit (ternary_judge.md); Hierarchical Ternary KG as RAG Alternative | Reasoning (drafts) | EN | Working drafts, not catalogued as formal deliverables: the judge architecture with preliminary MVP results; ternary hierarchical knowledge graph as a RAG alternative |
 | Unified Informational-Constructive Framework (this document) | Synthesis | EN | The map of theses, statuses, and cross-level dependencies |
 
 ---
 
-*End of document. Version 1.2. Feedback and objections — via repository issues.*
+## References
+
+Bracketed numbers [1]–[24] follow the reference list of *The Algorithm of Being* (this repository) and are reproduced here for the entries actually cited in this document; [25] is new.
+
+- [6] V. Yakunin, *Causal Phase Geometry Research Program: Minimal Draft, Competing Interpretations of the Phase Layer, and a Program of Experimental Tests* (2026).
+- [7] V. Yakunin, *KK–Jacobson Commutativity Note: Discrete Causal Structure, U(1) Holonomies, and the Thermodynamic Origin of the Einstein–Maxwell System* (2026).
+- [8] V. Yakunin, *Unified Implementable Model, Version 2.0: Verifier-Centered Latent World Models with Evidence-Grounded Three-Way Semantics* (2026).
+- [9] V. Yakunin, *External Ternary Judge Adapter for OpenClaw and DeepSeek V4 API: Engineering Whitepaper* (2026).
+- [10] V. Yakunin, *ARC-AGI-3 LCLD Agent: Architectural Specification and Engineering Specification* (2026).
+- [11] N. P. Brusentsov, *Usovershenstvovanie logiki umozaklyucheniy* [The Improvement of Inference Logic], Fond "Novoe tysyacheletie", Moscow, 2012.
+- [12] R. Landauer, "Irreversibility and Heat Generation in the Computing Process," *IBM Journal of Research and Development* 5, 183–191 (1961).
+- [13] N. Margolus, L. B. Levitin, "The Maximum Speed of Dynamical Evolution," *Physica D* 120, 188–195 (1998).
+- [14] L. Mandelstam, I. Tamm, "The Uncertainty Relation Between Energy and Time in Non-Relativistic Quantum Mechanics," *Journal of Physics (USSR)* 9, 249–254 (1945).
+- [15] J. D. Bekenstein, "Universal Upper Bound on the Entropy-to-Energy Ratio for Bounded Systems," *Physical Review D* 23, 287–298 (1981).
+- [16] N. Tishby, F. C. Pereira, W. Bialek, "The Information Bottleneck Method," in *Proceedings of the 37th Annual Allerton Conference on Communication, Control and Computing*, 368–377 (1999).
+- [17] E. P. Hoel, L. Albantakis, G. Tononi, "Quantifying Causal Emergence Shows That Macro Can Beat Micro," *Proceedings of the National Academy of Sciences* 110, 19790–19795 (2013).
+- [22] A. Connes, *Noncommutative Geometry*, Academic Press, 1994.
+- [23] A. Connes, "Gravity Coupled with Matter and the Foundation of Non-commutative Geometry," *Communications in Mathematical Physics* 182, 155–176 (1996).
+- [24] A. Connes, C. Rovelli, "Von Neumann Algebra Automorphisms and Time-Thermodynamics Relation in Generally Covariant Quantum Theories," *Classical and Quantum Gravity* 11, 2899–2917 (1994).
+- [25] P. Dorau, A. Much, "From Quantum Relative Entropy to the Semiclassical Einstein Equations," *Physical Review Letters* (2026); arXiv:2510.24491.
+
+---
+
+*End of document. Version 1.3. Feedback and objections — via repository issues.*

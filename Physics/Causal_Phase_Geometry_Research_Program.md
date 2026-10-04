@@ -12,7 +12,7 @@ Status: active research program under hypothesis \(H_P\) only
 
 A working hypothesis is proposed that unifies discrete causal microstructure, local proper time, discrete \(U(1)\) holonomies, and an information-theoretic derivation of the gravitational equations. The fundamental kinematics is a locally finite causal structure equipped with phase transport on oriented links. In the corresponding continuum limit, causal order together with volume information determine a Lorentzian metric, while the phase transport determines a \(U(1)\) gauge connection.
 
-In the present revision the literal five-dimensional Kaluza–Klein interpretation and any free radion field are abandoned. The phase layer is treated strictly as an internal fibre bundle over the four-dimensional base (hypothesis \(H_P\)). Macroscopic gravity (the Einstein–Maxwell system) is obtained not from Jacobson’s phenomenological thermodynamics, but from rigorous quantum-information principles in the spirit of the Dorau–Mukha approach, in which the role of heat flux is played by the quantum relative entropy evaluated on a horizon.
+In the present revision the literal five-dimensional Kaluza–Klein interpretation and any free radion field are abandoned. The phase layer is treated strictly as an internal fibre bundle over the four-dimensional base (hypothesis \(H_P\)). Macroscopic gravity (the Einstein–Maxwell system) is obtained not from Jacobson’s phenomenological thermodynamics, but from rigorous quantum-information principles in the spirit of the Dorau–Much approach (P. Dorau, A. Much, arXiv:2510.24491), in which the role of heat flux is played by the quantum relative entropy evaluated on a horizon.
 
 Any “new physics” (dark-matter and dark-energy effects) is regarded not as independent fields, but as a correlation functional \(\Gamma_{\rm corr}\) that inevitably arises under large-scale coarse-graining because of hard informational constraints (a discrete analogue of the Bekenstein bound) on the underlying graph.
 
@@ -25,7 +25,7 @@ The program rests on the following established mathematical structures:
 1. Locally finite partially ordered sets (causal sets).
 2. Discrete \(U(1)\) connections and holonomies.
 3. Geometry of principal bundles and the continuum Einstein–Maxwell system.
-4. Derivation of semi-classical Einstein equations from quantum relative entropy (Araki–Uhlmann relative entropy) and modular theory (Dorau–Mukha approach).
+4. Derivation of semi-classical Einstein equations from quantum relative entropy (Araki–Uhlmann relative entropy) and modular theory (Dorau–Much approach).
 5. The rigorous link between the Bekenstein bound and the non-negativity of relative entropy (Casini).
 
 In contrast to earlier iterations, the following are **not** assumed:
@@ -90,7 +90,7 @@ In accordance with an informational Bekenstein bound, the maximum amount of info
 D_{\rm KL}(\sigma\|\rho_{\rm dyn})\le c\cdot N_\partial.
 \]
 
-In the continuum limit, following the logic of Dorau and Mukha, the relative entropy of a field perturbation (expressed through gradients of \(\operatorname{Re}W_D\), i.e., through the tensor \(F_{\mu\nu}F^{\mu\nu}\)) is proportional to the variation of horizon area. From this proportionality the semi-classical Einstein equations follow automatically.
+In the continuum limit, following the logic of Dorau and Much, the relative entropy of a field perturbation (expressed through gradients of \(\operatorname{Re}W_D\), i.e., through the tensor \(F_{\mu\nu}F^{\mu\nu}\)) is proportional to the variation of horizon area. From this proportionality the semi-classical Einstein equations follow automatically.
 
 ---
 
@@ -177,6 +177,17 @@ Because the radion hypothesis \(H_R\) is frozen, the test programme concentrates
 - It does not identify the discrete threshold \(c\cdot N_\partial\) with the continuum Bekenstein–Casini bound; the threshold is a working constraint used in the pilot numerics.
 - It does not claim a derivation of the Einstein equation from the classical KL divergence used in stage v0.1; that divergence is a classical proxy.
 - It does not re-introduce a free radion or a physical fifth dimension.
+
+---
+
+## 10. References
+
+1. P. Dorau, A. Much, "From Quantum Relative Entropy to the Semiclassical Einstein Equations," *Physical Review Letters* (2026); arXiv:2510.24491. — the "Dorau–Much approach" of §4.
+2. H. Casini, "Relative Entropy and the Bekenstein Bound," *Classical and Quantum Gravity* 25, 205021 (2008); arXiv:0804.2182.
+3. T. Jacobson, "Thermodynamics of Spacetime: The Einstein Equation of State," *Physical Review Letters* 75, 1260–1263 (1995).
+4. L. Bombelli, J. Lee, D. Meyer, R. D. Sorkin, "Space-Time as a Causal Set," *Physical Review Letters* 59, 521–524 (1987).
+5. K. G. Wilson, "Confinement of Quarks," *Physical Review D* 10, 2445–2459 (1974).
+6. A. M. Polyakov, "Compact Gauge Fields and the Infrared Catastrophe," *Physics Letters B* 59, 82–84 (1975); "Quark Confinement and Topology of Gauge Theories," *Nuclear Physics B* 120, 429–458 (1977). — confinement of compact U(1) in 2+1 dimensions at all couplings; relevant to the interpretation of the pilot lattice stage.
 
 ---
 

@@ -62,7 +62,7 @@
 - 3–7 working days (pure Python + Numba).
 
 ### 1.6. Acceptance criteria for item 1
-- [ ] Reproduction of the known \(U(1)\) order/disorder behaviour versus \(\beta\).
+- [ ] Reproduction of the known **3D** compact \(U(1)\) behaviour versus \(\beta\): a smooth crossover with **no phase transition** — in three dimensions compact \(U(1)\) is confining at all couplings via the monopole mechanism (Polyakov 1975; 1977), so an "order/disorder" transition is *not* expected and its absence is the correct result; monotonic growth of \(\langle\operatorname{Re}U_p\rangle\) with \(\beta\); agreement with the strong-coupling expansion at small \(\beta\) and the spin-wave (Coulomb-like crossover) behaviour at large \(\beta\).
 - [ ] \(\tau_{\rm int}\) measured and \(\lt 50\) sweeps at working \(\beta\).
 - [ ] Configurations saved and loaded without loss of precision (FP64).
 
