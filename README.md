@@ -3,40 +3,36 @@
 Independent research program spanning:
 
 1. **Relational and informational philosophy**
-2. **Causal-phase approaches to effective geometry** (hypothesis \(H_P\) only)
-3. **Verifier-centered reasoning and agent architectures**
+2. **Causal-phase approaches to effective geometry**
+3. **Verifier-centered reasoning, agent architectures, and a latent-space hypothesis of consciousness**
 
-This repository holds the current working documents only.  
+This repository holds the current working documents only.
 Earlier and superseded materials remain archived on Zenodo.
 
-**Start here:** [Unified Informational-Constructive Framework](./Unified%20Informational-Constructive%20Framework.md)  
-→ cross-level map of theses, verification statuses (FOLLOW / UNDECIDED / NULL), isomorphism of levels, and the experimental program.
+**Start here:** [Unified Informational-Constructive Framework](Unified%20Informational-Constructive%20Framework.md)
+→ cross-level map of theses, verification statuses (FOLLOW / OMIT / NULL / UNDECIDED), isomorphism of levels, and the experimental program.
 
 ---
 
 ## Repository layout
 
 ```
-├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.1)
+├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.2)
 ├── Philosophy/
 │   └── The Algorithm of Being.md
 ├── Physics/
-│   ├── Causal_Phase_Geometry_Research_Program.md     # active program under H_P (Aug 2026)
-│   ├── Technical_Specification_v0.1.1_Gamma_corr_Extraction.md  # pilot numerics
-│   ├── KK_Jacobson_Commutativity_Note.md             # historical (5D route frozen)
-│   └── old_test/                                     # internal working data
+│   ├── Causal_Phase_Geometry_Research_Program.md
+│   ├── KK_Jacobson_Commutativity_Note.md
+│   └── old_test/                                     # internal working data (see below)
 ├── Reasoning/
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
-│   ├── Self_Developing_Runtime_Research_Program.md   # controlled self-development runtime (v0.2)
-│   ├── Latent_Information_Structuring.md             # geometric theory of latent representations
-│   └── Draft/                                        # experimental scratch-pad
-│       ├── Hierarchical_Ternary_KG_as_RAG_Alternative.md
-│       └── ternary_judge.md
+│   ├── Latent_Information_Structuring.md             # geometry of latent representations (RU)
+│   └── Unified_Latent_Space_of_Consciousness.md
 ├── Engineering/
-│   ├── ARCHITECTURAL_SPECIFICATION.md               # ARC-AGI-3 LCLD Agent V10.0
-│   └── ENGINEERING_SPECIFICATION.md                 # ARC-AGI-3 LCLD Agent V10.0
-├── LICENSE                                           # CC0 1.0 / CC-BY-4.0
+│   ├── ARCHITECTURAL_SPECIFICATION.md
+│   └── ENGINEERING_SPECIFICATION.md
+├── LICENSE                                           # CC BY 4.0
 └── README.md
 ```
 
@@ -44,50 +40,35 @@ Earlier and superseded materials remain archived on Zenodo.
 
 ## Documents
 
-| Area | Document | Role / status |
-|------|----------|---------------|
-| **Synthesis** | [Unified Informational-Constructive Framework](./Unified%20Informational-Constructive%20Framework.md) | Archive map, cross-level synthesis, thesis statuses (v1.1) |
-| Philosophy | [The Algorithm of Being](./Philosophy/The%20Algorithm%20of%20Being.md) | Philosophical framework |
-| Physics | [Causal Phase Geometry Research Program](./Physics/Causal_Phase_Geometry_Research_Program.md) | Active research program under single hypothesis \(H_P\); relative-entropy route; pilot extraction of \(\Gamma_{\rm corr}\) |
-| Physics | [Technical Specification v0.1.1 — \(\Gamma_{\rm corr}\) Extraction](./Physics/Technical_Specification_v0.1.1_Gamma_corr_Extraction.md) | Executable pilot: lattice \(U(1)\), classical KL truncation, residual \(\Delta F\), null tests |
-| Physics | [KK–Jacobson Commutativity Note](./Physics/KK_Jacobson_Commutativity_Note.md) | Historical technical note on the 5D→4D thermodynamic bridge (route frozen) |
-| Reasoning | [Unified Implementable Model](./Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
-| Reasoning | [External Ternary Judge Adapter](./Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
-| Reasoning | [Latent Information Structuring](./Reasoning/latent_information_structuring.md) |Variational theory of informational minimal surfaces; VIM surrogates; active experimental program (E1–E5) |
-| Reasoning | [Self-Developing Runtime Research Program](./Reasoning/Self_Developing_Runtime_Research_Program.md) | Experimental architecture for controlled self-development of language models (v0.2): ternary verifier, structural continuity, authority hierarchy, phased implementation |
-| **Reasoning / Draft** | [Hierarchical Ternary KG as RAG Alternative (Draft)](./Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: hierarchical knowledge graph with ternary filtering |
-| **Reasoning / Draft** | [Ternary Judge (Draft)](./Reasoning/Draft/ternary_judge.md) | Draft: Propose–Judge–Commit protocol |
-| Engineering | [ARCHITECTURAL_SPECIFICATION](./Engineering/ARCHITECTURAL_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent **V10.0** — Tri-Agent hierarchy, isolated memory contours, Brusentsov ternary logic |
-| Engineering | [ENGINEERING_SPECIFICATION](./Engineering/ENGINEERING_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent **V10.0** — implementation contract for the same architecture |
+| Area          | Document                                                                                                   | Role / status                                                                                                         |
+| ------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Synthesis** | [Unified Informational-Constructive Framework](Unified%20Informational-Constructive%20Framework.md)        | Archive map, cross-level synthesis, thesis statuses (v1.2)                                                            |
+| Philosophy    | [The Algorithm of Being](Philosophy/The%20Algorithm%20of%20Being.md)                                        | Philosophical framework                                                                                               |
+| Physics       | [Causal Phase Geometry Research Program](Physics/Causal_Phase_Geometry_Research_Program.md)                 | Open research program with falsification criteria                                                                     |
+| Physics       | [KK–Jacobson Commutativity Note](Physics/KK_Jacobson_Commutativity_Note.md)                                 | Technical note on the 5D→4D thermodynamic bridge (5D route frozen)                                                    |
+| Reasoning     | [Unified Implementable Model](Reasoning/Unified_Implementable_Model.md)                                     | Theoretical architecture (verifier-centered latent world models)                                                      |
+| Reasoning     | [External Ternary Judge Adapter](Reasoning/External_Ternary_Judge_Adapter.md)                               | Technology assessment / protocol for external verification                                                            |
+| Reasoning     | [Latent Information Structuring](Reasoning/Latent_Information_Structuring.md)                               | Geometric theory of latent representations ; active experimental program                                          |
+| Reasoning     | [Unified Latent Space of Consciousness](Reasoning/Unified_Latent_Space_of_Consciousness.md)                 | Working hypothesis: latent-space description of consciousness-like systems; LLM / world model / human; testable predictions |
+| Engineering   | [ARCHITECTURAL\_SPECIFICATION](Engineering/ARCHITECTURAL_SPECIFICATION.md)                                  | ARC-AGI-3 LCLD Agent: architectural specification                                                                    |
+| Engineering   | [ENGINEERING\_SPECIFICATION](Engineering/ENGINEERING_SPECIFICATION.md)                                      | ARC-AGI-3 LCLD Agent: engineering specification                                                                       |
 
 ### Physics/old_test
 
-Unstructured working data from successive stages of the cosmological and astrophysical testing pipeline (scripts, plots, Cobaya reports, RAR analyses, attractor studies, etc.).  
+Unstructured working data from successive stages of the cosmological and astrophysical testing pipeline (scripts, plots, Cobaya reports, RAR analyses, attractor studies, etc.).
 Kept for internal continuity; not catalogued as formal deliverables.
-
-### Reasoning/Draft
-
-Scratch-pad for a nascent experimental branch. These drafts apply ternary-verdict ideas from the main reasoning documents to concrete retrieval and agent-control problems. They are at an embryonic stage, not yet integrated into the formal thesis map, and are kept here for internal testing and feedback.
 
 ---
 
 ## Status disclaimer
 
-- The physics documents **do not** claim an experimentally established replacement for general relativity or ΛCDM. They formulate a research program under the single hypothesis \(H_P\) (internal \(U(1)\) phase bundle) with explicit falsification criteria and a concrete pilot numerical stage.
-- The competing physical-radion branch \(H_R\) has been frozen; the KK–Jacobson note is retained only for historical continuity.
+- The physics documents **do not** claim an experimentally established replacement for general relativity or ΛCDM. They formulate a research program with explicit falsification criteria.
 - The reasoning-system and engineering documents specify research architectures and prototype evaluation plans. They **do not** establish general intelligence or universal logical correctness.
-- Thesis-level statuses (FOLLOW / UNDECIDED / NULL) are maintained in the Framework document and are attached to claims, not merely to files.
-
----
-
-## Recent update (September 2026)
-
-- Added **Self-Developing Runtime Research Program** (v0.2) under Reasoning/: experimental specification for a controlled self-development loop with external ternary verifier (FOLLOW / OMIT / NULL / UNDECIDED), structural continuity as admission criterion, authority hierarchy, integrity budget, control groups, and phased implementation from static baseline to substrate expansion.
-- Physics programme remains narrowed to hypothesis \(H_P\) only.
-- Engineering specs remain at V10.0 (Tri-Agent hierarchy, Brusentsov ternary logic, isolated memory contours).
+- The consciousness document is a working hypothesis. It does **not** explain why any state is experienced (the hard problem is bracketed), and its predictions are untested.
+- Thesis-level statuses (FOLLOW / OMIT / NULL / UNDECIDED) are maintained in the Framework document and are attached to claims, not merely to files.
 
 ---
 
 ## License
 
-All content in this repository is released under **Creative Commons Attribution 4.0 International License**. See [LICENSE](./LICENSE).
+All content in this repository is released under the **Creative Commons Attribution 4.0 International License** (CC BY 4.0). See [LICENSE](LICENSE).
