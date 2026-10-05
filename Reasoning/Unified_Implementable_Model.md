@@ -160,11 +160,12 @@ $$
 
 is the highest-authority transition evidence available to the agent, provided that the environment or control stack accepted \(a_t\) and the returned observation passed ingestion checks. It is called an *authoritative observed transition*; it is not claimed to be the hidden physical state itself.
 
-**Definition 2.1** (Evidence scope). Each result has one of the scopes
+**Definition 2.1** (Evidence scope). Each result has one of the scopes:
 
-$$
-\texttt{NOT\_AVAILABLE},\quad \texttt{PREDICTIVE\_ONLY},\quad \texttt{OBSERVED\_TRANSITION},\quad \texttt{REPLAY\_VERIFIED}.
-$$
+- `NOT_AVAILABLE`
+- `PREDICTIVE_ONLY`
+- `OBSERVED_TRANSITION`
+- `REPLAY_VERIFIED`
 
 A predictive result may affect ranking and risk estimation, but it may not create a factual transition, a confirmed mechanic, or positive success memory.
 
@@ -209,7 +210,7 @@ $$
 J \in \{\texttt{REQUIRED}, \texttt{FORBIDDEN}, \texttt{IRRELEVANT}, \texttt{UNRESOLVED}\}.
 $$
 
-Here \(\texttt{UNRESOLVED}\) is not a fourth structural relation. It records insufficient, predictive-only, stale, unstable, or contradictory evidence. This separation prevents unknown from being treated as false and prevents a legal no-progress action from being treated as a contradiction.
+Here `UNRESOLVED` is not a fourth structural relation. It records insufficient, predictive-only, stale, unstable, or contradictory evidence. This separation prevents unknown from being treated as false and prevents a legal no-progress action from being treated as a contradiction.
 
 ---
 
@@ -598,7 +599,7 @@ $$
 \hat{\tau}^{(r)} = (s_t,\; \hat{s}^{(r)}_{t+1},\; \ldots,\; \hat{s}^{(r)}_{t+H},\; \hat{\Sigma}^{(r)}_{t+1:t+H}), \qquad r = 1, \ldots, M.
 $$
 
-Every such rollout has evidence scope \(\texttt{PREDICTIVE\_ONLY}\).
+Every such rollout has evidence scope `PREDICTIVE_ONLY`.
 
 A risk-sensitive cost is
 
@@ -929,7 +930,7 @@ as \(\tau \to \infty\).
 
 *Proof sketch.* For centered logits, \(\mathrm{softmax}(t/\tau)_i = 1/K + t_i/(K\tau) + O(\tau^{-2})\), and similarly for \(s\). Expanding the KL divergence to second order around the uniform distribution and substituting yields the stated asymptotic. □
 
-**Proposition 17.3** (Non-promotion invariant). Suppose every factual write API requires evidence scope \(\texttt{OBSERVED\_TRANSITION}\) or \(\texttt{REPLAY\_VERIFIED}\), and predictive evaluators can emit only \(\texttt{PREDICTIVE\_ONLY}\). Then no purely predictive computation can create a factual transition or confirmed positive mechanic.
+**Proposition 17.3** (Non-promotion invariant). Suppose every factual write API requires evidence scope `OBSERVED_TRANSITION` or `REPLAY_VERIFIED`, and predictive evaluators can emit only `PREDICTIVE_ONLY`. Then no purely predictive computation can create a factual transition or confirmed positive mechanic.
 
 *Proof.* The conclusion follows from the type and authority guard on every factual write path. A predictive result does not satisfy the precondition of any factual write API. The invariant is architectural and must be regression-tested; it is not guaranteed by model accuracy. □
 
@@ -954,15 +955,11 @@ Possible predicates include
 
 A structural entailment may be
 
-$$
-\texttt{certified\_landing\_zone} \Rightarrow \texttt{landing\_zone\_stable},
-$$
+`certified_landing_zone` ⇒ `landing_zone_stable`
 
 and an incompatibility may be
 
-$$
-\texttt{inside\_authorized\_corridor} \;\bot\; \texttt{inside\_hard\_no\_fly\_region}
-$$
+`inside_authorized_corridor` ⊥ `inside_hard_no_fly_region`
 
 for the same spatial point. Other predicate pairs are irrelevant unless explicitly constrained.
 
@@ -970,9 +967,7 @@ for the same spatial point. Other predicate pairs are irrelevant unless explicit
 
 Suppose the current surface is
 
-$$
-\Sigma_t = \{\texttt{velocity\_control},\; \texttt{hover},\; \texttt{land},\; \texttt{return\_home}\}
-$$
+Σ_t = {`velocity_control`, `hover`, `land`, `return_home`}
 
 with payload actuation unavailable. A semantic hypothesis that requires payload release may remain plausible as a mission explanation but is not currently realizable. The route is therefore surface-unresolved rather than semantically false.
 
@@ -986,7 +981,7 @@ $$
 
 The favorable direction is \(d = -1\), because smaller is better. The binder computes the baseline from the trusted current scene, not from the proposer’s numeric estimate. A candidate action is predictively ranked by expected distance reduction, collision risk, localization uncertainty, and surface stability.
 
-After the accepted action, the verifier recomputes the before and after metric from the trusted transition. A decrease exceeding \(\tau_{\mathrm{prog}}\) is \(\texttt{REQUIRED}\) progress. A legal action with negligible change is \(\texttt{IRRELEVANT}\). An increase beyond the failure margin or a geofence violation is \(\texttt{FORBIDDEN}\). A localization discontinuity, stale target binding, or predictive-only evaluation is \(\texttt{UNRESOLVED}\).
+After the accepted action, the verifier recomputes the before and after metric from the trusted transition. A decrease exceeding \(\tau_{\mathrm{prog}}\) is `REQUIRED` progress. A legal action with negligible change is `IRRELEVANT`. An increase beyond the failure margin or a geofence violation is `FORBIDDEN`. A localization discontinuity, stale target binding, or predictive-only evaluation is `UNRESOLVED`.
 
 ### 18.4 Recovery
 
