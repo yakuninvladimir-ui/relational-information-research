@@ -30,7 +30,7 @@ Earlier and superseded materials remain archived on Zenodo.
 │   ├── External_Ternary_Judge_Adapter.md
 │   ├── Self_Developing_Runtime_Research_Program.md
 │   ├── latent_information_structuring.md             # geometry of latent representations (EN)
-│   ├── Unified_Latent_Space_of_Consciousness.md
+│   ├── Latent_Agency_Framework.md
 │   └── Draft/                                        # working drafts, not formal deliverables
 │       ├── ternary_judge.md
 │       └── Hierarchical_Ternary_KG_as_RAG_Alternative.md
@@ -56,7 +56,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Reasoning | [External Ternary Judge Adapter](Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
 | Reasoning | [Self-Developing Runtime Research Program](Reasoning/Self_Developing_Runtime_Research_Program.md) | Pre-implementation research program (v0.2): controlled self-development of an LLM under an external verifier |
 | Reasoning | [Latent Information Structuring](Reasoning/latent_information_structuring.md) | Geometric theory of latent representations (EN); active experimental program E1–E5 |
-| Reasoning | [Unified Latent Space of Consciousness](Reasoning/Unified_Latent_Space_of_Consciousness.md) | Working hypothesis: latent-space description of consciousness-like systems; LLM / world model / human; testable predictions |
+| Reasoning | [Latent_Agency_Framework.md](Reasoning/Latent_Agency_Framework.md) | Working hypothesis: latent-space description of consciousness-like systems; LLM / world model / human; testable predictions |
 | Reasoning (drafts) | [Propose, Judge, Commit](Reasoning/Draft/ternary_judge.md) | Draft paper; includes preliminary live MVP results on a controlled corpus (FalseFollowRate 0.362 → 0.035) |
 | Reasoning (drafts) | [Hierarchical Ternary KG as RAG Alternative](Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: ternary hierarchical knowledge graph as an alternative to RAG |
 | Engineering | [ARCHITECTURAL\_SPECIFICATION](Engineering/ARCHITECTURAL_SPECIFICATION.md) | ARC-AGI-3 LCLD Agent (Version 10.8): architectural specification |
