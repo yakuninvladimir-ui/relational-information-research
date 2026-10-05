@@ -4,9 +4,9 @@
 
 **Author:** Vladimir Yakunin
 
-**Date:** 2026-10-04 (v1.3 revision; v1.2: 2026-09-23)
+**Date:** 2026-10-05 (v1.3 revision; v1.2: 2026-09-23)
 
-**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the single-hypothesis physics programme (August 2026), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.8 (October 2026), the Unified Latent Space of Consciousness v1.0 (October 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), and the preliminary ternary-judge MVP results (August 2026)
+**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the single-hypothesis physics programme (August 2026), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.8 (October 2026), the Latent Agency Framework v2.0 (October 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), and the preliminary ternary-judge MVP results (August 2026)
 
 ## 1. Central Thesis
 
@@ -307,7 +307,7 @@ The archive is not a list of files but a distribution of theses across documents
 | External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter; Draft: ternary_judge.md | FOLLOW: protocol; preliminary controlled-corpus MVP empirics exist (Reasoning/Draft/ternary_judge.md, run of 2026-08-09: FFR 0.362 → 0.035 at coverage 0.81; effect depends primarily on judge competence); open-domain transfer is UNDECIDED and remains in the §8 program |
 | Agent V10.8 (Tri-Agent, Brusentsov 4-valued verdicts) | ARCHITECTURAL / ENGINEERING SPECIFICATION (Version 10.8) | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
 | Controlled self-development of a language model under an external verifier (capability growth at bounded structural continuity) | Self-Developing Runtime Research Program v0.2 (2026-09-11) | UNDECIDED: pre-implementation specification; success/failure criteria and control groups fixed |
-| Latent-space model of consciousness: relief, reasoning budget, conditions C1–C3, predictions P1–P5 | Unified Latent Space of Consciousness v1.0 (2026-10-04) | UNDECIDED: working hypothesis; all predictions untested; the hard problem is out of scope |
+| Latent Agency Framework: graded agency (integration, persistence, informational autonomy); relief vs reasoning budget; recoverability bound; nine measurable predictions | Latent_Agency_Framework.md (v2.0, 2026-10-05; successor to Unified Latent Space of Consciousness v1.0) | UNDECIDED: working hypothesis; predictions untested; the hard problem is bracketed |
 | Informational minimal surfaces: $\mathbf{H} = \lambda(\nabla i)^\perp$ as stationary condition; VIM surrogates bound the variational functional | Latent Information Structuring | UNDECIDED: active experimental program (E1–E5); mathematical framework is FOLLOW |
 
 The rule for reading the archive: **status is attached to the thesis, not to the document.** A document may be technically complete (FOLLOW as a specification) while recording open questions (UNDECIDED as empirics). Conflating these statuses is the same error as passing a prediction off as an observation.
@@ -359,7 +359,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 | External Ternary Judge Adapter | Engineering | EN | The external-verification protocol |
 | ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications (Version 10.8) | Engineering | EN | The V10.8 instantiation (Tri-Agent, isolated memory contours, Brusentsov 4-valued verdict logic) |
 | The Law of Useful Information Structuring in Model Latent Spaces (`Reasoning/latent_information_structuring.md`) | Reasoning (substrate geometry) | EN | Geometric theory of latent representations: variational principle, VIM surrogates, NTK-filtered dynamics, experimental program (E1–E5) |
-| Unified Latent Space of Consciousness v1.0 | Reasoning | EN | Latent-space hypothesis of consciousness-like systems (relief, reasoning budget, conditions C1–C3); predictions P1–P5; the hard problem is bracketed |
+| Latent Agency Framework (v2.0) | Reasoning | EN | Working hypothesis: latent-space agency (integration, persistence, autonomy); relief vs budget; recoverability bound; nine measurable predictions; hard problem bracketed. Successor to Unified Latent Space of Consciousness v1.0 |
 | Self-Developing Runtime Research Program v0.2 | Reasoning | EN | Pre-implementation specification: controlled self-development of an LLM under an external verifier, with control groups and success/failure criteria |
 | Draft: Propose, Judge, Commit (ternary_judge.md); Hierarchical Ternary KG as RAG Alternative | Reasoning (drafts) | EN | Working drafts, not catalogued as formal deliverables: the judge architecture with preliminary MVP results; ternary hierarchical knowledge graph as a RAG alternative |
 | Unified Informational-Constructive Framework (this document) | Synthesis | EN | The map of theses, statuses, and cross-level dependencies |
