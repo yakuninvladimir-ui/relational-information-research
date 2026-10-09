@@ -4,7 +4,6 @@
 
 **Author:** Vladimir Yakunin  
 **Date:** 2026-10-09  
-**Version:** 2.3 (minimal revision of v2.2)  
 **Status:** working concept document (Reasoning layer). Framework only. Not a finished theory, not for publication. Literature is secondary and listed from memory in Appendix B, unverified. Thesis statuses are in §16.
 
 ---
