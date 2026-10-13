@@ -69,13 +69,18 @@ Kept for internal continuity; not catalogued as formal deliverables.
 
 ---
 
+## Author's Note
+
+This archive was created with the assistance of Large Language Models (LLMs). However, the models were strictly controlled, the outputs were filtered, and cross-verification was performed, culminating in my final review and approval. I fully understand that modern AI with frozen weights can hardly transcend the boundaries of existing human knowledge. Therefore, this repository captures specific points at the frontiers of the research directions that interest me, focusing on hypotheses I consider promising. While the depth of exploration varies across these different directions, I consider it sufficient to convey the overall structure of the ideas.
+
+---
+
 ## Status disclaimer
 
 - The physics documents **do not** claim an experimentally established replacement for general relativity or ΛCDM. They formulate a research program with explicit falsification criteria.
 - The reasoning-system and engineering documents specify research architectures and prototype evaluation plans. They **do not** establish general intelligence or universal logical correctness.
 - The consciousness document is a working hypothesis. It does **not** explain why any state is experienced (the hard problem is bracketed), and its predictions are untested.
 - Thesis-level statuses (FOLLOW / OMIT / NULL / UNDECIDED) are maintained in the Framework document and are attached to claims, not merely to files.
-- Files under `Reasoning/Draft/` are working drafts, not formal deliverables. The preliminary MVP result reported in `ternary_judge.md` comes from a controlled synthetic corpus (single run per configuration); it has not been replicated on open domains.
 
 ---
 
