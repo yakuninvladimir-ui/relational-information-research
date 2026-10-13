@@ -56,6 +56,8 @@ or, in terms of a ternary scale for two terms:
 
 where the middle zero precisely means the incidental status of \(x'y\). Similar scales are constructed for relations of arbitrary arity. Operations on scales (conjunction, disjunction, inversion, change of arity) allow one to fully computerize Aristotelian syllogistics without paradoxes and with preservation of the subordination of the particular to the general.
 
+**Relation to other notations.** The conjunctive \(V\)-form states Carroll's truth-conditions of consequence (\(x_1y'_0\): \(x\) is non-empty, \(xy'\) is empty) conjoined with the non-empty-universe axioms of the Aristotelian discourse (\(Vx\), \(Vy'\)). Its DNF expansion — the form used in the ARC-AGI-3 LCLD Agent Architectural Specification V10.8 (§1.2) — is \(x \Rightarrow y \equiv xy \lor xy'_0 \lor x'y'\), in which the silenced incidental member is exactly \(x'y\). The two forms are equivalent characterizations of one relation: truth-conditions versus expansion members.
+
 The key principle is the **coexistence of opposites**: a primary term can be considered only if both things to which it is inherent and things to which it is anti-inherent are present in the universe. This guarantees the variability of terms and the contentfulness of relations.
 
 ### 2.2. Coarse-graining

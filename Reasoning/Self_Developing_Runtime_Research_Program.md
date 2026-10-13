@@ -5,7 +5,7 @@
 **Version:** 0.2  
 **Date:** 2026-09-11  
 **Status:** Research program specification (pre-implementation)  
-**Alignment:** Unified Informational-Constructive Framework v1.1; Unified Implementable Model; External Ternary Judge Adapter
+**Alignment:** Unified Informational-Constructive Framework v1.4 (originally aligned to v1.1 as of 2026-09-11); Unified Implementable Model; External Ternary Judge Adapter
 
 ---
 
@@ -95,6 +95,8 @@ COMMIT / REJECT
 | Verifier        | Issue FOLLOW / OMIT / NULL / UNDECIDED      | Propose or execute                    |
 | Memory          | Store only certified transitions            | Propose or modify parameters          |
 | Learning Controller | Prepare candidate parameter updates     | Commit without verifier approval      |
+
+*Relation to UIM §7:* the UIM role set is Proposer / Binder / **Planner (with Compiler)** / Verifier, plus event-sourced Memory (UIM §13). In this program's minimal architecture the Planner/Compiler function (route formation from bound hypotheses) is instantiated inside the Orchestrator rather than as a separate role; it inherits the same prohibition on self-certification. The Learning Controller is a role specific to this program and has no UIM counterpart.
 
 ### 1.3 Evidence scopes
 

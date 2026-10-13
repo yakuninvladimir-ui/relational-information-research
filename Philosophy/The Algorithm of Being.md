@@ -92,7 +92,7 @@ This does not require reducing physics to computation in the narrow, computation
 
 ---
 
-## 3. The Constraint Triad: Distinction, Energy, Rate
+## 3. The Constraint Triad: Distinction, Action, Rate
 
 ### 3.1 Information as constraint
 
@@ -485,7 +485,7 @@ A philosophy that files some of its own sentences under $OMIT$ is, at least, pra
 
 ### Statement
 
-Reality appears less like static substance and more like **constrained self-structuring informational process**, unfolding within the triad of distinction, energy, and rate.
+Reality appears less like static substance and more like **constrained self-structuring informational process**, unfolding within the triad of distinction, action, and rate.
 
 ### Definition
 

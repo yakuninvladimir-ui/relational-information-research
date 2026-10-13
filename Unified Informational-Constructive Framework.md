@@ -1,10 +1,10 @@
 # Unified Informational-Constructive Framework
 
-## Version 1.3
+## Version 1.4
 
 **Author:** Vladimir Yakunin
 
-**Date:** 2026-10-05 (v1.3 revision; v1.2: 2026-09-23)
+**Date:** 2026-10-13 (v1.4 revision; v1.3: 2026-10-05; v1.2: 2026-09-23)
 
 **Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the single-hypothesis physics programme (August 2026), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.8 (October 2026), the Latent Agency Framework v2.0 (October 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), and the preliminary ternary-judge MVP results (August 2026)
 
@@ -217,6 +217,7 @@ UIM fixes a separation of roles that excludes self-certification:
 
 - **Proposer** — generates transition candidates; has no right to declare a transition actual;
 - **Binder** — binds requirements to the concrete execution context; has no right to verify;
+- **Planner (with Compiler)** — converts bound hypotheses into executable routes; has no right to certify (UIM §7.3);
 - **Verifier** — the only role with the right to certify a transition; external to the Proposer;
 - **Memory** — stores only certified transitions (event-sourced journal); has no right to propose.
 
@@ -242,15 +243,15 @@ The Verifier (including an external one, via the Ternary Judge Adapter) issues o
 | **NULL** | The transition violates the constraint | Uncertified transition, rejected |
 | **UNDECIDED** | The verifier cannot issue a verdict | Honest ignorance; the transition is blocked or escalated |
 
-OMIT is neither an "error" nor a "skip": it is a deliberate decision of non-applicability, logged on equal footing with the rest. The adapter fixes the rule interpreter as an immutable layer: verdict semantics is not subject to further training and does not drift with the model.
+OMIT is neither an "error" nor a "skip": it is a deliberate decision of non-applicability, logged on equal footing with the rest. The verdict→controller-action bijection is domain-specific: pre-commit judges (the Adapter; the Propose–Judge–Commit loop) map OMIT to silence/no-commit — the move is not admitted into state; post-action verifiers (the ARC-AGI-3 agent V10.8) map OMIT to advance-without-confirmation — the transition has already occurred and the branch is preserved. The invariant common to every domain: **OMIT never certifies and never severs.** The adapter fixes the rule interpreter as an immutable layer: verdict semantics is not subject to further training and does not drift with the model.
 
 ### 5.5. Three documents, one hierarchy
 
 | Document | Level of abstraction | What it fixes |
 |---|---|---|
-| **UIM v2.0** | Architectural ontology | Ternary requirement semantics, the Proposer/Binder/Verifier/Memory hierarchy, verification contracts, evidence scopes (PREDICTIVE_ONLY vs OBSERVED_TRANSITION) |
+| **UIM v2.0** | Architectural ontology | Ternary requirement semantics, the Proposer/Binder/Planner/Verifier/Memory hierarchy, verification contracts, evidence scopes (PREDICTIVE_ONLY vs OBSERVED_TRANSITION) |
 | **External Ternary Judge Adapter** | Verification protocol | The external-verifier interface, the fixed rule interpreter, the FalseFollowRate metric |
-| **ARC-AGI-3 LCLD Agent (V10.8)** | Instantiation | Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov 4-valued verdicts (FOLLOW / NULL / OMIT / UNDECIDED), sandboxed dynamic DSL |
+| **ARC-AGI-3 LCLD Agent (V10.8)** | Instantiation | Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov 4-valued verdicts (FOLLOW / OMIT / NULL / UNDECIDED), sandboxed dynamic DSL |
 
 The three documents are three nesting levels of one principle: **an agent that is not separated from its verifier has no grounds for trusting its own transitions.** The distinction of evidence scopes (PREDICTIVE_ONLY / OBSERVED_TRANSITION) is the engineering record of a philosophical boundary: a model's prediction is not an observed transition, and conflating these statuses is the source of hallucinations in the most precise sense of the word.
 
@@ -307,7 +308,7 @@ The archive is not a list of files but a distribution of theses across documents
 | External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter; Draft: ternary_judge.md | FOLLOW: protocol; preliminary controlled-corpus MVP empirics exist (Reasoning/Draft/ternary_judge.md, run of 2026-08-09: FFR 0.362 → 0.035 at coverage 0.81; effect depends primarily on judge competence); open-domain transfer is UNDECIDED and remains in the §8 program |
 | Agent V10.8 (Tri-Agent, Brusentsov 4-valued verdicts) | ARCHITECTURAL / ENGINEERING SPECIFICATION (Version 10.8) | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
 | Controlled self-development of a language model under an external verifier (capability growth at bounded structural continuity) | Self-Developing Runtime Research Program v0.2 (2026-09-11) | UNDECIDED: pre-implementation specification; success/failure criteria and control groups fixed |
-| Latent Agency Framework: graded agency (integration, persistence, informational autonomy); relief vs reasoning budget; recoverability bound; nine measurable predictions | Latent_Agency_Framework.md (v2.0, 2026-10-05; successor to Unified Latent Space of Consciousness v1.0) | UNDECIDED: working hypothesis; predictions untested; the hard problem is bracketed |
+| Latent Agency Framework: graded agency (integration, persistence, informational autonomy); relief vs reasoning budget; recoverability bound; nine measurable predictions | Latent_Agency_Framework.md (v2.0, 2026-10-09; successor to Unified Latent Space of Consciousness v1.0) | UNDECIDED: working hypothesis; predictions untested; the hard problem is bracketed |
 | Informational minimal surfaces: $\mathbf{H} = \lambda(\nabla i)^\perp$ as stationary condition; VIM surrogates bound the variational functional | Latent Information Structuring | UNDECIDED: active experimental program (E1–E5); mathematical framework is FOLLOW |
 
 The rule for reading the archive: **status is attached to the thesis, not to the document.** A document may be technically complete (FOLLOW as a specification) while recording open questions (UNDECIDED as empirics). Conflating these statuses is the same error as passing a prediction off as an observation.
@@ -389,4 +390,4 @@ Bracketed numbers [1]–[24] follow the reference list of *The Algorithm of Bein
 
 ---
 
-*End of document. Version 1.3. Feedback and objections — via repository issues.*
+*End of document. Version 1.4. Feedback and objections — via repository issues.*

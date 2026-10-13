@@ -17,7 +17,7 @@ Earlier and superseded materials remain archived on Zenodo.
 ## Repository layout
 
 ```
-├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.3)
+├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.4)
 ├── Philosophy/
 │   └── The Algorithm of Being.md
 ├── Physics/
@@ -47,7 +47,7 @@ Earlier and superseded materials remain archived on Zenodo.
 
 | Area          | Document                                                                                                   | Role / status                                                                                                         |
 | ------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Synthesis** | [Unified Informational-Constructive Framework](Unified%20Informational-Constructive%20Framework.md) | Archive map, cross-level synthesis, thesis statuses (v1.3) |
+| **Synthesis** | [Unified Informational-Constructive Framework](Unified%20Informational-Constructive%20Framework.md) | Archive map, cross-level synthesis, thesis statuses (v1.4) |
 | Philosophy | [The Algorithm of Being](Philosophy/The%20Algorithm%20of%20Being.md) | Philosophical framework |
 | Physics | [Causal Phase Geometry Research Program](Physics/Causal_Phase_Geometry_Research_Program.md) | Open research program with falsification criteria |
 | Physics | [Technical Specification v0.1.1 — Γ_corr Extraction](Physics/Technical_Specification_v0.1.1_Gamma_corr_Extraction.md) | Executable pilot specification: lattice U(1), KL truncation, residual ΔF, null tests |

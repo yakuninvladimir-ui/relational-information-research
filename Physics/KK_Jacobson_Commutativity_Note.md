@@ -6,6 +6,8 @@ V. Yakunin
 
 July 15, 2026
 
+> **STATUS: HISTORICAL — route frozen (August 2026).** The physical-radion branch (\(H_R\)) / literal 5D Kaluza–Klein route recorded in this note is frozen. It is superseded by the single-hypothesis \((H_P)\) formulation in `Causal_Phase_Geometry_Research_Program.md` (August 2026) and catalogued as **NULL (frozen August 2026)** in the Unified Informational-Constructive Framework, §7. Kept for provenance; not an active research direction.
+
 ---
 
 ## Abstract

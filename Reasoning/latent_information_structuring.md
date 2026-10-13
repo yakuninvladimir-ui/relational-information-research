@@ -2,6 +2,9 @@
 
 **Theory of Informational Minimal Surfaces**
 
+**Version:** 1.0  
+**Date:** September 2026  
+
 **Status:** variational principle + upper surrogates (VIM) + mean curvature equation + NTK-filtered dynamics + operational protocol + explicit non-claims
 
 **Language:** English (standard mathematical notation)

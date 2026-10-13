@@ -3,7 +3,9 @@
 ## Integration, Autonomy, Learned Relief, and the Recoverability of Structure Between Agents
 
 **Author:** Vladimir Yakunin  
+**Version:** 2.0  
 **Date:** 2026-10-09  
+**Successor to:** Unified Latent Space of Consciousness v1.0 (superseded; archived on Zenodo)  
 **Status:** working concept document (Reasoning layer). Framework only. Not a finished theory, not for publication. Literature is secondary and listed from memory in Appendix B, unverified. Thesis statuses are in §16.
 
 ---
