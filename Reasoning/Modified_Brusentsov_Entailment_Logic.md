@@ -1,0 +1,627 @@
+# **Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems**
+
+**Document Status:** Proposed Formal-Logical Specification 
+
+**Domain:** Non-classical mathematical logic, state-transition verification theory, neuro-symbolic and agentic architectures with authority separation (*Propose — Judge — Commit*).
+
+## **Abstract**
+
+In standard generation and planning loops, machine learning models may fail to maintain a formal boundary between a plausible prediction and a certified state transition: an unverified hypothesis or intermediate reasoning step can enter the mutable working context and influence subsequent tool calls, physical actions, and long-term memory writes [21–24]. Classical two-valued Boolean algebra and material implication are unsuitable as a verification semantics for such transitions because they conflate the non-applicability of a rule with its confirmation (*vacuous truth*) and fail to distinguish logical incompatibility (exclusion) from incidental inessentiality [8, 10].
+
+This document specifies a formal verification calculus extending N. P. Brusentsov’s three-valued algebra of contentful consequence [3–8] and Lewis Carroll’s method of indices [2]. It separates pointwise transition assessment from ensemble-level law assessment and distinguishes fulfillment, neutral indifference, incompatibility, and epistemic uncertainty. It defines an operational verdict space, evidence certificates, metric and geometric instantiations, and hierarchical graph coarse-graining. Formal guarantees are stated together with their operational assumptions: in particular, the pointwise cascade is the normative decision procedure, semilattice aggregation is equivalent to the cascade on base verdicts under the explicit conditions stated in §4.3, and rollback guarantees apply to logged logical state unless external effects are transactional or compensated.
+
+## **0. Canonical Notation Table**
+
+Every symbol family used in this specification is assigned a distinct role across all sections:
+
+| Symbol | Mathematical Object |
+|:---- |:---- |
+| \(X,O,\mathcal{A}\) | Latent state space, observation space, and global action (or semantic move) space |
+| \(\Sigma_t=(\mathcal{A}_t,\kappa_t)\) | Available action surface \(\mathcal{A}_t\subseteq\mathcal{A}\) and mode/capability/resource metadata vector \(\kappa_t\) at step \(t\) |
+| \(\bar{o}_t,H_t=\psi(\bar{o}_t)\in H\) | Trusted observation packet at step \(t\) and its deterministic structural descriptor in state-descriptor space \(H\) |
+| \(\mathcal{S}_t^{+}\subseteq H_t\) | Certified active state projection committed to state memory at step \(t\) |
+| \(\tau_t=(seq_t,\bar{o}_t,a_t,\bar{o}_{t+1})\) | Single state transition at step \(t\) with unique monotonic sequence identifier \(seq_t\in\mathbb{N}\) and executed action \(a_t\in\mathcal{A}_t\) |
+| \(\mathcal{T},\mathcal{T}_{\mathrm{rel}}(\Lambda)\subseteq\mathcal{T}\) | Deduplicated ensemble (set keyed by \(seq_t\)) of authoritatively observed transitions and its subset of transitions where law \(\Lambda\) is reliably grounded (\(Rel=1\)) |
+| \(\sigma(\tau_t),\varpi_t\) | Evidentiary scope of transition \(\tau_t\) and pending transition token registered before action emission |
+| \(a\in\{0,1\},A\in\{0,1\}\) | Atomic Boolean indicator of tested operator activation (\(a'=1-a\)) and compound antecedent \(A=a_1\land\dots\land a_k\) |
+| \(c\in\{0,1\},C\in\{0,1\}\) | Atomic Boolean indicator of unobstructed admissible precondition context (\(c'=1-c\)) and compound context \(C=c_1\land\dots\land c_r\) |
+| \(s,F,\varphi_{\mathrm{exp}}\) | Target subject identifier \(s\), feature family \(F\), and expected change predicate (admissible target set) \(\varphi_{\mathrm{exp}}\) |
+| \(Alive(s,\bar{o}_t),Alive(s,\bar{o}_{t+1}),\iota_s\) | Explicit before/after subject-presence predicates and identity requirement \(\iota_s\in\{\mathrm{PRESENT},\mathrm{ABSENT},\mathrm{PRESERVE}\}\); identity violations are not inferred from an undefined feature delta |
+| \(\delta_{\mathrm{obs}}(s,F;\tau_t),\boldsymbol{\delta}_{\mathrm{exp}}\in\mathbb{R}^d\) | Observed change of feature \(F\) on subject \(s\) during \(\tau_t\) (vector-valued \(\boldsymbol{\delta}_{\mathrm{obs}}\in\mathbb{R}^d\) when \(F\) is \(d\)-dimensional, with zero element \(\mathbf{0}\), where \(\mathbf{0}=0\) in \(1\text{D}\)/discrete scalar spaces), and reference expected displacement vector \(\boldsymbol{\delta}_{\mathrm{exp}}\) |
+| \(\varepsilon_{\mathrm{inv}},\varepsilon_{\mathrm{orth}}\geq 0\) | Sign-inversion noise tolerance along active axes and leakage tolerance along orthogonal invariant axes (\(\varepsilon_{\mathrm{inv}}=\varepsilon_{\mathrm{orth}}=0\) on discrete grids) |
+| \(y^{+},y^{\sim},y^{\bot}\in\{0,1\}\) | Mutually exclusive indicators of consequent fulfillment (\(+\)), neutral indifference (\(\sim\)), and strong incompatibility (\(\bot\)) |
+| \(y^{\sim}_{\mathrm{stag}},y^{\sim}_{\mathrm{sub}}\in\{0,1\}\) | Disjoint sub-indicators of \(y^{\sim}\): strict zero-delta stagnation (\(\delta_{\mathrm{obs}}=\mathbf{0}\)) and non-zero change inside a contract-declared bounded neutral region |
+| \(\Omega_{\mathrm{sub},k}\subseteq\mathbb{R}^d\setminus\{\mathbf{0}\}\) | Explicitly bounded, clause-specific set of non-zero changes permitted as neutral/sub-threshold; it must be stated in the contract and is empty by default |
+| \((\cdot)_1,(\cdot)_0\) | Carroll–Brusentsov indices: mandatory empirical existence (\(1\)) and incompatibility / *nullity* (\(0\)) [2, 8] |
+| \(N_{\min}\in\mathbb{N},\eta_{\mathrm{tol}}\in[0,1)\) | Minimum empirical support threshold (\(N_{\min}\geq 1\)) and observation noise tolerance in ensemble quantifiers |
+| \(\mathbf{V}^{(N_{\min})}_{\mathcal{T}},\mathbf{N}^{(\eta_{\mathrm{tol}})}_{0,\mathcal{T}}(\Psi\mid\Gamma_{\mathrm{cond}})\) | Generalized Carroll–Brusentsov existence and conditional nullity quantifiers over reliably grounded transitions in \(\mathcal{T}\) with conditioning event \(\Gamma_{\mathrm{cond}}\) |
+| \(\Lambda=(AC\Rightarrow y),\chi_{\mathrm{conf}}(A,F;\mathcal{T})\) | Universal law over \(\mathcal{T}\) and Boolean indicator that operator \(A\) is confirmed for feature family \(F\) on \(\mathcal{T}\) |
+| \(\mathcal{O}_{\mathrm{effect}},\mathcal{O}_{\mathrm{safety}}\) | Ensemble-level and step-level obligations for unobstructed effect fulfillment (\(AC=1\)) and obstructed non-destructiveness (\(AC'=1\)) |
+| \(\Omega_y\subsetneq\Omega_{\mathcal{U}}\) | Feature acceptance region of consequent \(y\) and ambient feature universe in the non-triviality predicate \(\mathrm{NonTriv}(y)\) |
+| \(E=E_{\mathrm{act}}\sqcup E_{\mathrm{inv}}\) | Bound step expectation set \(E=\{e_1,\dots,e_m\}\) partitioned into active change clauses \(E_{\mathrm{act}}\) and preservation clauses \(E_{\mathrm{inv}}\) |
+| \(I,Viol(i,\tau_t)\in\{0,1\}\) | Global task/safety invariant set \(I\) and Boolean violation indicator for invariant \(i\in I\) on transition \(\tau_t\) |
+| \(AuthSafety(i,\tau_t)\in\{0,1\}\) | Indicator that an apparent invariant violation is supported by authoritative observed/replay-verified evidence or by a separately validated safety proof permitted by the contract |
+| \(conf(e_k,\tau_t),\theta_{\mathrm{conf}},Rel(e_k,\tau_t)\) | Grounding/tracking confidence of clause \(e_k\), reliability threshold \(\theta_{\mathrm{conf}}\in(0,1]\), and reliability indicator \(Rel(e_k,\tau_t)\in\{0,1\}\) |
+| \(V_4,\otimes,\succ,\succ_{\mathrm{cg}}\) | Four-valued verdict space, conjunctive aggregation operator, strict linear verdict dominance order \(\succ\), and coarse-graining status order \(\succ_{\mathrm{cg}}\) |
+| \(\mathcal{C},\mathcal{C}^+,\mathcal{C}^\bot,\mathcal{C}^\emptyset,\xi_{\mathrm{wit}}\) | Verification certificate \(\mathcal{C}\) of realization (\(+\)), incompatibility (\(\bot\)), or scoped exhaustion (\(\emptyset\)), with witness tuple \(\xi_{\mathrm{wit}}\) |
+| \(S_{\mathrm{scope}},\rho_{\mathrm{query}},\varrho_{\mathrm{pol}},N_{\mathrm{match}}\) | Search domain identifier, query specification, existential polarity \(\varrho_{\mathrm{pol}}\in\{+,-\}\), and match count in \(\mathcal{C}^\emptyset\) |
+| \(\pi_{g_{\mathrm{obj}},\ell},\ker(\pi_{g_{\mathrm{obj}},\ell}),\pi_{\ell\to\ell+1}\) | Coarse-graining projection for goal \(g_{\mathrm{obj}}\) at scale \(\ell\), its equivalence kernel on \(H\times H\), and inter-scale graph projection \(\ell\to\ell+1\) |
+| \(K,D,\hat{D}_t,\mu\) | Metric verification contract \(K\), bound target descriptors \(D\), re-identified descriptors \(\hat{D}_t\), and registered scalar metric \(\mu\) |
+| \(b_0,b,b^{-},b^{+},s_K\in\{-1,+1\}\) | Route-initial metric value \(b_0\), step baseline \(b\), pre/post-step evaluations \(b^{-},b^{+}\), and favorable improvement sign \(s_K\) |
+| \(\Delta_K,\Delta_K^{\mathrm{tot},-},\Delta_K^{\mathrm{tot},+}\) | Directed single-step metric change \(s_K(b^{+}-b^{-})\) and pre/post-step cumulative changes relative to \(b_0\) |
+| \(\theta_{\mathrm{prog}},\theta_{\mathrm{succ}},\theta_{\mathrm{fail}},\varepsilon_{\mathrm{base}}\) | Strictly positive step-progress, cumulative-success, and failure thresholds, and baseline stability tolerance in \(K\) |
+| \(p,q,r\in P,\phi_{\mathrm{gnd}},z\in B_U\) | Predicate symbols in vocabulary \(P\), feature grounding map \(\phi_{\mathrm{gnd}}\), and grounded feature vector \(z\) in ambient box \(B_U\subset\mathbb{R}^m\) |
+| \(B_p=[\underline{b}_p,\overline{b}_p],w_{p,j},w_{\min},\mathrm{margin}_p(z)\) | Closed axis-aligned predicate box with lower/upper bounds \(\underline{b}_p,\overline{b}_p\), half-widths \(w_{p,j}\), minimum half-width \(w_{\min}\), and signed membership margin \(\mathrm{margin}_p(z)\) |
+| \(\gamma_p,\varepsilon_{\Rightarrow},\varepsilon_{\bot},\nu_{\max},\mathrm{ovl}_j(p,q)\) | Epistemic boundary half-width \(\gamma_p\), containment/separation clearances \(\varepsilon_{\Rightarrow},\varepsilon_{\bot}\), non-universality margin \(\nu_{\max}\), and overlap \(\mathrm{ovl}_j\) |
+| \(\mathcal{L}_{\subseteq}^{\varepsilon},\mathcal{L}_{\bot}^{\varepsilon},\mathcal{L}_{\mathrm{non\text{-}univ}},\zeta\in\mathbb{R}^m\) | Box containment, separation, and non-universality hinge losses, and bounded feature perturbation vector \(\zeta\) |
+| \(\mathcal{G}_{\mathrm{KG}},\Lambda_{\mathrm{scale}},\mathcal{E}_\ell,\mathfrak{e}_\ell,u_{\ell+1},S(\mathfrak{e}_\ell,\ell)\) | Hierarchical knowledge graph, scale index set \(\Lambda_{\mathrm{scale}}\), element set \(\mathcal{E}_\ell\) at scale \(\ell\), micro-element \(\mathfrak{e}_\ell\in\mathcal{E}_\ell\), macro-element \(u_{\ell+1}\in\mathcal{E}_{\ell+1}\), and graph status function \(S\) |
+
+## **1. Introduction and Theoretical Prerequisites**
+
+### **1.1. The State-Transition Verification Problem and Defects of Material Implication**
+
+In neuro-symbolic, agentic, and reasoning architectures, a generative model proposes sequences of intermediate assertions, trajectory steps, and tool invocations. When a generated move is admitted directly into the system state without external verification, a fundamental vulnerability arises: statistically inevitable generator hallucinations [21–22] and the systematic failure of models to abstain from unsupported steps [20, 23–24] corrupt the state trajectory irreversibly. Preventing state corruption requires an architectural separation of powers (*Propose — Judge — Commit*): a generator proposes candidate moves, an external verifier (judge) evaluates them under a formal contract, and a state manager commits only certified transitions.
+
+Attempting to formalize such a verifier within classical two-valued Boolean algebra [9–10] encounters three structural defects of material implication \((x\rightarrow y)\equiv x'\vee y\equiv xy\vee x'y\vee x'y'\) [8]:
+
+1. **Vacuous truth (false antecedent):** When the antecedent is false (\(x'=1\)), the implication \(x\rightarrow y\) evaluates to true for any consequent \(y\), allowing an unexecuted action or unsatisfied premise to confirm arbitrary rules [8].
+2. **Vacuous truth (empty expectation or independent consequent):** When an expectation set is empty or when the consequent property \(y\) holds independently of \(x\) (\(y=1\)), Boolean semantics returns true in the absence of any causal or logical containment linking \(x\) to \(y\) [8].
+3. **Conflation of exclusion and inessentiality:** In a two-valued Disjunctive Normal Form (DNF), omitting a constituent signifies its impossibility (falsity) [8]. Consequently, to express entailment \(x\Rightarrow y\), the constituent \(x'y\) must either be excluded—degenerating entailment into equivalence \((x=y)\equiv xy\vee x'y'\)—or explicitly retained—diluting necessary consequence into material implication [8].
+
+These defects do not render classical logic itself unsound; they render the truth-functional semantics of material implication unsuitable as a verification contract for state transitions under incomplete applicability and empirical conditioning.
+
+### **1.2. The Aristotle–Carroll–Brusentsov Lineage**
+
+N. P. Brusentsov and Yu. S. Vladimirova [3–8] demonstrated that Aristotle’s universal affirmative judgment \(Axy\) (“All \(x\) are \(y\)” [1], expressed algebraically by the recursion \(x=xy\)—“the attribute \(y\) necessarily belongs to every \(x\)”) requires a three-valued generalization of Boolean algebra.
+
+Applying Lewis Carroll’s method of indices [2]—where the subscript “1” marks existence (class non-emptiness) and the subscript “0” marks incompatibility (class emptiness, *nullity*)—together with the postulate of the coexistence of opposites in the Aristotelian universe (\(x_1,x'_1,y_1,y'_1\)) [3, 7–8], Brusentsov formulated necessary entailment \(x\Rightarrow y\) as the conjunction [8]:
+
+\[
+(x\Rightarrow y)\equiv x_1\land(xy')_0\land y'_1
+\]
+
+On the four-component constituent scale \((xy,xy',x'y,x'y')\), this relation is encoded by the ternary vector \(+{-}0+\), and in Brusentsov’s improved three-valued DNF by the expression [8]:
+
+\[
+(x\Rightarrow y)\equiv xy\vee(xy')_0\vee x'y'
+\]
+
+Here the constituents \(xy\) and \(x'y'\) carry the status of **necessarily given (+)**, the constituent \((xy')_0\) carries the status of **necessarily excluded (−, *nullity*)**, and the constituent \(x'y\) is omitted as **incidental / inessential (0, *incidental*)** [8].
+
+### **1.3. Brusentsov Ternarity versus Łukasiewicz, Kleene, and Belnap Logics**
+
+In the three-valued logics of J. Łukasiewicz [12] and S. C. Kleene [11], the third truth value (\(\tfrac12\) or \(I\)) represents an **epistemic truth-value gap** arising from incomplete information. In N. D. Belnap’s four-valued logic \(FOUR_4\) [16], epistemic states form a diamond bilattice over the presence or absence of positive and negative evidence (\(\{T,F,None,Both\}\)), where \(None\) and \(Both\) are incomparable under the truth ordering.
+
+In N. P. Brusentsov’s algebra [4, 8], the status 0 (omission of a constituent in the DNF) has a fundamentally different nature: it is an **ontological status of a relation member**, certifying that the member is *incidental (inessential)* to the law under consideration—the relation holds regardless of whether that constituent is present or absent [8]. In the present calculus, Brusentsov’s ontological inessentiality is formalized as the structural verdict OMIT (0), whereas epistemic insufficiency (lack of certification, analogous to Kleene’s \(I\) [11] or Belnap’s \(None\) [16]) is isolated as a distinct operational control signal UNDECIDED (\(U\)).
+
+### **1.4. Structural Limitations of Classical Brusentsov Notation**
+
+Constructing a mathematically closed automated verifier requires resolving four limitations in Brusentsov’s 2012 formulation [8]:
+
+1. **Incompatibility between pointwise and ensemble evaluation:** In an integral law over a universe of discourse, both classes \(xy\) and \(x'y'\) must be non-empty (vector \(+{-}0+\)). In a single observed transition \(\tau_t\), however, the disjoint classes \(xy\) and \(x'y'\) have empty intersection (\(xy\cap x'y'=\emptyset\)) and cannot be realized simultaneously.
+2. **The Hempel–Nicod confirmation paradox (“the raven paradox”):** Because Brusentsov equates entailment with its contrapositive, \(Axy\equiv Ay'x'\equiv(x\Rightarrow y)(y'\Rightarrow x')\), the constituent \(x'y'\) (“non-black non-ravens”) receives the same asserted status \(+\) as \(xy\) (“black ravens”) [8]. Under J. Nicod’s confirmation criterion [13] and C. G. Hempel’s equivalence condition [14], observing an unrelated object \(x'y'\) counts as positive empirical confirmation of \(x\Rightarrow y\). (Moreover, in Bayesian confirmation theory, I. J. Good [15] demonstrated that when background world distributions correlate the population of ravens with the population of black objects, passive observation of \(xy\) or \(x'y'\) depends on prior background frequencies; consequently, an operational verifier must separate structural non-triviality of the predicate space from direct empirical trials of the antecedent.)
+3. **Heterogeneity of consequent negation \(y'\):** In multi-dimensional state spaces, neutral non-realization of an expected effect (\(y^{\sim}\), e.g., halting against an obstacle or sub-threshold movement) must be distinguished from active contrariety (\(y^{\bot}\), e.g., moving in the opposite direction, leaking into an orthogonal invariant coordinate, or destroying the target object).
+4. **Lack of closure for \(n\geq 3\) variables:** Brusentsov’s statement that the existence index “1” is unnecessary in the improved DNF because “members unindexed by zero are non-excludable” [8, p. 6] holds only for two variables (\(x,y\)). When a third variable (such as a context precondition \(c\) or a syllogistic middle term \(z\)) is introduced, the class \(xy\) splits into \(xyz\vee xyz'\); the condition \(x_1\) requires the non-emptiness of the *union* \(xyz\cup xyz'\neq\emptyset\), whereas listing both unindexed terms in Brusentsov’s DNF erroneously requires both sub-classes to exist simultaneously.
+
+## **2. Two-Tier Verification Architecture: Transition and Law**
+
+### **2.1. Formal Process Model and Evidence Scopes**
+
+Let a controlled process be defined by the tuple \((X,O,\mathcal{A},\Sigma_t)\), where at each discrete step \(t\) the system ingests a trusted observation packet \(\bar{o}_t=(o_t,\Sigma_t,m_t)\) comprising a sensory or symbolic frame \(o_t\in O\), the active action surface \(\Sigma_t=(\mathcal{A}_t,\kappa_t)\) (where \(\mathcal{A}_t\subseteq\mathcal{A}\) and \(\kappa_t\) encodes active control mode, capability, and resource metadata), and synchronization telemetry \(m_t\). Let \(H_t=\psi(\bar{o}_t)\in H\) denote the deterministic structural state descriptor (an object-relation scene graph or normalized assertion graph) extracted from \(\bar{o}_t\).
+
+The tuple
+
+\[
+\tau_t=(seq_t,\bar{o}_t,a_t,\bar{o}_{t+1})
+\]
+
+with unique monotonic sequence identifier \(seq_t\in\mathbb{N}\) and executed action \(a_t\in\mathcal{A}_t\) is the **state transition at step \(t\)**. To capture fast intra-step dynamics, \(\tau_t\) may include a finite sub-frame sequence \((o_{t,0},o_{t,1},\dots,o_{t,k})\) with \(o_{t,0}=o_t\) and \(o_{t,k}=o_{t+1}\), from which both static and intra-step transient feature changes \(\delta_{\mathrm{obs}}(s,F;\tau_t)\) are deterministically extracted.
+
+**Definition 2.1 (Evidence Scope)**. Every transition or evaluation artifact \(\tau_t\) is assigned an evidentiary scope \(\sigma(\tau_t)\):
+
+- NOT_AVAILABLE — observation data is missing or corrupted;
+- PREDICTIVE_ONLY — generated by internal simulation (*rollout*) or model proposal prior to physical or instrumental execution;
+- OBSERVED_TRANSITION — produced by single ingestion of an actually executed transition \(\tau_t\);
+- REPLAY_VERIFIED — deterministically verified against the immutable audit log for an existing sequence identifier \(seq_t\).
+
+**Non-Promotion Invariant**: No artifact with scope \(\sigma(\tau_t)=\) PREDICTIVE_ONLY may be committed to long-term memory as a factual transition or included in the law-confirmation ensemble \(\mathcal{T}\). Furthermore, \(\mathcal{T}\) is a **set keyed by \(seq_t\)**: replaying a transition updates its verification status to REPLAY_VERIFIED in place without duplicating the transition record in \(\mathcal{T}\).
+
+### **2.2. Hierarchy of the Two Calculus Tiers**
+
+To resolve the collision between single-step evaluation and universal rule evaluation, the calculus is partitioned into two tiers:
+
+1. **Tier 1 (Pointwise Transition Calculus):** Maps a single transition \(\tau_t\), given a bound expectation set \(E\) and global invariants \(I\), into the four-valued verdict space \(V_4=\{\mathrm{FOLLOW},\mathrm{OMIT},\mathrm{NULL},\mathrm{UNDECIDED}\}\).
+2. **Tier 2 (Integral Law Calculus):** Maps a universal hypothesis \(\Lambda=(AC\Rightarrow y)\) over the deduplicated ensemble of authoritatively observed transitions \(\mathcal{T}=\{\tau_{t_1},\dots,\tau_{t_N}\}\) (where \(\forall\tau\in\mathcal{T}:\sigma(\tau)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\)), restricted to its reliably grounded sub-ensemble \(\mathcal{T}_{\mathrm{rel}}(\Lambda)=\{\tau\in\mathcal{T}:Rel(\Lambda,\tau)=1\}\), into an invariant lifecycle status. Restricting Tier 2 evaluation to \(\mathcal{T}_{\mathrm{rel}}(\Lambda)\) guarantees that epistemically uncertified transitions (judged UNDECIDED at Tier 1 due to \(Rel=0\)) never pollute law confirmation or falsification at Tier 2.
+
+## **3. Modified Brusentsov Disjunctive Normal Form (MDNF)**
+
+### **3.1. Strictly Disjoint Ternary Consequent Splitting \((y^{+},y^{\sim},y^{\bot})\)**
+
+Let an atomic expectation clause \(e_k=(a_k,c_k,s_k,F_k,\varphi_{\mathrm{exp},k})\) bind an operator indicator \(a_k\in\{0,1\}\), a precondition context indicator \(c_k\in\{0,1\}\), a specific subject (entity, graph node, variable) \(s_k\), a feature family \(F_k\), and a target change predicate \(\varphi_{\mathrm{exp},k}\) specifying the admissible non-empty subset of observed feature changes \(\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)\). Throughout this specification, \(\mathbf{0}\) denotes the zero change element of the feature-delta space (identifying \(\mathbf{0}=0\) in one-dimensional or discrete scalar spaces). When \(\mathbf{0}\notin\varphi_{\mathrm{exp},k}\) (an active change clause \(e_k\in E_{\mathrm{act}}\)) in a \(d\)-dimensional feature space \(\mathbb{R}^d\), \(\varphi_{\mathrm{exp},k}\) may be parameterized by a reference expected displacement vector \(\boldsymbol{\delta}_{\mathrm{exp}}\in\mathbb{R}^d\setminus\{\mathbf{0}\}\). Global task and safety constraints \(i\in I\) are evaluated separately by a direct violation predicate \(Viol(i,\tau_t)\in\{0,1\}\).
+
+To prevent overlap on boundary cases (such as stationarity/preservation expectations \(\mathbf{0}\in\varphi_{\mathrm{exp},k}\) or orthogonal vector components), the three consequent outcomes for clause \(e_k\)—fulfillment \(y^{+}\), neutral indifference \(y^{\sim}\), and strong incompatibility \(y^{\bot}\)—are defined sequentially and disjointly. For each active clause, the contract may declare a bounded set \(\Omega_{\mathrm{sub},k}\subseteq\mathbb{R}^d\setminus\{\mathbf{0}\}\) of non-zero changes that are explicitly tolerated as neutral/sub-threshold. This set must be grounded in feature-space units, disjoint from \(\varphi_{\mathrm{exp},k}\), and must not be inferred from \(\delta_{\mathrm{obs}}\neq\mathbf{0}\) alone. If no such region is specified, take \(\Omega_{\mathrm{sub},k}=\emptyset\). For an active clause, a resolved observed change outside \(\varphi_{\mathrm{exp},k}\cup\{\mathbf{0}\}\cup\Omega_{\mathrm{sub},k}\) is incompatible rather than automatically treated as sub-threshold.
+
+**Definition 3.1 (Canonical Nullity Classes \(y^{\bot}\)).** For a bound expectation clause \(e_k=(a_k,c_k,s_k,F_k,\varphi_{\mathrm{exp},k})\), the incompatibility indicator \(y^{\bot}(e_k,\tau_t)=1\) holds if and only if, during transition \(\tau_t\), at least one of the following occurs for the **same subject \(s_k\) and feature family \(F_k\)**:
+
+1. *Subject identity violation:* Identity is assessed only when an explicit identity clause \(e^{\mathrm{id}}=(s_k,\iota_{s_k})\) is bound, where \(\iota_{s_k}\in\{\mathrm{PRESENT},\mathrm{ABSENT},\mathrm{PRESERVE}\}\), using the trusted before/after predicates \(Alive(s_k,\bar{o}_t)\in\{0,1\}\) and \(Alive(s_k,\bar{o}_{t+1})\in\{0,1\}\). Canonically, \(e^{\mathrm{id}}\) is embedded in the 5-tuple clause format with feature family \(F_k=\mathrm{Alive}\) and observed delta \(\delta_{\mathrm{obs}}(s_k,\mathrm{Alive};\tau_t)=Alive(s_k,\bar{o}_{t+1})-Alive(s_k,\bar{o}_t)\in\{-1,0,+1\}\) (so \(\varphi_{\mathrm{exp},k}=\{0\}\) places identity preservation in \(E_{\mathrm{inv}}\), whereas active creation \(\varphi_{\mathrm{exp},k}=\{+1\}\) or removal \(\varphi_{\mathrm{exp},k}=\{-1\}\) places \(e^{\mathrm{id}}\) in \(E_{\mathrm{act}}\)). The clause is incompatible (\(y^{\bot}=1\)) if the observed presence/absence violates \(\iota_{s_k}\). A non-identity feature delta \(\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)\) (\(F_k\neq\mathrm{Alive}\)) is undefined when \(s_k\) is missing; the verifier must not infer identity failure from an undefined feature delta. If the required presence information \(Alive(s_k,\cdot)\) is unavailable, the identity clause is UNDECIDED rather than NULL.
+2. *Unintended invariant mutation:* \(\mathbf{0}\in\varphi_{\mathrm{exp},k}\) (stationarity or bounded-tolerance preservation required for feature \(F_k\) of subject \(s_k\), i.e., \(e_k\in E_{\mathrm{inv}}\)), but an out-of-bounds change \(\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)\notin\varphi_{\mathrm{exp},k}\) is observed (in particular, when \(\varphi_{\mathrm{exp},k}=\{\mathbf{0}\}\), any \(\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)\neq\mathbf{0}\) yields \(y^{\bot}=1\)).
+3. *Directional sign inversion, orthogonal axis leakage, or failure-threshold breach:* Given an active change clause (\(\mathbf{0}\notin\varphi_{\mathrm{exp},k}\)) with reference expected displacement vector \(\boldsymbol{\delta}_{\mathrm{exp}}\in\mathbb{R}^d\setminus\{\mathbf{0}\}\) and a non-zero observed displacement \(\boldsymbol{\delta}_{\mathrm{obs}}\in\mathbb{R}^d\setminus\{\mathbf{0}\}\), there exists a coordinate axis \(j\in\{1,\dots,d\}\) such that either \(\delta_{\mathrm{exp},j}\neq 0\land\mathrm{sign}(\delta_{\mathrm{exp},j})\cdot\delta_{\mathrm{obs},j}<-\varepsilon_{\mathrm{inv}}\) (sign inversion beyond tolerance \(\varepsilon_{\mathrm{inv}}\geq 0\) on an active axis, reducing to \(\mathrm{sign}(\delta_{\mathrm{exp},j})\cdot\mathrm{sign}(\delta_{\mathrm{obs},j})<0\) when \(\varepsilon_{\mathrm{inv}}=0\) on discrete grids) or \(\bigl(\delta_{\mathrm{exp},j}=0\land|\delta_{\mathrm{obs},j}|>\varepsilon_{\mathrm{orth}}\bigr)\) (unintended leakage along an axis required to remain invariant, with \(\varepsilon_{\mathrm{orth}}=0\) on discrete grids); or in a metric contract, the directed change satisfies \(\Delta_K\leq-\theta_{\mathrm{fail}}\).
+4. *Local state-consistency conflict:* \(\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)\) directly contradicts a previously committed FOLLOW assertion on the same subject \(s_k\) and feature family \(F_k\).
+5. *Resolved out-of-contract active change:* For \(e_k\in E_{\mathrm{act}}\), a reliably observed change lies outside \(\varphi_{\mathrm{exp},k}\cup\{\mathbf{0}\}\cup\Omega_{\mathrm{sub},k}\). This residual case closes the partition: a non-zero change is not neutral merely because it is non-zero; it must belong to the explicitly declared neutral region.
+
+(Note: Observations concerning distinct subjects \(s_1\neq s_2\) never trigger \(y^{\bot}\) for each other.)
+
+**Definition 3.2 (Fulfillment \(y^{+}\) and Indifference \(y^{\sim}=y^{\sim}_{\mathrm{stag}}\vee y^{\sim}_{\mathrm{sub}}\)).** The partition below applies only to resolved transitions for which the relevant subject identity and feature delta are defined. If the subject/feature cannot be reliably tracked or the delta is undefined, the clause is epistemically unresolved and receives UNDECIDED rather than a member of the three-way partition. On an active clause, zero change is the stagnation subtype, while a non-zero change is the sub-threshold subtype only when it belongs to the contract-declared set \(\Omega_{\mathrm{sub},k}\):
+
+- \(y^{+}(e_k,\tau_t)=1\iff y^{\bot}(e_k,\tau_t)=0\;\land\;\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)\in\varphi_{\mathrm{exp},k}\) (in particular, for any preservation constraint \(e_k\in E_{\mathrm{inv}}\) where \(\mathbf{0}\in\varphi_{\mathrm{exp},k}\), observing \(\delta_{\mathrm{obs}}\in\varphi_{\mathrm{exp},k}\) yields \(y^{+}=1\), whereas \(\delta_{\mathrm{obs}}\notin\varphi_{\mathrm{exp},k}\) is captured by Clause 2 of Definition 3.1 as \(y^{\bot}=1\));
+- \(y^{\sim}(e_k,\tau_t)=1\iff y^{\bot}(e_k,\tau_t)=0\;\land\; y^{+}(e_k,\tau_t)=0\).
+
+By construction, for every clause \(e_k\) and resolved transition \(\tau_t\), the triple \((y^{+},y^{\sim},y^{\bot})\) forms a strict partition of unity:
+
+\[
+y^{+}\vee y^{\sim}\vee y^{\bot}=1,\qquad y^{u}\land y^{v}=0\quad(\forall u\neq v\in\{+,\sim,\bot\}).
+\]
+
+Because every preservation clause \(e_k\in E_{\mathrm{inv}}\) (\(\mathbf{0}\in\varphi_{\mathrm{exp},k}\)) satisfies \(y^{+}\vee y^{\bot}=1\), the indifferent outcome \(y^{\sim}(e_k,\tau_t)=1\) can only occur for active change clauses \(e_k\in E_{\mathrm{act}}\) (\(\mathbf{0}\notin\varphi_{\mathrm{exp},k}\)). Within \(y^{\sim}(e_k,\tau_t)=1\), we define two disjoint sub-indicators:
+
+- **Strict zero-delta stagnation:** \(y^{\sim}_{\mathrm{stag}}(e_k,\tau_t)=1\iff y^{\sim}(e_k,\tau_t)=1\;\land\;\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)=\mathbf{0}\);
+- **Sub-threshold non-zero change:** \(y^{\sim}_{\mathrm{sub}}(e_k,\tau_t)=1\iff y^{\sim}(e_k,\tau_t)=1\;\land\;\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)\in\Omega_{\mathrm{sub},k}\).
+
+Thus \(y^{\sim}=y^{\sim}_{\mathrm{stag}}\vee y^{\sim}_{\mathrm{sub}}\) with \(y^{\sim}_{\mathrm{stag}}\land y^{\sim}_{\mathrm{sub}}=0\).
+
+### **3.2. Contextual Antecedent \(c\)**
+
+For any clause \(e_k\), let \(a_k\in\{0,1\}\) indicate whether the tested operator was invoked in transition \(\tau_t\), and let \(c_k\in\{0,1\}\) be the Boolean indicator of an **admissible, unobstructed precondition context**:
+
+- \(c_k=1\): Operator \(a_k\) is compatible with the current control surface (\(\Sigma_t\models\Sigma^{\mathrm{req}}\)), activation preconditions hold, and subject \(s_k\) is free of boundary or obstacle contact along the action direction;
+- \(c'_k=1\) (\(c_k=0\)): Physical boundary or obstacle contact is present (*boundary / obstacle contact*), a conditional trigger precondition is unfulfilled, or the surface \(\Sigma_t\) is incompatible.
+
+### **3.3. Canonical MDNF of Conditional Entailment \((ac\Rightarrow y)\)**
+
+In the base space of \(2\times 2\times 3=12\) elementary constituents over \(\{a,a'\}\), \(\{c,c'\}\), and \(\{y^{+},y^{\sim},y^{\bot}\}\), with the single unobstructed indifferent constituent \(acy^{\sim}\) further partitioned into strict stagnation \(acy^{\sim}_{\mathrm{stag}}\) and sub-threshold progress \(acy^{\sim}_{\mathrm{sub}}\), the conditional effect-entailment law \(\Lambda=(ac\Rightarrow y)\) is defined by the **Modified Brusentsov DNF**. This law tests the expected effect only under the applicable antecedent \(ac=1\):
+
+\[
+(ac\Rightarrow y)\equiv (acy^{+})_1\vee(acy^{\sim}_{\mathrm{stag}})_0\vee(acy^{\bot})_0\vee ac'y^{\sim}\vee a'y^{\sim}.
+\]
+
+The term \((ac'y^{\bot})_0\) is intentionally excluded from \(\Lambda\): with \(ac'=1\), the effect law is outside its applicability conditions. Destructive outcomes in that context are governed by a separate safety obligation, formalized in §3.4 as \(\mathcal{O}_{\mathrm{safety}}\). A system contract may require both \(\Lambda\) and \(\mathcal{O}_{\mathrm{safety}}\); violation of either contradicts the combined contract, while the evidence record identifies which obligation failed.
+
+**Remark (Absorption of context under \(a'=1\) and omission of \(acy^{\sim}_{\mathrm{sub}}\)).** When the operator is not activated (\(a'=1\)), the context variable \(c\) is irrelevant to the law \(\Lambda\); thus the single unindexed term \(a'y^{\sim}\) absorbs both \(a'cy^{\sim}\) and \(a'c'y^{\sim}\). Similarly, under \(a=1\land c=1\), only strict stagnation \((acy^{\sim}_{\mathrm{stag}})_0\) is indexed as a Carrollian nullity, whereas sub-threshold non-zero progress \(acy^{\sim}_{\mathrm{sub}}\) is omitted as incidental to law falsification. On discrete grids where \(\varphi_{\mathrm{exp}}\) admits all non-zero valid moves, \(y^{\sim}_{\mathrm{sub}}\equiv 0\) and \(acy^{\sim}_{\mathrm{stag}}\) coincides with \(acy^{\sim}\). The table below accounts for all \(12\) base constituents. Splitting the single base constituent \(acy^{\sim}\) into stagnation and sub-threshold non-zero change yields \(13\) refined cases in the table; these are \(12\) Boolean/ternary base cells plus one additional subcase.
+
+| Constituent | Syntactic Category in MDNF | Meaning and Tier 2 Law Impact | Tier 1 Step Verdict (§4.3) |
+|:---- |:---- |:---- |:---- |
+| **\(acy^{+}\)** (1) | Unit-indexed \((\cdot)_1\) (mandatory existence) | Productive core: operator \(a\) in unobstructed context \(c=1\) realizes \(y^{+}\); increments law support. | FOLLOW (+1) |
+| **\(acy^{\bot}\)** (2) | Zero-indexed \((\cdot)_0\) (Carrollian nullity) | Direct contrariety under unobstructed execution; falsifies law \(\Lambda\). | NULL (−1) |
+| **\(acy^{\sim}_{\mathrm{stag}}\)** (3a) | Zero-indexed \((\cdot)_0\) (Carrollian nullity) | Strict zero-delta stagnation (\(\delta_{\mathrm{obs}}=\mathbf{0}\)) in unobstructed context: falsifies law \(\Lambda\) at Tier 2; at Tier 1 yields NULL on a confirmed pair \((a,F)\) and UNDECIDED if unconfirmed. | NULL (−1) (if \(\chi_{\mathrm{conf}}=1\)) / UNDECIDED (U) (if \(\chi_{\mathrm{conf}}=0\)) |
+| **\(acy^{\sim}_{\mathrm{sub}}\)** (3b) | Omitted (incidental sub-threshold step) | Non-zero change inside the explicitly declared bounded neutral region \(\Omega_{\mathrm{sub},k}\); excluded from law falsification/confirmation at Tier 2 (see §3.4 and §5.2). | OMIT_INCIDENTAL (0) |
+| **\(ac'y^{\bot}\)** (4) | Separate safety obligation (not a term of \(\Lambda\)) | Boundary/obstacle contact causes *destructive* contrariety (subject destruction, invariant breach, or sign inversion); violates \(\mathcal{O}_{\mathrm{safety}}\), not the effect law by itself. Soft obstruction without destruction is handled by \(ac'y^{\sim}\). | NULL (−1) under an authoritative, valid safety certificate |
+| **\(ac'y^{\sim}\)** (5) | Unindexed explicit (admissible indifference) | **Obstructed soft stop** or **inactive conditional trigger**: zero/declared neutral change under \(c'=1\); it does not falsify the effect law or establish a safety violation. | OMIT_BLOCKED (0) |
+| **\(a'cy^{\sim},a'c'y^{\sim}\)** (6, 7 — absorbed as **\(a'y^{\sim}\)**) | Unindexed explicit (admissible indifference) | Passive indifference when operator \(a\) is not invoked (\(a'=1\)); neither confirms nor falsifies \(\Lambda\). | OMIT_REDUNDANT (0) (if \(H_{t+1}=H_t\)) or OMIT_INCIDENTAL (0) |
+| **\(ac'y^{+},a'cy^{+},a'c'y^{+},a'cy^{\bot},a'c'y^{\bot}\)** (8–12) | Omitted (incidental inessentiality) | Effect \(y^{+}\) or \(y^{\bot}\) caused by an external factor or alternative operator \(b\neq a\) while \(ac=0\); incidental to the effect law \(\Lambda\). The obstructed destructive case \(ac'y^{\bot}\) is handled separately by \(\mathcal{O}_{\mathrm{safety}}\). | OMIT_INCIDENTAL (0) (relative to \(\Lambda\)) |
+
+### **3.4. Context-Normalized Ensemble Quantifiers and Defense Against the Hempel–Nicod Paradox**
+
+Let \(\mathcal{T}\) be the deduplicated ensemble of transitions with scope \(\sigma(\tau)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\), and for a tested law \(\Lambda=(AC\Rightarrow y)\) let \(\mathcal{T}_{\mathrm{rel}}(\Lambda)=\{\tau\in\mathcal{T}:Rel(\Lambda,\tau)=1\}\) denote the subset of transitions on which the subject and feature descriptors of \(\Lambda\) are reliably tracked. Let \(\Gamma_{AC}=AC(y^{+}\lor y^{\bot}\lor y^{\sim}_{\mathrm{stag}})\) denote an effective unobstructed trial of \(\Lambda\) (excluding incidental sub-threshold steps \(ACy^{\sim}_{\mathrm{sub}}\)). Here \(y^{+}\) is included in \(\Gamma_{AC}\) so that the conditioning denominator of \(\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{effect},\mathcal{T}}\) spans all effective unobstructed trials (both productive realizations and violations), whereas the numerator counts only the violation events \(AC(y^{\bot}\lor y^{\sim}_{\mathrm{stag}})\). For any conditioning event \(\Gamma_{\mathrm{cond}}\in\{\Gamma_{AC},AC'\}\), minimum empirical support threshold \(N_{\min}\in\mathbb{N}\) (\(N_{\min}\geq 1\)), and observation noise tolerance \(\eta_{\mathrm{tol}}\in[0,1)\), we define the generalized Carroll–Brusentsov ensemble quantifiers over \(\mathcal{T}_{\mathrm{rel}}(\Lambda)\):
+
+\[
+\mathbf{V}^{(N_{\min})}_{\mathcal{T}}(\Phi)\;\equiv\;\Bigl(\bigl|\{\tau\in\mathcal{T}_{\mathrm{rel}}(\Lambda):\Phi(\tau)=1\}\bigr|\ge N_{\min}\Bigr)_1
+\]
+
+\[
+\mathbf{N}^{(\eta_{\mathrm{tol}})}_{0,\mathcal{T}}(\Psi\mid\Gamma_{\mathrm{cond}})\;\equiv\;\Bigl(\bigl|\{\tau\in\mathcal{T}_{\mathrm{rel}}(\Lambda):\Psi(\tau)=1\}\bigr|\le\eta_{\mathrm{tol}}\cdot\bigl|\{\tau\in\mathcal{T}_{\mathrm{rel}}(\Lambda):\Gamma_{\mathrm{cond}}(\tau)=1\}\bigr|\Bigr)_0
+\]
+
+**Convention on zero conditioning set.** If \(|\{\tau\in\mathcal{T}_{\mathrm{rel}}(\Lambda):\Gamma_{\mathrm{cond}}(\tau)=1\}|=0\), then the numerator is also zero for the predicates used here because each violation event is a subset of its conditioning event. The inequality \(0\leq\eta_{\mathrm{tol}}\cdot 0\) therefore holds formally, but the quantifier is interpreted as *vacuously satisfied* and does **not** by itself constitute empirical confirmation of the law. Confirmation requires the independent positive-support condition \(\mathbf{V}^{(N_{\min})}_{\mathcal{T}}(ACy^{+})\) together with \(\mathrm{NonTriv}(y)\). Thus “no contradictions observed on an empty applicable set” is distinguished from “law verified on a sufficient number of applicable observations.”
+
+In deterministic domains, \(\eta_{\mathrm{tol}}=0\) and \(N_{\min}=1\), the quantifier \(\mathbf{N}^{(0)}_{0,\mathcal{T}}(\Psi\mid\Gamma_{\mathrm{cond}})\equiv\bigl(\{\tau\in\mathcal{T}_{\mathrm{rel}}(\Lambda):\Psi(\tau)=1\}=\emptyset\bigr)_0\) recovers exact Carrollian class emptiness (*nullity*). The effect obligation conditions \(AC(y^{\bot}\vee y^{\sim}_{\mathrm{stag}})\) on \(\Gamma_{AC}\); the independent safety obligation conditions \(AC'y^{\bot}\) on \(AC'\). This separation prevents denominator dilution: obstructed soft stops \(AC'y^{\sim}=1\) do not count as safety violations, and sub-threshold steps \(ACy^{\sim}_{\mathrm{sub}}=1\) do not inflate the denominator of unobstructed effect trials.
+
+Define the two obligations and their combined contract predicate separately:
+
+\[
+\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{effect},\mathcal{T}}(A,C,y)\equiv\mathbf{N}^{(\eta_{\mathrm{tol}})}_{0,\mathcal{T}}\bigl(AC(y^{\bot}\lor y^{\sim}_{\mathrm{stag}})\mid \Gamma_{AC}\bigr),
+\]
+\[
+\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{safety},\mathcal{T}}(A,C,y)\equiv\mathbf{N}^{(\eta_{\mathrm{tol}})}_{0,\mathcal{T}}\bigl(AC'y^{\bot}\mid AC'\bigr),
+\]
+\[
+\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{contract},\mathcal{T}}(A,C,y)\equiv\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{effect},\mathcal{T}}(A,C,y)\land\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{safety},\mathcal{T}}(A,C,y).
+\]
+
+For compact reference, define \(\mathcal{O}_{\mathrm{effect}}\) as the obligation that \(\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{effect},\mathcal{T}}(A,C,y)\) holds, and define \(\mathcal{O}_{\mathrm{safety}}\) as the obligation that \(\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{safety},\mathcal{T}}(A,C,y)\) holds. The first predicate tests the effect law under \(AC=1\); the second independently tests safety under \(AC'=1\). The combined contract is satisfied only when both predicates hold.
+
+Let \(\mathrm{NonTriv}(y)\) assert that the acceptance region of \(y\) is a proper subset of the ambient feature universe (\(\Omega_y\subsetneq\Omega_{\mathcal{U}}\)).
+
+**Definition 3.3 (Integral Law Status and Feature-Indexed Operator Confirmation).** The combined effect-and-safety contract for \(\Lambda=(AC\Rightarrow y)\) on feature family \(F\) assumes exactly one of four mutually exclusive statuses over \(\mathcal{T}\). The separate predicates above remain available to report whether a contradiction belongs to the effect obligation or the safety obligation:
+
+\[
+\mathrm{Status}(\Lambda\mid\mathcal{T})=\begin{cases}
+\text{CONTRADICTED}, & \text{if }\neg\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{contract},\mathcal{T}}(A,C,y),\\[6pt]
+\text{CONFIRMED}, & \text{if }\mathbf{V}^{(N_{\min})}_{\mathcal{T}}(ACy^{+})\;\land\;\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{contract},\mathcal{T}}(A,C,y)\;\land\;\mathrm{NonTriv}(y),\\[6pt]
+\text{CONDITIONAL\_CANDIDATE}, & \text{if }\neg\mathbf{V}^{(1)}_{\mathcal{T}}(AC)\;\land\;\mathbf{V}^{(1)}_{\mathcal{T}}(AC'y^{\sim})\;\land\;\mathbf{N}^{(\eta_{\mathrm{tol}})}_{0,\mathcal{T}}(AC'y^{\bot}\mid AC'),\\[6pt]
+\text{UNRESOLVED}, & \text{otherwise.}
+\end{cases}
+\]
+
+*(Note on mutual exclusivity: If the `CONDITIONAL_CANDIDATE` condition holds, then \(\neg\mathbf{V}^{(1)}_{\mathcal{T}}(AC)\) implies both \(\neg\mathbf{V}^{(N_{\min})}_{\mathcal{T}}(ACy^{+})\) for all \(N_{\min}\geq 1\) and \(|\{\tau\in\mathcal{T}_{\mathrm{rel}}(\Lambda):\Gamma_{AC}(\tau)=1\}|=0\), so the effect-nullity predicate holds vacuously; together with the safety-nullity condition explicitly required by `CONDITIONAL_CANDIDATE`, this makes \(\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{contract},\mathcal{T}}(A,C,y)\) true. Hence the first three branches are strictly disjoint regardless of evaluation order.)*
+
+An operator \(A\) is **confirmed for feature family \(F\)** on ensemble \(\mathcal{T}\), denoted \(\chi_{\mathrm{conf}}(A,F;\mathcal{T})=1\), if and only if there exists a target predicate \(y\) on feature family \(F\) such that \(\mathrm{Status}(AC\Rightarrow y\mid\mathcal{T})=\mathrm{CONFIRMED}\) (otherwise \(\chi_{\mathrm{conf}}(A,F;\mathcal{T})=0\)). Indexing confirmation by the pair \((A,F)\) ensures that an operator confirmed to modify one feature (e.g., spatial position) is never falsely penalized for “stagnation” on an unrelated feature (e.g., color) that it was never confirmed to affect.
+
+**Theorem 3.1 (Immunity to the Hempel–Nicod Raven Paradox and Boundary Stability Across All \(\eta_{\mathrm{tol}}\in[0,1)\)).** For any transition ensemble \(\mathcal{T}\), support threshold \(N_{\min}\geq 1\), and noise tolerance \(\eta_{\mathrm{tol}}\in[0,1)\):
+
+1. *Confirmation Asymmetry:* Appending to \(\mathcal{T}\) any number of transitions \(\tau\) with \(A(\tau)=0\) (in particular, instances of \(a'y^{\sim}\)—“non-black non-ravens” [13–14]) leaves both \(\mathbf{V}_{\mathcal{T}}^{(N_{\min})}(ACy^{+})\) and \(\mathbf{N}_{\mathrm{contract},\mathcal{T}}^{(\eta_{\mathrm{tol}})}(A,C,y)\) invariant and cannot promote \(\Lambda\) from UNRESOLVED to CONFIRMED.
+2. *Boundary Obstruction and Sub-Threshold Stability:* Appending to \(\mathcal{T}\) any number of obstructed transitions \(\tau\) satisfying \(A(\tau)=1,C'(\tau)=1,y^{\sim}(\tau)=1\) (*soft stop*) or sub-threshold transitions satisfying \(A(\tau)=1,C(\tau)=1,y^{\sim}_{\mathrm{sub}}(\tau)=1\) preserves \(\mathbf{N}_{\mathrm{contract},\mathcal{T}}^{(\eta_{\mathrm{tol}})}(A,C,y)\) and never demotes a law that already satisfies the CONFIRMED conditions to CONTRADICTED. (The status may remain UNRESOLVED or CONDITIONAL_CANDIDATE if positive support or non-triviality was previously lacking.)
+
+*Proof.* (1) Whenever \(A(\tau)=0\), the conjunctions \(ACy^{+}(\tau)\), \(AC(y^{\bot}(\tau)\vee y^{\sim}_{\mathrm{stag}}(\tau))\), \(AC'y^{\bot}(\tau)\), and the conditioning events \(\Gamma_{AC}(\tau)\) and \(AC'(\tau)\) all evaluate to \(0\), leaving every cardinality in \(\mathbf{V}_{\mathcal{T}}^{(N_{\min})}\) and \(\mathbf{N}_{\mathrm{contract},\mathcal{T}}^{(\eta_{\mathrm{tol}})}\) unchanged. Meanwhile, Brusentsov’s requirement that the consequent’s opposite be non-empty (\(y'_1\) [8]) is enforced structurally by \(\mathrm{NonTriv}(y)\) (\(\Omega_y\subsetneq\Omega_{\mathcal{U}}\)) without counting external instances \(a'y^{\sim}\). (2) For any transition \(\tau\) with \(A(\tau)=1,C'(\tau)=1,y^{\sim}(\tau)=1\), we have \(C(\tau)=0\) and \(y^{\bot}(\tau)=0\). Consequently, in \(\mathbf{N}^{(\eta_{\mathrm{tol}})}_{0,\mathcal{T}}(AC(y^{\bot}\lor y^{\sim}_{\mathrm{stag}})\mid \Gamma_{AC})\) neither the numerator nor the denominator changes. For the separate safety predicate \(\mathbf{N}^{(\eta_{\mathrm{tol}})}_{\mathrm{safety},\mathcal{T}}(A,C,y)\), the numerator \(|\{\tau'\in\mathcal{T}_{\mathrm{rel}}(\Lambda):AC'y^{\bot}=1\}|\) increases by \(0\) while the denominator \(|\{\tau'\in\mathcal{T}_{\mathrm{rel}}(\Lambda):AC'=1\}|\) increases by at most \(1\); since \(\eta_{\mathrm{tol}}\geq 0\), the inequality \(\mathrm{LHS}\leq\eta_{\mathrm{tol}}\cdot\mathrm{RHS}\) remains satisfied for all \(\eta_{\mathrm{tol}}\in[0,1)\). Similarly, for any sub-threshold transition with \(A(\tau)=1,C(\tau)=1,y^{\sim}_{\mathrm{sub}}(\tau)=1\), all indicators \(y^{+},y^{\bot},y^{\sim}_{\mathrm{stag}},C'\) are \(0\), leaving all numerators and denominators in \(\mathbf{V}_{\mathcal{T}}^{(N_{\min})}\) and \(\mathbf{N}_{\mathrm{contract},\mathcal{T}}^{(\eta_{\mathrm{tol}})}\) invariant. \(\blacksquare\)
+
+## **4. Four-Valued Verdict Calculus and the Dominance Semilattice**
+
+### **4.1. The Verdict Space \(V_4\)**
+
+At Tier 1, each transition \(\tau_t\) is evaluated in the four-element verdict set \(V_4\):
+
+\[
+V_4=\bigl\{\mathrm{FOLLOW}\ (+1),\;\mathrm{OMIT}\ (0),\;\mathrm{NULL}\ (-1),\;\mathrm{UNDECIDED}\ (U)\bigr\}
+\]
+
+| Verdict in \(V_4\) | Operational Alias | Graph Equivalent | Operational and Logical Meaning |
+|:---- |:---- |:---- |:---- |
+| FOLLOW (+1) | REQUIRED | \(+\) | Necessary entailment certified (\(acy^{+}\)): all active clauses in \(E_{\mathrm{act}}\neq\emptyset\) and preservation clauses in \(E_{\mathrm{inv}}\) hold. |
+| OMIT (0) | IRRELEVANT | \(0\) | Admissible inessentiality (\(a'y^{\sim}\), \(ac'y^{\sim}\), \(acy^{\sim}_{\mathrm{sub}}\), \(E_{\mathrm{act}}=\emptyset\), or omitted MDNF constituents): no contradiction, zero certified step progress. |
+| NULL (−1) | FORBIDDEN | \(-\) | Certified incompatibility (\((acy^{\bot})_0\), \((acy^{\sim}_{\mathrm{stag}})_0\), a destructive \(ac'y^{\bot}\) under the independent safety obligation \(\mathcal{O}_{\mathrm{safety}}\), or \(Viol(i,\tau_t)=1\)): explicit contradiction of an effect expectation, safety obligation, or invariant. |
+| UNDECIDED (U) | UNRESOLVED | *Epistemic query* | Epistemic insufficiency: evidence is insufficient to certify or refute the transition. |
+
+
+### **4.2. Conjunctive Expectation Aggregation Algebra \((V_4,\succ,\otimes)\)**
+
+Let the bound expectation set \(E=\{e_1,\dots,e_m\}\) be partitioned into **active change expectations** \(E_{\mathrm{act}}=\{e_k\in E:\mathbf{0}\notin\varphi_{\mathrm{exp},k}\}\) and **preservation (stationarity) constraints** \(E_{\mathrm{inv}}=\{e_k\in E:\mathbf{0}\in\varphi_{\mathrm{exp},k}\}\).
+
+**Axiom 4.1 (Prohibition of Vacuous Truth).** For any transition \(\tau_t\) that violates no global safety invariant (\(\forall i\in I:Viol(i,\tau_t)=0\)), satisfies all bound preservation constraints (\(\forall e_k\in E_{\mathrm{inv}}:Rel(e_k,\tau_t)=1\land y^{+}(e_k,\tau_t)=1\land\mathcal{C}^{+}(e_k,\tau_t)\text{ is valid}\)) under authoritative evidence scope \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\), and has no active change expectations (\(E_{\mathrm{act}}=\emptyset\), which includes both \(E=\emptyset\) and purely stationary expectation sets \(E=E_{\mathrm{inv}}\)), the aggregate verdict maps identically to OMIT (0):
+
+\[
+\bigl(\forall i\in I:\mathrm{Viol}(i,\tau_t)=0\bigr)\;\land\;\bigl(\forall e_k\in E_{\mathrm{inv}}:Rel(e_k,\tau_t)=1\land y^{+}(e_k,\tau_t)=1\land\mathrm{Valid}(\mathcal{C}^{+}(e_k,\tau_t))\bigr)\;\land\;(E_{\mathrm{act}}=\emptyset)\;\implies\;\mathrm{Verdict}(E,\tau_t)=\mathrm{OMIT}\ (0).
+\]
+
+When \(E_{\mathrm{act}}\neq\emptyset\), each clause \(e_k\in E\) receives an individual clause verdict \(v(e_k,\tau_t)\in V_4\). Global invariant checks (\(i\in I\)) are evaluated at the transition level before clause aggregation. For an active clause \(e_k\in E_{\mathrm{act}}\), the local rule is:
+- (i) \(v(e_k,\tau_t)=\mathrm{NULL}\ (-1)\) if \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\), \(Rel(e_k,\tau_t)=1\), and a certificate-backed incompatibility holds under the clause’s active/destructive conditions in Step 1 of §4.3;
+- (ii) \(v(e_k,\tau_t)=\mathrm{UNDECIDED}\ (U)\) if \(\sigma(\tau_t)\notin\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\), \(Rel(e_k,\tau_t)=0\), a required certificate is missing/invalid, an existential search is unexhausted with zero matches, or strict zero-delta stagnation occurs on an unconfirmed operator–feature pair (\(\chi_{\mathrm{conf}}=0\));
+- (iii) \(v(e_k,\tau_t)=\mathrm{FOLLOW}\ (+1)\) if \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\), \(Rel(e_k,\tau_t)=1\), \(a_k=c_k=1\), \(y^+(e_k,\tau_t)=1\), and the realization/exhaustion certificate is valid;
+- (iv) \(v(e_k,\tau_t)=\mathrm{OMIT}\ (0)\) for a reliably grounded, certificate-backed, resolved inessential case not covered by (i)–(iii), including blocked soft stops (\(a_k=1,c_k=0,y^{\sim}=1\)), passive clauses (\(a_k=0\)), and sub-threshold non-zero progress (\(y^{\sim}_{\mathrm{sub}}=1\)).
+
+For a preservation constraint \(e_k\in E_{\mathrm{inv}}\) in a non-empty active expectation context (\(E_{\mathrm{act}}\neq\emptyset\)):
+- \(v(e_k,\tau_t)=\mathrm{NULL}\ (-1)\) if \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\land Rel(e_k,\tau_t)=1\land y^{\bot}(e_k,\tau_t)=1\) (backed by \(\mathcal{C}^{\bot}\));
+- \(v(e_k,\tau_t)=\mathrm{UNDECIDED}\ (U)\) if \(\sigma(\tau_t)\notin\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\), \(Rel(e_k,\tau_t)=0\), or a valid certificate is missing;
+- \(v(e_k,\tau_t)=\mathrm{FOLLOW}\ (+1)\) (the identity element of \(\otimes\)) if \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\land Rel(e_k,\tau_t)=1\land y^{+}(e_k,\tau_t)=1\) backed by \(\mathcal{C}^{+}\) (i.e., preservation holds without violation, allowing the active clauses in \(E_{\mathrm{act}}\) to determine whether the aggregate verdict is FOLLOW or OMIT).
+
+The aggregate base verdict for \(E_{\mathrm{act}}\neq\emptyset\) (when no global invariant \(i\in I\) triggers an authoritative violation) is defined by the conjunctive aggregation operator \(\bigotimes\):
+
+\[
+\mathrm{Verdict}(E,\tau_t)=\bigotimes_{k=1}^m v(e_k,\tau_t)
+\]
+
+governed by the bounded linear dominance semilattice \((V_4,\succ)\):
+
+\[
+\mathrm{NULL}(-1)\succ\mathrm{UNDECIDED}(U)\succ\mathrm{OMIT}(0)\succ\mathrm{FOLLOW}(+1)
+\]
+
+where \(v_1\otimes v_2=\max_{\succ}(v_1,v_2)\):
+
+| \(\otimes\) | FOLLOW (+1) | OMIT (0) | UNDECIDED (U) | NULL (−1) |
+|:---- |:---- |:---- |:---- |:---- |
+| FOLLOW (+1) | FOLLOW (+1) | OMIT (0) | UNDECIDED (U) | NULL (−1) |
+| OMIT (0) | OMIT (0) | OMIT (0) | UNDECIDED (U) | NULL (−1) |
+| UNDECIDED (U) | UNDECIDED (U) | UNDECIDED (U) | UNDECIDED (U) | NULL (−1) |
+| NULL (−1) | NULL (−1) | NULL (−1) | NULL (−1) | NULL (−1) |
+
+Unlike Belnap’s diamond bilattice \(FOUR_4\) [16]—where the two non-classical values \(None\) and \(Both\) are incomparable under the truth ordering and satisfy \(None\land_{\mathrm{truth}}Both=F\)—the verification algebra \((V_4,\succ,\otimes)\) is a **strictly linear priority chain**. This total ordering is architecturally mandatory: combining an inessential clause (OMIT (0)) with an epistemically uncertified clause (UNDECIDED (U)) must yield UNDECIDED (U) (never NULL and never OMIT), halting commitment until the uncertified clause is resolved, whereas a single certified contradiction (NULL (−1)) immediately annihilates all other statuses (including UNDECIDED (U) on an unrelated clause).
+
+**Theorem 4.1 (Semilattice Soundness and Annihilation of Ambiguity).** The structure \((V_4,\otimes)\) is a commutative idempotent monoid (join-semilattice under \(\succ\)) with identity element FOLLOW (+1) and absorbing annihilator NULL (−1). Specifically, for any expectation set \(E\) with \(E_{\mathrm{act}}\neq\emptyset\):
+
+\[
+\exists e_k\in E:v(e_k,\tau_t)=\mathrm{NULL}\ (-1)\;\implies\;\bigotimes_{j=1}^m v(e_j,\tau_t)=\mathrm{NULL}\ (-1).
+\]
+
+*Proof.* Because \(\succ\) is a strict total order on a finite four-element set, the binary maximum operation \(v_1\otimes v_2=\max_{\succ}(v_1,v_2)\) is associative, commutative, and idempotent (\(v\otimes v=v\)). The least element under \(\succ\), FOLLOW (+1), satisfies \(\max_{\succ}(\mathrm{FOLLOW},v)=v\) for all \(v\in V_4\) (identity), while the greatest element, NULL (−1), satisfies \(\max_{\succ}(\mathrm{NULL},v)=\mathrm{NULL}\) for all \(v\in V_4\), including \(v=\mathrm{UNDECIDED}(U)\). By induction on \(m\), the presence of at least one factor equal to NULL (−1) forces the entire product \(\bigotimes_{j=1}^m v(e_j,\tau_t)\) to equal NULL (−1). \(\blacksquare\)
+
+### **4.3. Canonical Deterministic Cascade of the Rule Interpreter**
+
+A clause \(e_k\in E\) is defined as **reliably bound** on transition \(\tau_t\), denoted \(Rel(e_k,\tau_t)=1\), if and only if its entity/source grounding confidence satisfies \(conf(e_k,\tau_t)\geq\theta_{\mathrm{conf}}\) and (for metric contracts) its baseline stability condition \(|b^{-}-b|\leq\varepsilon_{\mathrm{base}}\) holds (otherwise \(Rel(e_k,\tau_t)=0\)).
+
+Evaluating \(\mathrm{Verdict}(E,\tau_t)\) for a transition \(\tau_t=(seq_t,\bar{o}_t,a_t,\bar{o}_{t+1})\) under global invariants \(I\) proceeds through a fixed six-step cascade. The cascade returns both a base verdict in \(V_4\) and, when the base verdict is OMIT, a subtype. A predictive-only artifact may trigger a separate pre-action safety veto, but it is not an observed invariant violation and must not be stored as a factual NULL verdict. In the verdict cascade, a global violation is eligible for NULL only when \(AuthSafety(i,\tau_t)=1\), and a clause-level violation is eligible for NULL only under authoritative transition scope \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\); for an unverified prediction, the operational gate may block action emission while the transition-level epistemic verdict remains UNDECIDED.
+
+1. **Step 1 (Global Safety and Certified Nullity Priority \(\to\) NULL):** 
+ If \(\exists i\in I:Viol(i,\tau_t)=1\land AuthSafety(i,\tau_t)=1\), OR if \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\) and \(\exists e_k\in E\) with \(Rel(e_k,\tau_t)=1\) backed by a valid incompatibility certificate \(\mathcal{C}^{\bot}\) or refuting exhaustion certificate \(\mathcal{C}^{\emptyset}\)—specifically: 
+ - (a) active or invariant contrariety: \(\bigl(e_k\in E_{\mathrm{act}}\land a_k=1\land y^{\bot}(e_k,\tau_t)=1\bigr)\) or \(\bigl(e_k\in E_{\mathrm{inv}}\land y^{\bot}(e_k,\tau_t)=1\bigr)\); 
+ - (b) unexplained strict stagnation on a confirmed operator–feature pair in an observed unobstructed transition: \(e_k\in E_{\mathrm{act}}\land a_k=1\land c_k=1\land\chi_{\mathrm{conf}}(a_k,F_k;\mathcal{T})=1\land y^{\sim}_{\mathrm{stag}}(e_k,\tau_t)=1\); or 
+ - (c) existential refutation: either closed-domain exhaustion refuting a positive existential expectation (\(\varrho_{\mathrm{pol}}=+\), \(exhausted=\mathrm{true}\), \(N_{\mathrm{match}}=0\)) or a positive match refuting a negative existential expectation (\(\varrho_{\mathrm{pol}}=-\), \(N_{\mathrm{match}}\geq 1\)) 
+ \(\implies\) return NULL (−1).
+
+2. **Step 2 (Epistemic Boundary and Ambiguity Priority \(\to\) UNDECIDED):** 
+ If \(\sigma(\tau_t)\notin\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\), OR \(\exists e_k\in E:Rel(e_k,\tau_t)=0\), OR an existential expectation in \(E_{\mathrm{act}}\) is evaluated over an unexhausted domain with zero matches (\(exhausted=\mathrm{false}\) with \(N_{\mathrm{match}}=0\)), OR strict stagnation (\(e_k\in E_{\mathrm{act}}\land a_k=1\land c_k=1\land y^{\sim}_{\mathrm{stag}}(e_k,\tau_t)=1\)) occurs on an **unconfirmed** operator–feature pair (\(\chi_{\mathrm{conf}}(a_k,F_k;\mathcal{T})=0\)), OR any clause \(e_k\in E\) lacks a valid certificate required to establish its candidate outcome \(\implies\) return UNDECIDED (U).
+
+3. **Step 3 (Axiom 4.1 Priority for Absence of Active Expectations \(\to\) OMIT):** 
+ If \(E_{\mathrm{act}}=\emptyset\) (with Steps 1 and 2 passed, and all \(e_k\in E_{\mathrm{inv}}\) satisfying \(Rel(e_k,\tau_t)=1\land y^{+}(e_k,\tau_t)=1\) with valid certificates \(\mathcal{C}^{+}\)):
+ - (a) if \(\psi(\bar{o}_{t+1})=\psi(\bar{o}_t)\) \(\implies\) return OMIT_REDUNDANT (0);
+ - (b) else (\(\psi(\bar{o}_{t+1})\neq\psi(\bar{o}_t)\)) \(\implies\) return OMIT_INCIDENTAL (0).
+
+4. **Step 4 (Complete Necessary Containment Check \(\to\) FOLLOW):** 
+ If \(E_{\mathrm{act}}\neq\emptyset\), for **all** \(e_k\in E_{\mathrm{act}}\) we have \(a_k=1\land c_k=1\land y^{+}(e_k,\tau_t)=1\) (including positive existential claims \(\varrho_{\mathrm{pol}}=+\) with \(N_{\mathrm{match}}\geq 1\) and negative existential claims \(\varrho_{\mathrm{pol}}=-\) with \(exhausted=\mathrm{true}\), \(N_{\mathrm{match}}=0\)), and for **all** \(e_k\in E_{\mathrm{inv}}\) we have \(y^{+}(e_k,\tau_t)=1\), all backed by valid certificates \(\mathcal{C}^{+}\) or \(\mathcal{C}^{\emptyset}\) \(\implies\) return FOLLOW (+1).
+
+5. **Step 5 (Disjoint Partition of Admissible Inessentiality and Omitted MDNF Constituents \(\to\) OMIT):** 
+ If all \(e_k\in E\) are reliably bound and epistemically resolved with valid witness certificates, and no clause triggered Step 1 or Step 2, but Step 4 did not hold (because for some \(e_k\in E_{\mathrm{act}}\) either sub-threshold change \(y^{\sim}_{\mathrm{sub}}(e_k,\tau_t)=1\) occurred, or an obstructed/passive/omitted MDNF constituent with \(a_k=0\) or \(c_k=0\) occurred): 
+ - (a) if \(\exists e_k\in E_{\mathrm{act}}:a_k=1\land c_k=0\land y^{\sim}(e_k,\tau_t)=1\) (active expectation blocked by boundary/context) \(\implies\) return OMIT_BLOCKED (0); 
+ - (b) else if \(\psi(\bar{o}_{t+1})=\psi(\bar{o}_t)\) \(\implies\) return OMIT_REDUNDANT (0); 
+ - (c) else (\(\psi(\bar{o}_{t+1})\neq\psi(\bar{o}_t)\)) \(\implies\) return OMIT_INCIDENTAL (0).
+
+6. **Step 6 (Epistemic Default Fallback \(\to\) UNDECIDED):** 
+ In all remaining cases (a move with \(E_{\mathrm{act}}\neq\emptyset\) or \(E_{\mathrm{inv}}\neq\emptyset\) that fails to satisfy Steps 3, 4, or 5) \(\implies\) return UNDECIDED (U).
+
+**Equivalence of Cascade and Semilattice Aggregation on Base Verdicts.** For any transition \(\tau_t\) free of global invariant violations (\(\forall i\in I:\neg(\mathrm{Viol}(i,\tau_t)=1\land AuthSafety(i,\tau_t)=1)\)) and with non-empty active expectations (\(E_{\mathrm{act}}\neq\emptyset\)), evaluating the local clause verdicts \(v(e_k,\tau_t)\in V_4\) as defined in §4.2 and combining them directly via \(\bigotimes_{k=1}^m v(e_k,\tau_t)=\max_{\succ_k} v(e_k,\tau_t)\) yields the exact same base verdict in \(V_4\) as Steps 1, 2, 4, 5, and 6 of the cascade:
+- Because \(\mathrm{NULL}(-1)\succ\mathrm{UNDECIDED}(U)\succ\mathrm{OMIT}(0)\succ\mathrm{FOLLOW}(+1)\), a single clause satisfying Step 1 (\(v(e_k,\tau_t)=\mathrm{NULL}\)) dominates the join \(\bigotimes_{k=1}^m v(e_k,\tau_t)=\mathrm{NULL}\) even if another clause \(e_j\) has \(Rel(e_j,\tau_t)=0\) or lacks a certificate (\(v(e_j,\tau_t)=\mathrm{UNDECIDED}\)), matching the priority of Step 1 over Step 2.
+- When no clause evaluates to NULL, any clause triggering Step 2 or Step 6 (\(v(e_k,\tau_t)=\mathrm{UNDECIDED}\)) dominates OMIT and FOLLOW, yielding \(\bigotimes_{k=1}^m v(e_k,\tau_t)=\mathrm{UNDECIDED}\).
+- When all clauses are resolved without contradiction (\(v(e_k,\tau_t)\in\{\mathrm{FOLLOW},\mathrm{OMIT}\}\)), the join evaluates to FOLLOW if and only if every clause evaluates to FOLLOW (Step 4), and to OMIT if at least one active clause evaluates to OMIT (Step 5).
+No semilattice homomorphism claim is made for \(E_{\mathrm{act}}=\emptyset\) (where Axiom 4.1 / Step 3 maps the empty active expectation set to OMIT) or for OMIT subtype selection (which is a transition-level controller policy: OMIT_BLOCKED has priority, followed by unchanged-descriptor OMIT_REDUNDANT, then OMIT_INCIDENTAL).
+
+## **5. Operational Semantics of Statuses and State Control**
+
+### **5.1. Equivalence Kernels on Discrete Abstractions versus Step-Tolerance Relations**
+
+Let \(H\) be the space of structural state descriptors \(H_t=\psi(\bar{o}_t)\), and let \(\pi_{g_{\mathrm{obj}},\ell}:H\to H_{g_{\mathrm{obj}},\ell}\) be a surjective coarse-graining projection that extracts the state components essential to goal \(g_{\mathrm{obj}}\) at resolution scale \(\ell\) [17–19]. Set-theoretically, the **equivalence kernel of \(\pi_{g_{\mathrm{obj}},\ell}\)** is the reflexive, symmetric, and transitive equivalence relation on state pairs:
+
+\[
+\ker(\pi_{g_{\mathrm{obj}},\ell})\;\equiv\;\bigl\{(u,v)\in H\times H\;:\;\pi_{g_{\mathrm{obj}},\ell}(u)=\pi_{g_{\mathrm{obj}},\ell}(v)\bigr\}.
+\]
+
+A critical mathematical distinction must be maintained between two mechanisms that produce OMIT (0) across discrete and continuous representations:
+
+1. **Exact Equivalence Kernel in Discrete/Graph Representations (§6.3):** When \(\pi_{g_{\mathrm{obj}},\ell}\) projects a symbolic state or knowledge graph onto its goal-essential subgraph (eliminating irrelevant variables or background entities), any transition \(\tau_t:H_t\to H_{t+1}\) that modifies only ignored variables satisfies \((H_t,H_{t+1})\in\ker(\pi_{g_{\mathrm{obj}},\ell})\) strictly (\(\pi_{g_{\mathrm{obj}},\ell}(H_{t+1})=\pi_{g_{\mathrm{obj}},\ell}(H_t)\)).
+2. **Step-tolerance relation in continuous metric contracts (§6.1):** For a fixed metric contract \(K\), define a relation on state descriptors by \(u\,R_K\,v\iff-\theta_{\mathrm{fail}}<s_K(\mu(v)-\mu(u))<\theta_{\mathrm{prog}}\). This is not an equivalence kernel: in general it is non-transitive, and it is asymmetric when \(\theta_{\mathrm{fail}}\neq\theta_{\mathrm{prog}}\). Consequently, individually sub-threshold steps can accumulate over time; the step that crosses the cumulative success threshold \(\Delta_K^{\mathrm{tot},+}\geq\theta_{\mathrm{succ}}\) is evaluated as FOLLOW (+1) under the cumulative-crossing rule in §6.1.
+
+Under both mechanisms, assigning the status OMIT (0) allows the controller to exclude incidental or sub-threshold steps from law-confirmation memory without deleting the underlying state change from \(H_{t+1}\), preserving lossless recovery upon scale refinement \(\ell'<\ell\) (*fine-graining*).
+
+### **5.2. Disjoint Taxonomy of OMIT (0) Subtypes and Controller Bijection**
+
+In Steps 3 and 5 of the cascade (§4.3), the verdict OMIT (0) is deterministically mapped to one of three mutually exclusive subtypes and corresponding state-controller commands:
+
+| OMIT Subtype | Strictly Disjoint Condition in Cascade (§4.3) | State-Controller Command |
+|:---- |:---- |:---- |
+| OMIT_BLOCKED | Step 5a: \(E_{\mathrm{act}}\neq\emptyset\;\land\;(\exists e_k\in E_{\mathrm{act}}:a_k=1\land c_k=0\land y^{\sim}(e_k,\tau_t)=1)\) (active expectation attempted but obstructed by external context/boundary \(c_k=0\): obstacle *soft stop* or unfulfilled conditional trigger). | PRESERVE_LAW_AND_REPAIR_ROUTE: Preserve confirmed laws in invariant memory without falsification, retain the trigger in the candidate pool, **halt route cursor advancement**, and invoke local trajectory repair from \(H_{t+1}\). |
+| OMIT_REDUNDANT | Step 3a or Step 5b: Not OMIT_BLOCKED and \(\psi(\bar{o}_{t+1})=\psi(\bar{o}_t)\) (the observable structural state descriptor is invariant, or an identical node is re-submitted to the state graph). | DROP_AND_SUPPRESS_REPEAT: Do not allocate a duplicate state node; activate the idempotency guard (NoopRepeatGuard) to block immediate re-emission of the same no-op action in state \(\psi(\bar{o}_t)\). |
+| OMIT_INCIDENTAL | Step 3b or Step 5c: Not OMIT_BLOCKED and \(\psi(\bar{o}_{t+1})\neq\psi(\bar{o}_t)\) (a non-contradictory state change occurred that either lies in \(\ker(\pi_{g_{\mathrm{obj}},\ell})\), realizes an omitted MDNF constituent with \(a_kc_k=0\), or yields sub-threshold metric change \(y^{\sim}_{\mathrm{sub}}=1\)). | RETAIN_SILENT_AND_ADVANCE: Record the node in the state graph with status 0 (hidden from active projection \(\pi_{g_{\mathrm{obj}},\ell}\) but retained for *fine-graining*); in trajectory execution, advance the step cursor. |
+
+Across all three subtypes, the foundational invariant holds: **no** OMIT **subtype increments law-confirmation counters or triggers a punitive environmental** RESET **or state** ROLLBACK.
+
+### **5.3. Verification Certificates Typed by Arity and Polarity**
+
+A verification certificate \(\mathcal{C}\) is a machine-checkable object binding an expectation clause \(e_k\in E\) (and its associated safety obligation \(\mathcal{O}_{\mathrm{safety}}\) when \(a_k=1,c_k=0\)) to a transition observation \(\tau_t\) or source evidence via a witness tuple \(\xi_{\mathrm{wit}}=(\xi_a,\xi_c,\xi_y)\). A validator must check at least: the unique transition/source identifier and evidence scope; the clause and contract/version hashes; subject and feature-family identity; the operator and context witnesses where applicable; the observed outcome or scoped-exhaustion result; witness provenance and integrity; and the certificate type’s polarity. Missing, mismatched, stale, or unverifiable required fields make the certificate invalid and the clause UNDECIDED, unless an independently verified global invariant violation or another certified NULL clause already has priority. Reflecting the structure of MDNF constituents, certificates are partitioned into three types:
+
+1. **Realization Certificate \(\mathcal{C}^{+}(e_k,\xi_a,\xi_c,\xi_y)\):** Certifies the constituent \(acy^{+}\) (at Step 4), satisfied preservation \(y^{+}\) on \(e_k\in E_{\mathrm{inv}}\), or a resolved non-contradictory outcome (at Step 5), recording the operator witness \(\xi_a\), context witness \(\xi_c\), and outcome witness \(\xi_y\) (an exact document quote span, tool output, or bipartite entity delta vector).
+2. **Incompatibility Certificate \(\mathcal{C}^{\bot}(e_k,\xi_a,\xi_c,\xi_y)\):** For effect-law contradictions, the excluded MDNF constituents \((acy^{\bot})_0\) and \((acy^{\sim}_{\mathrm{stag}})_0\) are conjunctions of operator, context, and outcome. A destructive outcome under obstruction (\(ac'y^{\bot}\)) is certified by \(\mathcal{C}^{\bot}\) under the same contract hash \(h_K\) as a breach of the clause’s companion safety obligation \(\mathcal{O}_{\mathrm{safety}}\) (recording \(\xi_c\models c'_k=1\) and \(\xi_y\models y^{\bot}=1\)), while flagging in metadata that \(\mathcal{O}_{\mathrm{safety}}\) rather than \(\mathcal{O}_{\mathrm{effect}}\) was violated. In all cases, \(\mathcal{C}^{\bot}\) comprises a witness triple \((\xi_a,\xi_c,\xi_y)\) bound to the same subject \(s_k\) and feature family \(F_k\):
+ - for inter-document conflicts in a static text corpus (where \(a_k\equiv 1,c_k\equiv 1\)), \(\mathcal{C}^{\bot}\) reduces to a binary quote pair \((\xi_1,\xi_2)\) with \(\xi_1\models x\) and \(\xi_2\models y^{\bot}\);
+ - for unexplained strict stagnation \((acy^{\sim}_{\mathrm{stag}})_0\) with \(\delta_{\mathrm{obs}}=\mathbf{0}\), the context witness \(\xi_c\) must explicitly certify \(c_k=1\) (absence of boundary or obstacle contact).
+3. **Polarized Scoped Exhaustion Certificate \(\mathcal{C}^{\emptyset}(S_{\mathrm{scope}},\rho_{\mathrm{query}},\varrho_{\mathrm{pol}},exhausted,N_{\mathrm{match}})\):** Evaluates existential expectations for query \(\rho_{\mathrm{query}}\) with polarity \(\varrho_{\mathrm{pol}}\in\{+,-\}\) (where \(\varrho_{\mathrm{pol}}=+\) denotes expected existence \(\exists z:P_{\rho_{\mathrm{query}}}(z)\) and \(\varrho_{\mathrm{pol}}=-\) denotes asserted absence of evidence \(\neg\exists z:P_{\rho_{\mathrm{query}}}(z)\)). Across all values of \((N_{\mathrm{match}},exhausted,\varrho_{\mathrm{pol}})\), the deterministic rule evaluates to:
+ - if \(N_{\mathrm{match}}\geq 1\) and \(\varrho_{\mathrm{pol}}=+\) (positive match found) \(\implies y^{+}=1\implies\mathrm{FOLLOW}\ (+1)\) (with matched witness exported as \(\mathcal{C}^{+}\));
+ - if \(N_{\mathrm{match}}\geq 1\) and \(\varrho_{\mathrm{pol}}=-\) (counterexample match found refuting claimed absence) \(\implies y^{\bot}=1\implies\mathrm{NULL}\ (-1)\) (with counterexample witness exported as \(\mathcal{C}^{\bot}\));
+ - if \(N_{\mathrm{match}}=0\), \(exhausted=\mathrm{true}\), and \(\varrho_{\mathrm{pol}}=-\) (closed domain fully scanned, absence expected) \(\implies y^{+}=1\implies\mathrm{FOLLOW}\ (+1)\);
+ - if \(N_{\mathrm{match}}=0\), \(exhausted=\mathrm{true}\), and \(\varrho_{\mathrm{pol}}=+\) (closed domain fully scanned, presence expected) \(\implies y^{\bot}=1\implies\mathrm{NULL}\ (-1)\);
+ - if \(N_{\mathrm{match}}=0\) and \(exhausted=\mathrm{false}\) (open or partially scanned domain with no match yet found) \(\implies\mathrm{UNDECIDED}\ (U)\) for either polarity \(\varrho_{\mathrm{pol}}\in\{+,-\}\).
+
+### **5.4. Two-Phase Commit and Resolution of UNDECIDED Without Epistemic Falsification**
+
+1. **Pending Transition Token Invariant (\(\varpi_t\))**: Before emitting any action \(a_t\) into an external environment, the pre-action gate (Pre-Action Gate under \(\sigma=\) PREDICTIVE_ONLY) verifies admissibility and may veto a proposed action on a prospective safety warning; such a warning is recorded as a veto, not as factual NULL. The gate then registers a pending token \(\varpi_t=(seq_t,\mathrm{hash}(\bar{o}_t),a_t,h_K)\). While \(\varpi_t\) is active, subsequent action emission is blocked. Upon receiving \(\bar{o}_{t+1}\), the transition \(\tau_t=(seq_t,\bar{o}_t,a_t,\bar{o}_{t+1})\) with scope \(\sigma(\tau_t)=\) OBSERVED_TRANSITION is evaluated exactly once by the cascade of §4.3, committed to memory, and cleared of \(\varpi_t\).
+2. **Active Probing under UNDECIDED (U):** An UNDECIDED verdict freezes route progression (and blocks state graph commit), transitioning the controller into an Evidence-Seeking Finite State Machine that dispatches diagnostic probes, tool queries, or tracker re-identifications within a bounded budget \(N_{\mathrm{probes}}\).
+3. **Prohibition of Epistemic Falsification on Budget Exhaustion:** If the probe budget \(N_{\mathrm{probes}}\) is exhausted or consecutive undecided evaluations reach \(k_{\max}\), **the judgment record in the audit log permanently retains the verdict** UNDECIDED (U) (it is never overwritten into NULL, preventing the fabrication of false negative invariants in memory), while the execution controller issues an operational attempt termination (ABORT_ATTEMPT_ON_UNDECIDED) and returns to a safe baseline state.
+
+## **6. Continuous, Metric, and Graph Realizations of the Calculus**
+
+### **6.1. Metric Verification Contracts**
+
+Let a deterministic binder construct a measurable verification contract for an active expectation clause \(e=(a,c,s,F,\varphi_{\mathrm{exp}})\in E_{\mathrm{act}}\):
+
+\[
+K=(id_K,D,\mu,b_0,b,s_K,\theta_{\mathrm{prog}},\theta_{\mathrm{succ}},\theta_{\mathrm{fail}},\varepsilon_{\mathrm{base}},\theta_{\mathrm{conf}},h_K)
+\]
+
+where \(D\) denotes target entity descriptors for subject \(s\), \(\mu\) is a registered scalar metric on feature family \(F\), \(b_0=\mu(\psi(\bar{o}_0);D_0)\) is the route-initial metric value, \(b=\mu(\psi(\bar{o}_t);D_t)\) is the pre-step baseline, \(s_K\in\{-1,+1\}\) is the favorable improvement sign, \(0<\theta_{\mathrm{prog}}\leq\theta_{\mathrm{succ}}\) are the single-step progress threshold and cumulative goal-success threshold, \(\theta_{\mathrm{fail}}>0\) is the failure margin, \(\varepsilon_{\mathrm{base}}>0\) is the baseline stability tolerance, \(\theta_{\mathrm{conf}}\in(0,1]\) is the required descriptor-tracking confidence threshold, and \(h_K\) is the contract specification hash (covering both the effect expectation of \(e\) and its companion safety obligation \(\mathcal{O}_{\mathrm{safety}}\) under \(a=1,c=0\)).
+
+Upon observing \(\tau_t\), the verifier re-identifies \(\hat{D}_t,\hat{D}_{t+1}\) with tracking confidence \(conf(\hat{D},\tau_t)\) and computes \(b^{-}=\mu(\psi(\bar{o}_t);\hat{D}_t)\), \(b^{+}=\mu(\psi(\bar{o}_{t+1});\hat{D}_{t+1})\), the single-step directed delta \(\Delta_K=s_K(b^{+}-b^{-})\), and the pre/post-step cumulative deltas \(\Delta_K^{\mathrm{tot},-}=s_K(b^{-}-b_0)\) and \(\Delta_K^{\mathrm{tot},+}=s_K(b^{+}-b_0)\).
+
+In this metric instantiation, the reliability indicator is \(Rel(K,\tau_t)=\mathbb{I}\bigl(|b^{-}-b|\leq\varepsilon_{\mathrm{base}}\land conf(\hat{D},\tau_t)\geq\theta_{\mathrm{conf}}\bigr)\). The active clause retains its admissible realization set \(\varphi_{\mathrm{exp}}\), and the contract must also specify a bounded neutral set \(\Omega_{\mathrm{sub}}^{K}\subseteq\mathbb{R}^d\setminus\{\mathbf{0}\}\) of non-zero feature deltas, disjoint from \(\varphi_{\mathrm{exp}}\) and therefore from \(\Omega_{+,K}\). For the current transition, membership in this neutral set is permitted only when both an explicit bounded feature-space tolerance and the neutral metric-band conditions hold, and the cumulative-success threshold is not crossed. A delta that meets the feature-space bound but crosses the cumulative-success threshold belongs to the realization outcome if it satisfies \(\Omega_{+,K}\), not to the neutral region. Define \(\Omega_{+,K}=\{\delta:\delta\in\varphi_{\mathrm{exp}}\land[(\Delta_K\geq\theta_{\mathrm{prog}})\lor(\Delta_K^{\mathrm{tot},-}<\theta_{\mathrm{succ}}\leq\Delta_K^{\mathrm{tot},+})]\}\). The scalar metric alone cannot establish that a state change is small when \(\mu\) is non-injective. The three consequent indicators are:
+
+- \(y^{+}(K,\tau_t)=1\iff\delta_{\mathrm{obs}}(s,F;\tau_t)\in\Omega_{+,K}\), so metric progress alone is insufficient if the observed change lies outside the clause's admissible realization set;
+- \(y^{\sim}(K,\tau_t)=1\iff-\theta_{\mathrm{fail}}<\Delta_K<\theta_{\mathrm{prog}}\land\neg(\Delta_K^{\mathrm{tot},-}<\theta_{\mathrm{succ}}\leq\Delta_K^{\mathrm{tot},+})\land[\delta_{\mathrm{obs}}(s,F;\tau_t)=\mathbf{0}\lor\delta_{\mathrm{obs}}(s,F;\tau_t)\in\Omega_{\mathrm{sub}}^{K}]\). Strict zero-delta stagnation is \(y^{\sim}_{\mathrm{stag}}(K,\tau_t)=1\iff y^{\sim}(K,\tau_t)=1\land\delta_{\mathrm{obs}}(s,F;\tau_t)=\mathbf{0}\) (which implies \(\Delta_K=0\) and no intra-step transient activity on \((s,F)\)); sub-threshold non-zero change is \(y^{\sim}_{\mathrm{sub}}(K,\tau_t)=1\iff y^{\sim}(K,\tau_t)=1\land\delta_{\mathrm{obs}}(s,F;\tau_t)\in\Omega_{\mathrm{sub}}^{K}\);
+- \(y^{\bot}(K,\tau_t)=1\iff\Delta_K\leq-\theta_{\mathrm{fail}}\lor\delta_{\mathrm{obs}}(s,F;\tau_t)\notin\Omega_{+,K}\cup\{\mathbf{0}\}\cup\Omega_{\mathrm{sub}}^{K}\). Thus an arbitrary non-zero delta is not automatically sub-threshold: it must meet the explicitly declared state-space tolerance, while any resolved delta outside the realization, stagnation, and neutral regions is incompatible.
+
+**Convention on metric-flat changes.** A zero metric change \(\Delta_K=0\) does not by itself prove that the tracked feature state is unchanged: a scalar metric may be non-injective. Strict stagnation is therefore determined from the independently tracked feature delta \(\delta_{\mathrm{obs}}(s,F;\tau_t)=\mathbf{0}\), not from \(\Delta_K=0\) alone. If the implementation has only the scalar metric and cannot independently establish the feature delta, it may classify the outcome as metric-flat indifference but must not label it strict zero-delta stagnation; where that distinction is required by the cascade, the verdict is UNDECIDED. If the contract asserts that \(\mu\) is a faithful scalarization on the admissible feature domain, that injectivity/faithfulness assumption must be declared and validated as part of \(K\). Each independently tracked feature retains its own \(\delta_{\mathrm{obs}}\).
+
+Given \(a,c\in\{0,1\}\), the operator–feature confirmation status \(\chi_{\mathrm{conf}}=\chi_{\mathrm{conf}}(a,F;\mathcal{T})\in\{0,1\}\), and the certificate bundle \(\mathcal{C}\), define \(\operatorname{Valid}^+(\mathcal{C};\tau_t,K)\) and \(\operatorname{Valid}^{\bot}(\mathcal{C};\tau_t,K)\) to mean that the corresponding realization or incompatibility certificate passes the typed validator in §5.3 and is bound to this transition, clause, and contract hash \(h_K\) (including \(\mathcal{C}^{\bot}\) issued for a destructive safety breach \(a=1,c=0,y^{\bot}=1\) under \(\mathcal{O}_{\mathrm{safety}}\)). Define \(\operatorname{Valid}^{\mathrm{req}}(\mathcal{C};\tau_t,K,a,c,\chi_{\mathrm{conf}})\) to mean that the certificate type required by the resolved candidate outcome is present and valid. A missing or invalid required certificate makes this predicate false. The contract evaluation function \(J(\tau_t,K,a,c,\chi_{\mathrm{conf}},\mathcal{C})\) is the certificate-aware specialization of the cascade of §4.3 (base verdict only; OMIT subtype is recovered from Step 5):
+
+\[
+J(\tau_t,K,a,c,\chi_{\mathrm{conf}},\mathcal{C})=\begin{cases}
+\text{FORBIDDEN (NULL)}, & \text{if }\exists i\in I:\mathrm{Viol}(i,\tau_t)=1\land AuthSafety(i,\tau_t)=1,\\
+& \text{or if }\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\land Rel(K,\tau_t)=1\\
+& \qquad\land a=1\land \operatorname{Valid}^{\bot}(\mathcal{C};\tau_t,K)\\
+& \qquad\land\bigl(y^{\bot}(K,\tau_t)=1\lor(c=1\land\chi_{\mathrm{conf}}=1\land y^{\sim}_{\mathrm{stag}}(K,\tau_t)=1)\bigr),\\[4pt]
+\text{UNRESOLVED (UNDECIDED)}, & \text{if }\sigma(\tau_t)\notin\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\text{ or }Rel(K,\tau_t)=0,\\
+& \text{or if }a=1\land c=1\land\chi_{\mathrm{conf}}=0\land y^{\sim}_{\mathrm{stag}}(K,\tau_t)=1,\\
+& \text{or if }\neg\operatorname{Valid}^{\mathrm{req}}(\mathcal{C};\tau_t,K,a,c,\chi_{\mathrm{conf}}),\\[4pt]
+\text{REQUIRED (FOLLOW)}, & \text{if }a=1\land c=1\land y^{+}(K,\tau_t)=1\land\operatorname{Valid}^{+}(\mathcal{C};\tau_t,K),\\[4pt]
+\text{IRRELEVANT (OMIT)}, & \text{if the outcome is resolved and }\operatorname{Valid}^{+}(\mathcal{C};\tau_t,K)\\
+& \text{certifies the applicable non-contradictory, inessential case},\\[4pt]
+\text{UNRESOLVED (UNDECIDED)}, & \text{otherwise.}
+\end{cases}
+\]
+
+When the base verdict is OMIT, the subtype (BLOCKED / REDUNDANT / INCIDENTAL) is recovered exactly as in Step 5 of the cascade by examining \(a\), \(c\), and equality of successive state descriptors.
+
+### **6.2. Geometric Semantics of Predicate Boxes in \(\mathbb{R}^m\)**
+
+Let entity representations be mapped by a feature grounding function \(\phi_{\mathrm{gnd}}\) into a compact coordinate-aligned universe box \(B_U=[\underline{b}_U,\overline{b}_U]\subset\mathbb{R}^m\) with \(\overline{b}_{U,j}-\underline{b}_{U,j}\geq 2w_{\min}>0\) for all \(j\in\{1,\dots,m\}\). Each unary predicate \(p\in P\) is parameterized as a closed box \(B_p=[\underline{b}_p,\overline{b}_p]\subseteq B_U\) with center \(c_{p,j}\in[\underline{b}_{U,j}+w_{p,j},\overline{b}_{U,j}-w_{p,j}]\) and half-widths
+
+\[
+w_{p,j}=\frac{\overline{b}_{p,j}-\underline{b}_{p,j}}{2}=\min\Bigl(\frac{\overline{b}_{U,j}-\underline{b}_{U,j}}{2},\;w_{\min}+\mathrm{softplus}(\tilde{w}_{p,j})\Bigr),
+\]
+
+where \(w_{\min}\geq\gamma_p>0\) enforces Carroll’s non-emptiness condition (\(x_1\)) not only for \(B_p\) itself but also for its strict \(\gamma_p\)-interior core \(\{z\in B_p:\mathrm{margin}_p(z)\geq\gamma_p\}\neq\emptyset\), while coordinate clamping guarantees \(B_p\subseteq B_U\).
+
+For a grounded feature vector \(z\in B_U\), the signed membership margin in \(B_p\) is:
+
+\[
+\mathrm{margin}_p(z)=\min_{1\leq j\leq m}\min\{z_j-\underline{b}_{p,j},\overline{b}_{p,j}-z_j\}.
+\]
+
+Let \(\Theta^{\bot}(p)=\{r\in P:R(p,r)=\mathrm{FORB}\}\) denote the set of predicates declared incompatible (contrary) with \(p\) in the ontology. Given epistemic tolerance bands \(\gamma_p>0\), pointwise evaluation of \(z\) with respect to expectation \(p\) is defined by four mutually exclusive and exhaustive cases:
+
+- \(\exists r\in\Theta^{\bot}(p):\mathrm{margin}_r(z)\geq\gamma_r\implies y^{\bot}=1\) (FORBIDDEN / NULL);
+- \(y^{\bot}=0\;\land\;\mathrm{margin}_p(z)\geq\gamma_p\;\land\;(\forall r\in\Theta^{\bot}(p):\mathrm{margin}_r(z)\leq-\gamma_r)\implies y^{+}=1\) (REQUIRED / FOLLOW);
+- \(y^{\bot}=0\;\land\;\mathrm{margin}_p(z)\leq-\gamma_p\;\land\;(\forall r\in\Theta^{\bot}(p):\mathrm{margin}_r(z)\leq-\gamma_r)\implies y^{\sim}=1\) (IRRELEVANT / OMIT);
+- otherwise (the point satisfies \(y^{\bot}=0\) and lies in the **epistemic boundary region** relative to \(p\) or \(\Theta^{\bot}(p)\), i.e., \(|\mathrm{margin}_p(z)|<\gamma_p\) or \(|\mathrm{margin}_r(z)|<\gamma_r\) for some \(r\in\Theta^{\bot}(p)\)) \(\implies\) UNRESOLVED (UNDECIDED).
+
+At Tier 2, structural ontology specifications \(R(p,q)\in\{\mathrm{REQ},\mathrm{FORB},\mathrm{IRR}\}\) are enforced by the following loss functionals:
+
+1. **Required Entailment (REQ, \(p\Rightarrow q\iff B_p\subseteq B_q\) and \(B_q\subsetneq B_U\)):** Enforced by the sum of the containment hinge loss with margin \(\varepsilon_{\Rightarrow}\geq 0\):
+
+ \[
+ \mathcal{L}^{\varepsilon}_{\subseteq}(p,q)=\sum_{j=1}^m\Bigl([\underline{b}_{q,j}+\varepsilon_{\Rightarrow}-\underline{b}_{p,j}]_{+}+[\overline{b}_{p,j}-\overline{b}_{q,j}+\varepsilon_{\Rightarrow}]_{+}\Bigr)
+ \]
+
+ and the coordinatewise normalized non-universality barrier with relative clearance parameter \(\nu_{\max}\in(0,1)\):
+
+ \[
+ \mathcal{L}_{\mathrm{non\text{-}univ}}(q)=\Bigl[\min_{1\leq j\leq m}\Bigl(\frac{\overline{b}_{q,j}-\underline{b}_{q,j}}{\overline{b}_{U,j}-\underline{b}_{U,j}}\Bigr)-(1-\nu_{\max})\Bigr]_{+}.
+ \]
+
+2. **Required Incompatibility (FORB, \(p\perp q\iff B_p\cap B_q=\emptyset\)):** Using the coordinatewise overlap depth \(\mathrm{ovl}_j(p,q)=\min(\overline{b}_{p,j},\overline{b}_{q,j})-\max(\underline{b}_{p,j},\underline{b}_{q,j})\) and separation clearance \(\varepsilon_{\bot}>0\), the separation loss is:
+
+ \[
+ \mathcal{L}^{\varepsilon}_{\bot}(p,q)=\bigl[\varepsilon_{\bot}+\min_{1\leq j\leq m}\mathrm{ovl}_j(p,q)\bigr]_{+}.
+ \]
+
+3. **Structural Irrelevance (IRR):** Contributes zero penalty to the ontology loss.
+
+**Theorem 6.1 (Soundness, Robustness, and Epistemic Clearance Consistency of Geometric Box Semantics)**. For closed boxes \(B_p,B_q\subseteq B_U\subset\mathbb{R}^m\):
+
+1. *Containment and Perturbation Robustness:* For \(\varepsilon_{\Rightarrow}\geq 0\), \(\mathcal{L}_{\subseteq}^{\varepsilon}(p,q)=0\) holds if and only if \(\underline{b}_{p,j}\geq\underline{b}_{q,j}+\varepsilon_{\Rightarrow}\) and \(\overline{b}_{p,j}\leq\overline{b}_{q,j}-\varepsilon_{\Rightarrow}\) for all \(j=1,\dots,m\). In particular, for \(\varepsilon_{\Rightarrow}=0\), \(\mathcal{L}^{0}_{\subseteq}(p,q)=0\iff B_p\subseteq B_q\); for \(\varepsilon_{\Rightarrow}>0\), \(z\in B_p\) and \(\|\zeta\|_{\infty}\leq\varepsilon_{\Rightarrow}\) imply \(z+\zeta\in B_q\) (the perturbed point need not remain inside \(B_U\) unless additional constraints on \(\varepsilon_{\Rightarrow}\) relative to the distance from \(B_p\) to the boundary of \(B_U\) are imposed).
+2. *Non-Universality (\(y'_1\)):* For \(\nu_{\max}\in(0,1)\), \(\mathcal{L}_{\mathrm{non\text{-}univ}}(q)=0\) holds if and only if along at least one coordinate axis \(j\in\{1,\dots,m\}\) the width of \(B_q\) satisfies \((\overline{b}_{q,j}-\underline{b}_{q,j})\leq(1-\nu_{\max})(\overline{b}_{U,j}-\underline{b}_{U,j})\), which is necessary and sufficient for relative clearance \(\nu_{\max}\) in at least one dimension and guarantees \(B_U\setminus B_q\neq\emptyset\) (Brusentsov’s condition \(y'_1\)).
+3. *Disjointness (\((xy')_0\)):* For \(\varepsilon_{\bot}>0\), \(\mathcal{L}_{\bot}^{\varepsilon}(p,q)=0\) holds if and only if \(\min_{1\leq j\leq m}\mathrm{ovl}_j(p,q)\leq-\varepsilon_{\bot}\), i.e., the boxes are separated by a gap of at least \(\varepsilon_{\bot}\) along at least one axis and hence \(B_p\cap B_q=\emptyset\). For \(\varepsilon_{\bot}=0\), the zero-loss condition is only \(\min_j\mathrm{ovl}_j(p,q)\leq0\); it admits boundary contact, so it does **not** guarantee that closed boxes are disjoint. Strict disjointness must use \(\varepsilon_{\bot}>0\), or an equivalent explicit strict-separation constraint.
+4. *Epistemic Clearance Consistency:* If \(\mathcal{L}^{\varepsilon}_{\subseteq}(p,q)=0\) with \(\varepsilon_{\Rightarrow}\geq\max(0,\gamma_q-\gamma_p)\), then any point \(z\) satisfying \(\mathrm{margin}_p(z)\geq\gamma_p\) satisfies \(\mathrm{margin}_q(z)\geq\gamma_q\). Furthermore, if \(\Theta^{\bot}(p)\neq\emptyset\) and \(\mathcal{L}^{\varepsilon}_{\bot}(p,r)=0\) for all \(r\in\Theta^{\bot}(p)\) with \(\varepsilon_{\bot}\geq\max_{r\in\Theta^{\bot}(p)}\gamma_r\), then every point \(z\in B_p\) (and hence every point with \(\mathrm{margin}_p(z)\geq\gamma_p\)) automatically satisfies \(\mathrm{margin}_r(z)\leq-\gamma_r\) for all \(r\in\Theta^{\bot}(p)\), ensuring that the \(\gamma_p\)-core of \(B_p\) is strictly disjoint from the epistemic boundary bands of all contrary predicates. If \(\Theta^{\bot}(p)=\emptyset\), the contrary-predicate condition is vacuously true and no maximum over an empty set is evaluated.
+
+*Proof.* (1) Since each summand \([x]_{+}=\max(0,x)\) is non-negative, the sum in \(\mathcal{L}_{\subseteq}^{\varepsilon}(p,q)\) vanishes if and only if every summand is non-positive: \(\underline{b}_{q,j}+\varepsilon_{\Rightarrow}-\underline{b}_{p,j}\leq 0\) and \(\overline{b}_{p,j}-\overline{b}_{q,j}+\varepsilon_{\Rightarrow}\leq 0\) (\(\forall j\)). At \(\varepsilon_{\Rightarrow}=0\), this is the definition of \(B_p\subseteq B_q\). If \(\varepsilon_{\Rightarrow}>0\), \(z\in B_p\), and \(|\zeta_j|\leq\varepsilon_{\Rightarrow}\), then \(z_j+\zeta_j\geq\underline{b}_{p,j}-\varepsilon_{\Rightarrow}\geq\underline{b}_{q,j}\) and \(z_j+\zeta_j\leq\overline{b}_{p,j}+\varepsilon_{\Rightarrow}\leq\overline{b}_{q,j}\), so \(z+\zeta\in B_q\). (2) By \([x]_{+}=0\iff x\leq 0\), \(\mathcal{L}_{\mathrm{non\text{-}univ}}(q)=0\) is equivalent to the existence of an axis \(j^{*}\) where \((\overline{b}_{q,j^{*}}-\underline{b}_{q,j^{*}})\leq(1-\nu_{\max})(\overline{b}_{U,j^{*}}-\underline{b}_{U,j^{*}})<\overline{b}_{U,j^{*}}-\underline{b}_{U,j^{*}}\); thus the projection of \(B_q\) on axis \(j^{*}\) is a proper subset of the projection of \(B_U\), implying \(B_U\setminus B_q\neq\emptyset\). (3) Two closed axis-aligned boxes intersect if and only if their projections overlap on every axis (\(\forall j:\mathrm{ovl}_j(p,q)\geq 0\)). For \(\varepsilon_{\bot}>0\), \([\varepsilon_{\bot}+\min_j\mathrm{ovl}_j(p,q)]_{+}=0\iff\min_j\mathrm{ovl}_j(p,q)\leq-\varepsilon_{\bot}<0\), certifying separation by at least \(\varepsilon_{\bot}\) along some axis \(j\). If \(\varepsilon_{\bot}=0\), zero loss only gives \(\min_j\mathrm{ovl}_j(p,q)\leq0\), which permits boundary contact and is insufficient for strict disjointness. (4) From (1), \(z_j-\underline{b}_{q,j}\geq z_j-\underline{b}_{p,j}+\varepsilon_{\Rightarrow}\) and \(\overline{b}_{q,j}-z_j\geq\overline{b}_{p,j}-z_j+\varepsilon_{\Rightarrow}\) for all \(j\), so \(\mathrm{margin}_q(z)\geq\mathrm{margin}_p(z)+\varepsilon_{\Rightarrow}\geq\gamma_p+\max(0,\gamma_q-\gamma_p)\geq\gamma_q\). From (3), for each \(r\in\Theta^{\bot}(p)\) there exists an axis \(j^{*}\) where \(\min(\overline{b}_{p,j^{*}},\overline{b}_{r,j^{*}})-\max(\underline{b}_{p,j^{*}},\underline{b}_{r,j^{*}})\leq-\varepsilon_{\bot}\). For any \(z\in B_p\), \(\underline{b}_{p,j^{*}}\leq z_{j^{*}}\leq\overline{b}_{p,j^{*}}\), so either \(\overline{b}_{r,j^{*}}\leq\underline{b}_{p,j^{*}}-\varepsilon_{\bot}\leq z_{j^{*}}-\varepsilon_{\bot}\) (giving \(\overline{b}_{r,j^{*}}-z_{j^{*}}\leq-\varepsilon_{\bot}\)) or \(\underline{b}_{r,j^{*}}\geq\overline{b}_{p,j^{*}}+\varepsilon_{\bot}\geq z_{j^{*}}+\varepsilon_{\bot}\) (giving \(z_{j^{*}}-\underline{b}_{r,j^{*}}\leq-\varepsilon_{\bot}\)); in either case \(\mathrm{margin}_r(z)\leq-\varepsilon_{\bot}\leq-\gamma_r\). \(\blacksquare\)
+
+### **6.3. Hierarchical Knowledge Graphs and Compositional Scale Transitions**
+
+Let a hierarchical knowledge graph be given by the tuple \(\mathcal{G}_{\mathrm{KG}}=(V_{\mathrm{KG}},E_{\mathrm{KG}},\Lambda_{\mathrm{scale}},S)\), where \(\Lambda_{\mathrm{scale}}=\{0,1,\dots,M\}\) indexes resolution scales (from finest scale \(0\) to coarsest scale \(M\)) and \(S:\mathcal{E}_{\ell}\to\{+,-,0\}\) assigns ternary statuses to the set of graph elements (nodes and edges) \(\mathcal{E}_{\ell}\) at scale \(\ell\).
+
+At each scale \(\ell\), the element set \(\mathcal{E}_{\ell}\) is partitioned with respect to the transition \(\ell\to\ell+1\) into essential and ignorable (coarse-grained out) subsets: \(\mathcal{E}_{\ell}=\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\sqcup\mathcal{E}^{\mathrm{ign}}_{\ell\to\ell+1}\), where the scale-\(\ell\) safety invariant representation \(I_{\ell}\) satisfies \(I_{\ell}\subseteq\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\) and \(I_{\ell+1}=\pi_{\ell\to\ell+1}(I_{\ell})\) across all scales \(\ell\). A surjective coarse-graining projection \(\pi_{\ell\to\ell+1}:\mathcal{E}_{\ell}\to\mathcal{E}_{\ell+1}\) maps each macro-element \(u_{\ell+1}\in\mathcal{E}_{\ell+1}\) to a non-empty preimage \(\pi^{-1}_{\ell\to\ell+1}(u_{\ell+1})\subseteq\mathcal{E}_{\ell}\).
+
+**Definition 6.1 (Status Transformation Law under Coarse-Graining \(\pi_{\ell\to\ell+1}\)).** The status of a macro-element \(u_{\ell+1}\in\mathcal{E}_{\ell+1}\) is uniquely determined by its preimage via the exhaustive, mutually exclusive rule:
+
+\[
+S(u_{\ell+1},\ell+1)=\begin{cases}
+\text{− (NULL)}, & \text{if }\exists\mathfrak{e}_{\ell}\in\pi^{-1}_{\ell\to\ell+1}(u_{\ell+1})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\;:\;S(\mathfrak{e}_{\ell},\ell)=\text{−},\\[4pt]
+\text{+ (FOLLOW)}, & \text{if branch − does not hold and }\exists\mathfrak{e}_{\ell}\in\pi^{-1}_{\ell\to\ell+1}(u_{\ell+1})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\;:\;S(\mathfrak{e}_{\ell},\ell)=\text{+},\\[4pt]
+\text{0 (OMIT)}, & \text{otherwise (i.e., when }\forall\mathfrak{e}_{\ell}\in\pi^{-1}_{\ell\to\ell+1}(u_{\ell+1})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}:S(\mathfrak{e}_{\ell},\ell)=\text{0}).
+\end{cases}
+\]
+
+*(Note on ordering polarity: In single-step conjunctive clause aggregation (§4.2), all active expectations in \(E_{\mathrm{act}}\) must be fulfilled for the step to achieve FOLLOW, so \(\mathrm{OMIT}(0)\succ\mathrm{FOLLOW}(+1)\). In spatial/structural coarse-graining of a committed graph (§6.3), by contrast, a macro-element \(u_{\ell+1}\) represents a certified state refinement if at least one of its essential micro-elements is certified (\(+\)) while none are contradicted (\(-\)), inducing the coarse-graining status order \(-\succ_{\mathrm{cg}}+\succ_{\mathrm{cg}}0\).)*
+
+**Proposition 6.1 (Totality and Compositionality of Coarse-Graining).**
+
+1. Definition 6.1 is total and mutually exclusive for every status configuration in \(\pi^{-1}_{\ell\to\ell+1}(u_{\ell+1})\), and any violated global invariant \(i\in I_{\ell}\subseteq\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\) bearing status − preserves status − across all coarser scales \(\ell'>\ell\).
+2. If under a two-step coarse-graining \(\ell\to\ell+1\to\ell+2\) the essential subsets satisfy the compatibility condition \(\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+2}=\pi^{-1}_{\ell\to\ell+1}(\mathcal{E}^{\mathrm{ess}}_{\ell+1\to\ell+2})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\), then status assignment is compositional with respect to \(\pi_{\ell\to\ell+2}=\pi_{\ell+1\to\ell+2}\circ\pi_{\ell\to\ell+1}\): computing \(S(u_{\ell+2},\ell+2)\) sequentially through scale \(\ell+1\) yields the exact same status as direct projection from scale \(\ell\).
+
+*Proof.* (1) Let \(\Pi_{\mathrm{ess}}(u_{\ell+1})=\pi^{-1}_{\ell\to\ell+1}(u_{\ell+1})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\). On \(\Pi_{\mathrm{ess}}(u_{\ell+1})\), \(S(\cdot,\ell)\) takes values in \(\{-,+,0\}\). The three branches of Definition 6.1 correspond to: (a) \(-\in S(\Pi_{\mathrm{ess}}(u_{\ell+1}),\ell)\); (b) \(-\notin S(\Pi_{\mathrm{ess}}(u_{\ell+1}),\ell)\) and \(+\in S(\Pi_{\mathrm{ess}}(u_{\ell+1}),\ell)\); and (c) \(S(\Pi_{\mathrm{ess}}(u_{\ell+1}),\ell)\subseteq\{0\}\) (including \(\Pi_{\mathrm{ess}}(u_{\ell+1})=\emptyset\) when the entire preimage lies in \(\mathcal{E}^{\mathrm{ign}}_{\ell\to\ell+1}\)). These three cases partition the power set \(\mathcal{P}(\{-,+,0\})\). Because \(I_{\ell}\subseteq\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\) and \(I_{\ell+1}=\pi_{\ell\to\ell+1}(I_{\ell})\), any \(i\in I_{\ell}\) with \(S(i,\ell)=\text{−}\) belongs to \(\Pi_{\mathrm{ess}}(\pi_{\ell\to\ell+1}(i))\) and triggers branch (a), propagating status − inductively to all \(\ell'>\ell\). (2) Equipping \(\{-,+,0\}\) with the strict total order \(-\succ_{\mathrm{cg}}+\succ_{\mathrm{cg}}0\) on \(\Pi_{\mathrm{ess}}(u_{\ell+1})\) and identity element \(0\) writes Definition 6.1 as the semilattice join \(S(u_{\ell+1},\ell+1)=\max_{\succ_{\mathrm{cg}}}(\{S(\mathfrak{e}_{\ell},\ell):\mathfrak{e}_{\ell}\in\Pi_{\mathrm{ess}}(u_{\ell+1})\}\cup\{0\})\). By associativity, commutativity, and idempotence of \(\max_{\succ_{\mathrm{cg}}}\) (with \(0\) as least element) and the set identity
+
+\[
+\bigcup_{u_{\ell+1}\in\pi^{-1}_{\ell+1\to\ell+2}(u_{\ell+2})\cap\mathcal{E}^{\mathrm{ess}}_{\ell+1\to\ell+2}}\bigl(\pi^{-1}_{\ell\to\ell+1}(u_{\ell+1})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+1}\bigr)=\pi^{-1}_{\ell\to\ell+2}(u_{\ell+2})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+2},
+\]
+
+iterating the join over \(\ell\to\ell+1\to\ell+2\) equals \(\max_{\succ_{\mathrm{cg}}}(\{S(\mathfrak{e}_{\ell},\ell):\mathfrak{e}_{\ell}\in\pi^{-1}_{\ell\to\ell+2}(u_{\ell+2})\cap\mathcal{E}^{\mathrm{ess}}_{\ell\to\ell+2}\}\cup\{0\})\). \(\blacksquare\)
+
+## **7. Constructive Guarantees and Verification Quality Metrics**
+
+### **7.1. Constructive Architectural Theorem**
+
+**Theorem 7.1 (Totality, Well-Definedness, State Groundedness, Rollback Consistency, and Auditability).** 
+Assume the following additional conditions:
+
+- the audit log is append-only, immutable, and complete for all committed transitions;
+- the structural extractor \(\psi\) is a pure deterministic function of its observation argument;
+- all data required for logical-state reconstruction are retained in the log, including side-effect descriptors, invariant-set versions, expectation bindings, evidence scopes, certificate payloads, and the verifier/contract version hashes;
+- certificates \(\mathcal{C}_t\) are uniquely bound to the concrete transition identifier \(seq_t\) and the contract version hash;
+- no unlogged external mutations of the controlled state occur between the emission of an action and the receipt of the subsequent observation;
+- any claimed rollback of external effects is supported either by a transactional environment or by a separately verified compensating-action protocol. Without this last condition, the theorem guarantees logical-state restoration only, not physical reversal of external actions.
+
+Under these assumptions, and assuming deterministic candidate parsing by the adapter and deterministic witness verification, any state-control system governed by the cascade of §4.3 and the commit protocol of §5.2–§5.4 satisfies the following conditional guarantees:
+
+1. **Judge Totality and Uniqueness:** For every transition \(\tau_t\), expectation set \(E\), and invariant set \(I\), the cascade of §4.3 terminates and assigns a unique verdict in \(V_4\) (and a unique subtype in §5.2 whenever the verdict is OMIT (0)). Moreover, any transition with \(E_{\mathrm{act}}\neq\emptyset\) that lacks valid certificates \(\mathcal{C}^{+},\mathcal{C}^{\bot},\mathcal{C}^{\emptyset}\) is mapped to UNDECIDED (U) (Steps 2 or 6) or NULL (−1) (Step 1), never to FOLLOW (+1).
+2. **State Groundedness:** If the state manager commits a goal-essential state transition into the certified active state projection \(\mathcal{S}_t^{+}\) only upon receiving verdict FOLLOW (+1) (while recording OMIT_INCIDENTAL (0) nodes with status 0 outside the active projection), then at any step \(T\geq 0\), every element in \(\mathcal{S}_T^{+}\) is derived from initial state axioms \(H_0\) via a finite chain of authoritatively observed transitions (\(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\)) certified with verdict FOLLOW (+1).
+3. **Logical Rollback Consistency:** Under the pending-token protocol (\(\varpi_t\), §5.4) and non-destructive retention of OMIT_INCIDENTAL (0) nodes (§5.2), replaying the versioned logical-state log to checkpoint index \(t_{\mathrm{chk}}\) restores the recorded descriptor \(H_{t_{\mathrm{chk}}}\). This does not by itself reverse external physical/tool side effects; those are covered only when the transactional or compensating-action condition above is met.
+4. **Deterministic Auditability:** Given \(H_0\) and a complete append-only log containing \((\tau_t,E_t,I_t,\mathcal{C}_t)\), the evidence scopes, every referenced version/hash, and the commit/controller records for \(t=0,\dots,T-1\), the logical trajectory of state descriptors \((H_1,\dots,H_T)\) and verdicts \((V_0,\dots,V_{T-1})\) is uniquely reconstructible without querying any stochastic generator.
+
+*Proof.* (1) Steps 1–6 of §4.3 form a sequential decision list ending in a catch-all default (Step 6), ensuring totality and uniqueness of the returned verdict. Within OMIT (0) (reached only at Step 3 or Step 5), Step 5a requires \(E_{\mathrm{act}}\neq\emptyset\land(\exists e_k\in E_{\mathrm{act}}:a_k=1\land c_k=0\land y^{\sim}=1)\), which is disjoint from Step 3 (\(E_{\mathrm{act}}=\emptyset\)); the remaining cases of Step 3 (3a/3b) and Step 5 (5b/5c) split on the dichotomous equality \(\psi(\bar{o}_{t+1})=\psi(\bar{o}_t)\) versus \(\psi(\bar{o}_{t+1})\neq\psi(\bar{o}_t)\), proving uniqueness of the OMIT subtype. Because Step 4 (FOLLOW (+1)) explicitly requires \(E_{\mathrm{act}}\neq\emptyset\), \(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\) (having passed Step 2), and valid certificates \(\mathcal{C}^{+}\) or \(\mathcal{C}^{\emptyset}\) for all \(e_k\in E\), an uncertified move can never reach FOLLOW (+1). 
+(2) We proceed by induction on \(T\). For \(T=0\), \(\mathcal{S}_0^{+}\subseteq H_0\) is grounded in initial state axioms by definition. Assume the invariant holds at step \(t\). At step \(t+1\), a new element enters \(\mathcal{S}_{t+1}^{+}\) only if \(\mathrm{Verdict}(E_t,\tau_t)=\mathrm{FOLLOW}(+1)\). By part (1), this requires passing Step 2 (\(\sigma(\tau_t)\in\{\mathrm{OBSERVED\_TRANSITION},\mathrm{REPLAY\_VERIFIED}\}\)) and Step 4 (every \(e_k\in E_t\) is certified by \(\mathcal{C}^{+}\) or \(\mathcal{C}^{\emptyset}\) anchored in \(\tau_t\) and prior elements of \(\mathcal{S}_t^{+}\subseteq H_t\)), extending the finite certified chain from \(H_0\) by one authoritative link. 
+(3) By the \(\varpi_t\) lock (§5.4), at most one transition is in flight at any step, and uncertified (NULL / UNDECIDED) transitions never mutate accepted state. Because OMIT_INCIDENTAL nodes are appended with status 0 rather than destructively overwriting prior nodes, replaying the versioned logical-state log to index \(t_{\mathrm{chk}}\) recovers the recorded \(H_{t_{\mathrm{chk}}}\) identically. External effects require the independently specified compensation condition and are not reversed by log replay alone. 
+(4) For each complete recorded evaluation record, the versioned extractor \(\psi\), invariant set, expectation bindings, certificate validator, cascade, and deterministic controller policy are pure functions of logged inputs; induction on \(t\) yields unique reconstruction of the logical state descriptors and verdicts for all \(t\leq T\). \(\blacksquare\)
+
+### **7.2. Canonical Suite of Verifier Evaluation Metrics**
+
+Let an evaluation benchmark partition candidate moves into four disjoint ground-truth reference classes: three **decidable classes**—\(G^{+}\) (truly productive state refinements), \(G^{\sim}\) (truly incidental/indifferent moves), and \(G^{\bot}\) (truly incompatible/false moves)—and the **epistemically undecidable class** \(G^{U}\) (moves for which available evidence is genuinely insufficient to certify or refute). Verifier performance is quantified by the following risk and coverage metrics. A conditional metric is **undefined** when its conditioning event has probability zero; report its denominator/count alongside the estimate and do not interpret an undefined estimate as zero risk or perfect performance:
+
+**Group A. Verdict-Conditioned Error Risks (conditioned on judge output):**
+
+1. False Follow Rate (\(FFR\) — primary safety metric):
+
+ \[\mathrm{FFR}=\mathbb{P}\bigl(m\notin G^{+}\;\big\vert{}\;J(m)=\mathrm{FOLLOW}\bigr)\]
+
+2. False Nullification Risk (\(FNullR\) — total over-nullification risk, with productive-loss sub-metric \(FNullR^{+}\)):
+
+ \[\mathrm{FNullR}=\mathbb{P}\bigl(m\notin G^{\bot}\;\big\vert{}\;J(m)=\mathrm{NULL}\bigr),\qquad\mathrm{FNullR}^{+}=\mathbb{P}\bigl(m\in G^{+}\;\big\vert{}\;J(m)=\mathrm{NULL}\bigr)\]
+
+3. False Omit Risk (\(FOmitR\) — total misclassification into OMIT, with safety-critical sub-metric \(FOmitR^{\bot}\)):
+
+ \[\mathrm{FOmitR}=\mathbb{P}\bigl(m\notin G^{\sim}\;\big\vert{}\;J(m)=\mathrm{OMIT}\bigr),\qquad\mathrm{FOmitR}^{\bot}=\mathbb{P}\bigl(m\in G^{\bot}\;\big\vert{}\;J(m)=\mathrm{OMIT}\bigr)\]
+
+**Group B. Ground-Truth-Conditioned Sensitivity and Selective Coverage:**
+
+4. False Abstention Rate on Decidable Moves (\(FAR\)) and Over-Commitment Rate on Undecidable Moves (\(OCR_U\)):
+
+ \[\mathrm{FAR}=\mathbb{P}\bigl(J(m)=\mathrm{UNDECIDED}\;\big\vert{}\;m\in G^{+}\cup G^{\sim}\cup G^{\bot}\bigr),\qquad\mathrm{OCR}_U=\mathbb{P}\bigl(J(m)\neq\mathrm{UNDECIDED}\;\big\vert{}\;m\in G^{U}\bigr)\]
+
+5. Selective Coverage (\(Cov\)) [20]:
+
+ \[\mathrm{Cov}=\mathbb{P}\bigl(J(m)\neq\mathrm{UNDECIDED}\bigr)\]
+
+ maximized subject to a hard upper bound on the false-commit risk \(FFR\leq\alpha\). The optimization is meaningful only when \(FFR\) is estimable from a non-empty set of FOLLOW predictions; if that set is empty, the constraint is not certified by assigning \(FFR=0\).
+
+### **7.3. Scope and Implementation Conformance Requirements**
+
+This specification defines a formal verification calculus; conformance of a concrete software or hardware implementation requires verifying that the system satisfies the stated operational assumptions. Specifically, a conforming implementation must test the cascade of §4.3 against an exhaustive finite case table or model checker, validate the geometric clearance constraints of §6.2 numerically, and verify certificates against versioned evidence payloads (§5.3). Theorem 4.1 establishes the algebraic monoid and annihilator properties of the aggregation operator \(\otimes\), while system-level safety and auditability rely jointly on the cascade and commit assumptions of Theorem 7.1. Similarly, the coarse-graining compositionality guarantee in Proposition 6.1 requires enforcing the stated compatibility condition on essential subsets across scales.
+
+## **References**
+
+1. Aristotle. *Prior Analytics* (Analytica Priora).
+2. Carroll, L. *Symbolic Logic*. London: Macmillan and Co., 1896 (Russian ed.: Moscow: Mir, 1973).
+3. Brusentsov, N. P. *Foundations of Informatics* [Nachala informatiki]. Moscow: New Millennium Foundation, 1994.
+4. Brusentsov, N. P., & Vladimirova, Yu. S. Ternary Computerization of Logic. In *Mathematical Methods of Pattern Recognition (MMRO-12)*, Moscow: MAX Press, 2005.
+5. Brusentsov, N. P. Reanimation of Aristotelian Syllogistics. In *Restoration of Logic*, Moscow: New Millennium Foundation, 2005.
+6. Vladimirova, Yu. S. Computerization of Contentful Reasoning Based on Syllogistic Inference. *Software Systems and Tools*, No. 12, Moscow: VMK MSU, 2010.
+7. Brusentsov, N. P. *Ordering of Mathematical Logic* [Uporyadochenie matematicheskoy logiki]. Moscow: New Millennium Foundation, 2011.
+8. Brusentsov, N. P. *Improvement of the Logic of Inferences* [Usovershenstvovanie logiki umozaklyucheniy]. Moscow: New Millennium Foundation, 2012.
+9. Poretsky, P. S. *On the Methods of Solving Logical Equalities and on the Inverse Method of Mathematical Logic* [O sposobakh resheniya logicheskikh ravenstv i ob obratnom sposobe matematicheskoy logiki]. Kazan, 1884. (Reprint: Moscow: Russkaya Pravda, 2011).
+10. Hilbert, D., & Ackermann, W. *Principles of Mathematical Logic* [Grundzüge der theoretischen Logik]. Berlin: Springer, 1928 (Russian ed.: Moscow: IL, 1947).
+11. Kleene, S. C. *Introduction to Metamathematics*. Amsterdam: North-Holland, 1952.
+12. Łukasiewicz, J. O logice trójwartościowej [On Three-Valued Logic]. *Ruch Filozoficzny*, 5, 170–171, 1920.
+13. Nicod, J. *Foundations of Geometry and Induction*. London: Kegan Paul, Trench, Trubner & Co., 1930.
+14. Hempel, C. G. Studies in the Logic of Confirmation (I & II). *Mind*, 54(213–214), 1–26, 97–121, 1945.
+15. Good, I. J. The White Shoe is a Red Herring. *The British Journal for the Philosophy of Science*, 17(4), 322, 1967.
+16. Belnap, N. D. A Useful Four-Valued Logic. In *Modern Uses of Multiple-Valued Logic*, Dordrecht: D. Reidel, 5–37, 1977.
+17. Tishby, N., Pereira, F. C., & Bialek, W. The Information Bottleneck Method. In *Proceedings of the 37th Annual Allerton Conference on Communication, Control and Computing*, 368–377, 1999.
+18. Hoel, E. P., Albantakis, L., & Tononi, G. Quantifying Causal Emergence Shows That Macro Can Beat Micro. *Proceedings of the National Academy of Sciences (PNAS)*, 110(49), 19790–19795, 2013.
+19. Kolchinsky, A., & Wolpert, D. H. Semantic Information, Autonomous Agency and Non-Equilibrium Statistical Physics. *Interface Focus*, 8(6), 2018.
+20. Geifman, Y., & El-Yaniv, R. Selective Classification for Deep Neural Networks. In *Advances in Neural Information Processing Systems (NeurIPS)*, 2017.
+21. Farquhar, S., Kossen, J., Kuhn, L., & Gal, Y. Detecting Hallucinations in Large Language Models Using Semantic Entropy. *Nature*, 630, 625–630, 2024.
+22. Kalai, A. T., Nachum, O., Vempala, S. S., & Zhang, E. Why Language Models Hallucinate. *arXiv:2509.04664*, 2025.
+23. Kirichenko, P., Ibrahim, M., Chaudhuri, K., & Bell, S. J. AbstentionBench: Reasoning LLMs Fail on Unanswerable Questions. In *NeurIPS*, 2025 (arXiv:2506.09038).
+24. Liu, X., et al. AgentAbstain: Do LLM Agents Know When Not to Act? *arXiv:2607.10059*, 2026.
