@@ -522,7 +522,7 @@ This is a homology of forms, not an identity. This document is not a part of the
 | Compression is thermodynamically mandatory | *Algorithm* §9.4 | Bounded reasoning budget (T3); finite channel capacity (§8) | T3 and §8 inherit the bound. |
 | Grounding is a history of certified transitions; a prediction is not a fact | *Algorithm* §10.2; *UIM* §2.3, §17 | Write-back (C2); stored models of others (D16) | This document does not say what may be written back. The archive supplies a candidate rule: only externally certified corrections, otherwise recursion degenerates into self-confirmation. Not adopted. The same issue applies to a model of another agent: a stored model that is never checked against the other drifts. *Status:* UNDECIDED. |
 | Geometric theory of latent representations; experimental track E1–E5 | *Framework* §5.6, §8.2 | Effective-dimension, Fisher-spectrum, and autonomy measurements (§13) | May share models and tooling. Compatibility of the two geometric descriptions is not examined. *Status:* UNDECIDED. |
-| Ternary standard FOLLOW / OMIT / NULL / UNDECIDED | *Algorithm* §15; *Framework* §5.4, §7 | Statuses in §16 | Used as is. |
+| Ternary standard FOLLOW / OMIT / NULL / UNDECIDED | *Algorithm* §15; *Framework* §5.4, §7; canonical: *Modified Brusentsov Entailment Logic* §4 (`Reasoning/Modified_Brusentsov_Entailment_Logic.md`) | Statuses in §16 | Used as is. |
 
 ---
 
@@ -677,7 +677,7 @@ C2 is a predicate of a subsystem and a window (D14a). The same physical system c
 
 ## 16. Self-Assessment Under the Ternary Standard
 
-The archive's standard applies: FOLLOW (certified), OMIT (admissible but inessential), NULL (inadmissible), UNDECIDED (not enough certification).
+The archive's standard applies: FOLLOW (certified), OMIT (admissible but inessential), NULL (inadmissible), UNDECIDED (not enough certification). The standard is canonically fixed by *Modified Brusentsov Entailment Logic* (`Reasoning/Modified_Brusentsov_Entailment_Logic.md`, §4): verdict space V4, dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW, and the separation of the ontological triad from the epistemic signal UNDECIDED. Applied to the theses of this document, the standard is used at the thesis level (per *Framework* §7).
 
 Rule used for derived claims. A claim gets FOLLOW only if it follows from the definitions alone, from a stated mathematical result under its assumptions, or describes an existing architecture. If it depends on an assumption, it gets UNDECIDED, with the dependency named. NULL marks claims rejected here. OMIT marks material kept for orientation.
 

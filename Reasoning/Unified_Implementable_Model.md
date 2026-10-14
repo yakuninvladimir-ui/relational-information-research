@@ -16,6 +16,9 @@ The mathematical treatment corrects two common errors in box-based semantics. Fi
 
 The resulting model uses three specification relations—required entailment, required incompatibility, and irrelevance—together with a separate epistemic outcome, unresolved. Planning is performed by surface-conditioned, risk-sensitive model predictive control over mixed discrete and continuous actions. Candidate rollouts remain predictive-only; before execution, a deterministic binder constructs a measurable contract and a verifier checks legality, surface compatibility, semantic constraints, and uncertainty. After execution, the official before–action–after tuple is ingested exactly once, producing a four-way verdict: required, forbidden, irrelevant, or unresolved. Canonical claims, assumption lineage, and memory events prevent speculative explanations from being promoted into confirmed mechanics. The same core architecture supports different domains by replacing the perception adapter, action surface, constraint modules, research modules, and recovery policy while preserving the authority, verification, and memory invariants.
 
+> **Canonical alignment (2026-10-14).** The four-way judgment vocabulary of this document is the operational alias system of the canonical verdict space \(V_4=\{\mathrm{FOLLOW}\ (+1),\ \mathrm{OMIT}\ (0),\ \mathrm{NULL}\ (-1),\ \mathrm{UNDECIDED}\ (U)\}
+> fixed in *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems* [12]: REQUIRED ≡ FOLLOW, FORBIDDEN ≡ NULL, IRRELEVANT ≡ OMIT, UNRESOLVED ≡ UNDECIDED. Clause aggregation is governed by the dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW ([12] §4.2), and the structural labels REQ / FORB / IRR of §3 instantiate the canonical Tier-2 ontology relations of [12] §6.2. Where the generic classification of §8 and the contract evaluation \(J(\cdot)\) of [12] §6.1 differ in refinement, [12] is normative (see the note in §8).
+
 ---
 
 ## Contents
@@ -212,6 +215,8 @@ $$
 
 Here `UNRESOLVED` is not a fourth structural relation. It records insufficient, predictive-only, stale, unstable, or contradictory evidence. This separation prevents unknown from being treated as false and prevents a legal no-progress action from being treated as a contradiction.
 
+The canonical grounding of the separation is fixed in [12] §1.3 and §4.1: Brusentsov's status 0 (omission of a DNF constituent) is an **ontological** inessentiality of a relation member, distinct from Łukasiewicz–Kleene epistemic truth-value gaps and from Belnap's bilattice; epistemic insufficiency is isolated as the control signal UNRESOLVED (canonical UNDECIDED, \(U\)), never as a fourth structural relation.
+
 ---
 
 ## 4 Corrected Predicate-Box Semantics
@@ -354,6 +359,8 @@ $$
 $$
 
 Relations marked irrelevant contribute no structural penalty. This does not prevent a separate statistical model from learning correlations between them.
+
+Canonical extensions ([12] §6.2): pointwise evaluation additionally checks the declared contrary set \(\Theta^{\bot}(p)\) with per-predicate epistemic bands \(\gamma_r\); a coordinatewise non-universality barrier \(\mathcal{L}_{\mathrm{non\text{-}univ}}\) enforces Brusentsov's condition \(y'_1\) (\(\Omega_y\subsetneq\Omega_{\mathcal{U}}\)); and clearance consistency between the containment margin \(\varepsilon_{\Rightarrow}\), the separation margin \(\varepsilon_{\bot}\), and the epistemic bands is proven ([12] Theorem 6.1(4)). Propositions 17.1–17.2 below correspond to [12] Theorem 6.1(1) and (3).
 
 ### 4.7 Expressivity boundary
 
@@ -552,6 +559,8 @@ J(\epsilon_t, \mathcal{K}) =
 $$
 
 Domain-specific contracts may replace scalar \(\mu\) by a vector metric with a declared partial order, but the order must be fixed before observing the post-action result.
+
+> **Canonical refinement ([12] §6.1).** The classification above is the coarse form of the canonical contract evaluation \(J(\tau_t,K,a,c,\chi_{\mathrm{conf}},\mathcal{C})\). The canonical calculus additionally requires: (i) the neutral band \(|\Delta_{\mathcal{K}}|<\tau_{\mathrm{prog}}\) resolves to IRRELEVANT only when the independently tracked feature delta is either exactly zero (strict stagnation) or lies inside a contract-declared bounded neutral region \(\Omega_{\mathrm{sub}}\); a *resolved* change outside \(\varphi_{\mathrm{exp}}\cup\{\mathbf{0}\}\cup\Omega_{\mathrm{sub}}\) is FORBIDDEN, not IRRELEVANT ([12] Definition 3.1, clause 5); (ii) unexplained strict stagnation on an operator–feature pair already confirmed by the ensemble (\(\chi_{\mathrm{conf}}=1\)) is FORBIDDEN (law falsification), while stagnation on an unconfirmed pair is UNRESOLVED ([12] §4.3, Steps 1–2); (iii) cumulative goal success is recognized by the crossing rule \(\Delta^{\mathrm{tot},-}_{\mathcal{K}}<\theta_{\mathrm{succ}}\le\Delta^{\mathrm{tot},+}_{\mathcal{K}}\), which maps an individually sub-threshold step to REQUIRED when it crosses the success threshold; (iv) \(\Delta_{\mathcal{K}}=0\) alone does not prove stagnation when \(\mu\) is non-injective — metric-flat indifference must not be labeled strict stagnation ([12] §6.1, convention on metric-flat changes). Contract fields map as \(d\equiv s_K\), \(\tau_{\mathrm{prog}}\equiv\theta_{\mathrm{prog}}\), \(\tau_{\mathrm{succ}}\equiv\theta_{\mathrm{succ}}\), \(\tau_{\mathrm{fail}}\equiv\theta_{\mathrm{fail}}\), \(\varepsilon\equiv\varepsilon_{\mathrm{base}}\); the canonical contract additionally carries the route-initial value \(b_0\) and the tracking-confidence threshold \(\theta_{\mathrm{conf}}\), and requires typed certificates (\(\mathcal{C}^{+},\mathcal{C}^{\bot},\mathcal{C}^{\emptyset}\)) for every resolved verdict ([12] §5.3).
 
 ---
 
@@ -1086,3 +1095,4 @@ The architecture is shared across robotics, drones, and abstract reasoning syste
 9. R. T. Rockafellar and S. Uryasev. Optimization of conditional value-at-risk. *Journal of Risk*, 2(3):21–41, 2000.
 10. A. Bardes, J. Ponce, and Y. LeCun. VICReg: Variance-Invariance-Covariance Regularization for Self-Supervised Learning. In *International Conference on Learning Representations*, 2022.
 11. L. P. Kaelbling, M. L. Littman, and A. R. Cassandra. Planning and acting in partially observable stochastic domains. *Artificial Intelligence*, 101(1–2):99–134, 1998.
+12. V. Yakunin. *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems*. 2026. This repository: `Reasoning/Modified_Brusentsov_Entailment_Logic.md` (cited as [12]; the canonical reference for verdict semantics).

@@ -119,7 +119,7 @@ V10.8 adds the following architectural elements to the V10.5 baseline:
 
 ## 1. Theoretical Foundation: The Brusentsov Verifier (Brief Introduction)
 
-This section is the concise normative introduction to the logic of the verifier. The full mathematical treatment is fixed by this section alone; no other document may extend it without a version increment.
+This section is the concise normative introduction to the logic of the verifier for the ARC-AGI-3 domain. The full mathematical treatment is fixed by the canonical specification `Reasoning/Modified_Brusentsov_Entailment_Logic.md` (*Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems*, October 2026; cited below as *canonical specification*): this section instantiates it for grid transitions and must not contradict it. No other document may extend the verifier logic without alignment to the canonical specification and a version increment of this document.
 
 ### 1.1 Why Material Implication Fails as a Verifier
 
@@ -129,7 +129,11 @@ Classical two-valued material implication $(x \to y) \equiv x' \lor y$ is unsoun
 2. **Vacuous truth.** An action whose expected effect did not happen counts as confirming the rule "if this action, then that effect". The observation carried zero evidence, yet Boolean semantics returns TRUE.
 3. **Loss of necessity.** Material implication expresses non-exclusion, not necessary consequence. Verification requires necessity: the effect must be contained in the action.
 
-N.P. Brusentsov ("Усовершенствование логики умозаключений", 2012, MSU) showed that Aristotle's syllogistic entailment $Axy$ — "$y$ belongs to every $x$", i.e. $x = xy$ — was distorted by the forced two-valued reduction, and recovered the genuine entailment relation through Lewis Carroll's biliteral indexical method, in which the subscript «0» denotes **nullity (incompatibility)**: $(x \Rightarrow y) \equiv xy'_0$ — it is impossible for $x$ to coexist with the absence of $y$.
+N.P. Brusentsov ("Усовершенствование логики умозаключений", 2012, MSU) showed that Aristotle's syllogistic entailment $Axy$ — "$y$ belongs to every $x$", i.e. $x = xy$ — was distorted by the forced two-valued reduction, and recovered the genuine entailment relation through Lewis Carroll's biliteral indexical method, in which the subscript «1» denotes **mandatory empirical existence** and the subscript «0» denotes **nullity (incompatibility)**. In the canonical conjunctive form (canonical specification §1.2):
+
+$$(x \Rightarrow y) \equiv x_1 \land (xy')_0 \land y'_1$$
+
+— the class $x$ is non-empty; it is impossible for $x$ to coexist with the absence of $y$ (the nullity component $(xy')_0$ alone is the Carrollian truth-condition of the consequence); and the complement $y'$ is non-empty (non-universality of $y$). The existence indices $x_1$ and $y'_1$ are what distinguish contentful entailment from material implication: operationally, non-universality is enforced structurally ($\mathrm{NonTriv}(y)$), and passive observations of $x'y'$ never confirm the law (immunity to the Hempel–Nicod paradox, canonical specification §3.4, Theorem 3.1).
 
 ### 1.2 Entailment as a Three-Valued DNF
 
@@ -146,6 +150,8 @@ where the term $x'y$ is **omitted as inessential**. The omission is not falsity:
 | $x'y$ | omitted | **`OMIT (0)`** — inessential outcome; branch preserved |
 | $x'y'$ | affirmed | **`OMIT (0)`** — nothing expected, nothing relevant observed; branch preserved |
 
+**Two-tier reading (canonical specification §1.4, §2.2).** The statuses in the right column are step-level (Tier 1) verdicts for a single observed transition. At the law level (Tier 2), both $xy$ and $x'y'$ carry the asserted status $+$ in the integral law (ternary vector $+{-}0+$); in a single transition the disjoint classes $xy$ and $x'y'$ cannot co-occur, so an $x'y'$ step evaluates as `OMIT` — incidental to the law — and an ensemble of such steps never confirms the law by itself (immunity to the Hempel–Nicod paradox, canonical specification Theorem 3.1). Law confirmation requires positive support ($ACy^{+}$ above the support threshold $N_{\min}$) plus non-triviality $\mathrm{NonTriv}(y)$, and yields the Tier-2 statuses `CONFIRMED` / `CONTRADICTED` / `CONDITIONAL_CANDIDATE` / `UNRESOLVED` (canonical specification §3.4). In this agent the law statuses are recorded as confirmed action laws, `NEGATIVE_BARRIER` invariants, and `CONDITIONAL_TRIGGER` preservation, respectively.
+
 ### 1.3 Four-Valued Decision Semantics
 
 Because ARC-AGI-3 observation is partial (occlusion, hidden layers, tracking ambiguity), the ternary logic is extended with a fourth, non-truth value:
@@ -155,14 +161,22 @@ Because ARC-AGI-3 observation is partial (occlusion, hidden layers, tracking amb
 - **`NULL (−1)`** — incompatibility ($xy'_0$). The transition contradicted an established invariant or expectation. The candidate is **immediately severed**; a clean `RESET` to $S_0$ is scheduled.
 - **`UNDECIDED`** — epistemic ambivalence. Evidence is insufficient to decide between entailment and contradiction. Execution suspends and an evidence-seeking probe is scheduled (§4.3). `UNDECIDED` is a controller signal, not a truth value, and is stored separately from confirmed judgments (ISO-9).
 
+Canonical aliases and aggregation (canonical specification §4.1–§4.2): `FOLLOW` ≡ REQUIRED (+1), `OMIT` ≡ IRRELEVANT (0), `NULL` ≡ FORBIDDEN (−1), `UNDECIDED` ≡ UNRESOLVED (U). Multi-clause aggregation is governed by the strict dominance chain
+
+$$\mathrm{NULL}\ (-1) \succ \mathrm{UNDECIDED}\ (U) \succ \mathrm{OMIT}\ (0) \succ \mathrm{FOLLOW}\ (+1)$$
+
+— a single certified `NULL` annihilates all other clause statuses (including `UNDECIDED`), and `FOLLOW` is the identity element (canonical specification Theorem 4.1). `OMIT` refines into three disjoint subtypes with fixed controller commands (canonical specification §5.2): `OMIT_BLOCKED` (soft stop / unfulfilled trigger — law preserved, trajectory repair; realized by Tier 3 boundary contact and ISO-11), `OMIT_REDUNDANT` (state descriptor unchanged — repeat suppression; realized by `NoopRepeatGuard`), and `OMIT_INCIDENTAL` (resolved inessential or sub-threshold change — retained with status 0, cursor advances; realized by Tier 8 retention).
+
 ### 1.4 Carrollian Nullity Completeness
 
-`NULL` is triggered only by explicit incompatibility evidence. The verifier must detect at least the following contradiction classes:
+`NULL` is triggered only by explicit incompatibility evidence. The verifier must detect at least the following contradiction classes (grid instantiation of the canonical nullity taxonomy, canonical specification Definition 3.1):
 
-1. **Object identity violation** — expected `preserved`, observed `destroyed` / `vanished` / `missing` (or the inverse expectation).
-2. **Physical stagnation** — expected motion ($\Delta_{exp} \neq 0$), observed stationary ($\Delta_{obs} = 0$) without boundary or obstacle contact.
+1. **Object identity violation** — expected `preserved`, observed `destroyed` / `vanished` / `missing` (or the inverse expectation). Identity is assessed only via explicit before/after presence predicates; a feature delta on a missing subject is undefined and must not be reinterpreted as an identity failure (canonical specification Definition 3.1, clause 1).
+2. **Physical stagnation** — expected motion ($\Delta_{exp} \neq 0$), observed strict zero delta ($\Delta_{obs} = 0$) without boundary or obstacle contact, on an action whose effect is confirmed ($\chi_{\mathrm{conf}}=1$); on an unconfirmed action the same observation is `UNDECIDED` (Tier 7), never `NULL` (canonical specification §4.3, Steps 1–2).
 3. **Unintended mutation** — expected stationary/invariant, observed motion ($\Delta_{obs} \neq 0$).
-4. **Direction inversion** — expected and observed displacement signs opposite on any axis ($\mathrm{sign}(\Delta_{exp}) \cdot \mathrm{sign}(\Delta_{obs}) < 0$).
+4. **Direction inversion / orthogonal leakage** — expected and observed displacement signs opposite on any axis ($\mathrm{sign}(\Delta_{exp}) \cdot \mathrm{sign}(\Delta_{obs}) < 0$; the discrete $\varepsilon_{\mathrm{inv}}=0$ case of canonical Definition 3.1, clause 3), or observed displacement along an axis expected to remain invariant.
+5. **Local state-consistency conflict** — a resolved delta directly contradicts a previously committed `FOLLOW` assertion on the same subject and feature family (canonical specification Definition 3.1, clause 4).
+6. **Resolved out-of-contract active change** — a reliably observed change lies outside the expected change set, is non-zero, and is not inside a contract-declared bounded neutral region $\Omega_{\mathrm{sub}}$ (canonical specification Definition 3.1, clause 5). A non-zero change is not neutral merely because it is non-zero: $\Omega_{\mathrm{sub}}=\emptyset$ by default, and any tolerance must be explicitly declared in the contract.
 
 Attribute-value, relation-existence, spatial-position, area-conservation, and terminal-metadata contradictions are likewise nullity grounds when the expected and observed propositions share a subject and family. Propositions about distinct subjects can never contradict each other.
 
@@ -245,6 +259,8 @@ V10.8 explicitly guards against:
 - executing any LLM output without AST validation, sandboxing, grounding, and verifier supervision;
 - granting `FOLLOW` on empty expectations (material implication paradox);
 - severing candidates on `OMIT` (collapsing inessentiality into contradiction);
+- overwriting `UNDECIDED` with `NULL` on evidence-probe exhaustion (epistemic falsification; canonical specification §5.4);
+- treating a resolved out-of-contract change as inessential without a contract-declared neutral region (canonical specification Definition 3.1, clause 5);
 - classifying zero-delta transitions with transient animation as idle;
 - classifying boundary or obstacle stops as falsification of confirmed action laws;
 - re-probing coordinates already tested in the other coordinate space;
@@ -388,8 +404,10 @@ Tier 7  Unconfirmed zero delta / sub-reliable delta:
 Tier 8  Certified action effect:
           non-zero delta + verified non-empty EXPECT                      -> FOLLOW
           non-zero delta + empty/unverified EXPECT                        -> OMIT (no vacuous FOLLOW)
-          default fail-safe (ISO-10)                                      -> OMIT
+          default fail-safe (ISO-10; resolved cases only)                 -> OMIT
 ```
+
+**Mapping to the canonical cascade (canonical specification §4.3).** Tier 1/2 instantiate metric-contract terminal success and failure (cumulative crossing of $\theta_{\mathrm{succ}}$; breach of $-\theta_{\mathrm{fail}}$). Tier 3 boundary contact = `OMIT_BLOCKED` (canonical Step 5a); unexplained stagnation on a confirmed action = canonical Step 1(b) `NULL`. Tier 4 = canonical Step 2 (epistemic boundary: tracking confidence and match ambiguity make $\delta_{obs}$ unreliable, $Rel=0$). Tier 5 = canonical Step 1(a) (certified incompatibility, $\mathcal{C}^{\bot}$). Tier 6 = canonical Step 4 (complete necessary containment, $\mathcal{C}^{+}$). Tier 7 = canonical Step 2 (stagnation on an unconfirmed action, $\chi_{\mathrm{conf}}=0$; displacement below `min_reliable_delta` means $\delta_{obs}$ is *undefined* at the tracking resolution floor — epistemically unresolved, not sub-threshold-neutral; a contract-declared neutral region $\Omega_{\mathrm{sub}}$ would instead map resolved members to `OMIT_INCIDENTAL`, canonical specification §3.1, §6.1). Tier 8 = canonical Steps 3/5 (`OMIT` on empty/unverified expectations per canonical Axiom 4.1; the ISO-10 fail-safe default covers only epistemically resolved cases — all unresolved cases are intercepted by Tiers 4/7, matching the canonical epistemic default of Step 6).
 
 ### 4.2 Verdict Routing Effects
 
@@ -408,7 +426,7 @@ On `UNDECIDED`:
 2. block trajectory progression and Solver calls while `evidence_seeking_active`;
 3. if `evidence_probes_remaining > 0`, emit a targeted diagnostic probe authorized by the remaining-budget rule (`min_remaining_actions_for_probe`);
 4. on the post-probe observation, re-evaluate the pending step: resolved → clear the flag and resume; unresolved → increment `undecided_streak`;
-5. if the probe queue is exhausted or the streak reaches `max_undecided_streak`, fall back conservatively to `NULL`: sever, reset, record the exhaustion reason.
+5. if the probe queue is exhausted or the streak reaches `max_undecided_streak`, terminate the attempt (`ABORT_ON_UNDECIDED`): the judgment record **permanently retains `UNDECIDED`** — it is never overwritten into `NULL`, and the retained record must never ground `NEGATIVE_BARRIER` invariants or branch signatures (prohibition of epistemic falsification, canonical specification §5.4); operationally: sever the current candidate, schedule exactly one clean `RESET` to $S_0$, and record the exhaustion reason code.
 
 Evidence probes are speculative moves and must be affordable: they are authorized only while the level budget reserve is intact.
 
@@ -433,7 +451,7 @@ Static frame comparison is insufficient under P7. The verifier must consume the 
 
 ### 4.6 Fail-Safe Default
 
-Unless affirmative incompatibility ($xy'_0$) is proven, the default verdict is `OMIT` and the candidate branch survives (ISO-10). Severance requires positive contradiction evidence, terminal loss, cycle detection, guard interdiction, or evidence-probe exhaustion — each recorded with a reason code.
+Among epistemically resolved transitions that trigger no nullity class (§1.4), the default verdict is `OMIT` and the candidate branch survives (ISO-10); epistemically unresolved transitions default to `UNDECIDED` (Tiers 4/7; canonical specification §4.3, Steps 2 and 6), never to `OMIT` or `NULL`. Severance requires positive contradiction evidence, terminal loss, cycle detection, guard interdiction, or operational attempt termination under retained `UNDECIDED` (evidence-probe exhaustion, §4.3) — each recorded with a reason code; only the first four are recorded as factual `NULL`.
 
 ### 4.7 Structured Contradiction Diagnostics
 
@@ -659,7 +677,7 @@ The integrity of the architecture is guarded by twelve non-negotiable invariants
 - **ISO-7 Forward-only clean-reset execution.** `ACTION7` prohibited; recovery only via `RESET` to $S_0$.
 - **ISO-8 Non-destructive palette mapping.** Color indices are preserved alongside roles.
 - **ISO-9 Epistemic signal segregation.** `UNDECIDED` signals live in transient `epistemic_signals`, separate from confirmed judgments.
-- **ISO-10 Non-severance on expectation mismatch.** Unfulfilled expectations without physical contradiction yield `OMIT` and preserve the branch.
+- **ISO-10 Non-severance on inessentiality.** Expectation mismatches carrying no certified nullity class (§1.4) yield `OMIT` and preserve the branch; unexplained strict stagnation on a confirmed action and resolved out-of-contract changes remain `NULL` grounds (canonical specification Definition 3.1).
 - **ISO-11 Kinematic boundary protection.** Obstructed zero-delta stops do not falsify confirmed action laws.
 - **ISO-12 Dual-space coordinate consistency.** Engine-space conversions are symmetrically inverted in recording and deduplication.
 
@@ -1087,7 +1105,7 @@ The Guardian runs over the whole package in CI and locally; any finding blocks a
 | R10 | Specification drift via operational detail | Normativity and exclusions rule; Deployment Manifest; version discipline (§0.3) |
 | R11 | Model lock-in | Backend abstraction + LLMModelProfile; fake-backend full-suite rule (§11) |
 | R12 | Stale DSL suppressing newly confirmed actions | Reactive invalidation + auto-augmentation (§9.3) |
-| R13 | Ambiguity thrash under partial observability | UNDECIDED segregation (ISO-9); bounded evidence FSM with streak fallback (§4.3) |
+| R13 | Ambiguity thrash under partial observability | UNDECIDED segregation (ISO-9); bounded evidence FSM with `UNDECIDED`-retaining attempt termination (§4.3; canonical specification §5.4) |
 | R14 | Fallback overreach | Single bounded run; RESET prohibition; same guards/verifier; clean abandonment (§12.1) |
 
 ---

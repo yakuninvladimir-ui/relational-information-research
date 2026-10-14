@@ -38,6 +38,8 @@ Memory contours = external recursive state between verdicts and next proposals
 SymbolicFallbackEngine = bounded deterministic last resort
 ```
 
+Canonical logic foundation: `Reasoning/Modified_Brusentsov_Entailment_Logic.md` (October 2026) — verdict space V4, dominance order, decision cascade, typed certificates. The 8-tier cascade is its ARC-AGI-3 instantiation; the tier-to-canonical-step mapping is fixed in Architectural Specification §4.1.
+
 Target constraints:
 
 - Python 3.12 or newer;
@@ -167,7 +169,8 @@ Tracker and 4-valued knobs:
   track_confidence_threshold: 0.6
   occlusion_radius: 3             cumulative_window: 3
   enable_undecided_verdict: True
-  max_undecided_streak: 2
+  max_undecided_streak: 2        # k_max of canonical §5.4; on exhaustion the verdict stays
+                                 # UNDECIDED forever (ABORT_ON_UNDECIDED), never NULL
   max_evidence_probes_per_level: 3
   min_remaining_actions_for_probe: 25
 
@@ -364,6 +367,8 @@ class Verdict(Enum):
     # cross-type equality is defined only along the bridge above; hashing preserved
 ```
 
+Canonical aliases and aggregation (`Modified_Brusentsov_Entailment_Logic.md` §4): `FOLLOW` ≡ REQUIRED (+1), `NULL` ≡ FORBIDDEN (−1), `OMIT` ≡ IRRELEVANT (0), `UNDECIDED` ≡ UNRESOLVED (U) with `.ternary → None` — the code-level form of the canonical separation of the ontological triad from the epistemic control signal (canonical §1.3). Clause aggregation follows the dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW (canonical §4.2, Theorem 4.1). `OMIT` subtypes (canonical §5.2): BLOCKED (Tier 3 soft stop), REDUNDANT (`NoopRepeatGuard`), INCIDENTAL (Tier 8 retention).
+
 ### 4.2 `BrusentsovJudgment` (schema `v10.judgment.1`)
 
 ```text
@@ -395,7 +400,7 @@ Evaluation order is normative:
 1. `len(expected) == 0` → `IRRELEVANT` (vacuous truth elimination, unconditional);
 2. incompatibility scan: any `contradicts(e, o)` pair → `FALSE`; object-identity destruction check included;
 3. necessary containment: all expected propositions contained in observed → `TRUE`;
-4. otherwise → `IRRELEVANT` (missing effect without contradiction is inessential, never false).
+4. otherwise, for a **resolved** discrepancy: → `FALSE` when the observed change lies outside the expected set, is non-zero, and is not inside a contract-declared bounded neutral region `Ω_sub` (canonical Definition 3.1, clause 5: a resolved out-of-contract active change is certified incompatibility, not inessentiality; `Ω_sub = ∅` by default and must be declared per contract); → `IRRELEVANT` when the change lies inside a declared `Ω_sub` (sub-threshold neutrality, canonical §3.1). **Unresolved** observations (below the tracking resolution floor, ambiguous matching) are never decided here: the cascade maps them to `UNDECIDED` (Tiers 4/7). Expectation-free and passive cases remain inessential by rule 1 (empty expectations → `IRRELEVANT`, canonical Axiom 4.1); distinct subjects never contradict (§4.4 item 0).
 
 ### 4.4 `contradicts` Completeness Requirements
 
@@ -425,7 +430,7 @@ Regular expressions are forbidden in this module; value normalization is tokeniz
 
 ### 4.6 Tests
 
-- PBT (`test_pbt_brusentsov_axioms.py`): empty expectations never yield TRUE; preserved-vs-destroyed always contradicts; exact containment always yields TRUE; unasserted changes never yield TRUE; cross-type equality/hash bridge laws;
+- PBT (`test_pbt_brusentsov_axioms.py`): empty expectations never yield TRUE; preserved-vs-destroyed always contradicts; exact containment always yields TRUE; unasserted changes never yield TRUE; cross-type equality/hash bridge laws; resolved out-of-contract change (non-zero, outside any declared neutral region) yields FALSE; declared `Ω_sub` member yields IRRELEVANT;
 - PBT (`test_pbt_brusentsov_severance.py`): stagnation, unintended mutation, direction inversion, containment consistency, macro-step decomposition, early severance;
 - unit: every contradiction class of §4.4 has positive and negative cases in every supported kinematic format; subject mismatch never contradicts; vacuity guard on $S_0$.
 
@@ -455,8 +460,8 @@ class LayeredVerifier:
 - Tier 3: zero delta on confirmed motion → boundary/obstacle contact check (`is_blocked_by_boundary`, memory wall rules) → soft-stop `OMIT`; transient evidence present → effective-action override; else → `NULL`;
 - Tier 4: grounded-step `confidence == "low"` or `matching_status == "ambiguous"`; JV match gap < `matching_ambiguity_threshold`; min participating track confidence < `track_confidence_threshold` → `UNDECIDED`;
 - Tier 5/6: `implies_brusentsov` FALSE → `NULL`; TRUE → `FOLLOW`;
-- Tier 7: zero delta on unconfirmed action with non-empty EXPECT; sub-`min_reliable_delta` displacement with non-empty EXPECT and no terminal → `UNDECIDED`;
-- Tier 8: certified effect + verified non-empty EXPECT → `FOLLOW`; certified effect + empty/unverified EXPECT → `OMIT`; default → `OMIT` (ISO-10).
+- Tier 7: zero delta on unconfirmed action with non-empty EXPECT; sub-`min_reliable_delta` displacement with non-empty EXPECT and no terminal → `UNDECIDED` (sub-`min_reliable_delta` means $\delta_{obs}$ is below the tracking resolution floor — undefined, hence epistemically unresolved per canonical §3.1/§6.1, not sub-threshold-neutral; a contract-declared neutral region `Ω_sub` would instead map resolved members to `OMIT`);
+- Tier 8: certified effect + verified non-empty EXPECT → `FOLLOW`; certified effect + empty/unverified EXPECT → `OMIT`; default → `OMIT` (ISO-10; resolved cases only — unresolved cases are intercepted by Tiers 4/7 as `UNDECIDED`, canonical §4.3 Step 6).
 
 With `enable_undecided_verdict = False`, Tiers 4 and 7 map to `OMIT` (ablation mode).
 
@@ -916,7 +921,7 @@ Contract:
 
 - pre-execution idle guard: `transition_table.is_known_idle_self_loop(...)` blocks step 0 and severs with reason `known_idle_edge`;
 - macro unrolling via substep decomposition: invariants distributed to every substep; `step_moved` per transition; cumulative `moved` on the final substep; `break_on_null`-style silent skips are forbidden;
-- verdict routing: `FOLLOW/OMIT` → advance (OMIT recorded as inessential); `NULL` → `sever()`, branch signatures to EpistemicMemory, structured diagnostic via `_build_step_contradiction_diagnostic()`, single clean `RESET` scheduled; `UNDECIDED` → hand off to the evidence FSM;
+- verdict routing: `FOLLOW/OMIT` → advance (OMIT recorded as inessential); `NULL` → `sever()`, branch signatures to EpistemicMemory, structured diagnostic via `_build_step_contradiction_diagnostic()`, single clean `RESET` scheduled; `UNDECIDED` → hand off to the evidence FSM; on probe exhaustion the FSM terminates the attempt with the verdict permanently retained as `UNDECIDED` (`ABORT_ON_UNDECIDED`; Arch. Spec §4.3, canonical §5.4) — never rewritten to `NULL`;
 - exactly one environment action per emitted step (`execute_one_step_at_a_time`);
 - diagnostics are deterministic renders of judgment records (no raw model text).
 
@@ -1213,7 +1218,7 @@ Each report must include: files changed; tests added; exact commands run; compil
 
 V10.8 implementation is acceptable only if:
 
-- the 8-tier cascade is the sole transition judge, order-frozen, with `OMIT` never severing, empty expectations never confirming, and `UNDECIDED` segregated and evidence-routed;
+- the 8-tier cascade is the sole transition judge, order-frozen, with `OMIT` never severing, empty expectations never confirming, `UNDECIDED` segregated and evidence-routed, and `UNDECIDED` never epistemically falsified (probe exhaustion retains the verdict and terminates the attempt; canonical §5.4);
 - every contradiction class of §4.4 is implemented and PBT-proven; the vacuity guards hold on $S_0$;
 - no emission path bypasses grounding → guards → verifier; exactly one action per `act()`; `ACTION7` is unrepresentable in emissions;
 - the dual-space contract holds end-to-end with symmetric deduplication (PBT coordinate isomorphism) and mask-pixel targeting;

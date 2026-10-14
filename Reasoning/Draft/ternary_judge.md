@@ -4,6 +4,8 @@
 Independent researcher  
 August 2026
 
+> **Formal foundation (added 2026-10-14).** The verdict semantics of this draft is canonically specified in *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems* (this repository: `Reasoning/Modified_Brusentsov_Entailment_Logic.md`, October 2026; cited below as *canonical specification*). Sections 3–4 of this draft are its pre-commit, text-domain specialization.
+
 ---
 
 ## Abstract
@@ -117,7 +119,7 @@ The judge may emit a certificate (or fail to). The fixed rule maps (certificate,
 - grounded certificate + assertion mode established $\mapsto$ FOLLOW;
 - grounded certificate + inessentiality reason $\mapsto$ OMIT;
 - grounded certificate of conflict with $I$ or prior FOLLOW nodes $\mapsto$ NULL;
-- no certificate / ungrounded certificate $\mapsto$ UNDECIDED (or forced NULL under closed-world assumption).
+- no certificate / ungrounded certificate $\mapsto$ UNDECIDED. A closed-world NULL is admissible only through a polarized scoped-exhaustion certificate $\mathcal{C}^{\emptyset}$ (closed domain fully scanned: $exhausted=\mathrm{true}$ with $N_{\mathrm{match}}=0$ refuting a positive existential expectation, or a counterexample match refuting a claimed absence — canonical specification §5.3); mere absence of evidence is never NULL, and an UNDECIDED record is never overwritten into NULL on budget exhaustion (canonical specification §5.4).
 
 The rule is not trained; any future learned component may only propose certificates, not override the mapping.
 
@@ -216,7 +218,7 @@ The ablation decomposes the effect. First, the leniency of a binary judge from t
 5. **Over-nullification.** Mapping open unknown to NULL is a named risk: severing is irreversible, and a false NULL is costlier than a false UNDECIDED; the rule of §4.4 directs uncertifiable moves to UNDECIDED, but the quality of the distinction depends on certificates.
 6. **No learned judge.** The current version is a rule over certificates; a discriminative learned certificate scorer is future work (risk: drift toward a preference model, §2).
 7. **Evaluation scale.** The MVP is limited to a controlled corpus; transfer to open domains is not claimed. Retrieval is token overlap with stop words: sufficient for 40 documents, on live collections it will be a source of noise and false UNDECIDEDs. One run per configuration at zero temperature; self-check and "platform without middleware" baselines were not run.
-8. **Certificate-scheme defects shown by the live run.** (a) Absence-claims: a positive quote-substring cannot in principle certify absence of evidence, yet the judge issued CERTIFIED on such moves — a scheme defect, not an implementation error; a separate verdict/rule or a semantic adequacy check of the quote is required. (b) NULL-by-conflict: contradiction is a relation between two documents, while the certificate is unary; 30/60 contradictions ended in UNDECIDED precisely because a single-quote certificate could not be assembled. The scheme needs a binary variant (quote-pair).
+8. **Certificate-scheme defects shown by the live run.** (a) Absence-claims: a positive quote-substring cannot in principle certify absence of evidence, yet the judge issued CERTIFIED on such moves — a scheme defect, not an implementation error; a separate verdict/rule or a semantic adequacy check of the quote is required. (b) NULL-by-conflict: contradiction is a relation between two documents, while the certificate is unary; 30/60 contradictions ended in UNDECIDED precisely because a single-quote certificate could not be assembled. The scheme needs a binary variant (quote-pair). Both defects are resolved in the canonical specification (§5.3): absence claims via polarized scoped-exhaustion certificates $\mathcal{C}^{\emptyset}$ with polarity $\varrho_{\mathrm{pol}}\in\{+,-\}$, and contradictions via binary quote-pair incompatibility certificates $\mathcal{C}^{\bot}=(\xi_1,\xi_2)$; integration into the live loop is pending.
 9. **Dependence of effect on judge competence.** The ablation shows that effect direction is robust to judge family, but magnitude depends on competence; under a weak judge the advantage of the contract over a binary verdict may vanish. The observation is based on two judges and is not a scaling law.
 10. **Graph persistence was not tested in the MVP.** The §7.3 run quantifies verdict quality in the loop "verdict → fixed rule → commit/block"; writing of OMIT nodes, invariants, re-verification with rollback and branch re-growth (§5.2–§5.3) are future work; RegrowthYield is not defined in the MVP.
 
@@ -412,3 +414,5 @@ One possible implementation sketch (not a dependency of the architecture): a hos
 | Inessentiality | silence of a member | Member omitted as not affecting the relation; neither excluded nor necessary — possible |
 | Consequence in improved DNF | $xy \lor x\bar{y}_0 \lor \bar{x}\bar{y}$ | Member $\bar{x}y$ is silenced as inessential; $x\bar{y}$ is excluded (nullity index); $\bar{x}\bar{y}$ is asserted |
 | Material implication | $xy \lor \bar{x}y \lor \bar{x}\bar{y}$ (equivalently $\bar{x} \lor y$) | Consequence with the excluded member $x\bar{y}$ unjustifiably retained |
+
+The canonical specification generalizes this glossary to conditional entailment with an admissible-context antecedent: $(ac\Rightarrow y)\equiv(acy^{+})_1\vee(acy^{\sim}_{\mathrm{stag}})_0\vee(acy^{\bot})_0\vee ac'y^{\sim}\vee a'y^{\sim}$, where the consequent splits into three strictly disjoint outcomes — fulfilment $y^{+}$, neutral indifference $y^{\sim}$ (strict stagnation $y^{\sim}_{\mathrm{stag}}$ versus contract-declared sub-threshold change $y^{\sim}_{\mathrm{sub}}$), and strong incompatibility $y^{\bot}$ (canonical specification §3). The verdict mapping of §4 is the Tier-1 projection of this calculus, with the aggregation dominance order NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW (canonical specification §4.2).

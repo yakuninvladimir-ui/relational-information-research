@@ -19,6 +19,11 @@ Document Control
  Field                                               Value
  Document type                                       Engineering whitepaper
 
+ Normative logic foundation                          Reasoning/Modified_Brusentsov_Entailment_Logic.md
+                                                     (canonical verdict semantics, October 2026; this
+                                                     whitepaper is a pre-commit deployment
+                                                     instantiation of the canonical calculus)
+
  Scope                                               External judge adapter for OpenClaw runtime and
                                                      DeepSeek V4 API
 
@@ -165,6 +170,16 @@ and T_m the candidate transition. The judge uses a fixed rule interpreter over c
 supplied by symbolic checks, retrieval evidence, tools, learned classifiers, or calibrated
 surrogates.
 
+Canonical foundation. The verdict space and its aggregation order are canonically specified in
+Reasoning/Modified_Brusentsov_Entailment_Logic.md (October 2026), cited below as the canonical
+specification: V4 = { FOLLOW (+1) = REQUIRED, OMIT (0) = IRRELEVANT, NULL (−1) = FORBIDDEN,
+UNDECIDED (U) = UNRESOLVED }, with the strict dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW
+(canonical §§4.1–4.2). The judge defined here is the pre-commit, text-domain instantiation of
+the canonical Tier-1 pointwise calculus: H corresponds to the certified state projection, m to a
+candidate move bound to expectation clauses, and V to the verification contract K (canonical
+§6.1). Where this whitepaper and the canonical specification differ in verdict semantics, the
+canonical specification governs.
+
  Symbol                                             Meaning
  H                                                  Current explicit verification state.
 
@@ -183,23 +198,36 @@ surrogates.
 5.1 Fixed Rule
  if Nullity(H, m, V) is certified:
      return NULL
+ if T_m(H) is certified inconsistent:
+     return NULL
  if admissibility of m cannot be certified:
      return UNDECIDED
  if T_m(H) cannot be certified:
      return UNDECIDED
- if T_m(H) is certified inconsistent:
-     return NULL
  if T_m(H) is semantically equivalent to H:
      return OMIT
  if T_m(H) strictly refines H:
      return FOLLOW
  return UNDECIDED
 
+Certified contradictions are checked first: under the canonical dominance chain a single certified
+NULL annihilates every other status, including UNDECIDED on other clauses (canonical §4.2,
+Theorem 4.1; in the canonical cascade of §4.3, Step 1 precedes Step 2). The rule order is
+therefore NULL -> UNDECIDED -> OMIT -> FOLLOW -> UNDECIDED (default), matching canonical Steps 1,
+2, 3/5, 4, and 6. In this pre-commit domain the OMIT branch realizes the OMIT_REDUNDANT subtype
+(semantic invariance); the canonical taxonomy additionally distinguishes OMIT_BLOCKED and
+OMIT_INCIDENTAL (canonical §5.2).
+
 5.2 Interpretation
 FOLLOW is not stylistic relevance. It means certified state progress. OMIT is not falsity. It means
 admissible inessentiality or invariance. NULL is not mere uncertainty. It means certified
 inadmissibility or nullity. UNDECIDED is not a fourth logical truth value; it is an operational
 abstention caused by insufficient certification.
+
+The canonical grounding of this discipline is fixed in canonical §1.3: Brusentsov's status 0
+(omission of a DNF constituent) is an ontological inessentiality of a relation member,
+categorically distinct from the epistemic truth-value gaps of Łukasiewicz and Kleene and from
+Belnap's diamond bilattice; UNDECIDED is the isolated epistemic control signal.
 
 6. Target Architecture
  User / Channel
@@ -602,6 +630,11 @@ prevents invalid or unsupported moves from entering accepted state.
 
     Metric                               Definition                    Target direction
     LatencyPerTurn                       End-to-end turn latency.      Monitor.
+
+The canonical metric suite (canonical §7.2) additionally defines FNullR (with productive-loss
+sub-metric FNullR+), FOmitR (with safety-critical sub-metric FOmitR⊥), FAR, OCR_U, and selective
+coverage Cov maximized subject to FFR <= alpha. A conditional metric whose conditioning event has
+probability zero is reported as undefined, never as zero risk.
 
 17.1 Baselines
      DeepSeek V4 direct answer.

@@ -56,7 +56,7 @@ or, in terms of a ternary scale for two terms:
 
 where the middle zero precisely means the incidental status of \(x'y\). Similar scales are constructed for relations of arbitrary arity. Operations on scales (conjunction, disjunction, inversion, change of arity) allow one to fully computerize Aristotelian syllogistics without paradoxes and with preservation of the subordination of the particular to the general.
 
-**Relation to other notations.** The conjunctive \(V\)-form states Carroll's truth-conditions of consequence (\(x_1y'_0\): \(x\) is non-empty, \(xy'\) is empty) conjoined with the non-empty-universe axioms of the Aristotelian discourse (\(Vx\), \(Vy'\)). Its DNF expansion — the form used in the ARC-AGI-3 LCLD Agent Architectural Specification V10.8 (§1.2) — is \(x \Rightarrow y \equiv xy \lor xy'_0 \lor x'y'\), in which the silenced incidental member is exactly \(x'y\). The two forms are equivalent characterizations of one relation: truth-conditions versus expansion members.
+**Relation to other notations.** The conjunctive \(V\)-form states Carroll's truth-conditions of consequence (\(x_1y'_0\): \(x\) is non-empty, \(xy'\) is empty) conjoined with the non-empty-universe axioms of the Aristotelian discourse (\(Vx\), \(Vy'\)). Its DNF expansion — the form used in the ARC-AGI-3 LCLD Agent Architectural Specification V10.8 (§1.2) — is \(x \Rightarrow y \equiv xy \lor xy'_0 \lor x'y'\), in which the silenced incidental member is exactly \(x'y\). The two forms are equivalent characterizations of one relation: truth-conditions versus expansion members. In the canonical Carroll–Brusentsov indices of the reference specification (`Reasoning/Modified_Brusentsov_Entailment_Logic.md` §1.2) the same relation reads \((x\Rightarrow y)\equiv x_1\land(xy')_0\land y'_1\), where the subscript \(1\) marks mandatory empirical existence and the subscript \(0\) marks nullity (class emptiness); the reference specification further generalizes it to conditional entailment \((ac\Rightarrow y)\) with a strictly disjoint three-way consequent partition \(y^{+}/y^{\sim}/y^{\bot}\) (its §3).
 
 The key principle is the **coexistence of opposites**: a primary term can be considered only if both things to which it is inherent and things to which it is anti-inherent are present in the universe. This guarantees the variability of terms and the contentfulness of relations.
 
@@ -114,6 +114,8 @@ Interpretation of statuses at level \(\ell\):
 
 These operations must satisfy consistency conditions (if a consequence is recorded at a coarse scale, it must not be destroyed upon refinement without contradiction).
 
+The exact status-transformation law is fixed in the reference specification (§6.3, Definition 6.1): a macro-element receives status \(-\) if **any** of its essential micro-elements is \(-\); otherwise \(+\) if **any** essential micro-element is \(+\); otherwise \(0\). The coarse-graining status order is \(-\succ_{\mathrm{cg}}+\succ_{\mathrm{cg}}0\), violated safety invariants propagate to all coarser scales, and status assignment is compositional under an explicit compatibility condition on essential subsets (Proposition 6.1). Note the polarity difference with step aggregation: in the verdict calculus the dominance chain is NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW (reference §4.2), where OMIT outranks FOLLOW because a single unfulfilled active expectation blocks step certification; in spatial coarse-graining, a single certified (\(+\)) essential micro-element certifies the macro-element.
+
 ### 3.3. Retrieval as Search for a Compatible Projection
 
 A query \(q\) is encoded as a set of statuses (or as a ternary scale) at a chosen level \(\ell\). Retrieval consists in finding the maximal subgraph \(G'\subseteq G\) compatible with \(q\) in the sense of ternary algebra:
@@ -133,7 +135,9 @@ The proposed graph naturally embeds into an architecture of strict separation of
   - FOLLOW ↔ transition to `+` and commit;
   - OMIT ↔ transition/preservation in `0`;
   - NULL ↔ transition to `-` and branch cutoff;
-  - UNDECIDED ↔ request for additional evidence.
+  - UNDECIDED ↔ request for additional evidence (an epistemic control signal, not a fourth truth value).
+
+  The canonical verdict space, the aggregation dominance order (NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW), and the OMIT subtype taxonomy (BLOCKED / REDUNDANT / INCIDENTAL) are fixed in the reference specification (`Reasoning/Modified_Brusentsov_Entailment_Logic.md` §§4–5).
 - **Commit** — a state manager applies only certified transitions, preserving versioning and the possibility of rollback.
 
 Thus, the hierarchical ternary graph gives the judge not only "yes/no", but a semantically rich language of filtering.
@@ -159,7 +163,7 @@ The proposed approach does not have to completely replace embedding-based retrie
 
 1. **Efficient representation of scales.** With a large number of terms, \(2^n\)-scales require sparse or factorized structures.
 2. **Automatic extraction of statuses.** Translating raw text into ternary existence judgments is a separate task (possibly with LLM + verification).
-3. **Consistency of coarse-graining.** It is necessary to formally define which invariants must be preserved under projection.
+3. **Consistency of coarse-graining.** Formally resolved in the reference specification (§6.3): the status-transformation law under projection, propagation of violated safety invariants to all coarser scales, and compositionality under the compatibility condition on essential subsets (Definition 6.1, Proposition 6.1). Remaining: efficient implementation and empirical validation on corpora.
 4. **Scaling the judge.** The cost of an external judge must remain acceptable; cascading or specialized judges for different hierarchy levels are possible.
 5. **Evaluation.** In addition to FalseFollowRate, metrics of preservation of necessary consequences upon scale change and quality of fine-graining are useful.
 
@@ -181,6 +185,7 @@ The work lies at the intersection of a forgotten (but deep) line of domestic inf
 4. Vladimirova Yu.S. Three-Valued Logic of Lewis Carroll as a Basis for Computerization of Contentful Reasoning. — 2011.
 5. Yakunin V. Propose, Judge, Commit: Ternary Verdicts with External State Authority for LLM Agents. — 2026.
 6. Works on coarse-graining and renormalization group (Kadanoff, Wilson and subsequent).
+7. Yakunin V. Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems. — 2026. (this repository: `Reasoning/Modified_Brusentsov_Entailment_Logic.md`) — reference specification for ternary statuses, verdict semantics, and coarse-graining laws used in this draft.
 
 ---
 

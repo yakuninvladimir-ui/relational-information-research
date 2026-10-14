@@ -44,7 +44,7 @@ These domains appear separate only at the surface. At a deeper level they conver
 
 This text does not claim to answer the question completely. It attempts to give it a coherent direction.
 
-One feature of this edition should be stated at the outset. The work is written against the background of a companion technical corpus in which several of its theses are formalized, implemented, or tested: a causal-phase research program in fundamental physics [6], a note on the thermodynamic origin of the Einstein–Maxwell system [7], a verifier-centered architecture for embodied agents [8], an external ternary judge for language-model reasoning [9], and the specifications of an ARC-AGI-3 interactive reasoning agent [10]. Where a philosophical claim has a formal counterpart in that corpus, the counterpart is cited. Where it does not, the claim is explicitly marked as open. A philosophy that proposes verification as a first-class category should accept verification as a standard for itself.
+One feature of this edition should be stated at the outset. The work is written against the background of a companion technical corpus in which several of its theses are formalized, implemented, or tested: a causal-phase research program in fundamental physics [6], a note on the thermodynamic origin of the Einstein–Maxwell system [7], a formal specification of modified Brusentsov entailment logic and the four-valued verdict calculus [25], a verifier-centered architecture for embodied agents [8], an external ternary judge for language-model reasoning [9], and the specifications of an ARC-AGI-3 interactive reasoning agent [10]. Where a philosophical claim has a formal counterpart in that corpus, the counterpart is cited. Where it does not, the claim is explicitly marked as open. A philosophy that proposes verification as a first-class category should accept verification as a standard for itself.
 
 ---
 
@@ -318,6 +318,8 @@ Purely binary systems risk combinatorial explosion. Attention, abstraction, memo
 
 This triadic structure resonates with the ternary logical systems developed by Brusentsov [11], where the third state represents not contradiction but the *inessential* — the explicitly marked absence of relevance. In the logic of consequential inference (*sledovanie*), the relation $x \Rightarrow y$ is distinguished from material implication precisely by the exclusion of the case that neither affirms nor denies, but simply does not enter into the relation.
 
+The companion corpus now fixes this logic as its formal foundation: the modified Brusentsov entailment logic specification [25] extends the two-term consequence to conditional entailment $(ac \Rightarrow y)$ with a strictly disjoint three-way consequent partition — fulfilment $y^{+}$, neutral indifference $y^{\sim}$, incompatibility $y^{\bot}$ — and separates the ontological status of inessentiality ($\emptyset$, operationalized as OMIT) from epistemic insufficiency (UNDECIDED), which is a control signal and never a fourth truth value.
+
 The construction is not only philosophical. In the companion engineering corpus it is implemented twice and tested: the Unified Implementable Model assigns to every predicate pair a three-way structural label $\{REQ, FORB, IRR\}$, with $UNRESOLVED$ held apart as an epistemic outcome rather than a truth value [8]; and the External Ternary Judge classifies every reasoning move as $FOLLOW$, $OMIT$, $NULL$, or $UNDECIDED$, where $OMIT$ certifies that a move leaves the verification state semantically invariant — that is, that the move lies in the kernel of the state-update map [9]. The kernel formalism of Section 9.1 is, in these systems, executable code.
 
 ### 9.4 The price of irrelevance
@@ -461,7 +463,7 @@ As detailed in Section 2, the Space of Algebras is a conjectured Level-0 layer w
 
 ## 15. Self-Assessment Under the Ternary Standard
 
-The companion engineering corpus classifies every candidate claim as $FOLLOW$ (certified progress), $OMIT$ (admissible but inessential), $NULL$ (inadmissible), or $UNDECIDED$ (insufficient certification) [8, 9]. A philosophy that proposes irrelevance and verification as first-class categories should accept the same discipline toward itself. Applying it:
+The companion engineering corpus classifies every candidate claim as $FOLLOW$ (certified progress), $OMIT$ (admissible but inessential), $NULL$ (inadmissible), or $UNDECIDED$ (insufficient certification) [8, 9, 25]. A philosophy that proposes irrelevance and verification as first-class categories should accept the same discipline toward itself. Applying it:
 
 | Claim of this text | Verdict | Basis |
 |---|---|---|
@@ -571,6 +573,8 @@ The task of philosophy in the informational age is not to replace science, mathe
 [23] A. Connes, "Gravity Coupled with Matter and the Foundation of Non-commutative Geometry," *Communications in Mathematical Physics* 182, 155–176 (1996).
 
 [24] A. Connes, C. Rovelli, "Von Neumann Algebra Automorphisms and Time-Thermodynamics Relation in Generally Covariant Quantum Theories," *Classical and Quantum Gravity* 11, 2899–2917 (1994).
+
+[25] V. Yakunin, *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems* (2026); this repository, `Reasoning/Modified_Brusentsov_Entailment_Logic.md` — the canonical formal foundation of the ternary semantics used in Sections 9.3 and 15.
 
 ---
 

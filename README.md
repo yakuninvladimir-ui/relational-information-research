@@ -12,12 +12,15 @@ Earlier and superseded materials remain archived on Zenodo.
 **Start here:** [Unified Informational-Constructive Framework](Unified%20Informational-Constructive%20Framework.md)
 → cross-level map of theses, verification statuses (FOLLOW / OMIT / NULL / UNDECIDED), isomorphism of levels, and the experimental program.
 
+**Canonical logic:** [Modified Brusentsov Entailment Logic](Reasoning/Modified_Brusentsov_Entailment_Logic.md)
+→ the single formal foundation of ternary / four-valued verdict semantics for the whole corpus: modified Brusentsov DNF, verdict calculus V4 (FOLLOW / OMIT / NULL / UNDECIDED) with dominance semilattice, certificates, ensemble law quantifiers, metric / box / graph realizations. Documents that define verdict semantics cite it as normative.
+
 ---
 
 ## Repository layout
 
 ```
-├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.4)
+├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.5)
 ├── Philosophy/
 │   └── The Algorithm of Being.md
 ├── Physics/
@@ -26,6 +29,7 @@ Earlier and superseded materials remain archived on Zenodo.
 │   ├── KK_Jacobson_Commutativity_Note.md             # historical: 5D route frozen (Aug 2026)
 │   └── old_test/                                     # internal working data (see below)
 ├── Reasoning/
+│   ├── Modified_Brusentsov_Entailment_Logic.md       # canonical formal-logical foundation (verdict semantics)
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
 │   ├── Self_Developing_Runtime_Research_Program.md
@@ -52,6 +56,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Physics | [Causal Phase Geometry Research Program](Physics/Causal_Phase_Geometry_Research_Program.md) | Open research program with falsification criteria |
 | Physics | [Technical Specification v0.1.1 — Γ_corr Extraction](Physics/Technical_Specification_v0.1.1_Gamma_corr_Extraction.md) | Executable pilot specification: lattice U(1), KL truncation, residual ΔF, null tests |
 | Physics | [KK–Jacobson Commutativity Note](Physics/KK_Jacobson_Commutativity_Note.md) | Technical note on the 5D→4D thermodynamic bridge (5D route frozen; historical) |
+| Reasoning | [Modified Brusentsov Entailment Logic](Reasoning/Modified_Brusentsov_Entailment_Logic.md) | **Canonical formal-logical foundation**: modified Brusentsov DNF, four-valued verdict calculus (FOLLOW / OMIT / NULL / UNDECIDED), typed certificates, ensemble law quantifiers, metric/box/graph semantics; normative reference for verdict semantics across the corpus |
 | Reasoning | [Unified Implementable Model](Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
 | Reasoning | [External Ternary Judge Adapter](Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
 | Reasoning | [Self-Developing Runtime Research Program](Reasoning/Self_Developing_Runtime_Research_Program.md) | Pre-implementation research program (v0.2): controlled self-development of an LLM under an external verifier |
@@ -80,7 +85,7 @@ This archive was created with the assistance of Large Language Models (LLMs). Ho
 - The physics documents **do not** claim an experimentally established replacement for general relativity or ΛCDM. They formulate a research program with explicit falsification criteria.
 - The reasoning-system and engineering documents specify research architectures and prototype evaluation plans. They **do not** establish general intelligence or universal logical correctness.
 - The consciousness document is a working hypothesis. It does **not** explain why any state is experienced (the hard problem is bracketed), and its predictions are untested.
-- Thesis-level statuses (FOLLOW / OMIT / NULL / UNDECIDED) are maintained in the Framework document and are attached to claims, not merely to files.
+- Thesis-level statuses (FOLLOW / OMIT / NULL / UNDECIDED) are maintained in the Framework document and are attached to claims, not merely to files. Their formal semantics is fixed by [Modified Brusentsov Entailment Logic](Reasoning/Modified_Brusentsov_Entailment_Logic.md), the canonical reference for verdict semantics corpus-wide.
 
 ---
 

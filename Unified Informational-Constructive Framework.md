@@ -1,12 +1,12 @@
 # Unified Informational-Constructive Framework
 
-## Version 1.4
+## Version 1.5
 
 **Author:** Vladimir Yakunin
 
-**Date:** 2026-10-13 (v1.4 revision; v1.3: 2026-10-05; v1.2: 2026-09-23)
+**Date:** 2026-10-14 (v1.5 revision; v1.4: 2026-10-13; v1.3: 2026-10-05; v1.2: 2026-09-23)
 
-**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the single-hypothesis physics programme (August 2026), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.8 (October 2026), the Latent Agency Framework v2.0 (October 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), and the preliminary ternary-judge MVP results (August 2026)
+**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the single-hypothesis physics programme (August 2026), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.8 (October 2026), the Latent Agency Framework v2.0 (October 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), the canonical Modified Brusentsov Entailment Logic specification (October 2026), and the preliminary ternary-judge MVP results (August 2026)
 
 ## 1. Central Thesis
 
@@ -64,7 +64,7 @@ Any judgment about a system state takes one of three values:
 - **FORBIDDEN** — the state is excluded by constraints (contradiction, impossibility).
 - **IRRELEVANT** — the state is admissible but semantically invariant (no-op, noise).
 
-To these is added the epistemic category **UNRESOLVED** — insufficient data for classification. In the judge for LLM reasoning [9], the same discipline takes the form of verdicts FOLLOW / OMIT / NULL / UNDECIDED, where OMIT certifies the semantic invariance of a move.
+To these is added the epistemic category **UNRESOLVED** — insufficient data for classification. In the judge for LLM reasoning [9], the same discipline takes the form of verdicts FOLLOW / OMIT / NULL / UNDECIDED. The canonical formalization is fixed by the Modified Brusentsov Entailment Logic specification [26]: the ontological triad FOLLOW (+1) / OMIT (0) / NULL (−1) — operational aliases REQUIRED / IRRELEVANT / FORBIDDEN — is ordered by the strict dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW, while epistemic insufficiency is isolated as the control signal UNDECIDED (alias UNRESOLVED), never as a fourth truth value. OMIT certifies admissible inessentiality of a move in one of three disjoint forms: blocked applicability (OMIT_BLOCKED), semantic invariance (OMIT_REDUNDANT), or a resolved incidental / sub-threshold change (OMIT_INCIDENTAL).
 
 **Important:** `IRRELEVANT` is neither "false" nor "unknown." It is an explicitly recorded absence of relevance, allowing the system to compress its attention space.
 
@@ -197,7 +197,7 @@ The substrate is also the **interface to the verifier**: a disembodied "pure int
 
 ## 5. The Engineering Level
 
-The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V10.8)** define a concrete instantiation for a task.
+The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V10.8)** define a concrete instantiation for a task. Beneath all three lies their common formal-logical foundation: **Modified Brusentsov Entailment Logic** [26] fixes the canonical notation, the verdict space $V_4$ with its dominance semilattice, the normative six-step decision cascade, evidence scopes, typed certificates, and the two-tier separation of pointwise verdicts from ensemble law statuses.
 
 ### 5.1. Requirements as ternary constraints
 
@@ -243,17 +243,19 @@ The Verifier (including an external one, via the Ternary Judge Adapter) issues o
 | **NULL** | The transition violates the constraint | Uncertified transition, rejected |
 | **UNDECIDED** | The verifier cannot issue a verdict | Honest ignorance; the transition is blocked or escalated |
 
-OMIT is neither an "error" nor a "skip": it is a deliberate decision of non-applicability, logged on equal footing with the rest. The verdict→controller-action bijection is domain-specific: pre-commit judges (the Adapter; the Propose–Judge–Commit loop) map OMIT to silence/no-commit — the move is not admitted into state; post-action verifiers (the ARC-AGI-3 agent V10.8) map OMIT to advance-without-confirmation — the transition has already occurred and the branch is preserved. The invariant common to every domain: **OMIT never certifies and never severs.** The adapter fixes the rule interpreter as an immutable layer: verdict semantics is not subject to further training and does not drift with the model.
+OMIT is neither an "error" nor a "skip": it is a deliberate decision of non-applicability, logged on equal footing with the rest. The canonical calculus [26] refines OMIT into three disjoint subtypes with fixed controller commands (§5.2 of [26]): OMIT_BLOCKED → preserve the law and repair the route; OMIT_REDUNDANT → drop and suppress the repeat; OMIT_INCIDENTAL → retain silently and advance. The verdict→controller-action bijection is domain-specific: pre-commit judges (the Adapter; the Propose–Judge–Commit loop) map OMIT to silence/no-commit — the move is not admitted into state; post-action verifiers (the ARC-AGI-3 agent V10.8) map OMIT to advance-without-confirmation — the transition has already occurred and the branch is preserved. The invariant common to every domain: **OMIT never certifies and never severs.** Two further canonical invariants bind every domain [26]: a single certified NULL annihilates all other clause statuses, including UNDECIDED (dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW; Theorem 4.1), and an UNDECIDED record is never overwritten into NULL on evidence-budget exhaustion — the attempt terminates operationally while the audit record permanently retains UNDECIDED (§5.4). The adapter fixes the rule interpreter as an immutable layer: verdict semantics is not subject to further training and does not drift with the model.
 
 ### 5.5. Three documents, one hierarchy
 
 | Document | Level of abstraction | What it fixes |
 |---|---|---|
-| **UIM v2.0** | Architectural ontology | Ternary requirement semantics, the Proposer/Binder/Planner/Verifier/Memory hierarchy, verification contracts, evidence scopes (PREDICTIVE_ONLY vs OBSERVED_TRANSITION) |
+| **UIM v2.0** | Architectural ontology | Ternary requirement semantics, the Proposer/Binder/Planner/Verifier/Memory hierarchy, verification contracts, evidence scopes (the four canonical scopes NOT_AVAILABLE / PREDICTIVE_ONLY / OBSERVED_TRANSITION / REPLAY_VERIFIED) |
 | **External Ternary Judge Adapter** | Verification protocol | The external-verifier interface, the fixed rule interpreter, the FalseFollowRate metric |
 | **ARC-AGI-3 LCLD Agent (V10.8)** | Instantiation | Tri-Agent hierarchy (Explorer / Coder / Solver), isolated memory contours, Brusentsov 4-valued verdicts (FOLLOW / OMIT / NULL / UNDECIDED), sandboxed dynamic DSL |
 
-The three documents are three nesting levels of one principle: **an agent that is not separated from its verifier has no grounds for trusting its own transitions.** The distinction of evidence scopes (PREDICTIVE_ONLY / OBSERVED_TRANSITION) is the engineering record of a philosophical boundary: a model's prediction is not an observed transition, and conflating these statuses is the source of hallucinations in the most precise sense of the word.
+The three documents are three nesting levels of one principle: **an agent that is not separated from its verifier has no grounds for trusting its own transitions.** The distinction of evidence scopes (canonical Definition 2.1 of [26]: NOT_AVAILABLE / PREDICTIVE_ONLY / OBSERVED_TRANSITION / REPLAY_VERIFIED) is the engineering record of a philosophical boundary: a model's prediction is not an observed transition, and conflating these statuses is the source of hallucinations in the most precise sense of the word.
+
+A fourth document sits beneath the three as their formal-logical foundation: **Modified Brusentsov Entailment Logic** [26] — the canonical specification of the verdict space $V_4$ and its dominance semilattice, the modified Brusentsov DNF of conditional entailment $(ac\Rightarrow y)$, the six-step decision cascade, evidence scopes, typed certificates ($\mathcal{C}^{+}$, $\mathcal{C}^{\bot}$, $\mathcal{C}^{\emptyset}$), and the two-tier separation of pointwise verdicts from ensemble law statuses (CONFIRMED / CONTRADICTED / CONDITIONAL_CANDIDATE / UNRESOLVED). Where any of the three documents above and the canonical specification diverge in verdict semantics, the canonical specification governs.
 
 ### 5.6. Geometric substrate of the agent
 
@@ -304,8 +306,9 @@ The archive is not a list of files but a distribution of theses across documents
 | $\Gamma_{\rm corr}$ as residual of informational truncation | Causal Phase Geometry Research Program; Technical Specification v0.1.1 | UNDECIDED: pilot stage v0.1 in progress |
 | Relative-entropy (Dorau–Much [25] / Araki–Uhlmann / Casini) route to gravity | Causal Phase Geometry Research Program | UNDECIDED: theoretical frame; classical KL proxy used in pilot |
 | Space of Algebras (Level 0) | The Algorithm of Being (§2); this document (§3.1) | UNDECIDED: a conjecture, not a foundation |
+| Modified Brusentsov entailment logic; four-valued verdict calculus $V_4$ (FOLLOW / OMIT / NULL / UNDECIDED) with dominance semilattice; MDNF of conditional entailment; typed certificates; ensemble law quantifiers; metric, box, and graph realizations | Modified_Brusentsov_Entailment_Logic.md (October 2026) | FOLLOW: formal specification — the canonical reference for verdict semantics corpus-wide (theorems proven internally); implementation conformance and empirical validation per its §7.3 are UNDECIDED |
 | Ternary requirement semantics; authority hierarchy | Unified Implementable Model v2.0 | FOLLOW: specified |
-| External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter; Draft: ternary_judge.md | FOLLOW: protocol; preliminary controlled-corpus MVP empirics exist (Reasoning/Draft/ternary_judge.md, run of 2026-08-09: FFR 0.362 → 0.035 at coverage 0.81; effect depends primarily on judge competence); open-domain transfer is UNDECIDED and remains in the §8 program |
+| External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter; Draft: ternary_judge.md; canonical verdict semantics: [26] | FOLLOW: protocol; preliminary controlled-corpus MVP empirics exist (Reasoning/Draft/ternary_judge.md, run of 2026-08-09: FFR 0.362 → 0.035 at coverage 0.81; effect depends primarily on judge competence); open-domain transfer is UNDECIDED and remains in the §8 program |
 | Agent V10.8 (Tri-Agent, Brusentsov 4-valued verdicts) | ARCHITECTURAL / ENGINEERING SPECIFICATION (Version 10.8) | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
 | Controlled self-development of a language model under an external verifier (capability growth at bounded structural continuity) | Self-Developing Runtime Research Program v0.2 (2026-09-11) | UNDECIDED: pre-implementation specification; success/failure criteria and control groups fixed |
 | Latent Agency Framework: graded agency (integration, persistence, informational autonomy); relief vs reasoning budget; recoverability bound; nine measurable predictions | Latent_Agency_Framework.md (v2.0, 2026-10-09; successor to Unified Latent Space of Consciousness v1.0) | UNDECIDED: working hypothesis; predictions untested; the hard problem is bracketed |
@@ -327,7 +330,7 @@ The rule for reading the archive: **status is attached to the thesis, not to the
 
 - **FalseFollowRate** — the key metric: the fraction of transitions certified as FOLLOW that fail the constraint under independent checking. A preliminary live MVP on a controlled corpus (Reasoning/Draft/ternary_judge.md, run of 2026-08-09) reports an order-of-magnitude reduction relative to binary baselines (0.362 → 0.035 at coverage 0.81), with an ablation showing that the primary factor is judge competence and the certificate contract is its multiplier. Remaining goal: reproduce the effect on open domains and in the full adapter deployment, via first-class OMIT/UNDECIDED.
 - **ARC-AGI-3.** Agent V10.8 is run on the benchmark; the criteria are not only task success but calibration (the match between declared confidence and observed accuracy), isolation integrity, and the share of honest UNDECIDED / OMIT versus fabricated FOLLOW.
-- **Ternary Judge track.** The controlled-corpus MVP is complete (see above). Remaining: independent evaluation of the adapter on open domains — rule-interpreter stability across a change of proposer, absence of semantic drift in verdicts, graph persistence (OMIT-node retention, re-verification with rollback), and binary certificates for contradictions.
+- **Ternary Judge track.** The controlled-corpus MVP is complete (see above). Remaining: independent evaluation of the adapter on open domains — rule-interpreter stability across a change of proposer, absence of semantic drift in verdicts, graph persistence (OMIT-node retention, re-verification with rollback), and binary certificates for contradictions. The canonical certificate algebra of [26] (§5.3) supplies the target forms for the two missing certificate types: polarized scoped-exhaustion certificates $\mathcal{C}^{\emptyset}$ for absence claims and binary quote-pair certificates $\mathcal{C}^{\bot}$ for contradictions; conformance testing of the six-step cascade and of the exhaustion invariant (an UNDECIDED record is never rewritten into NULL, §5.4 of [26]) is added to this track.
 - **Latent geometry track.** Experimental program E1–E5 from *Latent Information Structuring*: projection of curvature onto information gradient ($r > r_0$), curvature dynamics during training, stratification at metric degeneracies, NTK-filtered dynamics correlation, comparison of standard CE training versus explicit VIM surrogate optimization. This track tests whether the neural substrate of the agent self-organizes according to the informational minimal surface principle.
 
 ### 8.3. Ontology
@@ -356,6 +359,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 | Causal Phase Geometry Research Program (Aug 2026) | Physics | EN | Level 1 under (H_P): relative-entropy route, $\Gamma_{\rm corr}$, pilot numerics |
 | Technical Specification v0.1.1 — $\Gamma_{\rm corr}$ Extraction | Physics | EN | Executable pilot for residual extraction |
 | KK–Jacobson Commutativity Note | Physics | EN | Historical (5D route frozen) |
+| Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus (`Reasoning/Modified_Brusentsov_Entailment_Logic.md`) | Reasoning (formal logic) | EN | Canonical formal foundation of verdict semantics corpus-wide: MDNF, $V_4$ and dominance semilattice, decision cascade, evidence scopes, typed certificates, ensemble law quantifiers, metric/box/graph realizations |
 | Unified Implementable Model v2.0 | Engineering | EN | The agent's architectural ontology |
 | External Ternary Judge Adapter | Engineering | EN | The external-verification protocol |
 | ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications (Version 10.8) | Engineering | EN | The V10.8 instantiation (Tri-Agent, isolated memory contours, Brusentsov 4-valued verdict logic) |
@@ -369,7 +373,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 
 ## References
 
-Bracketed numbers [1]–[24] follow the reference list of *The Algorithm of Being* (this repository) and are reproduced here for the entries actually cited in this document; [25] is new.
+Bracketed numbers [1]–[24] follow the reference list of *The Algorithm of Being* (this repository) and are reproduced here for the entries actually cited in this document; [25]–[26] are new.
 
 - [6] V. Yakunin, *Causal Phase Geometry Research Program: Minimal Draft, Competing Interpretations of the Phase Layer, and a Program of Experimental Tests* (2026).
 - [7] V. Yakunin, *KK–Jacobson Commutativity Note: Discrete Causal Structure, U(1) Holonomies, and the Thermodynamic Origin of the Einstein–Maxwell System* (2026).
@@ -387,7 +391,8 @@ Bracketed numbers [1]–[24] follow the reference list of *The Algorithm of Bein
 - [23] A. Connes, "Gravity Coupled with Matter and the Foundation of Non-commutative Geometry," *Communications in Mathematical Physics* 182, 155–176 (1996).
 - [24] A. Connes, C. Rovelli, "Von Neumann Algebra Automorphisms and Time-Thermodynamics Relation in Generally Covariant Quantum Theories," *Classical and Quantum Gravity* 11, 2899–2917 (1994).
 - [25] P. Dorau, A. Much, "From Quantum Relative Entropy to the Semiclassical Einstein Equations," *Physical Review Letters* (2026); arXiv:2510.24491.
+- [26] V. Yakunin, *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems* (2026); this repository, `Reasoning/Modified_Brusentsov_Entailment_Logic.md` — the canonical reference for verdict semantics across the corpus.
 
 ---
 
-*End of document. Version 1.4. Feedback and objections — via repository issues.*
+*End of document. Version 1.5. Feedback and objections — via repository issues.*
