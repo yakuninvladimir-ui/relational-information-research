@@ -1,10 +1,10 @@
 # ARC-AGI-3 LCLD Agent
 # Architectural Specification
-# Version 10.8
+# Version 10.9
 
 ## 0. Purpose
 
-This document defines the Version 10.8 target architecture of the LCLD (Locally Constrained Learning and Discovery) agent for ARC-AGI-3 interactive reasoning under:
+This document defines the Version 10.9 target architecture of the LCLD (Locally Constrained Learning and Discovery) agent for ARC-AGI-3 interactive reasoning under:
 
 - completely unseen interactive grid environments;
 - hidden mechanics and environment-local action semantics;
@@ -19,7 +19,7 @@ This document defines the Version 10.8 target architecture of the LCLD (Locally 
 - clean-reset recovery with forward-only epistemic consistency;
 - stratified cross-level memory grounded in physical exemplars.
 
-Version 10.8 preserves the tri-agent separation of powers, the Brusentsov verifier core, and the isolation invariants of V10.5, and adds an explicit empirical world model and a hardened execution layer. The intelligence hierarchy is unchanged: the LLM tri-agent is the **Primary Proposer of facts, code, and plans**; the `LayeredVerifier` is the **Primary Truth and Execution Judge**. Memory, guards, and the `TransitionTable` form an explicit evidence layer between them.
+Version 10.9 preserves the tri-agent separation of powers, the Brusentsov verifier core, the isolation invariants of V10.5, and the V10.8 empirical world model and hardened execution layer. V10.9 is a semantics-alignment release: the verdict logic is synchronized with the canonical specification `Reasoning/Modified_Brusentsov_Entailment_Logic.md` (§0.5); the cascade order, tier structure, and judgment schemas are unchanged. The intelligence hierarchy is unchanged: the LLM tri-agent is the **Primary Proposer of facts, code, and plans**; the `LayeredVerifier` is the **Primary Truth and Execution Judge**. Memory, guards, and the `TransitionTable` form an explicit evidence layer between them.
 
 The architecture is **not**:
 
@@ -43,7 +43,7 @@ The architecture **is**:
 - a stratified, exemplar-grounded, cross-level memory architecture;
 - an offline, budgeted, auditable, replayable ARC-AGI-3 solver.
 
-### 0.1 V10.8 Authority Hierarchy
+### 0.1 V10.9 Authority Hierarchy
 
 The normative authority hierarchy is:
 
@@ -63,7 +63,7 @@ The LLM tri-agent may propose empirical facts, DSL code, and declarative traject
 
 The verifier may confirm, contradict, mark inessential, or suspend a transition. `OMIT` is a first-class verdict, not a synonym for `NULL` and not a failure of reasoning. `UNDECIDED` is an epistemic controller signal, not a truth value.
 
-### 0.2 V10.8 Core Loop
+### 0.2 V10.9 Core Loop
 
 ```text
 raw observation (frame, metadata, state)
@@ -114,6 +114,19 @@ V10.8 adds the following architectural elements to the V10.5 baseline:
 6. **PriorityScheduler.** Explicit deterministic arbitration over competing action sources under budget pressure.
 7. **State-aware Tabu fallback.** Empirically grounded actor/target selection for the fallback A* search, with tabu suppression of observed non-progressing edges.
 8. **Model-neutral LLM runtime contract.** Canonical backend abstraction and `LLMModelProfile`; all model and serving specifics moved to the Deployment Manifest (§0.3, §11).
+
+### 0.5 V10.9 Amendments over V10.8
+
+V10.9 is a semantics-alignment release synchronizing the verifier logic with the canonical specification `Reasoning/Modified_Brusentsov_Entailment_Logic.md` (October 2026). It changes verdict **semantics and records**, not the cascade order, tier structure, or schemas:
+
+1. **Normative source (§1).** The verifier logic is an instantiation of the canonical specification; the full mathematical treatment is no longer claimed by this section alone.
+2. **Complete entailment form (§1.1).** $(x \Rightarrow y) \equiv x_1 \land (xy')_0 \land y'_1$ replaces the truncated $xy'_0$; the two-tier reading of $x'y'$ is fixed (§1.2).
+3. **Canonical aliases, dominance chain, and `OMIT` subtypes (§1.3).** NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW; OMIT_BLOCKED / OMIT_REDUNDANT / OMIT_INCIDENTAL mapped onto Tier 3, `NoopRepeatGuard`, and Tier 8.
+4. **Completed nullity taxonomy (§1.4).** Two classes added: local state-consistency conflict and resolved out-of-contract active change ($\Omega_{\mathrm{sub}}$ empty by default).
+5. **Prohibition of epistemic falsification (§4.3).** On probe/streak exhaustion the judgment permanently retains `UNDECIDED` (`ABORT_ON_UNDECIDED`); the previous rewrite into `NULL` is abolished; retained records never ground `NEGATIVE_BARRIER`.
+6. **ISO-10 restated (§7.6) and the fail-safe default scoped to resolved cases (§4.6).** Epistemically unresolved transitions default to `UNDECIDED` (Tiers 4/7).
+7. **`implies_brusentsov` rule 4 split (Engineering Specification §4.3).** Resolved out-of-contract change → `FALSE` unless inside a declared neutral region; neutral-region registry introduced (empty by default, contract-hashed).
+8. **Test obligations extended** (Engineering Specification §4.6, §17.4): rule-4 conformance PBT, neutral-registry behavior, `UNDECIDED`-retention on exhaustion.
 
 ---
 
@@ -253,7 +266,7 @@ Normative logical-state constraints:
 
 ### 2.5 Failure Modes to Prevent
 
-V10.8 explicitly guards against:
+V10.9 explicitly guards against:
 
 - querying an LLM per frame for the next action;
 - executing any LLM output without AST validation, sandboxing, grounding, and verifier supervision;
@@ -1112,9 +1125,9 @@ The Guardian runs over the whole package in CI and locally; any finding blocks a
 
 ## 17. Acceptance Criteria
 
-Version 10.8 architecture is acceptable only if:
+Version 10.9 architecture is acceptable only if:
 
-- the Brusentsov four-valued cascade is the sole transition judge, non-invertible and non-bypassable, with `OMIT` never severing and empty expectations never confirming;
+- the Brusentsov four-valued cascade is the sole transition judge, non-invertible and non-bypassable, with `OMIT` never severing, empty expectations never confirming, and `UNDECIDED` never epistemically falsified (§4.3);
 - no LLM output reaches the environment except through grounding, certification, guards, and the verifier path; no call family is queried per-frame for actions;
 - the tri-agent contours are isolated and test-proven (ISO-1..ISO-12), with double-loop routing by failure kind;
 - the dual-space coordinate contract holds end-to-end, with symmetric deduplication and mask-pixel targeting;
@@ -1146,3 +1159,15 @@ Mandatory migration changes:
 8. Canonicalize configuration: one canonical field set per knob with an explicit alias table; introduce `LLMModelProfile`; remove all model artifacts, engine flags, cluster and tunnel specifics from specifications and agent code into the Deployment Manifest.
 9. Canonicalize the backend enum (`vllm | openai_chat | openai_responses | fake`) with vendor labels as aliases; make the `fake` backend sufficient for the entire test suite.
 10. Extend the test suite: transient-cell unit tests, triangulated-defeat differential tests, guard interdiction tests, scheduler degradation tests, tabu-fallback grounding tests, budget-exhaustion integration test (`LevelAttemptsExhaustedError` without `RESET`), and replay-basis completeness tests.
+
+---
+
+## 19. Migration from V10.8 to V10.9
+
+Mandatory migration changes:
+
+1. Rename the specification files and corpus references: `architectural_specification_v10_8.md` → `architectural_specification_v10_9.md`, `engineering_specification_v10_8.md` → `engineering_specification_v10_9.md`; engineering-cycle reports move to the `v10_9_*` namespace (historical V10.8-cycle artifacts keep their `v10_8_*` names).
+2. `brusentsov_logic.implies_brusentsov`: split rule 4 into resolved/unresolved branches and add the neutral-region parameter (Engineering Specification §4.3); introduce the `NeutralRegionRegistry` consumed from `declared_neutral_regions` (empty by default; any change is a contract change and updates the contract hash).
+3. Evidence-seeking FSM: replace the exhaustion fallback to `NULL` with attempt termination under permanently retained `UNDECIDED` (`ABORT_ON_UNDECIDED` reason code); suppress `NEGATIVE_BARRIER` grounding and branch-signature writes from retained records.
+4. Extend the test suite: rule-4 conformance PBT (resolved out-of-contract change → `FALSE`; declared $\Omega_{\mathrm{sub}}$ member → `IRRELEVANT`; unresolved → `UNDECIDED` via Tiers 4/7), neutral-registry default-empty and contract-hash coupling, exhaustion-retention integration test (`test_pbt_undecided_exhaustion.py`).
+5. No changes to: cascade order and tier count, `v10.judgment.1` / `v10.env_spec.1` schemas, verdict routing effects (§4.2), isolation invariants ISO-1..ISO-12 (ISO-10 restated, not renumbered), budget and arbitration semantics.

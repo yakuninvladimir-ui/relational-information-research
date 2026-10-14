@@ -1,6 +1,6 @@
 # ARC-AGI-3 LCLD Agent
 # Engineering Specification
-# Version 10.8
+# Version 10.9
 
 ## 0. Engineering Objective
 
@@ -173,6 +173,8 @@ Tracker and 4-valued knobs:
                                  # UNDECIDED forever (ABORT_ON_UNDECIDED), never NULL
   max_evidence_probes_per_level: 3
   min_remaining_actions_for_probe: 25
+  declared_neutral_regions: {}   # Ω_sub registry (canonical §3.1); empty by default; any change
+                                 # is a contract change (contract-hash update); consumed by rule 4 only
 
 Transient engine:
   enable_transient_engine: True
@@ -392,7 +394,8 @@ Frozen, serializable (`to_dict`), append-only in storage. Judgments are the sole
 ### 4.3 `implies_brusentsov` Contract
 
 ```python
-def implies_brusentsov(expected: PropositionSet, observed: PropositionSet) -> Ternary
+def implies_brusentsov(expected: PropositionSet, observed: PropositionSet,
+                        neutral: NeutralRegionRegistry = EMPTY_REGISTRY) -> Ternary
 ```
 
 Evaluation order is normative:
@@ -401,6 +404,8 @@ Evaluation order is normative:
 2. incompatibility scan: any `contradicts(e, o)` pair → `FALSE`; object-identity destruction check included;
 3. necessary containment: all expected propositions contained in observed → `TRUE`;
 4. otherwise, for a **resolved** discrepancy: → `FALSE` when the observed change lies outside the expected set, is non-zero, and is not inside a contract-declared bounded neutral region `Ω_sub` (canonical Definition 3.1, clause 5: a resolved out-of-contract active change is certified incompatibility, not inessentiality; `Ω_sub = ∅` by default and must be declared per contract); → `IRRELEVANT` when the change lies inside a declared `Ω_sub` (sub-threshold neutrality, canonical §3.1). **Unresolved** observations (below the tracking resolution floor, ambiguous matching) are never decided here: the cascade maps them to `UNDECIDED` (Tiers 4/7). Expectation-free and passive cases remain inessential by rule 1 (empty expectations → `IRRELEVANT`, canonical Axiom 4.1); distinct subjects never contradict (§4.4 item 0).
+
+**Neutral-region registry (`Ω_sub`).** Rule 4 consumes an explicit registry of contract-declared neutral regions: mappings from (subject family, predicate family) to bounded sets/bands of resolved non-zero deviations admitted as sub-threshold-neutral. Sources: the `declared_neutral_regions` config field and per-`EXPECT` tolerance declarations bound by the VerificationBinder into the contract hash. The registry is **empty by default**; adding or changing a region is a contract change (contract-hash update) and is never inferred at runtime from observed deltas. Only rule 4 consumes the registry; `contradicts()` (§4.4) is unaffected — a declared neutral region never legalizes a §4.4 contradiction class.
 
 ### 4.4 `contradicts` Completeness Requirements
 
@@ -432,6 +437,7 @@ Regular expressions are forbidden in this module; value normalization is tokeniz
 
 - PBT (`test_pbt_brusentsov_axioms.py`): empty expectations never yield TRUE; preserved-vs-destroyed always contradicts; exact containment always yields TRUE; unasserted changes never yield TRUE; cross-type equality/hash bridge laws; resolved out-of-contract change (non-zero, outside any declared neutral region) yields FALSE; declared `Ω_sub` member yields IRRELEVANT;
 - PBT (`test_pbt_brusentsov_severance.py`): stagnation, unintended mutation, direction inversion, containment consistency, macro-step decomposition, early severance;
+- PBT (`test_pbt_undecided_exhaustion.py`, new in 10.9): probe-queue exhaustion and `max_undecided_streak` exhaustion retain the judgment verdict permanently as `UNDECIDED`; `ABORT_ON_UNDECIDED` is logged with the exhaustion reason code; no `NEGATIVE_BARRIER` invariant or branch signature is grounded from the retained record; exactly one clean `RESET` is scheduled;
 - unit: every contradiction class of §4.4 has positive and negative cases in every supported kinematic format; subject mismatch never contradicts; vacuity guard on $S_0$.
 
 ---
@@ -1164,6 +1170,10 @@ The entire suite runs under the `fake` backend with no network and no model file
 
 Transient-cell classification and Tier 3 override; JV FrameDiff optimality and vocabulary closure; triangulated defeat (with/without $F_{fatal}$); guard interdiction matrix; scheduler arbitration and degradation order; tabu-fallback grounding and overlay precedence; TransitionTable dual-space deduplication and `IDLE_UNLINKED` semantics; replay-basis completeness.
 
+### 17.4 New-in-10.9 Coverage (mandatory)
+
+Canonical-alignment conformance: `implies_brusentsov` rule-4 split (resolved out-of-contract change → `FALSE`; declared `Ω_sub` member → `IRRELEVANT`; unresolved observations intercepted by Tiers 4/7 as `UNDECIDED`); neutral-region registry (empty by default; contract-hash coupling; no legalization of §4.4 classes); `UNDECIDED`-retention on probe/streak exhaustion (no `NULL` rewrite, no `NEGATIVE_BARRIER` grounding, exactly one clean `RESET`); Tier 8 default restricted to resolved cases.
+
 ---
 
 ## 18. Validation Commands
@@ -1182,7 +1192,8 @@ Focused suites:
 ```bash
 python -m pytest -q v10_agent/tests/test_pbt_brusentsov_axioms.py \
                     v10_agent/tests/test_pbt_brusentsov_severance.py \
-                    v10_agent/tests/test_judge_brusentsov_world_laws.py
+                    v10_agent/tests/test_judge_brusentsov_world_laws.py \
+                    v10_agent/tests/test_pbt_undecided_exhaustion.py
 python -m pytest -q v10_agent/tests/test_reactive_dsl_invalidation.py \
                     v10_agent/tests/test_isolation_invariants.py \
                     v10_agent/tests/test_prompt_isolation.py
@@ -1198,17 +1209,20 @@ All commands are environment-agnostic: no model paths, no cluster identifiers, n
 Create/update per engineering cycle:
 
 ```text
-v10_8_transition_table.md
-v10_8_transient_cells.md
-v10_8_triangulated_defeat.md
-v10_8_frame_diff.md
-v10_8_action_guards.md
-v10_8_priority_scheduler.md
-v10_8_tabu_fallback.md
-v10_8_model_neutral_runtime.md
-v10_8_integration_results.md
-v10_8_findings.json
+v10_9_transition_table.md
+v10_9_transient_cells.md
+v10_9_triangulated_defeat.md
+v10_9_frame_diff.md
+v10_9_action_guards.md
+v10_9_priority_scheduler.md
+v10_9_tabu_fallback.md
+v10_9_model_neutral_runtime.md
+v10_9_canonical_alignment.md
+v10_9_integration_results.md
+v10_9_findings.json
 ```
+
+Historical V10.8-cycle artifacts keep their `v10_8_*` names; the V10.9 cycle adds `v10_9_canonical_alignment.md` (rule-4 split, neutral-region registry, exhaustion retention, test deltas).
 
 Each report must include: files changed; tests added; exact commands run; compile/pytest/guardian results; judgment distribution (`FOLLOW/OMIT/NULL/UNDECIDED` counts); severance and reset counts; probe deduplication rate; guard block counts by reason; fallback engagements and outcomes; wins/errors/exhausted/max-steps per game; replay-basis completeness check; remaining blockers with verdict-level evidence. Reports must not contain deployment identifiers.
 
@@ -1216,9 +1230,10 @@ Each report must include: files changed; tests added; exact commands run; compil
 
 ## 20. Acceptance Criteria
 
-V10.8 implementation is acceptable only if:
+V10.9 implementation is acceptable only if:
 
 - the 8-tier cascade is the sole transition judge, order-frozen, with `OMIT` never severing, empty expectations never confirming, `UNDECIDED` segregated and evidence-routed, and `UNDECIDED` never epistemically falsified (probe exhaustion retains the verdict and terminates the attempt; canonical §5.4);
+- `implies_brusentsov` rule 4 conforms to canonical Definition 3.1 clause 5: a resolved out-of-contract change is `FALSE` unless inside a declared `Ω_sub` region; the neutral-region registry is empty by default and contract-hashed;
 - every contradiction class of §4.4 is implemented and PBT-proven; the vacuity guards hold on $S_0$;
 - no emission path bypasses grounding → guards → verifier; exactly one action per `act()`; `ACTION7` is unrepresentable in emissions;
 - the dual-space contract holds end-to-end with symmetric deduplication (PBT coordinate isomorphism) and mask-pixel targeting;

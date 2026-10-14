@@ -39,8 +39,8 @@ Earlier and superseded materials remain archived on Zenodo.
 │       ├── ternary_judge.md
 │       └── Hierarchical_Ternary_KG_as_RAG_Alternative.md
 ├── Engineering/
-│   ├── architectural_specification_v10_8.md                # Version 10.8
-│   └── engineering_specification_v10_8.md                  # Version 10.8
+│   ├── architectural_specification_v10_9.md                # Version 10.9
+│   └── engineering_specification_v10_9.md                  # Version 10.9
 ├── LICENSE                                           # CC BY 4.0
 └── README.md
 ```
@@ -64,8 +64,8 @@ Earlier and superseded materials remain archived on Zenodo.
 | Reasoning | [Latent Agency Framework](Reasoning/Latent_Agency_Framework.md) | Working hypothesis (v2.0): graded agency via integration, persistence, informational autonomy; relief vs budget; recoverability bound; nine measurable predictions; hard problem bracketed |
 | Reasoning (drafts) | [Propose, Judge, Commit](Reasoning/Draft/ternary_judge.md) | Draft paper; includes preliminary live MVP results on a controlled corpus (FalseFollowRate 0.362 → 0.035) |
 | Reasoning (drafts) | [Hierarchical Ternary KG as RAG Alternative](Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: ternary hierarchical knowledge graph as an alternative to RAG |
-| Engineering | [ARCHITECTURAL\_SPECIFICATION](Engineering/architectural_specification_v10_8.md) | ARC-AGI-3 LCLD Agent (Version 10.8): architectural specification |
-| Engineering | [ENGINEERING\_SPECIFICATION](Engineering/engineering_specification_v10_8.md) | ARC-AGI-3 LCLD Agent (Version 10.8): engineering specification |
+| Engineering | [ARCHITECTURAL\_SPECIFICATION](Engineering/architectural_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): architectural specification; verdict semantics aligned to the canonical logic specification
+| Engineering | [ENGINEERING\_SPECIFICATION](Engineering/engineering_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): engineering specification |
 
 ### Physics/old_test
 

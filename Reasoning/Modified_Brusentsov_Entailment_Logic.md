@@ -2,7 +2,7 @@
 
 **Document Status:** Proposed Formal-Logical Specification 
 
-**Role in repository:** Canonical formal-logical foundation of the corpus. Documents that define or instantiate ternary statuses, entailment semantics, or the verdict space (FOLLOW / OMIT / NULL / UNDECIDED) cite this specification as normative; domain instantiations (Unified Implementable Model v2.0, External Ternary Judge Adapter, ARC-AGI-3 LCLD Agent V10.8, Self-Developing Runtime Research Program) may refine operational mappings but must not contradict §§1–5 of this document.
+**Role in repository:** Canonical formal-logical foundation of the corpus. Documents that define or instantiate ternary statuses, entailment semantics, or the verdict space (FOLLOW / OMIT / NULL / UNDECIDED) cite this specification as normative; domain instantiations (Unified Implementable Model v2.0, External Ternary Judge Adapter, ARC-AGI-3 LCLD Agent V10.9, Self-Developing Runtime Research Program) may refine operational mappings but must not contradict §§1–5 of this document.
 
 **Domain:** Non-classical mathematical logic, state-transition verification theory, neuro-symbolic and agentic architectures with authority separation (*Propose — Judge — Commit*).
 
