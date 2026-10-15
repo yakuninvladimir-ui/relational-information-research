@@ -607,12 +607,12 @@ The first stage does not require a complete theory of quantum gravity.
 1. Construct a finite causal network with variables $`U_{xy} \in \mathrm{U}(1)`$.
 2. Define a Wilson-like functional on causal diamonds:
    $$
-   S_{\mathrm{U}(1)} = \frac{1}{g^2} \sum_D w_D \bigl[1 - \mathrm{Re}\, W_D\bigr].
-   $$
+S_{\mathrm{U}(1)} = \frac{1}{g^2} \sum_D w_D \bigl[1 - \mathrm{Re} W_D\bigr].
+$$
 3. Verify that for small phases,
    $$
-   1 - \mathrm{Re}\, W_D \simeq \tfrac{1}{2} \Phi_D^2,
-   $$
+1 - \mathrm{Re} W_D \simeq \tfrac{1}{2} \Phi_D^2,
+$$
    and that the continuum limit reproduces $F^2$.
 4. Carry out the five-dimensional version of Jacobson’s derivation using the five-dimensional metric of Section 4.
 5. Explicitly decompose the five-dimensional equation into the $(\mu, \nu)$, $(\mu, 5)$, and $(5, 5)$ components.
