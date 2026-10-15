@@ -189,7 +189,7 @@ $\mathrm{Dep}$ is a placeholder for a dependence measure (mutual information, ca
 
 **D11. Informational autonomy $`\mathcal{A}(A;\tau_w)`$.** How much of the future internal state of $A$ over the window $`\tau_w`$ is determined by its own internal state as against by its environment. Two operational forms:
 
-******Predictive form (candidate):**
+**Predictive form (candidate):**
 
 $$
 \mathcal{A}^{\mathrm{pred}}_{\tau}=I\big(Z_{t+\tau};\,Z_t\ \big|\ E_t\big)
