@@ -31,12 +31,12 @@
 - On every oriented edge a variable $U_e\in U(1)$, $U_e=e^{i\theta_e}$, $\theta_e\in[0,2\pi)$.
 - Microscopic Wilson action:
   $$
-  S[U]=\beta\sum_p\bigl(1-\operatorname{Re}U_p\bigr),\qquad
+  S[U]=\beta\sum_p\bigl(1-\mathrm{Re}U_p\bigr),\qquad
   U_p=U_\mu(x)\,U_\nu(x+\hat\mu)\,U_\mu^\dagger(x+\hat\nu)\,U_\nu^\dagger(x),
   $$
   where $p$ runs over plaquettes and $\beta=1/g_*^2$.
 - Update algorithm: **Heat-Bath** for $U(1)$ plus **over-relaxation** cycles (to reduce autocorrelation).
-- Measurements: mean $\langle\operatorname{Re}U_p\rangle$, Polyakov lines (optional), integrated autocorrelation time $\tau_{\rm int}$.
+- Measurements: mean $\langle\mathrm{Re}U_p\rangle$, Polyakov lines (optional), integrated autocorrelation time $\tau_{\rm int}$.
 
 ### 1.2. Code
 - Language: **Python 3.10+** (NumPy / Numba) for the prototype. GPU acceleration is **not required** in v0.1.
@@ -62,7 +62,7 @@
 - 3–7 working days (pure Python + Numba).
 
 ### 1.6. Acceptance criteria for item 1
-- [ ] Reproduction of the known **3D** compact $U(1)$ behaviour versus $\beta$: a smooth crossover with **no phase transition** — in three dimensions compact $U(1)$ is confining at all couplings via the monopole mechanism (Polyakov 1975; 1977), so an "order/disorder" transition is *not* expected and its absence is the correct result; monotonic growth of $\langle\operatorname{Re}U_p\rangle$ with $\beta$; agreement with the strong-coupling expansion at small $\beta$ and the spin-wave (Coulomb-like crossover) behaviour at large $\beta$.
+- [ ] Reproduction of the known **3D** compact $U(1)$ behaviour versus $\beta$: a smooth crossover with **no phase transition** — in three dimensions compact $U(1)$ is confining at all couplings via the monopole mechanism (Polyakov 1975; 1977), so an "order/disorder" transition is *not* expected and its absence is the correct result; monotonic growth of $\langle\mathrm{Re}U_p\rangle$ with $\beta$; agreement with the strong-coupling expansion at small $\beta$ and the spin-wave (Coulomb-like crossover) behaviour at large $\beta$.
 - [ ] $\tau_{\rm int}$ measured and $\lt 50$ sweeps at working $\beta$.
 - [ ] Configurations saved and loaded without loss of precision (FP64).
 
@@ -78,7 +78,7 @@
   - $N_\partial$ = number of such boundary edges (discrete geometric scale, analogue of “area”). Used in the threshold $B=c\cdot N_\partial$.
 - **Boundary collar:** all plaquettes that possess **at least one** edge on $\partial D$. Gauge-invariant descriptors are built from these plaquettes. Their number is logged separately from $N_\partial$.
 - Alternative (to be coded as an option): cube / ball in the Manhattan metric; comparison of $N_\partial$ between definitions.
-- For every configuration one must be able to extract the vector $\{\operatorname{Re}U_p\}$ of the collar plaquettes.
+- For every configuration one must be able to extract the vector $\{\mathrm{Re}U_p\}$ of the collar plaquettes.
 
 ### 2.2. Code
 - `diamond.py`:
@@ -86,7 +86,7 @@
   - `boundary_edges(region) \to list[edge_id]`;
   - `N_boundary(region) \to int`;
   - `collar_plaquettes(region) \to list[plaquette_id]`;
-  - `extract_boundary_plaquettes(config, region) \to ndarray`  # $\operatorname{Re}U_p$ of the collar.
+  - `extract_boundary_plaquettes(config, region) \to ndarray`  # $\mathrm{Re}U_p$ of the collar.
 - Unit tests: on $L=4,6,8$ verify $N_\partial$ and the composition of the collar by hand counting.
 
 ### 2.3. Data
@@ -102,7 +102,7 @@
 ### 2.6. Acceptance criteria for item 2
 - [ ] $N_\partial$ is deterministic and documented for every `shape`.
 - [ ] Collar is defined unambiguously: plaquettes with $\ge 1$ edge on $\partial D$.
-- [ ] Extraction of $\operatorname{Re}U_p$ of the collar coincides with direct indexing.
+- [ ] Extraction of $\mathrm{Re}U_p$ of the collar coincides with direct indexing.
 - [ ] At least two distinct boundary definitions exist for null comparison.
 
 ---
@@ -117,13 +117,13 @@
 
   - **A (recommended):** plaquette bias  
     $$
-    S_\sigma=S[U]-\kappa\sum_{p\in P_*}\operatorname{Re}U_p,
+    S_\sigma=S[U]-\kappa\sum_{p\in P_*}\mathrm{Re}U_p,
     $$
     where $P_*$ is a fixed set of plaquettes inside the diamond and/or on the boundary collar.
 
   - **B:** bias by a small / medium Wilson loop  
     $$
-    S_\sigma=S[U]-\kappa\operatorname{Re}W_\gamma,
+    S_\sigma=S[U]-\kappa\mathrm{Re}W_\gamma,
     $$
     $\gamma$ defines a non-trivial flux compatible with the diamond boundary.
 
@@ -166,7 +166,7 @@
   =\sum_i\hat p_\sigma(i)\log\frac{\hat p_\sigma(i)}{\hat p_\rho(i)}.
   $$
 - Descriptors (choose default + option):
-  1. Vector $\operatorname{Re}U_p$ of the plaquettes of the **collar** $\partial D$ (all plaquettes with $\ge 1$ edge on the boundary).
+  1. Vector $\mathrm{Re}U_p$ of the plaquettes of the **collar** $\partial D$ (all plaquettes with $\ge 1$ edge on the boundary).
   2. Small Wilson loops supported on / piercing the boundary.
   3. After dimensional reduction — kNN / KDE estimate of $D_{\rm KL}$ in the space of these invariants.
 - **Raw phases of boundary links $\theta_e$ are never used.**
@@ -251,7 +251,7 @@ Mandatory set of null and stability tests:
 
 1. **Null source:** $\kappa=0$ → $\Delta F$ compatible with zero.
 2. **Null threshold:** very large $c$ → $\Delta F\to 0$.
-3. **Shuffle boundary:** random permutation / mixing of the **gauge-invariant** collar descriptors ($\operatorname{Re}U_p$) at the same $N_\partial$; $\Delta F$ must disappear or drop strongly. (Do not shuffle raw link phases.)
+3. **Shuffle boundary:** random permutation / mixing of the **gauge-invariant** collar descriptors ($\mathrm{Re}U_p$) at the same $N_\partial$; $\Delta F$ must disappear or drop strongly. (Do not shuffle raw link phases.)
 4. **Volume scan:** $L=12,16,20$ (and $24$ if possible) — scaling of $\Delta F$ with $N_\partial$ or with volume.
 5. **Shape scan:** two boundary definitions (rect vs Manhattan) — qualitatively the same conclusion.
 6. **Seed scan:** $\ge 3$ independent seeds; confidence intervals.
