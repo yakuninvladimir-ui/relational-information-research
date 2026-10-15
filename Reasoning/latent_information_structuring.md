@@ -223,12 +223,12 @@ $$
 then by the AM–GM inequality:
 
 $$
-\mathrm{Vol}_{g_I}(\Sigma_\theta) \le \widehat{\mathrm{Vol}}_\theta = \int_M \left( \frac{\operatorname{tr} A_\theta(u)}{m} \right)^{m/2} du.
+\mathrm{Vol}_{g_I}(\Sigma_\theta) \le \widehat{\mathrm{Vol}}_\theta = \int_M \left( \frac{\mathop{tr} A_\theta(u)}{m} \right)^{m/2} du.
 $$
 
 **Assumptions:** The bound assumes a continuous $m$-dimensional parameterization of the input and smoothness of the encoder. For discrete inputs, continuous relaxation, local smoothing, or discrete graph reconstruction is applied. If integration is performed with respect to $P_X$ rather than a uniform measure on $M$, the surrogate should be interpreted as a $P_X$-weighted geometric complexity rather than pure Riemannian volume.
 
-For $m = 2$, the surrogate coincides in form with Dirichlet energy; for arbitrary $m$, the power $(\operatorname{tr} A_\theta / m)^{m/2}$ is used.
+For $m = 2$, the surrogate coincides in form with Dirichlet energy; for arbitrary $m$, the power $(\mathop{tr} A_\theta / m)^{m/2}$ is used.
 
 #### 4.1.3. Final Surrogate and Loss
 
