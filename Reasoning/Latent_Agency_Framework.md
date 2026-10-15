@@ -148,7 +148,7 @@ $$
 Time to return is a second finite-perturbation measure. Locally along a trajectory $z(n)\in U$, infinitesimal stability is governed by the tangent-space dynamics $v(n+1)=M(n)v(n)$, where $`M(n)=\partial G_R(z)/\partial z|_{z=z(n)}`$ is the state-space Jacobian and $`\lambda_1\ge\dots\ge\lambda_N`$ are the Lyapunov exponents. Shifting the Jacobian by $`M_s(n)=e^{-\delta s}M(n)`$ and selecting the minimum-norm tangent trajectory driven by a source $I^v(k)$ yields a one-step response matrix $R^{vv}(k+1,k)=\partial v(k+1)/\partial I^v(k)$ that equals the dichotomy projector $`P_s(k+1)`$ onto the stable subspace $`E^s_s`$ of directions with $`\lambda_i<s`$ (Clark, 2026). The cumulative distribution of Lyapunov exponents is the normalized trace of this response:
 
 $$
-F(s)=\frac{1}{N}\text{\#}\{i:\lambda_i<s\}=\lim_{\eta\to 0^+}\frac{1}{N}\mathrm{tr}\,R^{vv}_{\eta}(k+1,k)
+F(s)=\frac{1}{N}\bigl|\{i:\lambda_i<s\}\bigr|=\lim_{\eta\to 0^+}\frac{1}{N}\mathrm{tr}\,R^{vv}_{\eta}(k+1,k)
 $$
 
 Under A6, the local stiffness of $U$ is characterized directly in $Z$ by the fraction of strongly contracting directions $F(s)$ for $s<0$ and the mean transverse contraction rate $`\kappa(U)=-\int_{-\infty}^0 s\,F'(s)\,ds`$. Stiffness in the weight-space Fisher spectrum $F(\theta)$ is retained only as an indirect parameter-level proxy.
@@ -189,14 +189,16 @@ $\mathrm{Dep}$ is a placeholder for a dependence measure (mutual information, ca
 
 **D11. Informational autonomy $`\mathcal{A}(A;\tau_w)`$.** How much of the future internal state of $A$ over the window $`\tau_w`$ is determined by its own internal state as against by its environment. Two operational forms:
 
-*Predictive form (candidate):*
+**Predictive form (candidate):**
+
 $$
-\mathcal{A}^{\rm pred}_{\tau}=I\big(Z_{t+\tau};\,Z_t\ \big|\ E_t\big)
+\mathcal{A}^{\mathrm{pred}}_{\tau}=I\big(Z_{t+\tau};\,Z_t\ \big|\ E_t\big)
 $$
 
-*Interventional form (preferred where interventions are possible):*
+**Interventional form (preferred where interventions are possible):**
+
 $$
-\mathcal{A}^{\rm do}_{\tau}=\frac{\mathbb{E}\lVert\Delta_{\rm int}\rVert}{\mathbb{E}\lVert\Delta_{\rm int}\rVert+\mathbb{E}\lVert\Delta_{\rm env}\rVert}
+\mathcal{A}^{\mathrm{do}}_{\tau}=\frac{\mathbb{E}\lVert\Delta_{\mathrm{int}}\rVert}{\mathbb{E}\lVert\Delta_{\mathrm{int}}\rVert+\mathbb{E}\lVert\Delta_{\mathrm{env}}\rVert}
 $$
 
 where $`\Delta_{\rm int}`$ is the change of $`Z_{t+\tau}`$ under a unit intervention on the internal state at $t$, and $`\Delta_{\rm env}`$ is the change under a unit intervention on the environment input at $t$. A value near 0 means externally driven. A value near 1 means internally driven. A unit intervention is standardized: one standard deviation of the natural variation of the intervened variable over the window.
