@@ -34,11 +34,11 @@ Without constraint, energy dissipates into entropy. With constraint, it forms st
 
 Information is not the only fundamental constraint. Three physical results bind information and energy so tightly that neither can serve as the sole primitive:
 
-1. **Erasure has a price.** By Landauer, erasing one bit at temperature $T$ dissipates at least $k_B T \ln 2$ [12]. Forgetting, compression, and filtering the irrelevant are paid thermodynamic operations.
+1. **Erasure has a price.** By Landauer, erasing one bit at temperature $T$ dissipates at least $`k_B T \ln 2`$ [12]. Forgetting, compression, and filtering the irrelevant are paid thermodynamic operations.
 2. **The rate of distinctions is bounded by energy.** The Margolus–Levitin theorem: a system with mean energy $E$ traverses at most $2E/\pi\hbar$ orthogonal states per second [13]; the Mandelstam–Tamm bound: $\Delta t \geq \pi\hbar/(2\Delta E)$ [14].
 3. **Information capacity is bounded by energy and size** (the Bekenstein bound) [15].
 
-The fundamental quantities: **distinction** (the bit), **action** ($E \cdot t$, quantum $\hbar$), **causal rate** (the limit $c$). Physics' three conversion constants correspond to the triad's three edges: $c$ — space↔time, $\hbar$ — energy↔frequency ($E = \hbar\omega$), $k_B$ — entropy↔energy.
+The fundamental quantities: **distinction** (the bit), **action** ($E \cdot t$, quantum $\hbar$), **causal rate** (the limit $c$). Physics' three conversion constants correspond to the triad's three edges: $c$ — space↔time, $\hbar$ — energy↔frequency ($E = \hbar\omega$), $`k_B`$ — entropy↔energy.
 
 ### 2.3. Time: rate, not axis
 
@@ -88,7 +88,7 @@ The archive's physics works with an explicit stack, not a single "foundation":
 |---|---|---|
 | Level 0 — algebraic substrate | "Space of Algebras" (the Connes lineage: Gelfand duality, spectral triples, thermal time [22–24]) | Conjecture; regulative idea; formalization deferred |
 | Level 1 — causal-phase network | Discrete causal order with U(1) holonomies; Wilson functionals; continuum limits under hypothesis (H_P) | Active program with falsification criteria and pilot numerics |
-| Level 2 — continuum geometry | Lorentzian metric, gauge connection, effective equations from relative entropy | Established structures + open derivation of residual $\Gamma_{\rm corr}$ |
+| Level 2 — continuum geometry | Lorentzian metric, gauge connection, effective equations from relative entropy | Established structures + open derivation of residual $`\Gamma_{\rm corr}`$ |
 
 The "Space of Algebras" is not a claimed foundation but a deep conjectural layer whose fate is tied to the intermediate one: failure of the causal-phase program by its own criteria demotes the conjecture to a historical footnote.
 
@@ -114,13 +114,13 @@ Macroscopic gravity is obtained from quantum-information principles (Dorau–Muc
 
 A classical Kullback–Leibler proxy on gauge-invariant boundary descriptors is used in the pilot numerical stage; it is **not** claimed to be the full modular relative entropy.
 
-### 3.4. The correlation functional $\Gamma_{\rm corr}$
+### 3.4. The correlation functional $`\Gamma_{\rm corr}`$
 
 The effective dynamics under (H_P) reads
 
 $$\Gamma_P = \Gamma_0[g, A, \Psi] + \Gamma_{\rm corr}[g, A, \Psi],$$
 
-where $\Gamma_0$ is the Einstein–Maxwell action. The residual $\Gamma_{\rm corr}$ is not postulated; it is the mathematical remainder of large-scale coarse-graining under a hard informational bound of the form $D_{\rm KL} \leq c \cdot N_\partial$. Its geometric response
+where $`\Gamma_0`$ is the Einstein–Maxwell action. The residual $`\Gamma_{\rm corr}`$ is not postulated; it is the mathematical remainder of large-scale coarse-graining under a hard informational bound of the form $`D_{\rm KL} \leq c \cdot N_\partial`$. Its geometric response
 
 $$H^{\rm corr}_{\mu\nu} = -\frac{2}{\sqrt{-g}} \frac{\delta \Gamma_{\rm corr}}{\delta g^{\mu\nu}}$$
 
@@ -130,7 +130,7 @@ is the candidate replacement for independent dark-matter and dark-energy fields.
 
 A minimal software complex on a three-dimensional Euclidean lattice U(1) (Wilson + Heat-Bath + over-relaxation) extracts a residual free-energy difference $\Delta F$ under classical KL truncation of gauge-invariant boundary descriptors. Full specification, acceptance criteria and null tests are given in
 
-**Technical Specification v0.1.1 — $\Gamma_{\rm corr}$ Extraction.**
+**Technical Specification v0.1.1 — $`\Gamma_{\rm corr}`$ Extraction.**
 
 Only after a closed report of v0.1 may the programme proceed to improved estimators, SPARC contact, or cosmological tests.
 
@@ -197,7 +197,7 @@ The substrate is also the **interface to the verifier**: a disembodied "pure int
 
 ## 5. The Engineering Level
 
-The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V10.9)** define a concrete instantiation for a task. Beneath all three lies their common formal-logical foundation: **Modified Brusentsov Entailment Logic** [26] fixes the canonical notation, the verdict space $V_4$ with its dominance semilattice, the normative six-step decision cascade, evidence scopes, typed certificates, and the two-tier separation of pointwise verdicts from ensemble law statuses.
+The engineering level is not an illustration of the philosophy but its operational form: the same constraints, written as an executable architecture. Three archive documents cover it at different depths: the **Unified Implementable Model (UIM v2.0)** defines the statics (requirement semantics, authority hierarchy, verification contracts), the **External Ternary Judge Adapter** defines the external-verification interface, and the **ARC-AGI-3 LCLD Agent architectural and engineering specifications (V10.9)** define a concrete instantiation for a task. Beneath all three lies their common formal-logical foundation: **Modified Brusentsov Entailment Logic** [26] fixes the canonical notation, the verdict space $`V_4`$ with its dominance semilattice, the normative six-step decision cascade, evidence scopes, typed certificates, and the two-tier separation of pointwise verdicts from ensemble law statuses.
 
 ### 5.1. Requirements as ternary constraints
 
@@ -255,7 +255,7 @@ OMIT is neither an "error" nor a "skip": it is a deliberate decision of non-appl
 
 The three documents are three nesting levels of one principle: **an agent that is not separated from its verifier has no grounds for trusting its own transitions.** The distinction of evidence scopes (canonical Definition 2.1 of [26]: NOT_AVAILABLE / PREDICTIVE_ONLY / OBSERVED_TRANSITION / REPLAY_VERIFIED) is the engineering record of a philosophical boundary: a model's prediction is not an observed transition, and conflating these statuses is the source of hallucinations in the most precise sense of the word.
 
-A fourth document sits beneath the three as their formal-logical foundation: **Modified Brusentsov Entailment Logic** [26] — the canonical specification of the verdict space $V_4$ and its dominance semilattice, the modified Brusentsov DNF of conditional entailment $(ac\Rightarrow y)$, the six-step decision cascade, evidence scopes, typed certificates ($\mathcal{C}^{+}$, $\mathcal{C}^{\bot}$, $\mathcal{C}^{\emptyset}$), and the two-tier separation of pointwise verdicts from ensemble law statuses (CONFIRMED / CONTRADICTED / CONDITIONAL_CANDIDATE / UNRESOLVED). Where any of the three documents above and the canonical specification diverge in verdict semantics, the canonical specification governs.
+A fourth document sits beneath the three as their formal-logical foundation: **Modified Brusentsov Entailment Logic** [26] — the canonical specification of the verdict space $`V_4`$ and its dominance semilattice, the modified Brusentsov DNF of conditional entailment $(ac\Rightarrow y)$, the six-step decision cascade, evidence scopes, typed certificates ($\mathcal{C}^{+}$, $\mathcal{C}^{\bot}$, $\mathcal{C}^{\emptyset}$), and the two-tier separation of pointwise verdicts from ensemble law statuses (CONFIRMED / CONTRADICTED / CONDITIONAL_CANDIDATE / UNRESOLVED). Where any of the three documents above and the canonical specification diverge in verdict semantics, the canonical specification governs.
 
 ### 5.6. Geometric substrate of the agent
 
@@ -271,17 +271,17 @@ The three levels — physical, ontological, engineering — are structurally ali
 |---|---|---|---|
 | Distinction | Bit, Bekenstein bound [15] | Information as constraint $\Omega \to \Omega' \subset \Omega$ | Requirement (REQUIRED/FORBIDDEN) |
 | Action | $\hbar$, Margolus–Levitin bound [13] | The price of a transition | A certified transition as the unit of progress |
-| Rate / time | Ratio of frequencies; $\omega = -u^\mu k_\mu$; redshift | Time as a ratio of rates, not an axis | Operational time $d\mathcal{T} \propto (\hbar \, dN/E) \cdot \eta(M)$ |
+| Rate / time | Ratio of frequencies; $`\omega = -u^\mu k_\mu`$; redshift | Time as a ratio of rates, not an axis | Operational time $d\mathcal{T} \propto (\hbar \, dN/E) \cdot \eta(M)$ |
 | Irrelevance | Kernel of coarse-graining; RG-irrelevant operators | Irrelevance as the kernel of description $\pi$ | IRRELEVANT; verdict OMIT |
 | Uncertainty | Quantum uncertainty; Mandelstam–Tamm bound [14] | Honest UNDECIDED | UNRESOLVED; verdict UNDECIDED |
 | Verification | Experiment, observed transition; relative-entropy diagnostics | The world as external verifier | Verifier; OBSERVED_TRANSITION; FalseFollowRate |
 | Memory | Recorded trace (Landauer price [12]) | Grounding = history of certified transitions | Event-sourced Memory |
 | Substrate | Material carrier within the constraint triad | Constraint envelope | The agent's hardware and compute budget |
-| **Latent geometric structure** | — | — | Informational minimal surface: $\Sigma$ as minimal-volume embedding in $g_{\mathrm{approx}}$ under informational constraint $I(Z;Y) \geq R_{\mathrm{task}}$ |
+| **Latent geometric structure** | — | — | Informational minimal surface: $\Sigma$ as minimal-volume embedding in $`g_{\mathrm{approx}}`$ under informational constraint $`I(Z;Y) \geq R_{\mathrm{task}}`$ |
 
 Two rows of the table deserve separate warnings.
 
-**Irrelevance.** The physical analogue of irrelevance is not "degrees of freedom outside the light cone" (that is a different, kinematic phenomenon) but the kernel of coarse-graining: microstates erased by the map $\pi: \Omega_{\rm micro} \to \Omega_{\rm macro}$, and RG-irrelevant operators whose contribution decays with scale. This correspondence is consistent with §4.3 and with the definition of OMIT as membership in the kernel of the state-update map.
+**Irrelevance.** The physical analogue of irrelevance is not "degrees of freedom outside the light cone" (that is a different, kinematic phenomenon) but the kernel of coarse-graining: microstates erased by the map $`\pi: \Omega_{\rm micro} \to \Omega_{\rm macro}`$, and RG-irrelevant operators whose contribution decays with scale. This correspondence is consistent with §4.3 and with the definition of OMIT as membership in the kernel of the state-update map.
 
 **Rate.** Time in this framework is not a fourth dimension alongside information and energy but their ratio: the rate of transitions. Therefore, in all three columns the "Rate / time" row is a derived construction (ratio of frequencies, ratio of rates, $d\mathcal{T}$), not a primitive.
 
@@ -301,12 +301,12 @@ The archive is not a list of files but a distribution of theses across documents
 | Irrelevance = kernel of description; two indexings (goal / scale) | The Algorithm of Being (§9); this document (§4.3) | FOLLOW as formalism |
 | Consciousness: recursive modeling under external verification | The Algorithm of Being (§10); this document (§4.2) | FOLLOW as an architectural frame; the hard problem is UNDECIDED |
 | Substrate as constraint envelope | The Algorithm of Being (§11); this document (§4.4) | FOLLOW as a frame; numerical envelope bounds are UNDECIDED |
-| Causal-phase network $(\mathcal{C}, \prec) + U(1) \to (\mathcal{M}_4, g_{\mu\nu}, A_\mu)$ under (H_P) only | Causal Phase Geometry Research Program (Aug 2026) | UNDECIDED: active program with falsification criteria and pilot numerics |
+| Causal-phase network $`(\mathcal{C}, \prec) + U(1) \to (\mathcal{M}_4, g_{\mu\nu}, A_\mu)`$ under (H_P) only | Causal Phase Geometry Research Program (Aug 2026) | UNDECIDED: active program with falsification criteria and pilot numerics |
 | Physical-radion branch (H_R) / 5D KK | KK–Jacobson Commutativity Note | NULL (frozen August 2026) |
-| $\Gamma_{\rm corr}$ as residual of informational truncation | Causal Phase Geometry Research Program; Technical Specification v0.1.1 | UNDECIDED: pilot stage v0.1 in progress |
+| $`\Gamma_{\rm corr}`$ as residual of informational truncation | Causal Phase Geometry Research Program; Technical Specification v0.1.1 | UNDECIDED: pilot stage v0.1 in progress |
 | Relative-entropy (Dorau–Much [25] / Araki–Uhlmann / Casini) route to gravity | Causal Phase Geometry Research Program | UNDECIDED: theoretical frame; classical KL proxy used in pilot |
 | Space of Algebras (Level 0) | The Algorithm of Being (§2); this document (§3.1) | UNDECIDED: a conjecture, not a foundation |
-| Modified Brusentsov entailment logic; four-valued verdict calculus $V_4$ (FOLLOW / OMIT / NULL / UNDECIDED) with dominance semilattice; MDNF of conditional entailment; typed certificates; ensemble law quantifiers; metric, box, and graph realizations | Modified_Brusentsov_Entailment_Logic.md (October 2026) | FOLLOW: formal specification — the canonical reference for verdict semantics corpus-wide (theorems proven internally); implementation conformance and empirical validation per its §7.3 are UNDECIDED |
+| Modified Brusentsov entailment logic; four-valued verdict calculus $`V_4`$ (FOLLOW / OMIT / NULL / UNDECIDED) with dominance semilattice; MDNF of conditional entailment; typed certificates; ensemble law quantifiers; metric, box, and graph realizations | Modified_Brusentsov_Entailment_Logic.md (October 2026) | FOLLOW: formal specification — the canonical reference for verdict semantics corpus-wide (theorems proven internally); implementation conformance and empirical validation per its §7.3 are UNDECIDED |
 | Ternary requirement semantics; authority hierarchy | Unified Implementable Model v2.0 | FOLLOW: specified |
 | External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter; Draft: ternary_judge.md; canonical verdict semantics: [26] | FOLLOW: protocol; preliminary controlled-corpus MVP empirics exist (Reasoning/Draft/ternary_judge.md, run of 2026-08-09: FFR 0.362 → 0.035 at coverage 0.81; effect depends primarily on judge competence); open-domain transfer is UNDECIDED and remains in the §8 program |
 | Agent V10.9 (Tri-Agent, Brusentsov 4-valued verdicts) | ARCHITECTURAL / ENGINEERING SPECIFICATION (Version 10.9) | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
@@ -322,16 +322,16 @@ The rule for reading the archive: **status is attached to the thesis, not to the
 
 ### 8.1. Physics
 
-- **Pilot stage v0.1 ($\Gamma_{\rm corr}$ extraction).** Lattice U(1), classical KL truncation on gauge-invariant boundary descriptors, residual free-energy difference $\Delta F$, full battery of null tests. Closed report required before any further step. See Technical Specification v0.1.1.
-- **Post-v0.1.** If a stable residual is found: improved estimators, first continuum-form extraction of $\Gamma_{\rm corr}$, cautious contact with SPARC (radial kernel $K(r, r')$) and cosmological observables under a single parameter set. If the residual vanishes: documented negative result or revision of the constraint definition.
-- **Falsifiability.** A $\Gamma_{\rm corr}$ that requires mutually irreducible coefficients for galactic rotation curves and cosmological expansion is rejected.
+- **Pilot stage v0.1 ($`\Gamma_{\rm corr}`$ extraction).** Lattice U(1), classical KL truncation on gauge-invariant boundary descriptors, residual free-energy difference $\Delta F$, full battery of null tests. Closed report required before any further step. See Technical Specification v0.1.1.
+- **Post-v0.1.** If a stable residual is found: improved estimators, first continuum-form extraction of $`\Gamma_{\rm corr}`$, cautious contact with SPARC (radial kernel $K(r, r')$) and cosmological observables under a single parameter set. If the residual vanishes: documented negative result or revision of the constraint definition.
+- **Falsifiability.** A $`\Gamma_{\rm corr}`$ that requires mutually irreducible coefficients for galactic rotation curves and cosmological expansion is rejected.
 
 ### 8.2. Artificial intelligence
 
 - **FalseFollowRate** — the key metric: the fraction of transitions certified as FOLLOW that fail the constraint under independent checking. A preliminary live MVP on a controlled corpus (Reasoning/Draft/ternary_judge.md, run of 2026-08-09) reports an order-of-magnitude reduction relative to binary baselines (0.362 → 0.035 at coverage 0.81), with an ablation showing that the primary factor is judge competence and the certificate contract is its multiplier. Remaining goal: reproduce the effect on open domains and in the full adapter deployment, via first-class OMIT/UNDECIDED.
 - **ARC-AGI-3.** Agent V10.9 is run on the benchmark; the criteria are not only task success but calibration (the match between declared confidence and observed accuracy), isolation integrity, and the share of honest UNDECIDED / OMIT versus fabricated FOLLOW.
 - **Ternary Judge track.** The controlled-corpus MVP is complete (see above). Remaining: independent evaluation of the adapter on open domains — rule-interpreter stability across a change of proposer, absence of semantic drift in verdicts, graph persistence (OMIT-node retention, re-verification with rollback), and binary certificates for contradictions. The canonical certificate algebra of [26] (§5.3) supplies the target forms for the two missing certificate types: polarized scoped-exhaustion certificates $\mathcal{C}^{\emptyset}$ for absence claims and binary quote-pair certificates $\mathcal{C}^{\bot}$ for contradictions; conformance testing of the six-step cascade and of the exhaustion invariant (an UNDECIDED record is never rewritten into NULL, §5.4 of [26]) is added to this track.
-- **Latent geometry track.** Experimental program E1–E5 from *Latent Information Structuring*: projection of curvature onto information gradient ($r > r_0$), curvature dynamics during training, stratification at metric degeneracies, NTK-filtered dynamics correlation, comparison of standard CE training versus explicit VIM surrogate optimization. This track tests whether the neural substrate of the agent self-organizes according to the informational minimal surface principle.
+- **Latent geometry track.** Experimental program E1–E5 from *Latent Information Structuring*: projection of curvature onto information gradient ($`r > r_0`$), curvature dynamics during training, stratification at metric degeneracies, NTK-filtered dynamics correlation, comparison of standard CE training versus explicit VIM surrogate optimization. This track tests whether the neural substrate of the agent self-organizes according to the informational minimal surface principle.
 
 ### 8.3. Ontology
 
@@ -346,7 +346,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 3. **It does not claim novelty for the triad as such.** The "information–energy–time" pairs are old (Landauer, Margolus–Levitin, Mandelstam–Tamm). The novelty — if any — lies in binding the triad to a concrete physics program and to an executable engineering semantics.
 4. **It does not claim a solution to the hard problem of consciousness.** The "recursive modeling under external verification" frame is architectural, not phenomenological. Qualia lie outside this framework's competence.
 5. **It does not claim substrate independence for consciousness.** It claims substrate-parameterization: the architecture of consciousness is realized only within the constraint envelope of a material carrier, and that carrier is the interface to the external verifier.
-6. **It does not claim that $\Gamma_{\rm corr}$ has already been computed or fitted to data.** The pilot stage v0.1 is precisely the first quantitative test of whether a residual appears under informational truncation.
+6. **It does not claim that $`\Gamma_{\rm corr}`$ has already been computed or fitted to data.** The pilot stage v0.1 is precisely the first quantitative test of whether a residual appears under informational truncation.
 7. **It does not claim completeness.** The document is a snapshot as of the version date. The §7 statuses are subject to revision per the §8 results, in both directions: UNDECIDED may become FOLLOW, and FOLLOW may become NULL.
 
 ---
@@ -356,10 +356,10 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 | File | Level | Language | Role in the framework |
 |---|---|---|---|
 | The Algorithm of Being (Revised) | Ontology | EN | The philosophical frame: triad, kernel, consciousness under verification, substrate envelope |
-| Causal Phase Geometry Research Program (Aug 2026) | Physics | EN | Level 1 under (H_P): relative-entropy route, $\Gamma_{\rm corr}$, pilot numerics |
-| Technical Specification v0.1.1 — $\Gamma_{\rm corr}$ Extraction | Physics | EN | Executable pilot for residual extraction |
+| Causal Phase Geometry Research Program (Aug 2026) | Physics | EN | Level 1 under (H_P): relative-entropy route, $`\Gamma_{\rm corr}`$, pilot numerics |
+| Technical Specification v0.1.1 — $`\Gamma_{\rm corr}`$ Extraction | Physics | EN | Executable pilot for residual extraction |
 | KK–Jacobson Commutativity Note | Physics | EN | Historical (5D route frozen) |
-| Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus (`Reasoning/Modified_Brusentsov_Entailment_Logic.md`) | Reasoning (formal logic) | EN | Canonical formal foundation of verdict semantics corpus-wide: MDNF, $V_4$ and dominance semilattice, decision cascade, evidence scopes, typed certificates, ensemble law quantifiers, metric/box/graph realizations |
+| Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus (`Reasoning/Modified_Brusentsov_Entailment_Logic.md`) | Reasoning (formal logic) | EN | Canonical formal foundation of verdict semantics corpus-wide: MDNF, $`V_4`$ and dominance semilattice, decision cascade, evidence scopes, typed certificates, ensemble law quantifiers, metric/box/graph realizations |
 | Unified Implementable Model v2.0 | Engineering | EN | The agent's architectural ontology |
 | External Ternary Judge Adapter | Engineering | EN | The external-verification protocol |
 | ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications (Version 10.9) | Engineering | EN | The V10.9 instantiation (Tri-Agent, isolated memory contours, Brusentsov 4-valued verdict logic; aligned to the canonical specification [26]) |

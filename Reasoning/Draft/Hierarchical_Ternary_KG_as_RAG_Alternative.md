@@ -56,7 +56,7 @@ $$
 
 where the middle zero precisely means the incidental status of $x'y$. Similar scales are constructed for relations of arbitrary arity. Operations on scales (conjunction, disjunction, inversion, change of arity) allow one to fully computerize Aristotelian syllogistics without paradoxes and with preservation of the subordination of the particular to the general.
 
-**Relation to other notations.** The conjunctive $V$-form states Carroll's truth-conditions of consequence ($x_1y'_0$: $x$ is non-empty, $xy'$ is empty) conjoined with the non-empty-universe axioms of the Aristotelian discourse ($Vx$, $Vy'$). Its DNF expansion — the form used in the ARC-AGI-3 LCLD Agent Architectural Specification V10.9 (§1.2) — is $x \Rightarrow y \equiv xy \lor xy'_0 \lor x'y'$, in which the silenced incidental member is exactly $x'y$. The two forms are equivalent characterizations of one relation: truth-conditions versus expansion members. In the canonical Carroll–Brusentsov indices of the reference specification (`Reasoning/Modified_Brusentsov_Entailment_Logic.md` §1.2) the same relation reads $(x\Rightarrow y)\equiv x_1\land(xy')_0\land y'_1$, where the subscript $1$ marks mandatory empirical existence and the subscript $0$ marks nullity (class emptiness); the reference specification further generalizes it to conditional entailment $(ac\Rightarrow y)$ with a strictly disjoint three-way consequent partition $y^{+}/y^{\sim}/y^{\bot}$ (its §3).
+**Relation to other notations.** The conjunctive $V$-form states Carroll's truth-conditions of consequence ($`x_1y'_0`$: $x$ is non-empty, $xy'$ is empty) conjoined with the non-empty-universe axioms of the Aristotelian discourse ($Vx$, $Vy'$). Its DNF expansion — the form used in the ARC-AGI-3 LCLD Agent Architectural Specification V10.9 (§1.2) — is $`x \Rightarrow y \equiv xy \lor xy'_0 \lor x'y'`$, in which the silenced incidental member is exactly $x'y$. The two forms are equivalent characterizations of one relation: truth-conditions versus expansion members. In the canonical Carroll–Brusentsov indices of the reference specification (`Reasoning/Modified_Brusentsov_Entailment_Logic.md` §1.2) the same relation reads $`(x\Rightarrow y)\equiv x_1\land(xy')_0\land y'_1`$, where the subscript $1$ marks mandatory empirical existence and the subscript $0$ marks nullity (class emptiness); the reference specification further generalizes it to conditional entailment $(ac\Rightarrow y)$ with a strictly disjoint three-way consequent partition $y^{+}/y^{\sim}/y^{\bot}$ (its §3).
 
 The key principle is the **coexistence of opposites**: a primary term can be considered only if both things to which it is inherent and things to which it is anti-inherent are present in the universe. This guarantees the variability of terms and the contentfulness of relations.
 
@@ -101,20 +101,20 @@ Interpretation of statuses at level $\ell$:
 
 ### 3.2. Scale-Change Operations
 
-**Coarse-graining** $\pi_{\ell \to \ell+1}$:
+**Coarse-graining** $`\pi_{\ell \to \ell+1}`$:
 
 - nodes and edges that turn out to be inessential for description at level $\ell+1$ receive status `0`;
 - necessary consequences and recorded incompatibilities retain `+` and `-`;
 - merging of nodes is permitted while preserving ternary invariants.
 
-**Fine-graining** $\rho_{\ell+1 \to \ell}$:
+**Fine-graining** $`\rho_{\ell+1 \to \ell}`$:
 
 - status `0` at level $\ell+1$ can be unfolded into a subgraph with specific statuses at level $\ell$;
 - previously recorded `-` cannot be arbitrarily canceled without new evidence.
 
 These operations must satisfy consistency conditions (if a consequence is recorded at a coarse scale, it must not be destroyed upon refinement without contradiction).
 
-The exact status-transformation law is fixed in the reference specification (§6.3, Definition 6.1): a macro-element receives status $-$ if **any** of its essential micro-elements is $-$; otherwise $+$ if **any** essential micro-element is $+$; otherwise $0$. The coarse-graining status order is $-\succ_{\mathrm{cg}}+\succ_{\mathrm{cg}}0$, violated safety invariants propagate to all coarser scales, and status assignment is compositional under an explicit compatibility condition on essential subsets (Proposition 6.1). Note the polarity difference with step aggregation: in the verdict calculus the dominance chain is NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW (reference §4.2), where OMIT outranks FOLLOW because a single unfulfilled active expectation blocks step certification; in spatial coarse-graining, a single certified ($+$) essential micro-element certifies the macro-element.
+The exact status-transformation law is fixed in the reference specification (§6.3, Definition 6.1): a macro-element receives status $-$ if **any** of its essential micro-elements is $-$; otherwise $+$ if **any** essential micro-element is $+$; otherwise $0$. The coarse-graining status order is $`-\succ_{\mathrm{cg}}+\succ_{\mathrm{cg}}0`$, violated safety invariants propagate to all coarser scales, and status assignment is compositional under an explicit compatibility condition on essential subsets (Proposition 6.1). Note the polarity difference with step aggregation: in the verdict calculus the dominance chain is NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW (reference §4.2), where OMIT outranks FOLLOW because a single unfulfilled active expectation blocks step certification; in spatial coarse-graining, a single certified ($+$) essential micro-element certifies the macro-element.
 
 ### 3.3. Retrieval as Search for a Compatible Projection
 

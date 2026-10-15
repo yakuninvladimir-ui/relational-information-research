@@ -110,11 +110,11 @@ If energy is the capacity for transformation, **information is the geometry of p
 
 The first edition of this text treated information as the fundamental constraint and energy as the constrained. That asymmetry does not survive physical scrutiny. Three established results bind information and energy so tightly that neither can serve as the sole primitive:
 
-1. **Erasure has a price.** Landauer showed that erasing one bit of information at temperature $T$ dissipates at least $k_B T \ln 2$ of energy [12]. Forgetting, compression, and irrelevance-filtering are not free operations; they are thermodynamic events.
+1. **Erasure has a price.** Landauer showed that erasing one bit of information at temperature $T$ dissipates at least $`k_B T \ln 2`$ of energy [12]. Forgetting, compression, and irrelevance-filtering are not free operations; they are thermodynamic events.
 2. **The rate of distinction is bounded by energy.** The Margolus–Levitin theorem states that a system with mean energy $E$ above its ground state cannot pass through more than $2E/\pi\hbar$ mutually orthogonal states per second [13]; the Mandelstam–Tamm bound gives the complementary form $\Delta t \geq \pi\hbar / (2\Delta E)$ for the time required to evolve into a distinguishable state [14]. Energy does not merely enable transformation — it caps the tempo at which distinctions can be generated.
 3. **Information content is bounded by energy and size.** The Bekenstein bound limits the entropy of a bounded system by its energy and linear scale [15].
 
-The consequence is a triad rather than a monad. The fundamental quantities are **distinction** (the bit), **action** (energy × time, quantized by $\hbar$), and **causal rate** (bounded by $c$). The three conversion factors of physics correspond to the three edges of this triad: $c$ converts space and time and fixes the causal tempo; $\hbar$ converts energy and frequency ($E = \hbar\omega$); $k_B$ converts entropy and energy. No member of the triad is reducible to another, and none is sufficient alone.
+The consequence is a triad rather than a monad. The fundamental quantities are **distinction** (the bit), **action** (energy × time, quantized by $\hbar$), and **causal rate** (bounded by $c$). The three conversion factors of physics correspond to the three edges of this triad: $c$ converts space and time and fixes the causal tempo; $\hbar$ converts energy and frequency ($E = \hbar\omega$); $`k_B`$ converts entropy and energy. No member of the triad is reducible to another, and none is sufficient alone.
 
 ### 3.3 Time: rate, not axis
 
@@ -122,7 +122,7 @@ This forces a precision about time that the first edition lacked. In the compani
 
 $$1 + z = \frac{(-u^\mu k_\mu)_{\mathrm{em}}}{(-u^\mu k_\mu)_{\mathrm{obs}}}$$
 
-The observed frequency $\omega = -u^\mu k_\mu$ is observer-relative; the redshift is literally a comparison of two clocks — the null phase transport against the local temporal directions of emitter and observer [6]. The "delta of frequencies" between two families of clocks — the metric clock of the causal base and the phase clock of the $U(1)$ layer — is precisely what the physical program formalizes. The philosophical text should therefore treat rate comparison as its anchor, not as a new intuition: **the operational content of time is the ratio of rates; the time axis is derived bookkeeping.**
+The observed frequency $`\omega = -u^\mu k_\mu`$ is observer-relative; the redshift is literally a comparison of two clocks — the null phase transport against the local temporal directions of emitter and observer [6]. The "delta of frequencies" between two families of clocks — the metric clock of the causal base and the phase clock of the $U(1)$ layer — is precisely what the physical program formalizes. The philosophical text should therefore treat rate comparison as its anchor, not as a new intuition: **the operational content of time is the ratio of rates; the time axis is derived bookkeeping.**
 
 An algebraic counterpart of this claim exists, and it belongs to the lineage of Section 2. In the Connes–Rovelli thermal time hypothesis [24], a faithful state on an algebra generates its own time evolution through the modular flow: time is what the state does to the algebra, not an external parameter in which the algebra happens to evolve. The anchors of this section are thus mutually coherent — observer-relative frequency in relativity, thermodynamic time in Jacobson's construction [2, 7], and modular time on algebras [24] — three formal echoes of one thesis.
 
@@ -588,7 +588,7 @@ Most formal expressions in this work are **logical schemata** — compressed con
 | $\text{Self-Structuring} = G + C + S$ | Schema | Form arises from generation filtered by constraint and selection |
 | $\mathcal{B} = \mathcal{V}(G, C, E, S)$ | Schema | Dynamic balance is the viable proportion of freedom, constraint, entropy, and coherence |
 | $\nu \leq 2E/\pi\hbar$ | **Physical bound** | Margolus–Levitin: energy caps the rate of distinguishable transitions [13] |
-| $W \geq k_B T \ln 2$ per erased bit | **Physical bound** | Landauer: discarding a distinction dissipates energy [12] |
+| $`W \geq k_B T \ln 2`$ per erased bit | **Physical bound** | Landauer: discarding a distinction dissipates energy [12] |
 | $d\mathcal{T} \propto (\hbar\, dN / E)\,\eta(M)$ | Schema (bound-anchored) | Operational time as accumulated distinctions, paid from the energy envelope; supersedes the first edition's $dI/E$ |
 | $\{0, 1, \emptyset\}$ | Schema | The logic of cognition requires irrelevance as a third state, distinct from falsehood |
 | $\ker \pi$ | Formal structure | The irrelevant as the kernel of the descriptive map $\pi$; shared skeleton of coarse-graining and irrelevance |

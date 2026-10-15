@@ -385,7 +385,7 @@ A vector of independent distances (none of which is privileged):
 - memory-graph edit distance
 - task-performance distance on the retention suite
 
-**Continuity index** $I(S_t, S_{t+1})$ is a calibrated aggregate; the precise aggregation function is itself an experimental variable and must be reported.
+**Continuity index** $`I(S_t, S_{t+1})`$ is a calibrated aggregate; the precise aggregation function is itself an experimental variable and must be reported.
 
 A change is admissible only when:
 

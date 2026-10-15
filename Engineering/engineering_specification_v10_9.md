@@ -430,7 +430,7 @@ Regular expressions are forbidden in this module; value normalization is tokeniz
 
 ### 4.5 Vacuity Guards
 
-- `evaluate_invariant_across_levels` returns `IRRELEVANT` for kinematic rules evaluated without an executed action (`act_id` empty) on $S_0$;
+- `evaluate_invariant_across_levels` returns `IRRELEVANT` for kinematic rules evaluated without an executed action (`act_id` empty) on $`S_0`$;
 - no code path may convert `IRRELEVANT` into `TRUE`.
 
 ### 4.6 Tests
@@ -438,7 +438,7 @@ Regular expressions are forbidden in this module; value normalization is tokeniz
 - PBT (`test_pbt_brusentsov_axioms.py`): empty expectations never yield TRUE; preserved-vs-destroyed always contradicts; exact containment always yields TRUE; unasserted changes never yield TRUE; cross-type equality/hash bridge laws; resolved out-of-contract change (non-zero, outside any declared neutral region) yields FALSE; declared `Ω_sub` member yields IRRELEVANT;
 - PBT (`test_pbt_brusentsov_severance.py`): stagnation, unintended mutation, direction inversion, containment consistency, macro-step decomposition, early severance;
 - PBT (`test_pbt_undecided_exhaustion.py`, new in 10.9): probe-queue exhaustion and `max_undecided_streak` exhaustion retain the judgment verdict permanently as `UNDECIDED`; `ABORT_ON_UNDECIDED` is logged with the exhaustion reason code; no `NEGATIVE_BARRIER` invariant or branch signature is grounded from the retained record; exactly one clean `RESET` is scheduled;
-- unit: every contradiction class of §4.4 has positive and negative cases in every supported kinematic format; subject mismatch never contradicts; vacuity guard on $S_0$.
+- unit: every contradiction class of §4.4 has positive and negative cases in every supported kinematic format; subject mismatch never contradicts; vacuity guard on $`S_0`$.
 
 ---
 
@@ -466,7 +466,7 @@ class LayeredVerifier:
 - Tier 3: zero delta on confirmed motion → boundary/obstacle contact check (`is_blocked_by_boundary`, memory wall rules) → soft-stop `OMIT`; transient evidence present → effective-action override; else → `NULL`;
 - Tier 4: grounded-step `confidence == "low"` or `matching_status == "ambiguous"`; JV match gap < `matching_ambiguity_threshold`; min participating track confidence < `track_confidence_threshold` → `UNDECIDED`;
 - Tier 5/6: `implies_brusentsov` FALSE → `NULL`; TRUE → `FOLLOW`;
-- Tier 7: zero delta on unconfirmed action with non-empty EXPECT; sub-`min_reliable_delta` displacement with non-empty EXPECT and no terminal → `UNDECIDED` (sub-`min_reliable_delta` means $\delta_{obs}$ is below the tracking resolution floor — undefined, hence epistemically unresolved per canonical §3.1/§6.1, not sub-threshold-neutral; a contract-declared neutral region `Ω_sub` would instead map resolved members to `OMIT`);
+- Tier 7: zero delta on unconfirmed action with non-empty EXPECT; sub-`min_reliable_delta` displacement with non-empty EXPECT and no terminal → `UNDECIDED` (sub-`min_reliable_delta` means $`\delta_{obs}`$ is below the tracking resolution floor — undefined, hence epistemically unresolved per canonical §3.1/§6.1, not sub-threshold-neutral; a contract-declared neutral region `Ω_sub` would instead map resolved members to `OMIT`);
 - Tier 8: certified effect + verified non-empty EXPECT → `FOLLOW`; certified effect + empty/unverified EXPECT → `OMIT`; default → `OMIT` (ISO-10; resolved cases only — unresolved cases are intercepted by Tiers 4/7 as `UNDECIDED`, canonical §4.3 Step 6).
 
 With `enable_undecided_verdict = False`, Tiers 4 and 7 map to `OMIT` (ablation mode).
@@ -752,7 +752,7 @@ Mediates all contour access; enforces ISO-1..ISO-12 at the API boundary (`Isolat
 - isolation: traceback strings never render into Solver-facing prompts; goal/score/win-condition strings never render into Coder-facing prompts or env specs (ISO-1/ISO-2, `test_prompt_isolation.py`, `test_isolation_invariants.py`);
 - role assignment: confidence supersession, UNKNOWN override, permutation invariance (PBT color suite);
 - exemplars: field capture from simulated GAME_OVER/victory; prompt-format determinism; safe-prefix correctness;
-- invariant lifecycle: single $S_0$ contradiction retires permanently; kinematic vacuity on pristine frames;
+- invariant lifecycle: single $`S_0`$ contradiction retires permanently; kinematic vacuity on pristine frames;
 - bounded stores: eviction order determinism; budget caps respected;
 - level-transition sanitization and game-transition reset (`test_stage2_*`, `test_stage3_*` suites);
 - double-loop routing: syntax failures reach only Coder repair; physical failures reach only Solver scratchpad (`test_double_loop.py`).
@@ -1000,18 +1000,18 @@ class GameSession:
 
 On `state == "GAME_OVER"`:
 
-1. retrieve $F_{alive}$ (normalized pre-action state) and, when exposed, $F_{fatal}$ (collision frame from the micro-frame chain or pre-reset observation);
-2. compute `fatal_step_diff` strictly between $F_{alive}$ and $F_{fatal}$; set `fatal_frame_observed` honestly;
+1. retrieve $`F_{alive}`$ (normalized pre-action state) and, when exposed, $`F_{fatal}`$ (collision frame from the micro-frame chain or pre-reset observation);
+2. compute `fatal_step_diff` strictly between $`F_{alive}`$ and $`F_{fatal}`$; set `fatal_frame_observed` honestly;
 3. sever only the defeated candidate; capture `valid_prefix_actions`;
 4. emit exactly one `RESET` (`last_engine_action_source` tracked to prevent double-reset);
 5. construct `DefeatExemplar`; ground/reinforce `NEGATIVE_BARRIER`;
-6. resume pool traversal from $S_0$ or replan with the preserved safe prefix.
+6. resume pool traversal from $`S_0`$ or replan with the preserved safe prefix.
 
 ### 11.4 Transition Handlers
 
 - `handle_level_transition`: archive TransitionTable quotient; clear level-local probe records; sanitize level-transient memory; `probing_phase = True`; defer cross-level invariant re-evaluation to the pristine frame (`level_initial_grid is None`);
 - `handle_game_transition`: `_reset_game_scoped_state()` (observed completed-level counters, evidence-probe budgets, undecided streaks); rebuild game memory when configured;
-- selection-indicator discovery during probes enqueues targeted directional probes before resetting to $S_0$.
+- selection-indicator discovery during probes enqueues targeted directional probes before resetting to $`S_0`$.
 
 ### 11.5 Reactive Invalidation
 
@@ -1030,7 +1030,7 @@ On `state == "GAME_OVER"`:
 
 - phase machine: legal/illegal transition matrix;
 - arbitration: source-priority fixtures for each §10.2 slot; single-emission invariant; non-emitting synthesis does not consume budget;
-- defeat: triangulation with and without $F_{fatal}$ (honesty flag); single-RESET; safe-prefix preservation; exemplar field capture (`test_triangulated_defeat.py`);
+- defeat: triangulation with and without $`F_{fatal}`$ (honesty flag); single-RESET; safe-prefix preservation; exemplar field capture (`test_triangulated_defeat.py`);
 - budget exhaustion: `LevelAttemptsExhaustedError` at `max_actions_per_level` with no `RESET` emitted (integration);
 - harness lifecycle: config merge after `set_deadline`, game_id transition, levels_completed observation, GAME_OVER with live pool (`test_harness_lifecycle.py`, `test_session_lifecycle.py`);
 - invalidation: newly confirmed action → module drop → replan flag → env-spec sync (`test_reactive_dsl_invalidation.py`).
@@ -1066,7 +1066,7 @@ class VirtualKinematicSandbox:
 - kinematics extraction solely from `action_semantics` + confirmed effects;
 - generalized aspect-ratio criteria ($\ge 3.0$) instead of absolute-size constants;
 - `ObservedEdgeOverlay`: observed TransitionTable facts override simulated edges — observation always beats simulation;
-- A* heuristic: $h(S) = 0.4\,\Delta_{centroid} + 0.2\,\Delta_{bbox} + 0.2\,(1-\mathrm{color\ match}) + 0.2\,\Delta_{count}$ with perimeter clamping;
+- A* heuristic: $`h(S) = 0.4\,\Delta_{centroid} + 0.2\,\Delta_{bbox} + 0.2\,(1-\mathrm{color\ match}) + 0.2\,\Delta_{count}`$ with perimeter clamping;
 - repair output re-enters grounding and verification, never direct emission.
 
 ### 12.4 Tests
@@ -1080,7 +1080,7 @@ class VirtualKinematicSandbox:
 
 ## 13. Cycle Detection (`cycle_detector.py`)
 
-- transition tuples over `interior_grid_hash`: $(\mathrm{hash}(S_{t-1}), a_t, \mathrm{hash}(S_t))$;
+- transition tuples over `interior_grid_hash`: $`(\mathrm{hash}(S_{t-1}), a_t, \mathrm{hash}(S_t))`$;
 - orbit detection: periods $1..$ `cycle_detector_max_period`, at least `cycle_detector_min_cycles` repetitions over at least `cycle_detector_min_actions` actions;
 - recovery: sever active candidate, record failure, single clean `RESET`, replan with cycle-avoidance constraints; limited to `cycle_detector_per_level_limit` per level, then fallback path;
 - hash function: deterministic row-encoded MD5 (16-hex truncation) — stable across processes (no `hash()`).
@@ -1168,7 +1168,7 @@ The entire suite runs under the `fake` backend with no network and no model file
 
 ### 17.3 New-in-10.8 Coverage (mandatory)
 
-Transient-cell classification and Tier 3 override; JV FrameDiff optimality and vocabulary closure; triangulated defeat (with/without $F_{fatal}$); guard interdiction matrix; scheduler arbitration and degradation order; tabu-fallback grounding and overlay precedence; TransitionTable dual-space deduplication and `IDLE_UNLINKED` semantics; replay-basis completeness.
+Transient-cell classification and Tier 3 override; JV FrameDiff optimality and vocabulary closure; triangulated defeat (with/without $`F_{fatal}`$); guard interdiction matrix; scheduler arbitration and degradation order; tabu-fallback grounding and overlay precedence; TransitionTable dual-space deduplication and `IDLE_UNLINKED` semantics; replay-basis completeness.
 
 ### 17.4 New-in-10.9 Coverage (mandatory)
 
@@ -1234,7 +1234,7 @@ V10.9 implementation is acceptable only if:
 
 - the 8-tier cascade is the sole transition judge, order-frozen, with `OMIT` never severing, empty expectations never confirming, `UNDECIDED` segregated and evidence-routed, and `UNDECIDED` never epistemically falsified (probe exhaustion retains the verdict and terminates the attempt; canonical §5.4);
 - `implies_brusentsov` rule 4 conforms to canonical Definition 3.1 clause 5: a resolved out-of-contract change is `FALSE` unless inside a declared `Ω_sub` region; the neutral-region registry is empty by default and contract-hashed;
-- every contradiction class of §4.4 is implemented and PBT-proven; the vacuity guards hold on $S_0$;
+- every contradiction class of §4.4 is implemented and PBT-proven; the vacuity guards hold on $`S_0`$;
 - no emission path bypasses grounding → guards → verifier; exactly one action per `act()`; `ACTION7` is unrepresentable in emissions;
 - the dual-space contract holds end-to-end with symmetric deduplication (PBT coordinate isomorphism) and mask-pixel targeting;
 - the two-tier action lifecycle preserves `CONDITIONAL_TRIGGER` actions and promotes them on first evidence;

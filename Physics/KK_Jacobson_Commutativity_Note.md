@@ -6,7 +6,7 @@ V. Yakunin
 
 July 15, 2026
 
-> **STATUS: HISTORICAL — route frozen (August 2026).** The physical-radion branch ($H_R$) / literal 5D Kaluza–Klein route recorded in this note is frozen. It is superseded by the single-hypothesis $(H_P)$ formulation in `Causal_Phase_Geometry_Research_Program.md` (August 2026) and catalogued as **NULL (frozen August 2026)** in the Unified Informational-Constructive Framework, §7. Kept for provenance; not an active research direction.
+> **STATUS: HISTORICAL — route frozen (August 2026).** The physical-radion branch ($`H_R`$) / literal 5D Kaluza–Klein route recorded in this note is frozen. It is superseded by the single-hypothesis $`(H_P)`$ formulation in `Causal_Phase_Geometry_Research_Program.md` (August 2026) and catalogued as **NULL (frozen August 2026)** in the Unified Informational-Constructive Framework, §7. Kept for provenance; not an active research direction.
 
 ---
 
@@ -182,7 +182,7 @@ $$
 \end{aligned}
 $$
 
-The photon should therefore be interpreted not as the phase of an individual particle, but as a propagating excitation of the connection $U_{xy}$ itself.
+The photon should therefore be interpreted not as the phase of an individual particle, but as a propagating excitation of the connection $`U_{xy}`$ itself.
 
 ---
 
@@ -194,7 +194,7 @@ $$
 (\mathcal{C}, U_{xy}) \longrightarrow (M_4, g_{\mu\nu}, A_\mu).
 $$
 
-Causal order and the discrete volume measure generate a four-dimensional Lorentzian geometry $g_{\mu\nu}$, while discrete holonomies become a U(1) connection $A_\mu$:
+Causal order and the discrete volume measure generate a four-dimensional Lorentzian geometry $`g_{\mu\nu}`$, while discrete holonomies become a U(1) connection $`A_\mu`$:
 
 $$
 U_{xy} \simeq \exp\left[iq \int_x^y A_\mu\, dx^\mu\right].
@@ -230,8 +230,8 @@ $$
 
 Here:
 
-- $g_{\mu\nu}$ is the four-dimensional metric;
-- $A_\mu$ is the electromagnetic connection;
+- $`g_{\mu\nu}`$ is the four-dimensional metric;
+- $`A_\mu`$ is the electromagnetic connection;
 - $y$ is the coordinate of the compact layer;
 - $\phi$ is the radion determining the physical size of the layer;
 - $\alpha$ and $\kappa$ depend on normalization.
@@ -264,7 +264,7 @@ $$
 \hat{k}^A \hat{k}_A = 0.
 $$
 
-The area of its spatial cross-section in five dimensions is a three-dimensional quantity $A_3$.
+The area of its spatial cross-section in five dimensions is a three-dimensional quantity $`A_3`$.
 
 Take the horizon entropy to be
 
@@ -344,7 +344,7 @@ $$
 \square\phi = \frac{\partial V_{\mathrm{eff}}}{\partial\phi} + C\, e^{-a\phi}\, F_{\mu\nu} F^{\mu\nu}.
 $$
 
-The coefficients $a$ and $C$ depend on the normalization chosen for the five-dimensional metric and the field $A_\mu$.
+The coefficients $a$ and $C$ depend on the normalization chosen for the five-dimensional metric and the field $`A_\mu`$.
 
 The electromagnetic stress-energy tensor has the standard structure
 
@@ -379,7 +379,7 @@ $$
 A_3 = L_5 A_2,
 $$
 
-where $A_2$ is the area of the four-dimensional horizon cross-section.
+where $`A_2`$ is the area of the four-dimensional horizon cross-section.
 
 Then
 
@@ -387,7 +387,7 @@ $$
 S_5 = \frac{k_B c^3}{4\hbar G_5}\, L_5 A_2.
 $$
 
-If $L_5$ is constant, define
+If $`L_5`$ is constant, define
 
 $$
 G_4 = \frac{G_5}{L_5},
@@ -591,7 +591,7 @@ If this condition fails, the combination of Kaluza–Klein and Jacobson is only 
 The hypothesis must be rejected or substantially modified if at least one of the following conditions is found to hold.
 
 1. A causal network with local U(1) holonomies has no Lorentz-invariant continuum limit.
-2. The discrete holonomy functional does not reproduce the Maxwell term $-\frac{1}{4} F_{\mu\nu} F^{\mu\nu}$.
+2. The discrete holonomy functional does not reproduce the Maxwell term $`-\frac{1}{4} F_{\mu\nu} F^{\mu\nu}`$.
 3. The five-dimensional thermodynamic derivation does not reproduce all components of the five-dimensional Einstein equation.
 4. KK reduction of the thermodynamic equation does not yield a consistent Einstein–Maxwell–radion system.
 5. The radion cannot be stabilized without contradicting laboratory and astrophysical constraints.
@@ -604,7 +604,7 @@ The hypothesis must be rejected or substantially modified if at least one of the
 
 The first stage does not require a complete theory of quantum gravity.
 
-1. Construct a finite causal network with variables $U_{xy} \in \mathrm{U}(1)$.
+1. Construct a finite causal network with variables $`U_{xy} \in \mathrm{U}(1)`$.
 2. Define a Wilson-like functional on causal diamonds:
    $$
    S_{\mathrm{U}(1)} = \frac{1}{g^2} \sum_D w_D \bigl[1 - \mathrm{Re}\, W_D\bigr].
@@ -618,7 +618,7 @@ The first stage does not require a complete theory of quantum gravity.
 5. Explicitly decompose the five-dimensional equation into the $(\mu, \nu)$, $(\mu, 5)$, and $(5, 5)$ components.
 6. Verify the commutativity condition of Section 12.
 7. Investigate solutions with constant and variable radion.
-8. Only then calculate the effective cosmological equation of state $w_{\mathrm{eff}}(z)$.
+8. Only then calculate the effective cosmological equation of state $`w_{\mathrm{eff}}(z)`$.
 
 ---
 
