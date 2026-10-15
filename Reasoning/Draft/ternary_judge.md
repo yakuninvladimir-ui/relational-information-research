@@ -87,7 +87,7 @@ Work on truthfulness and controllability of AI [12] records the need for externa
 
 **Definition 4** (Certificate). A certificate $c$ is structured evidence that a move is admissible under the contract: typically a grounded quote (exact span of a document or tool result), optionally accompanied by a reason code and confidence. Certificates are produced by the judge (or by an external verifier) and interpreted by a fixed rule that does not learn and does not drift with the model.
 
-**Definition 5** (Certified transition). A transition $G_t \to G_{t+1}$ is certified if and only if there exists a verdict $v \in \{\text{FOLLOW}, \text{OMIT}, \text{NULL}, \text{UNDECIDED}\}$ issued under an explicit contract, with an associated certificate (or an explicit absence of certificate mapped by the fixed rule), and the state manager applies only the action prescribed by the bijection verdict $\mapsto$ action.
+**Definition 5** (Certified transition). A transition $`G_t \to G_{t+1}`$ is certified if and only if there exists a verdict $v \in \{\text{FOLLOW}, \text{OMIT}, \text{NULL}, \text{UNDECIDED}\}$ issued under an explicit contract, with an associated certificate (or an explicit absence of certificate mapped by the fixed rule), and the state manager applies only the action prescribed by the bijection verdict $\mapsto$ action.
 
 ---
 
@@ -119,7 +119,7 @@ The judge may emit a certificate (or fail to). The fixed rule maps (certificate,
 - grounded certificate + assertion mode established $\mapsto$ FOLLOW;
 - grounded certificate + inessentiality reason $\mapsto$ OMIT;
 - grounded certificate of conflict with $I$ or prior FOLLOW nodes $\mapsto$ NULL;
-- no certificate / ungrounded certificate $\mapsto$ UNDECIDED. A closed-world NULL is admissible only through a polarized scoped-exhaustion certificate $\mathcal{C}^{\emptyset}$ (closed domain fully scanned: $exhausted=\mathrm{true}$ with $N_{\mathrm{match}}=0$ refuting a positive existential expectation, or a counterexample match refuting a claimed absence — canonical specification §5.3); mere absence of evidence is never NULL, and an UNDECIDED record is never overwritten into NULL on budget exhaustion (canonical specification §5.4).
+- no certificate / ungrounded certificate $\mapsto$ UNDECIDED. A closed-world NULL is admissible only through a polarized scoped-exhaustion certificate $\mathcal{C}^{\emptyset}$ (closed domain fully scanned: $exhausted=\mathrm{true}$ with $`N_{\mathrm{match}}=0`$ refuting a positive existential expectation, or a counterexample match refuting a claimed absence — canonical specification §5.3); mere absence of evidence is never NULL, and an UNDECIDED record is never overwritten into NULL on budget exhaustion (canonical specification §5.4).
 
 The rule is not trained; any future learned component may only propose certificates, not override the mapping.
 
@@ -154,7 +154,7 @@ Under the explicit assumption that the adapter correctly extracts moves and that
 
 **Property 2** (Totality of the judge). No move can be committed without a verdict. Uncertified moves are mapped by the fixed rule to UNDECIDED or NULL; silent acceptance is excluded by construction.
 
-**Property 3** (Auditability). For every version $G_t$ the audit log contains the full sequence of moves, verdicts, certificates and rule applications sufficient to reconstruct $G_t$ from $G_0$.
+**Property 3** (Auditability). For every version $`G_t`$ the audit log contains the full sequence of moves, verdicts, certificates and rule applications sufficient to reconstruct $`G_t`$ from $`G_0`$.
 
 These properties are conditional on adapter and certificate correctness; adapter hallucinations remain a residual risk (§8).
 
@@ -211,14 +211,14 @@ The ablation decomposes the effect. First, the leniency of a binary judge from t
 
 ## 8 Limitations
 
-1. **Cost.** The architecture is multiplicative in calls: $C_{\text{turn}} = C_G + k \cdot C_A + k \cdot C_J + m \cdot C_R + r \cdot C_{\text{rejudge}} + C_F$ (Appendix B). FFR reduction is paid for in calls; economic gain is possible only via cascaded configurations (cheap models on extraction, strong models on disputed moves and checkpoints).
+1. **Cost.** The architecture is multiplicative in calls: $`C_{\text{turn}} = C_G + k \cdot C_A + k \cdot C_J + m \cdot C_R + r \cdot C_{\text{rejudge}} + C_F`$ (Appendix B). FFR reduction is paid for in calls; economic gain is possible only via cascaded configurations (cheap models on extraction, strong models on disputed moves and checkpoints).
 2. **Connectivity is not truth.** Judgment without a world model is limited to internal coherence: a graph consistent with $I$ and connected may be coherently false. Invariant and graph checks are necessary conditions; sufficiency appears only with external evidence or a world model. This is a principled boundary of the MVP, not an implementation defect.
 3. **Adapter hallucinations.** Invented moves corrupt the pipeline before the judge. Mitigation — grounding on spans and schema validation; the risk is not fully eliminated, and Property 6.1 is conditional on adapter correctness. In the §7.3 run the adapter is trivial and the risk was not stressed.
 4. **Contract ambiguity.** Verdicts are inconsistent across domains under vague contracts; the MVP uses one contract per domain, without a universal fallback.
 5. **Over-nullification.** Mapping open unknown to NULL is a named risk: severing is irreversible, and a false NULL is costlier than a false UNDECIDED; the rule of §4.4 directs uncertifiable moves to UNDECIDED, but the quality of the distinction depends on certificates.
 6. **No learned judge.** The current version is a rule over certificates; a discriminative learned certificate scorer is future work (risk: drift toward a preference model, §2).
 7. **Evaluation scale.** The MVP is limited to a controlled corpus; transfer to open domains is not claimed. Retrieval is token overlap with stop words: sufficient for 40 documents, on live collections it will be a source of noise and false UNDECIDEDs. One run per configuration at zero temperature; self-check and "platform without middleware" baselines were not run.
-8. **Certificate-scheme defects shown by the live run.** (a) Absence-claims: a positive quote-substring cannot in principle certify absence of evidence, yet the judge issued CERTIFIED on such moves — a scheme defect, not an implementation error; a separate verdict/rule or a semantic adequacy check of the quote is required. (b) NULL-by-conflict: contradiction is a relation between two documents, while the certificate is unary; 30/60 contradictions ended in UNDECIDED precisely because a single-quote certificate could not be assembled. The scheme needs a binary variant (quote-pair). Both defects are resolved in the canonical specification (§5.3): absence claims via polarized scoped-exhaustion certificates $\mathcal{C}^{\emptyset}$ with polarity $\varrho_{\mathrm{pol}}\in\{+,-\}$, and contradictions via binary quote-pair incompatibility certificates $\mathcal{C}^{\bot}=(\xi_1,\xi_2)$; integration into the live loop is pending.
+8. **Certificate-scheme defects shown by the live run.** (a) Absence-claims: a positive quote-substring cannot in principle certify absence of evidence, yet the judge issued CERTIFIED on such moves — a scheme defect, not an implementation error; a separate verdict/rule or a semantic adequacy check of the quote is required. (b) NULL-by-conflict: contradiction is a relation between two documents, while the certificate is unary; 30/60 contradictions ended in UNDECIDED precisely because a single-quote certificate could not be assembled. The scheme needs a binary variant (quote-pair). Both defects are resolved in the canonical specification (§5.3): absence claims via polarized scoped-exhaustion certificates $\mathcal{C}^{\emptyset}$ with polarity $`\varrho_{\mathrm{pol}}\in\{+,-\}`$, and contradictions via binary quote-pair incompatibility certificates $`\mathcal{C}^{\bot}=(\xi_1,\xi_2)`$; integration into the live loop is pending.
 9. **Dependence of effect on judge competence.** The ablation shows that effect direction is robust to judge family, but magnitude depends on competence; under a weak judge the advantage of the contract over a binary verdict may vanish. The observation is based on two judges and is not a scaling law.
 10. **Graph persistence was not tested in the MVP.** The §7.3 run quantifies verdict quality in the loop "verdict → fixed rule → commit/block"; writing of OMIT nodes, invariants, re-verification with rollback and branch re-growth (§5.2–§5.3) are future work; RegrowthYield is not defined in the MVP.
 
@@ -383,18 +383,18 @@ Node: id, type, text, status $\sigma$, certificate; edge: (from, to, relation). 
 
 | Term | Meaning |
 |:---|:---|
-| $C_G$ | Cost of candidate generation |
-| $C_A$ | Cost of extracting and normalising one move |
-| $C_J$ | Cost of judging one move |
-| $C_R$ | Cost of retrieval / instrumental verification |
-| $C_{\text{rejudge}}$ | Cost of re-evaluation after state update |
-| $C_F$ | Cost of synthesising the final answer |
-| $C_{\text{rev}}$ | Cost of re-verification at a checkpoint |
+| $`C_G`$ | Cost of candidate generation |
+| $`C_A`$ | Cost of extracting and normalising one move |
+| $`C_J`$ | Cost of judging one move |
+| $`C_R`$ | Cost of retrieval / instrumental verification |
+| $`C_{\text{rejudge}}`$ | Cost of re-evaluation after state update |
+| $`C_F`$ | Cost of synthesising the final answer |
+| $`C_{\text{rev}}`$ | Cost of re-verification at a checkpoint |
 | $k, m, r$ | Numbers of moves, retrieval calls, re-evaluations |
 
 $$C_{\text{turn}} = C_G + k \cdot (C_A + C_J) + m \cdot C_R + r \cdot C_{\text{rejudge}} + C_F$$
 
-Session cost adds $\sum C_{\text{rev}}$ over checkpoints. The architecture is deliberately more expensive than a direct call; the MVP goal is to measure FFR reduction per unit cost, not immediate price superiority.
+Session cost adds $`\sum C_{\text{rev}}`$ over checkpoints. The architecture is deliberately more expensive than a direct call; the MVP goal is to measure FFR reduction per unit cost, not immediate price superiority.
 
 ---
 
@@ -408,11 +408,11 @@ One possible implementation sketch (not a dependency of the architecture): a hos
 
 | Term | Notation | Meaning |
 |:---|:---|:---|
-| Consequence | $x \Rightarrow y$ | "$y$ belongs to every $x$" (extensionally: $x = xy$; intensionally: the attribute $y$ is entirely contained in the concept $x$); Aristotle's $A_{xy}$ |
+| Consequence | $x \Rightarrow y$ | "$y$ belongs to every $x$" (extensionally: $x = xy$; intensionally: the attribute $y$ is entirely contained in the concept $x$); Aristotle's $`A_{xy}`$ |
 | Opposite | $\bar{x}$ | Complement of a term in the universe of coexisting opposites |
-| Exclusion (nullity) | $x\bar{y}_0$ | Incompatibility of $x$ with not-$y$; index "0" marks the empty conjunction |
+| Exclusion (nullity) | $`x\bar{y}_0`$ | Incompatibility of $x$ with not-$y$; index "0" marks the empty conjunction |
 | Inessentiality | silence of a member | Member omitted as not affecting the relation; neither excluded nor necessary — possible |
-| Consequence in improved DNF | $xy \lor x\bar{y}_0 \lor \bar{x}\bar{y}$ | Member $\bar{x}y$ is silenced as inessential; $x\bar{y}$ is excluded (nullity index); $\bar{x}\bar{y}$ is asserted |
+| Consequence in improved DNF | $`xy \lor x\bar{y}_0 \lor \bar{x}\bar{y}`$ | Member $\bar{x}y$ is silenced as inessential; $x\bar{y}$ is excluded (nullity index); $\bar{x}\bar{y}$ is asserted |
 | Material implication | $xy \lor \bar{x}y \lor \bar{x}\bar{y}$ (equivalently $\bar{x} \lor y$) | Consequence with the excluded member $x\bar{y}$ unjustifiably retained |
 
-The canonical specification generalizes this glossary to conditional entailment with an admissible-context antecedent: $(ac\Rightarrow y)\equiv(acy^{+})_1\vee(acy^{\sim}_{\mathrm{stag}})_0\vee(acy^{\bot})_0\vee ac'y^{\sim}\vee a'y^{\sim}$, where the consequent splits into three strictly disjoint outcomes — fulfilment $y^{+}$, neutral indifference $y^{\sim}$ (strict stagnation $y^{\sim}_{\mathrm{stag}}$ versus contract-declared sub-threshold change $y^{\sim}_{\mathrm{sub}}$), and strong incompatibility $y^{\bot}$ (canonical specification §3). The verdict mapping of §4 is the Tier-1 projection of this calculus, with the aggregation dominance order NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW (canonical specification §4.2).
+The canonical specification generalizes this glossary to conditional entailment with an admissible-context antecedent: $`(ac\Rightarrow y)\equiv(acy^{+})_1\vee(acy^{\sim}_{\mathrm{stag}})_0\vee(acy^{\bot})_0\vee ac'y^{\sim}\vee a'y^{\sim}`$, where the consequent splits into three strictly disjoint outcomes — fulfilment $y^{+}$, neutral indifference $y^{\sim}$ (strict stagnation $`y^{\sim}_{\mathrm{stag}}`$ versus contract-declared sub-threshold change $`y^{\sim}_{\mathrm{sub}}`$), and strong incompatibility $y^{\bot}$ (canonical specification §3). The verdict mapping of §4 is the Tier-1 projection of this calculus, with the aggregation dominance order NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW (canonical specification §4.2).

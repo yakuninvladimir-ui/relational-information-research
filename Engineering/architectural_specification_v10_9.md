@@ -108,7 +108,7 @@ V10.8 adds the following architectural elements to the V10.5 baseline:
 
 1. **TransitionTable world model.** A per-level empirical transition graph with an append-only Trace and a state-action Quotient (`ObservedEdgeOverlay`), distinguishing verified idle edges (`IDLE_SELF_LOOP`) from untried edges (`IDLE_UNLINKED`).
 2. **Transient Cells Engine.** Multi-frame micro-step analysis detecting cells that mutate two or more times within one logical transition, classifying transient geometry (`beam`, `sweep`, `pulse`), and overriding static zero-delta evaluation.
-3. **Triangulated Defeat Architecture.** Decoupling of the fatal collision frame ($F_{fatal}$) from the post-death reset frame ($F_{reset}$), isolating `fatal_step_diff` for exemplar grounding.
+3. **Triangulated Defeat Architecture.** Decoupling of the fatal collision frame ($`F_{fatal}`$) from the post-death reset frame ($`F_{reset}`$), isolating `fatal_step_diff` for exemplar grounding.
 4. **Jonker–Volgenant FrameDifferencing.** Optimal bipartite entity matching between consecutive frames producing strictly typed semantic deltas.
 5. **ActionGuards.** Pre-emission guards (NoopRepeatGuard, DeathActionGuard) and peripheral-HUD isolation via `interior_grid_hash`.
 6. **PriorityScheduler.** Explicit deterministic arbitration over competing action sources under budget pressure.
@@ -120,9 +120,9 @@ V10.8 adds the following architectural elements to the V10.5 baseline:
 V10.9 is a semantics-alignment release synchronizing the verifier logic with the canonical specification `Reasoning/Modified_Brusentsov_Entailment_Logic.md` (October 2026). It changes verdict **semantics and records**, not the cascade order, tier structure, or schemas:
 
 1. **Normative source (§1).** The verifier logic is an instantiation of the canonical specification; the full mathematical treatment is no longer claimed by this section alone.
-2. **Complete entailment form (§1.1).** $(x \Rightarrow y) \equiv x_1 \land (xy')_0 \land y'_1$ replaces the truncated $xy'_0$; the two-tier reading of $x'y'$ is fixed (§1.2).
+2. **Complete entailment form (§1.1).** $`(x \Rightarrow y) \equiv x_1 \land (xy')_0 \land y'_1`$ replaces the truncated $`xy'_0`$; the two-tier reading of $x'y'$ is fixed (§1.2).
 3. **Canonical aliases, dominance chain, and `OMIT` subtypes (§1.3).** NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW; OMIT_BLOCKED / OMIT_REDUNDANT / OMIT_INCIDENTAL mapped onto Tier 3, `NoopRepeatGuard`, and Tier 8.
-4. **Completed nullity taxonomy (§1.4).** Two classes added: local state-consistency conflict and resolved out-of-contract active change ($\Omega_{\mathrm{sub}}$ empty by default).
+4. **Completed nullity taxonomy (§1.4).** Two classes added: local state-consistency conflict and resolved out-of-contract active change ($`\Omega_{\mathrm{sub}}`$ empty by default).
 5. **Prohibition of epistemic falsification (§4.3).** On probe/streak exhaustion the judgment permanently retains `UNDECIDED` (`ABORT_ON_UNDECIDED`); the previous rewrite into `NULL` is abolished; retained records never ground `NEGATIVE_BARRIER`.
 6. **ISO-10 restated (§7.6) and the fail-safe default scoped to resolved cases (§4.6).** Epistemically unresolved transitions default to `UNDECIDED` (Tiers 4/7).
 7. **`implies_brusentsov` rule 4 split (Engineering Specification §4.3).** Resolved out-of-contract change → `FALSE` unless inside a declared neutral region; neutral-region registry introduced (empty by default, contract-hashed).
@@ -146,7 +146,7 @@ N.P. Brusentsov ("Усовершенствование логики умозак
 
 $$(x \Rightarrow y) \equiv x_1 \land (xy')_0 \land y'_1$$
 
-— the class $x$ is non-empty; it is impossible for $x$ to coexist with the absence of $y$ (the nullity component $(xy')_0$ alone is the Carrollian truth-condition of the consequence); and the complement $y'$ is non-empty (non-universality of $y$). The existence indices $x_1$ and $y'_1$ are what distinguish contentful entailment from material implication: operationally, non-universality is enforced structurally ($\mathrm{NonTriv}(y)$), and passive observations of $x'y'$ never confirm the law (immunity to the Hempel–Nicod paradox, canonical specification §3.4, Theorem 3.1).
+— the class $x$ is non-empty; it is impossible for $x$ to coexist with the absence of $y$ (the nullity component $`(xy')_0`$ alone is the Carrollian truth-condition of the consequence); and the complement $y'$ is non-empty (non-universality of $y$). The existence indices $`x_1`$ and $`y'_1`$ are what distinguish contentful entailment from material implication: operationally, non-universality is enforced structurally ($\mathrm{NonTriv}(y)$), and passive observations of $x'y'$ never confirm the law (immunity to the Hempel–Nicod paradox, canonical specification §3.4, Theorem 3.1).
 
 ### 1.2 Entailment as a Three-Valued DNF
 
@@ -159,11 +159,11 @@ where the term $x'y$ is **omitted as inessential**. The omission is not falsity:
 | Term | Status | Verifier semantics |
 | :--- | :--- | :--- |
 | $xy$ | affirmed | **`FOLLOW (+1)`** — expected effect necessarily observed; trajectory advances |
-| $xy'_0$ | excluded (nullity) | **`NULL (−1)`** — physical contradiction; candidate branch severed |
+| $`xy'_0`$ | excluded (nullity) | **`NULL (−1)`** — physical contradiction; candidate branch severed |
 | $x'y$ | omitted | **`OMIT (0)`** — inessential outcome; branch preserved |
 | $x'y'$ | affirmed | **`OMIT (0)`** — nothing expected, nothing relevant observed; branch preserved |
 
-**Two-tier reading (canonical specification §1.4, §2.2).** The statuses in the right column are step-level (Tier 1) verdicts for a single observed transition. At the law level (Tier 2), both $xy$ and $x'y'$ carry the asserted status $+$ in the integral law (ternary vector $+{-}0+$); in a single transition the disjoint classes $xy$ and $x'y'$ cannot co-occur, so an $x'y'$ step evaluates as `OMIT` — incidental to the law — and an ensemble of such steps never confirms the law by itself (immunity to the Hempel–Nicod paradox, canonical specification Theorem 3.1). Law confirmation requires positive support ($ACy^{+}$ above the support threshold $N_{\min}$) plus non-triviality $\mathrm{NonTriv}(y)$, and yields the Tier-2 statuses `CONFIRMED` / `CONTRADICTED` / `CONDITIONAL_CANDIDATE` / `UNRESOLVED` (canonical specification §3.4). In this agent the law statuses are recorded as confirmed action laws, `NEGATIVE_BARRIER` invariants, and `CONDITIONAL_TRIGGER` preservation, respectively.
+**Two-tier reading (canonical specification §1.4, §2.2).** The statuses in the right column are step-level (Tier 1) verdicts for a single observed transition. At the law level (Tier 2), both $xy$ and $x'y'$ carry the asserted status $+$ in the integral law (ternary vector $+{-}0+$); in a single transition the disjoint classes $xy$ and $x'y'$ cannot co-occur, so an $x'y'$ step evaluates as `OMIT` — incidental to the law — and an ensemble of such steps never confirms the law by itself (immunity to the Hempel–Nicod paradox, canonical specification Theorem 3.1). Law confirmation requires positive support ($ACy^{+}$ above the support threshold $`N_{\min}`$) plus non-triviality $\mathrm{NonTriv}(y)$, and yields the Tier-2 statuses `CONFIRMED` / `CONTRADICTED` / `CONDITIONAL_CANDIDATE` / `UNRESOLVED` (canonical specification §3.4). In this agent the law statuses are recorded as confirmed action laws, `NEGATIVE_BARRIER` invariants, and `CONDITIONAL_TRIGGER` preservation, respectively.
 
 ### 1.3 Four-Valued Decision Semantics
 
@@ -171,7 +171,7 @@ Because ARC-AGI-3 observation is partial (occlusion, hidden layers, tracking amb
 
 - **`FOLLOW (+1)`** — entailment confirmed ($xy$). The transition realized the grounded step's `EXPECT` propositions. Cursor advances.
 - **`OMIT (0)`** — inessentiality ($x'y$ or $x'y'$). No physical contradiction, but the specific expected delta was not fulfilled (passive transition, selection change, empty expectation set). The candidate is **never severed** on `OMIT` (ISO-10).
-- **`NULL (−1)`** — incompatibility ($xy'_0$). The transition contradicted an established invariant or expectation. The candidate is **immediately severed**; a clean `RESET` to $S_0$ is scheduled.
+- **`NULL (−1)`** — incompatibility ($`xy'_0`$). The transition contradicted an established invariant or expectation. The candidate is **immediately severed**; a clean `RESET` to $`S_0`$ is scheduled.
 - **`UNDECIDED`** — epistemic ambivalence. Evidence is insufficient to decide between entailment and contradiction. Execution suspends and an evidence-seeking probe is scheduled (§4.3). `UNDECIDED` is a controller signal, not a truth value, and is stored separately from confirmed judgments (ISO-9).
 
 Canonical aliases and aggregation (canonical specification §4.1–§4.2): `FOLLOW` ≡ REQUIRED (+1), `OMIT` ≡ IRRELEVANT (0), `NULL` ≡ FORBIDDEN (−1), `UNDECIDED` ≡ UNRESOLVED (U). Multi-clause aggregation is governed by the strict dominance chain
@@ -185,11 +185,11 @@ $$\mathrm{NULL}\ (-1) \succ \mathrm{UNDECIDED}\ (U) \succ \mathrm{OMIT}\ (0) \su
 `NULL` is triggered only by explicit incompatibility evidence. The verifier must detect at least the following contradiction classes (grid instantiation of the canonical nullity taxonomy, canonical specification Definition 3.1):
 
 1. **Object identity violation** — expected `preserved`, observed `destroyed` / `vanished` / `missing` (or the inverse expectation). Identity is assessed only via explicit before/after presence predicates; a feature delta on a missing subject is undefined and must not be reinterpreted as an identity failure (canonical specification Definition 3.1, clause 1).
-2. **Physical stagnation** — expected motion ($\Delta_{exp} \neq 0$), observed strict zero delta ($\Delta_{obs} = 0$) without boundary or obstacle contact, on an action whose effect is confirmed ($\chi_{\mathrm{conf}}=1$); on an unconfirmed action the same observation is `UNDECIDED` (Tier 7), never `NULL` (canonical specification §4.3, Steps 1–2).
-3. **Unintended mutation** — expected stationary/invariant, observed motion ($\Delta_{obs} \neq 0$).
-4. **Direction inversion / orthogonal leakage** — expected and observed displacement signs opposite on any axis ($\mathrm{sign}(\Delta_{exp}) \cdot \mathrm{sign}(\Delta_{obs}) < 0$; the discrete $\varepsilon_{\mathrm{inv}}=0$ case of canonical Definition 3.1, clause 3), or observed displacement along an axis expected to remain invariant.
+2. **Physical stagnation** — expected motion ($`\Delta_{exp} \neq 0`$), observed strict zero delta ($`\Delta_{obs} = 0`$) without boundary or obstacle contact, on an action whose effect is confirmed ($`\chi_{\mathrm{conf}}=1`$); on an unconfirmed action the same observation is `UNDECIDED` (Tier 7), never `NULL` (canonical specification §4.3, Steps 1–2).
+3. **Unintended mutation** — expected stationary/invariant, observed motion ($`\Delta_{obs} \neq 0`$).
+4. **Direction inversion / orthogonal leakage** — expected and observed displacement signs opposite on any axis ($`\mathrm{sign}(\Delta_{exp}) \cdot \mathrm{sign}(\Delta_{obs}) < 0`$; the discrete $`\varepsilon_{\mathrm{inv}}=0`$ case of canonical Definition 3.1, clause 3), or observed displacement along an axis expected to remain invariant.
 5. **Local state-consistency conflict** — a resolved delta directly contradicts a previously committed `FOLLOW` assertion on the same subject and feature family (canonical specification Definition 3.1, clause 4).
-6. **Resolved out-of-contract active change** — a reliably observed change lies outside the expected change set, is non-zero, and is not inside a contract-declared bounded neutral region $\Omega_{\mathrm{sub}}$ (canonical specification Definition 3.1, clause 5). A non-zero change is not neutral merely because it is non-zero: $\Omega_{\mathrm{sub}}=\emptyset$ by default, and any tolerance must be explicitly declared in the contract.
+6. **Resolved out-of-contract active change** — a reliably observed change lies outside the expected change set, is non-zero, and is not inside a contract-declared bounded neutral region $`\Omega_{\mathrm{sub}}`$ (canonical specification Definition 3.1, clause 5). A non-zero change is not neutral merely because it is non-zero: $`\Omega_{\mathrm{sub}}=\emptyset`$ by default, and any tolerance must be explicitly declared in the contract.
 
 Attribute-value, relation-existence, spatial-position, area-conservation, and terminal-metadata contradictions are likewise nullity grounds when the expected and observed propositions share a subject and family. Propositions about distinct subjects can never contradict each other.
 
@@ -198,7 +198,7 @@ Attribute-value, relation-existence, spatial-position, area-conservation, and te
 - An empty expectation set evaluates strictly to `OMIT`. Absence of expectation is never confirmation.
 - `FOLLOW` is granted **if and only if** the grounded step carries at least one expected proposition and every expected proposition is necessarily contained in the observed transition.
 - A non-zero grid delta with empty or unverified expectations is `OMIT`, never `FOLLOW`.
-- Kinematic invariants evaluated on the pristine frame $S_0$ without an executed action are `OMIT` (they can be neither confirmed nor falsified without a transition).
+- Kinematic invariants evaluated on the pristine frame $`S_0`$ without an executed action are `OMIT` (they can be neither confirmed nor falsified without a transition).
 
 ### 1.6 Verifier-Centered Consequence
 
@@ -213,7 +213,7 @@ ARC-AGI-3 environments are heterogeneous interactive games. The architecture ass
 P1. Mechanics, goals, and physics are unknown a priori and are environment-local; nothing may be pre-programmed per benchmark.
 P2. The action surface is partitioned: discrete actions `ACTION1..ACTION5` and the coordinate action `ACTION6(x, y)`; `ACTION7` (Undo) exists in some manifests and is architecturally forbidden; `RESET` is a meta-action, not a game action.
 P3. Canonical direction vectors for `ACTION1..ACTION4` are simulation priors only; per-environment confirmed effects from empirical probing are authoritative and override priors on conflict.
-P4. Actions yielding zero delta on the pristine frame $S_0$ may be conditional triggers whose preconditions arise later; they must never be discarded.
+P4. Actions yielding zero delta on the pristine frame $`S_0`$ may be conditional triggers whose preconditions arise later; they must never be discarded.
 P5. Raw frames may carry a 1-pixel decorative border; the logical playfield is the cropped interior.
 P6. The palette is the 16-color domain `0..15`; color indices carry functional roles that are empirical, level- and game-scoped, and must be mapped non-destructively.
 P7. One logical step may span multiple rendered micro-frames; ephemeral effects (beams, sweeps, pulses) may leave no static trace.
@@ -249,20 +249,20 @@ Normative logical-state constraints:
 
 - the action vocabulary has exactly one source of truth: `action_semantics.py` (canonical vectors, legal/forbidden IDs, meta-action classification, displacement tokenizers). No module may maintain a local or inverted copy;
 - `FORBIDDEN_ACTION_IDS = {ACTION7}` is absolute: no agent may propose it, no adapter may emit it, manifest occurrences are filtered at ingestion;
-- epistemic recovery is forward-only: erroneous paths are abandoned via environmental `RESET` to $S_0$, never via undo;
+- epistemic recovery is forward-only: erroneous paths are abandoned via environmental `RESET` to $`S_0`$, never via undo;
 - actions are classified into the two-tier lifecycle:
   - `confirmed_effective_actions` — demonstrated observable delta or transient effect in some state;
-  - `conditional_candidate_actions` — zero delta on $S_0$, preserved with affordance class `CONDITIONAL_TRIGGER` and status `unconfirmed_on_s0`;
+  - `conditional_candidate_actions` — zero delta on $`S_0`$, preserved with affordance class `CONDITIONAL_TRIGGER` and status `unconfirmed_on_s0`;
 - promotion from conditional to confirmed happens immediately upon first observed effect in any state; demotion of confirmed actions is forbidden except through invariant falsification with recorded evidence;
 - `RESET` emission is restricted: exactly one `RESET` per `GAME_OVER` event; `RESET` is prohibited during fallback (§12.1).
 
 ### 2.4 Frame Dynamics Contract
 
-- a logical transition is the pair $(S_{t-1}, a_t) \to S_t$ plus the micro-frame chain between them when available;
+- a logical transition is the pair $`(S_{t-1}, a_t) \to S_t`$ plus the micro-frame chain between them when available;
 - cells mutating $\ge 2$ times within one logical transition are `transient_cells`; transient geometry is classified (`beam`, `sweep`, `pulse`) and recorded with the transition;
 - the presence of transient cells overrides a static zero-delta reading: an action with transient evidence is effective, not an idle self-loop;
 - entity correspondence across frames is established by optimal bipartite matching (Jonker–Volgenant) over a normalized cost of spatial distance, area similarity, and color congruence, producing strictly typed semantic deltas: `moved`, `rotated`, `resized`, `color_changed`, `appeared`, `disappeared`;
-- on `GAME_OVER`, the frame triple $(F_{alive}, F_{fatal}, F_{reset})$ must be triangulated (§8.7): the fatal diff is computed strictly between $F_{alive}$ and $F_{fatal}$.
+- on `GAME_OVER`, the frame triple $`(F_{alive}, F_{fatal}, F_{reset})`$ must be triangulated (§8.7): the fatal diff is computed strictly between $`F_{alive}`$ and $`F_{fatal}`$.
 
 ### 2.5 Failure Modes to Prevent
 
@@ -277,7 +277,7 @@ V10.9 explicitly guards against:
 - classifying zero-delta transitions with transient animation as idle;
 - classifying boundary or obstacle stops as falsification of confirmed action laws;
 - re-probing coordinates already tested in the other coordinate space;
-- discarding zero-delta actions probed on $S_0$ (losing conditional triggers);
+- discarding zero-delta actions probed on $`S_0`$ (losing conditional triggers);
 - diffing pre-death frames against post-reset frames (corrupted fatal evidence);
 - counting peripheral HUD ticks as game-state change;
 - burning level budget in closed state-action orbits;
@@ -354,7 +354,7 @@ Cognition is partitioned into three LLM call families with disjoint memory owner
 
 #### 3.2.1 Explorer Agent (Call Family 1 — Empirical Fact Discovery)
 
-- **Mission**: probe discrete actions and coordinate affordances on the pristine frame $S_0$; extract deterministic kinematics, transient animation facts, selection mechanics, and affordances into schema `v10.env_spec.1`.
+- **Mission**: probe discrete actions and coordinate affordances on the pristine frame $`S_0`$; extract deterministic kinematics, transient animation facts, selection mechanics, and affordances into schema `v10.env_spec.1`.
 - **Memory ownership**: writes exclusively to `EnvironmentSpecMemory`.
 - **Prohibitions**: must not formulate goals, hypothesize win conditions, or plan multi-step paths.
 - **Probing discipline**: two-tier lifecycle (§2.3); dual-space deduplication (§2.2); mask-pixel coordinate targeting; probe budgets from configuration.
@@ -394,7 +394,7 @@ Nondeterministic by nature and therefore record-bound: the three LLM call famili
 
 ## 4. LayeredVerifier: The 8-Tier Verdict Cascade
 
-Every transition $(S_{t-1}, a_t, S_t)$ is evaluated by `judge.py` through a strict, non-invertible cascade. The cascade order must not be bypassed, reordered, or truncated.
+Every transition $`(S_{t-1}, a_t, S_t)`$ is evaluated by `judge.py` through a strict, non-invertible cascade. The cascade order must not be bypassed, reordered, or truncated.
 
 ### 4.1 Cascade
 
@@ -420,7 +420,7 @@ Tier 8  Certified action effect:
           default fail-safe (ISO-10; resolved cases only)                 -> OMIT
 ```
 
-**Mapping to the canonical cascade (canonical specification §4.3).** Tier 1/2 instantiate metric-contract terminal success and failure (cumulative crossing of $\theta_{\mathrm{succ}}$; breach of $-\theta_{\mathrm{fail}}$). Tier 3 boundary contact = `OMIT_BLOCKED` (canonical Step 5a); unexplained stagnation on a confirmed action = canonical Step 1(b) `NULL`. Tier 4 = canonical Step 2 (epistemic boundary: tracking confidence and match ambiguity make $\delta_{obs}$ unreliable, $Rel=0$). Tier 5 = canonical Step 1(a) (certified incompatibility, $\mathcal{C}^{\bot}$). Tier 6 = canonical Step 4 (complete necessary containment, $\mathcal{C}^{+}$). Tier 7 = canonical Step 2 (stagnation on an unconfirmed action, $\chi_{\mathrm{conf}}=0$; displacement below `min_reliable_delta` means $\delta_{obs}$ is *undefined* at the tracking resolution floor — epistemically unresolved, not sub-threshold-neutral; a contract-declared neutral region $\Omega_{\mathrm{sub}}$ would instead map resolved members to `OMIT_INCIDENTAL`, canonical specification §3.1, §6.1). Tier 8 = canonical Steps 3/5 (`OMIT` on empty/unverified expectations per canonical Axiom 4.1; the ISO-10 fail-safe default covers only epistemically resolved cases — all unresolved cases are intercepted by Tiers 4/7, matching the canonical epistemic default of Step 6).
+**Mapping to the canonical cascade (canonical specification §4.3).** Tier 1/2 instantiate metric-contract terminal success and failure (cumulative crossing of $`\theta_{\mathrm{succ}}`$; breach of $`-\theta_{\mathrm{fail}}`$). Tier 3 boundary contact = `OMIT_BLOCKED` (canonical Step 5a); unexplained stagnation on a confirmed action = canonical Step 1(b) `NULL`. Tier 4 = canonical Step 2 (epistemic boundary: tracking confidence and match ambiguity make $`\delta_{obs}`$ unreliable, $Rel=0$). Tier 5 = canonical Step 1(a) (certified incompatibility, $\mathcal{C}^{\bot}$). Tier 6 = canonical Step 4 (complete necessary containment, $\mathcal{C}^{+}$). Tier 7 = canonical Step 2 (stagnation on an unconfirmed action, $`\chi_{\mathrm{conf}}=0`$; displacement below `min_reliable_delta` means $`\delta_{obs}`$ is *undefined* at the tracking resolution floor — epistemically unresolved, not sub-threshold-neutral; a contract-declared neutral region $`\Omega_{\mathrm{sub}}`$ would instead map resolved members to `OMIT_INCIDENTAL`, canonical specification §3.1, §6.1). Tier 8 = canonical Steps 3/5 (`OMIT` on empty/unverified expectations per canonical Axiom 4.1; the ISO-10 fail-safe default covers only epistemically resolved cases — all unresolved cases are intercepted by Tiers 4/7, matching the canonical epistemic default of Step 6).
 
 ### 4.2 Verdict Routing Effects
 
@@ -439,7 +439,7 @@ On `UNDECIDED`:
 2. block trajectory progression and Solver calls while `evidence_seeking_active`;
 3. if `evidence_probes_remaining > 0`, emit a targeted diagnostic probe authorized by the remaining-budget rule (`min_remaining_actions_for_probe`);
 4. on the post-probe observation, re-evaluate the pending step: resolved → clear the flag and resume; unresolved → increment `undecided_streak`;
-5. if the probe queue is exhausted or the streak reaches `max_undecided_streak`, terminate the attempt (`ABORT_ON_UNDECIDED`): the judgment record **permanently retains `UNDECIDED`** — it is never overwritten into `NULL`, and the retained record must never ground `NEGATIVE_BARRIER` invariants or branch signatures (prohibition of epistemic falsification, canonical specification §5.4); operationally: sever the current candidate, schedule exactly one clean `RESET` to $S_0$, and record the exhaustion reason code.
+5. if the probe queue is exhausted or the streak reaches `max_undecided_streak`, terminate the attempt (`ABORT_ON_UNDECIDED`): the judgment record **permanently retains `UNDECIDED`** — it is never overwritten into `NULL`, and the retained record must never ground `NEGATIVE_BARRIER` invariants or branch signatures (prohibition of epistemic falsification, canonical specification §5.4); operationally: sever the current candidate, schedule exactly one clean `RESET` to $`S_0`$, and record the exhaustion reason code.
 
 Evidence probes are speculative moves and must be affordable: they are authorized only while the level budget reserve is intact.
 
@@ -525,7 +525,7 @@ $$\mathrm{Cost}(T, C) = 0.30\,\mathrm{color} + 0.40\,\frac{\mathrm{manhattan}}{\
 
 ### 5.4 Frame Differencing (Jonker–Volgenant)
 
-`frame_diff.py` resolves entity correspondence between $S_{t-1}$ and $S_t$ by optimal bipartite assignment (Jonker–Volgenant) under the normalized cost of spatial distance, area similarity, and color congruence, and emits strictly typed semantic deltas:
+`frame_diff.py` resolves entity correspondence between $`S_{t-1}`$ and $`S_t`$ by optimal bipartite assignment (Jonker–Volgenant) under the normalized cost of spatial distance, area similarity, and color congruence, and emits strictly typed semantic deltas:
 
 ```text
 moved | rotated | resized | color_changed | appeared | disappeared
@@ -535,7 +535,7 @@ FrameDiff output is the typed delta channel consumed by the verifier's observed-
 
 ### 5.5 Transient Cells Engine
 
-`animation_analysis.py` analyzes the micro-frame chain $f_0 \dots f_k$ of one logical transition:
+`animation_analysis.py` analyzes the micro-frame chain $`f_0 \dots f_k`$ of one logical transition:
 
 - cells with mutation count $\ge 2$ across the chain are `transient_cells`;
 - transient geometry is classified: `beam` (linear, axis-aligned), `sweep` (progressive front), `pulse` (localized, retracting);
@@ -657,7 +657,7 @@ Contour access is mediated by `MemoryContourManager`, which enforces the isolati
 
 ### 7.3 Exemplars and Grounded Invariants
 
-- **`DefeatExemplar`** — captured on `GAME_OVER` via triangulated defeat (§8.7): fatal step, fatal action, dual-space fatal coordinates, actor position before, hazard color, isolated `fatal_step_diff`, `fatal_transient_trajectory`, `valid_prefix_actions`, environment signal. Grounds `NEGATIVE_BARRIER` invariants ($xy'_0 \to$ `NULL`).
+- **`DefeatExemplar`** — captured on `GAME_OVER` via triangulated defeat (§8.7): fatal step, fatal action, dual-space fatal coordinates, actor position before, hazard color, isolated `fatal_step_diff`, `fatal_transient_trajectory`, `valid_prefix_actions`, environment signal. Grounds `NEGATIVE_BARRIER` invariants ($`xy'_0 \to`$ `NULL`).
 - **`VictoryExemplar`** — captured on level completion: total steps, action sequence, key transitions, final action, target color, winning invariants used. Grounds `POSITIVE_CANON` invariants ($xy \to$ `FOLLOW`).
 - Exemplars are injected into Solver prompts in a compact deterministic format; they are demonstrations, never executable macros. Winning sequences must not leak into Coder context (ISO-2).
 
@@ -666,7 +666,7 @@ Contour access is mediated by `MemoryContourManager`, which enforces the isolati
 `GroundedInvariant`: antecedent, consequent, Brusentsov type (`NEGATIVE_BARRIER` | `POSITIVE_CANON`), scope (`CORE_GAME_LAW` | `LEVEL_SPECIFIC`), grounding exemplar, confirmation/falsification counters, confidence, creation level.
 
 - an invariant is active iff `times_falsified == 0`;
-- a single empirical contradiction on the pristine frame $S_0$ permanently retires the invariant (falsification is recorded, never silent);
+- a single empirical contradiction on the pristine frame $`S_0`$ permanently retires the invariant (falsification is recorded, never silent);
 - cross-level re-evaluation of invariants occurs only on the pristine frame of the new level, never on the victory frame of the previous one;
 - kinematic invariants evaluated without an executed action are `OMIT` (§1.5) and never count as confirmations.
 
@@ -687,7 +687,7 @@ The integrity of the architecture is guarded by twelve non-negotiable invariants
 - **ISO-4 Immutable perception grounding.** The PlanningSet is read-only for all consumers.
 - **ISO-5 Declarative planning purity.** The Solver produces declarative text only; no invocation capability, no runtime introspection.
 - **ISO-6 Substantive relation filtering.** Relations are restricted to substantive entities (area threshold), preventing combinatorial explosion from background cavities.
-- **ISO-7 Forward-only clean-reset execution.** `ACTION7` prohibited; recovery only via `RESET` to $S_0$.
+- **ISO-7 Forward-only clean-reset execution.** `ACTION7` prohibited; recovery only via `RESET` to $`S_0`$.
 - **ISO-8 Non-destructive palette mapping.** Color indices are preserved alongside roles.
 - **ISO-9 Epistemic signal segregation.** `UNDECIDED` signals live in transient `epistemic_signals`, separate from confirmed judgments.
 - **ISO-10 Non-severance on inessentiality.** Expectation mismatches carrying no certified nullity class (§1.4) yield `OMIT` and preserve the branch; unexplained strict stagnation on a confirmed action and resolved out-of-contract changes remain `NULL` grounds (canonical specification Definition 3.1).
@@ -731,8 +731,8 @@ On `NULL`:
 1. `active_candidate.sever()` — remaining steps are dropped;
 2. the severed prefix and full signatures are written to `EpistemicMemory` (branch severance + failed-trajectory records);
 3. a structured diagnostic is synthesized (§4.7);
-4. exactly one clean `RESET` restores $S_0$ before the next candidate or replan;
-5. on `GAME_OVER`: exactly one `RESET`; only the defeated candidate is severed; the pool resumes from $S_0$ with the next candidate; the orchestrator tracks the last engine action source to prevent double-reset traps.
+4. exactly one clean `RESET` restores $`S_0`$ before the next candidate or replan;
+5. on `GAME_OVER`: exactly one `RESET`; only the defeated candidate is severed; the pool resumes from $`S_0`$ with the next candidate; the orchestrator tracks the last engine action source to prevent double-reset traps.
 
 ### 8.4 Pre-Execution Idle Guard
 
@@ -755,10 +755,10 @@ A guard block is never a physics falsification: confirmed action laws are untouc
 
 ### 8.6 Multi-Candidate Package Traversal
 
-For a package $\langle T_1, \dots, T_k \rangle$, $k \le$ `max_candidates_per_solver_package`:
+For a package $`\langle T_1, \dots, T_k \rangle`$, $k \le$ `max_candidates_per_solver_package`:
 
-1. execute $T_i$ step-by-step from $S_0$;
-2. on severance, if unsevered candidates remain: one clean `RESET`, resume with $T_{i+1}$;
+1. execute $`T_i`$ step-by-step from $`S_0`$;
+2. on severance, if unsevered candidates remain: one clean `RESET`, resume with $`T_{i+1}`$;
 3. on package exhaustion: reflection turn, then replan;
 4. hard ceiling: `max_chain_attempts_per_level` (default 5) chain attempts per level before the fallback contract engages (§12.1);
 5. pool inspection uses non-mutating peek; progression is explicit; severance is a candidate-level operation only (Engineering Specification §10.4).
@@ -767,14 +767,14 @@ For a package $\langle T_1, \dots, T_k \rangle$, $k \le$ `max_candidates_per_sol
 
 Direct comparison of a pre-death frame with a post-death reset frame corrupts fatal evidence. On `GAME_OVER` the orchestrator must:
 
-1. retain $F_{alive}$ — the normalized state immediately before the fatal action;
-2. capture $F_{fatal}$ — the intermediate collision/death frame when the gateway exposes it (micro-frame chain or pre-reset observation);
-3. compute `fatal_step_diff` strictly between $F_{alive}$ and $F_{fatal}$; classify the fatal transient trajectory when transient evidence exists;
-4. emit exactly one `RESET`; observe $F_{reset}$; verify level identity restoration;
+1. retain $`F_{alive}`$ — the normalized state immediately before the fatal action;
+2. capture $`F_{fatal}`$ — the intermediate collision/death frame when the gateway exposes it (micro-frame chain or pre-reset observation);
+3. compute `fatal_step_diff` strictly between $`F_{alive}`$ and $`F_{fatal}`$; classify the fatal transient trajectory when transient evidence exists;
+4. emit exactly one `RESET`; observe $`F_{reset}`$; verify level identity restoration;
 5. construct the `DefeatExemplar` with `valid_prefix_actions` (the confirmed-safe prefix of the defeated candidate);
 6. replan preserving the safe prefix; ground or reinforce a `NEGATIVE_BARRIER` invariant.
 
-When $F_{fatal}$ is not observable, the exemplar is recorded with `fatal_frame_observed = false` and the diff degrades to action-level evidence only; it must never be synthesized from $F_{reset}$.
+When $`F_{fatal}`$ is not observable, the exemplar is recorded with `fatal_frame_observed = false` and the diff degrades to action-level evidence only; it must never be synthesized from $`F_{reset}`$.
 
 ### 8.8 Budgets and Exhaustion
 
@@ -888,7 +888,7 @@ Budgets are configuration; their **semantics** (hardness, exhaustion behavior, o
 
 ### 10.5 Cycle Detection and Recovery
 
-- transitions are recorded as $(\mathrm{hash}(S_{t-1}), a_t, \mathrm{hash}(S_t))$ over the interior hash;
+- transitions are recorded as $`(\mathrm{hash}(S_{t-1}), a_t, \mathrm{hash}(S_t))`$ over the interior hash;
 - closed orbits of period $1..8$ repeating at least `cycle_detector_min_cycles` times over at least `cycle_detector_min_actions` actions trigger recovery;
 - recovery: sever the active candidate, record the failure, one clean `RESET`, replan with cycle-avoidance constraints;
 - recovery is limited to `cycle_detector_per_level_limit` (default 2) per level; further detection abandons the level path to fallback.
@@ -1134,7 +1134,7 @@ Version 10.9 architecture is acceptable only if:
 - the two-tier action lifecycle preserves conditional triggers and promotes them on first evidence;
 - the TransitionTable records every emitted action, distinguishes `IDLE_SELF_LOOP` from `IDLE_UNLINKED`, and feeds the pre-execution idle guard, probe deduplication, death-edge cache, and fallback grounding;
 - transient evidence overrides static zero-delta classification, and HUD ticks never enter interior state signatures;
-- defeat handling is triangulated: fatal diffs never mix $F_{alive}$ with $F_{reset}$, exactly one `RESET` per `GAME_OVER`, safe prefixes preserved;
+- defeat handling is triangulated: fatal diffs never mix $`F_{alive}`$ with $`F_{reset}`$, exactly one `RESET` per `GAME_OVER`, safe prefixes preserved;
 - macro-steps are unrolled atomically with per-substep invariant checks; severance is immediate, diagnosed, and reset-clean;
 - the fallback is a single bounded tabu A* run with empirically grounded actor selection, no `RESET`, and full verifier supervision;
 - budgets, deadlines, and the priority scheduler degrade in the fixed normative order, with every decrement and degradation logged;
@@ -1169,5 +1169,5 @@ Mandatory migration changes:
 1. Rename the specification files and corpus references: `architectural_specification_v10_8.md` → `architectural_specification_v10_9.md`, `engineering_specification_v10_8.md` → `engineering_specification_v10_9.md`; engineering-cycle reports move to the `v10_9_*` namespace (historical V10.8-cycle artifacts keep their `v10_8_*` names).
 2. `brusentsov_logic.implies_brusentsov`: split rule 4 into resolved/unresolved branches and add the neutral-region parameter (Engineering Specification §4.3); introduce the `NeutralRegionRegistry` consumed from `declared_neutral_regions` (empty by default; any change is a contract change and updates the contract hash).
 3. Evidence-seeking FSM: replace the exhaustion fallback to `NULL` with attempt termination under permanently retained `UNDECIDED` (`ABORT_ON_UNDECIDED` reason code); suppress `NEGATIVE_BARRIER` grounding and branch-signature writes from retained records.
-4. Extend the test suite: rule-4 conformance PBT (resolved out-of-contract change → `FALSE`; declared $\Omega_{\mathrm{sub}}$ member → `IRRELEVANT`; unresolved → `UNDECIDED` via Tiers 4/7), neutral-registry default-empty and contract-hash coupling, exhaustion-retention integration test (`test_pbt_undecided_exhaustion.py`).
+4. Extend the test suite: rule-4 conformance PBT (resolved out-of-contract change → `FALSE`; declared $`\Omega_{\mathrm{sub}}`$ member → `IRRELEVANT`; unresolved → `UNDECIDED` via Tiers 4/7), neutral-registry default-empty and contract-hash coupling, exhaustion-retention integration test (`test_pbt_undecided_exhaustion.py`).
 5. No changes to: cascade order and tier count, `v10.judgment.1` / `v10.env_spec.1` schemas, verdict routing effects (§4.2), isolation invariants ISO-1..ISO-12 (ISO-10 restated, not renumbered), budget and arbitration semantics.

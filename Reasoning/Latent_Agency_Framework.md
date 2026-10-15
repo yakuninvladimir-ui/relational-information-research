@@ -62,7 +62,7 @@ Everything below rests on these. All are assumptions, none is established.
 | No. | Assumption | Status | Main risk |
 | --- | ---------- | ------ | --------- |
 | A1 | **Computational functionalism with the body as a functional part.** Organization matters, not material. The body enters as a physical layer plus stake, not as special matter. | UNDECIDED | Main rival: biological naturalism (life and mind are inseparable). Not adopted. If it holds, the statements about artificial systems change. |
-| A2 | **A latent is a description of a subsystem.** For a subsystem $A$ of the substrate there is a coarse-graining $\varphi_A$ such that $Z_A=\varphi_A(x_A)$ captures what matters for $A$ at the chosen scale. | UNDECIDED | The choice of $\varphi_A$ is not unique. Results may depend on it. |
+| A2 | **A latent is a description of a subsystem.** For a subsystem $A$ of the substrate there is a coarse-graining $`\varphi_A`$ such that $`Z_A=\varphi_A(x_A)`$ captures what matters for $A$ at the chosen scale. | UNDECIDED | The choice of $`\varphi_A`$ is not unique. Results may depend on it. |
 | A3 | **Unity is graded.** Integration of a latent is a quantity $I(A)$ that varies continuously. "One latent" means $I(A)$ above a threshold, not an all-or-nothing fact. | UNDECIDED | The measure of integration is not chosen. Different candidate measures may disagree. |
 | A4 | Learning fixes the relief. In operation the relief changes only through plasticity. | UNDECIDED | In the brain the line between activation and learning is blurred. |
 | A5 | The depth of physical attractors in a living system depends monotonically on stake. | UNDECIDED | Plausible, not shown. Tested by P3. |
@@ -91,12 +91,12 @@ There is an underlying structure in which things influence each other. What this
 
 **D2. Subsystem and environment.** A subsystem $A\subset\mathcal{C}$ is a part of the substrate with an identifiable boundary. Its environment $E$ is the part of the substrate that influences $A$ or is influenced by it.
 
-**D3. Latent space $Z_A$.** A compressed continuous representation, obtained from the microstate $x_A$ by a coarse-graining $\varphi_A$, in which the system encodes the state of the world, of its carrier (body), and of its own computation. A state at time $t$ is a point $z(t)$. A process is a trajectory. A latent is defined relative to a subsystem and a scale. It is not a global object.
+**D3. Latent space $`Z_A`$.** A compressed continuous representation, obtained from the microstate $`x_A`$ by a coarse-graining $`\varphi_A`$, in which the system encodes the state of the world, of its carrier (body), and of its own computation. A state at time $t$ is a point $z(t)$. A process is a trajectory. A latent is defined relative to a subsystem and a scale. It is not a global object.
 
 **D4. Layers and stitching.**
-- **P-layer:** the part of $Z_A$ tied to physics and the body (sensorimotor streams, interoception, homeostasis).
-- **S-layer:** the part of $Z_A$ tied to semantics and abstraction (language, logic, mathematics, concepts).
-- **Stitching:** P and S are coupled in $Z_A$ so that transitions between them are continuous. How tightly they are coupled is measured by $I(A)$ and by cross-layer dependence (§5, P2). It is not assumed.
+- **P-layer:** the part of $`Z_A`$ tied to physics and the body (sensorimotor streams, interoception, homeostasis).
+- **S-layer:** the part of $`Z_A`$ tied to semantics and abstraction (language, logic, mathematics, concepts).
+- **Stitching:** P and S are coupled in $`Z_A`$ so that transitions between them are continuous. How tightly they are coupled is measured by $I(A)$ and by cross-layer dependence (§5, P2). It is not assumed.
 
 How to formalize stitching (a shared manifold, a fibration, a product) is not settled. See §15.
 
@@ -155,9 +155,9 @@ D6 is weak on purpose. Any trained system has Q-structures, so D6 alone cannot s
 
 ### 4.4 The relief as the carrier of internal regularities
 
-The relief has a second role that matters for §5. What is fixed in $R$ over a time window is, for that window, the system's own internal regularity. What arrives in operation as input is external. So the question "how much of the system's behavior is governed by its own regularities" is the question of how much of the trajectory is determined by $R$-dynamics as against input. The boundary between internal and external is therefore indexed by a time scale, the window $\tau_w$ over which $R$ is treated as fixed.
+The relief has a second role that matters for §5. What is fixed in $R$ over a time window is, for that window, the system's own internal regularity. What arrives in operation as input is external. So the question "how much of the system's behavior is governed by its own regularities" is the question of how much of the trajectory is determined by $R$-dynamics as against input. The boundary between internal and external is therefore indexed by a time scale, the window $`\tau_w`$ over which $R$ is treated as fixed.
 
-The same indexing applies to every agency and coupling quantity in this document. Spatial scale enters through the chosen coarse-graining $\varphi_A$ (A2) and the resolution at which dependence is evaluated; temporal scale enters through $\tau_w$. A gas cloud, for example, can appear sensitive to its own micro-state perturbations at a fine scale and still have $\mathrm{Inf}\approx 0$ and $\mathcal{A}\approx 0$ at the macro-level description used in the examples. All reported values must be accompanied by the scale at which they were obtained. Comparison of systems without stated scale is not meaningful.
+The same indexing applies to every agency and coupling quantity in this document. Spatial scale enters through the chosen coarse-graining $`\varphi_A`$ (A2) and the resolution at which dependence is evaluated; temporal scale enters through $`\tau_w`$. A gas cloud, for example, can appear sensitive to its own micro-state perturbations at a fine scale and still have $\mathrm{Inf}\approx 0$ and $\mathcal{A}\approx 0$ at the macro-level description used in the examples. All reported values must be accompanied by the scale at which they were obtained. Comparison of systems without stated scale is not meaningful.
 
 ---
 
@@ -169,15 +169,15 @@ A cloud of gas is a subsystem with an identifiable boundary and an enormous numb
 
 ### 5.2 Definitions
 
-**D9. Integration $I(A)$.** How strongly the parts of $Z_A$ depend on each other compared with how strongly $A$ depends on its environment. Schema:
+**D9. Integration $I(A)$.** How strongly the parts of $`Z_A`$ depend on each other compared with how strongly $A$ depends on its environment. Schema:
 
 $$I(A)=\min_{\text{cuts }(A_1,A_2)}\frac{\mathrm{Dep}(A_1\leftrightarrow A_2)}{\mathrm{Dep}(A\leftrightarrow E)}$$
 
-$\mathrm{Dep}$ is a placeholder for a dependence measure (mutual information, causal influence, transfer entropy). It is not chosen here. Different choices may give different orderings of systems. This is stated as an open problem (§15). Integration is informational, not physical: the cuts are cuts of dependence between parts of $Z_A$, not cuts of physical space. A model sharded across several devices is as integrated as the same model on one device, because the dependence between its parts is unchanged. Physical indivisibility of the carrier is a separate property and is not required.
+$\mathrm{Dep}$ is a placeholder for a dependence measure (mutual information, causal influence, transfer entropy). It is not chosen here. Different choices may give different orderings of systems. This is stated as an open problem (§15). Integration is informational, not physical: the cuts are cuts of dependence between parts of $`Z_A`$, not cuts of physical space. A model sharded across several devices is as integrated as the same model on one device, because the dependence between its parts is unchanged. Physical indivisibility of the carrier is a separate property and is not required.
 
-**D10. Persistence $T_{\rm pers}(A)$.** The time over which the boundary of $A$ stays identifiable and $I(A)$ stays above a threshold $\theta_I$. Without persistence any dense transient cluster would count as an agent. Persistence is the requirement that the structure maintains itself.
+**D10. Persistence $`T_{\rm pers}(A)`$.** The time over which the boundary of $A$ stays identifiable and $I(A)$ stays above a threshold $`\theta_I`$. Without persistence any dense transient cluster would count as an agent. Persistence is the requirement that the structure maintains itself.
 
-**D11. Informational autonomy $\mathcal{A}(A;\tau_w)$.** How much of the future internal state of $A$ over the window $\tau_w$ is determined by its own internal state as against by its environment. Two operational forms:
+**D11. Informational autonomy $`\mathcal{A}(A;\tau_w)`$.** How much of the future internal state of $A$ over the window $`\tau_w`$ is determined by its own internal state as against by its environment. Two operational forms:
 
 *Predictive form (candidate):*
 $$\mathcal{A}^{\rm pred}_{\tau}=I\big(Z_{t+\tau};\,Z_t\ \big|\ E_t\big)$$
@@ -185,29 +185,29 @@ $$\mathcal{A}^{\rm pred}_{\tau}=I\big(Z_{t+\tau};\,Z_t\ \big|\ E_t\big)$$
 *Interventional form (preferred where interventions are possible):*
 $$\mathcal{A}^{\rm do}_{\tau}=\frac{\mathbb{E}\lVert\Delta_{\rm int}\rVert}{\mathbb{E}\lVert\Delta_{\rm int}\rVert+\mathbb{E}\lVert\Delta_{\rm env}\rVert}$$
 
-where $\Delta_{\rm int}$ is the change of $Z_{t+\tau}$ under a unit intervention on the internal state at $t$, and $\Delta_{\rm env}$ is the change under a unit intervention on the environment input at $t$. A value near 0 means externally driven. A value near 1 means internally driven. A unit intervention is standardized: one standard deviation of the natural variation of the intervened variable over the window. Without this the ratio depends on the arbitrary units of the two spaces. Autonomy is a necessary part of agency (D12), not a measure of it: a value near 1 is also what a system closed to its environment has.
+where $`\Delta_{\rm int}`$ is the change of $`Z_{t+\tau}`$ under a unit intervention on the internal state at $t$, and $`\Delta_{\rm env}`$ is the change under a unit intervention on the environment input at $t$. A value near 0 means externally driven. A value near 1 means internally driven. A unit intervention is standardized: one standard deviation of the natural variation of the intervened variable over the window. Without this the ratio depends on the arbitrary units of the two spaces. Autonomy is a necessary part of agency (D12), not a measure of it: a value near 1 is also what a system closed to its environment has.
 
-Autonomy depends on the window $\tau_w$ (§4.4), so it is reported as a profile $\mathcal{A}(\tau_w)$, in the same spirit as the dimension profile $d(\varepsilon)$ (§10). What counts as internal is what is fixed in $R$ over the window. Autonomy also depends on the coarse-graining $\varphi_A$ (A2). At a micro-level a gas is sensitive to perturbations of its own internal state, so the examples in this document refer to the stated macro-level description.
+Autonomy depends on the window $`\tau_w`$ (§4.4), so it is reported as a profile $`\mathcal{A}(\tau_w)`$, in the same spirit as the dimension profile $d(\varepsilon)$ (§10). What counts as internal is what is fixed in $R$ over the window. Autonomy also depends on the coarse-graining $`\varphi_A`$ (A2). At a micro-level a gas is sensitive to perturbations of its own internal state, so the examples in this document refer to the stated macro-level description.
 
-**D11a. Informedness $\mathrm{Inf}(A;\tau_w)$.** How much of the information in the fixed structure $R$ is about regularities of the environment $E$, whatever history put it there (learning in the individual, training, or selection in a lineage). Provenance does not enter the measure. Content does. Proxy:
+**D11a. Informedness $`\mathrm{Inf}(A;\tau_w)`$.** How much of the information in the fixed structure $R$ is about regularities of the environment $E$, whatever history put it there (learning in the individual, training, or selection in a lineage). Provenance does not enter the measure. Content does. Proxy:
 
 $$\mathrm{Inf}=1-\varepsilon_A/\varepsilon_0$$
 
-where $\varepsilon_A$ is the held-out error of predicting environment variables (or the next input) from $Z_A$, and $\varepsilon_0$ is the error of the same estimator when $R$ is randomized. Values lie in $[0,1]$. A system with no learned or fixed structure $R$ (a gas cloud) has $\mathrm{Inf}\approx 0$.
+where $`\varepsilon_A`$ is the held-out error of predicting environment variables (or the next input) from $`Z_A`$, and $`\varepsilon_0`$ is the error of the same estimator when $R$ is randomized. Values lie in $[0,1]$. A system with no learned or fixed structure $R$ (a gas cloud) has $\mathrm{Inf}\approx 0$.
 
-**D11b. Loop closure $\mathrm{Cl}(A;\tau_w)$.** How much of the system's own future input is set by its own earlier outputs, as against by sources in the environment that act independently of it:
+**D11b. Loop closure $`\mathrm{Cl}(A;\tau_w)`$.** How much of the system's own future input is set by its own earlier outputs, as against by sources in the environment that act independently of it:
 
 $$\mathrm{Cl}=\frac{\mathbb{E}\lVert\Delta^{\rm act}_{\rm in}\rVert}{\mathbb{E}\lVert\Delta^{\rm act}_{\rm in}\rVert+\mathbb{E}\lVert\Delta^{\rm ext}_{\rm in}\rVert}$$
 
-where $\Delta^{\rm act}_{\rm in}$ is the change of the input at $t+\tau$ under a standardized intervention on the system's output at $t$, and $\Delta^{\rm ext}_{\rm in}$ is the change under a standardized intervention on an environment source not mediated by $A$. $\mathrm{Cl}\approx 0$ means the system only receives (a classifier, a frozen model answering one query). What belongs to the environment is part of the declaration (D2): a chat model closes a loop through its interlocutor on the window of a conversation and does not on the window of one call.
+where $`\Delta^{\rm act}_{\rm in}`$ is the change of the input at $t+\tau$ under a standardized intervention on the system's output at $t$, and $`\Delta^{\rm ext}_{\rm in}`$ is the change under a standardized intervention on an environment source not mediated by $A$. $\mathrm{Cl}\approx 0$ means the system only receives (a classifier, a frozen model answering one query). What belongs to the environment is part of the declaration (D2): a chat model closes a loop through its interlocutor on the window of a conversation and does not on the window of one call.
 
-**D11c. Relevance and use $U(A;\tau_w)$.** Information in $R$ about $E$ is *relevant* for $A$ when decoupling it from $E$ lowers a reference quantity $Q$ that the system maintains. Decoupling means replacing the dependence of $A$ on $E$ by a surrogate that keeps the marginal statistics and breaks the dependence (time-shuffled input on the relevant channel, or $R$ obtained in an independent instance of the environment). Use is the dimensionless drop:
+**D11c. Relevance and use $`U(A;\tau_w)`$.** Information in $R$ about $E$ is *relevant* for $A$ when decoupling it from $E$ lowers a reference quantity $Q$ that the system maintains. Decoupling means replacing the dependence of $A$ on $E$ by a surrogate that keeps the marginal statistics and breaks the dependence (time-shuffled input on the relevant channel, or $R$ obtained in an independent instance of the environment). Use is the dimensionless drop:
 
 $$U=\frac{Q_{\rm int}-Q_{\rm dec}}{Q_{\rm int}-Q_{\rm floor}}$$
 
-with $Q_{\rm int}$ the value for the intact system, $Q_{\rm dec}$ the value after decoupling, and $Q_{\rm floor}$ the value for a random policy. With stake, $Q=v$ (D17): relevance is intrinsic, because it is defined by what the system can lose. Without stake, $Q$ is a score or loss chosen from outside, and relevance is borrowed (§15.6).
+with $`Q_{\rm int}`$ the value for the intact system, $`Q_{\rm dec}`$ the value after decoupling, and $`Q_{\rm floor}`$ the value for a random policy. With stake, $Q=v$ (D17): relevance is intrinsic, because it is defined by what the system can lose. Without stake, $Q$ is a score or loss chosen from outside, and relevance is borrowed (§15.6).
 
-**D12. Agent.** A subsystem $A$ is an agent on the window $\tau_w$ when $I(A)>\theta_I$, $T_{\rm pers}(A)>\theta_T$, $\mathcal{A}(A;\tau_w)>\theta_A$, and the loop holds: $\mathrm{Inf}>\theta_{\rm Inf}$, $\mathrm{Cl}>\theta_{\rm Cl}$, $U>\theta_U$. The loop in words: structure fixed by experience carries information about the environment, the system acts on the environment, and the information it acts on is information whose loss would cost it something. Two grades by the reference of $U$: an *intrinsic agent* ($Q=v$, stake) and a *task-relative agent* ($Q$ external). The thresholds are not fixed in this document. Agency is graded. "Agent" is a label for a region of this six-dimensional space. Each condition excludes a class on its own: a closed oscillator has high $\mathcal{A}$ and $\mathrm{Inf}\approx\mathrm{Cl}\approx 0$; a trained passive classifier has high $\mathrm{Inf}$ and $U$ and $\mathrm{Cl}\approx 0$; a gas cloud has no $R$ at all.
+**D12. Agent.** A subsystem $A$ is an agent on the window $`\tau_w`$ when $`I(A)>\theta_I`$, $`T_{\rm pers}(A)>\theta_T`$, $`\mathcal{A}(A;\tau_w)>\theta_A`$, and the loop holds: $`\mathrm{Inf}>\theta_{\rm Inf}`$, $`\mathrm{Cl}>\theta_{\rm Cl}`$, $`U>\theta_U`$. The loop in words: structure fixed by experience carries information about the environment, the system acts on the environment, and the information it acts on is information whose loss would cost it something. Two grades by the reference of $U$: an *intrinsic agent* ($Q=v$, stake) and a *task-relative agent* ($Q$ external). The thresholds are not fixed in this document. Agency is graded. "Agent" is a label for a region of this six-dimensional space. Each condition excludes a class on its own: a closed oscillator has high $\mathcal{A}$ and $\mathrm{Inf}\approx\mathrm{Cl}\approx 0$; a trained passive classifier has high $\mathrm{Inf}$ and $U$ and $\mathrm{Cl}\approx 0$; a gas cloud has no $R$ at all.
 
 ### 5.3 Why stake appears here
 
@@ -249,17 +249,17 @@ The training phase of a model is not counted as plasticity of the deployed syste
 
 One candidate functional role of the self-model is to separate the system's own contribution to its current input from contributions that originate independently in the environment. Without such a separation, loop closure $\mathrm{Cl}$ and autonomy $\mathcal{A}$ remain difficult to interpret from inside the system. This role is stated as a working hypothesis (UNDECIDED) and is not required for the formal definition of $M$.
 
-**D14a. Write-back $W(A,\tau_w)$.** Fix a subsystem boundary for $A$ (D2) and a window $\tau_w$. $R_A$ is the structure inside that boundary that stays fixed during a window and conditions the dynamics of $Z_A$: weights, synaptic connections, and any persistent store declared inside the boundary. Let $R_k$ be $R_A$ at the start of window $k$. Write-back holds for $(A,\tau_w)$ when all three conditions hold:
-- *Own operation:* $R_{k+1}\neq R_k$, and the difference is caused by $A$'s own processing during window $k$ (intervening on that processing changes $R_{k+1}$), not by a change supplied from outside the boundary;
+**D14a. Write-back $`W(A,\tau_w)`$.** Fix a subsystem boundary for $A$ (D2) and a window $`\tau_w`$. $`R_A`$ is the structure inside that boundary that stays fixed during a window and conditions the dynamics of $`Z_A`$: weights, synaptic connections, and any persistent store declared inside the boundary. Let $`R_k`$ be $`R_A`$ at the start of window $k$. Write-back holds for $`(A,\tau_w)`$ when all three conditions hold:
+- *Own operation:* $`R_{k+1}\neq R_k`$, and the difference is caused by $A$'s own processing during window $k$ (intervening on that processing changes $`R_{k+1}`$), not by a change supplied from outside the boundary;
 - *Persistence:* the difference survives at least one window boundary (the medium or slow time scale of D13);
-- *Conditioning:* restoring $R_k$ in the changed region changes $A$'s trajectory in window $k+1$.
+- *Conditioning:* restoring $`R_k`$ in the changed region changes $A$'s trajectory in window $k+1$.
 
 Changes of activations or context inside a window are not write-back. The boundary and the window are declared first and $W$ is evaluated after. The same physical system can be $W$-absent for one boundary and $W$-present for another (§15.15). The weights of a deployed LLM are one boundary. The weights plus a scaffold with persistent memory are another.
 
-**D15. Other-model $O_B$.** A region of $Z_A$ that holds an approximate model of another agent $B$: of its behavior, and at higher depth of its internal structure. Depth levels:
+**D15. Other-model $`O_B`$.** A region of $`Z_A`$ that holds an approximate model of another agent $B$: of its behavior, and at higher depth of its internal structure. Depth levels:
 - **E-level:** modeling the environment and external interaction;
 - **M-level:** modeling one's own internal structure ($M$);
-- **O-level:** modeling another agent's internal structure ($O_B$).
+- **O-level:** modeling another agent's internal structure ($`O_B`$).
 
 These are three kinds of capability, not a strict ladder. Each has its own capacity requirement (§7).
 
@@ -277,7 +277,7 @@ Coupling is directed. $\mathrm{Coup}(A\!\to\!B)$ does not imply $\mathrm{Coup}(B
 ### 6.2 Candidate conditions for consciousness-like organization
 
 - **C1. Self-model.** Without $M$ the system has no current access to its own state. A candidate additional role is the separation of self-caused from externally caused input (see D14).
-- **C2. Write-back.** The predicate $W(A,\tau_w)$ of D14a holds for the declared boundary and window: the system's own operation changes $R$, the change persists across a window boundary, and it conditions later trajectories. Needed for a continuous self over time: qualia accumulate and change through the system's own experience. C2 is always reported with its boundary and window. There is no partial C2 and no C2 outside a declared subsystem. For C1 and C2 to count together, part of what is written must come from the self-model step: intervening on the output of $M$ must change $R_{k+1}$. Otherwise C2 may hold, but the continuous-self condition (C1 and C2 together) does not.
+- **C2. Write-back.** The predicate $`W(A,\tau_w)`$ of D14a holds for the declared boundary and window: the system's own operation changes $R$, the change persists across a window boundary, and it conditions later trajectories. Needed for a continuous self over time: qualia accumulate and change through the system's own experience. C2 is always reported with its boundary and window. There is no partial C2 and no C2 outside a declared subsystem. For C1 and C2 to count together, part of what is written must come from the self-model step: intervening on the output of $M$ must change $`R_{k+1}`$. Otherwise C2 may hold, but the continuous-self condition (C1 and C2 together) does not.
 - **C3. Stake.** Needed for the depth of bodily qualia. It is not needed for the S-layer to exist.
 
 Two grades, stated as a working position (UNDECIDED):
@@ -302,7 +302,7 @@ Number of degrees of freedom and complexity are often offered as the main variab
 | Kolmogorov complexity | length of the shortest description | No. It is maximal for noise, and noise is not organized. | not a measure of organization |
 | Statistical (predictive) complexity | minimal memory needed to predict the process | Partly. It measures structure, not who governs it. | how much a system must remember to model a process |
 | Integration $I$ | interdependence of parts relative to the environment | Yes (D12) | whether there is one thing or several |
-| Persistence $T_{\rm pers}$ | stability over time | Yes (D12) | whether the structure maintains itself |
+| Persistence $`T_{\rm pers}`$ | stability over time | Yes (D12) | whether the structure maintains itself |
 | Autonomy $\mathcal{A}$ | share of the future set by own fixed structure | Yes (D12) | internal vs external control |
 | Informed closed loop $\mathrm{Inf}$, $\mathrm{Cl}$, $U$ | whether the structure holds information about the environment, acts on it, and depends on it | Yes (D12) | whether the system is more than a passive filter or a closed generator |
 | Capacity | how much structure can be held | No | the ceiling on E-, M-, O-level modeling |
@@ -313,7 +313,7 @@ If agent $A$ is to model agent $B$ well enough to predict $B$'s behavior or regu
 
 $$C(A)\ \ge\ C_{\rm eff}(B\mid\text{task})$$
 
-where $C(A)$ is the capacity of the modeling system and $C_{\rm eff}(B\mid\text{task})$ is the effective complexity of the part of $B$ that matters for the task. Two consequences:
+where $C(A)$ is the capacity of the modeling system and $`C_{\rm eff}(B\mid\text{task})`$ is the effective complexity of the part of $B$ that matters for the task. Two consequences:
 
 - Modeling the internal structure of another agent needs more capacity than predicting its coarse behavior, and more still than reacting to it.
 - A larger system is not therefore a better modeler: capacity is necessary, not sufficient. Alignment of the two systems' codes (§8.3) can matter as much as capacity.
@@ -336,13 +336,13 @@ Two agents $A$ and $B$ each hold a high-dimensional latent. They exchange inform
 
 ### 8.2 Setup and definitions
 
-Let $Z_A$, $Z_B$ be the latents. $A$ emits signals $X^n$ over $n$ uses of a channel with capacity $C$ per use. $B$ receives $Y^n$ and builds an estimate $\hat{Z}_A$ of $A$'s structure, using also its own latent $Z_B$ (its prior, its code).
+Let $`Z_A`$, $`Z_B`$ be the latents. $A$ emits signals $X^n$ over $n$ uses of a channel with capacity $C$ per use. $B$ receives $Y^n$ and builds an estimate $`\hat{Z}_A`$ of $A$'s structure, using also its own latent $`Z_B`$ (its prior, its code).
 
-**D18. Recoverability $\mathrm{Rec}(A\!\to\!B)$.** How well $B$'s model of $A$ predicts $A$'s behavior on interventions that were not used in building the model, normalized against a baseline model that sees only the channel statistics. Where internal states of both are accessible (models), relational similarity of $\hat{Z}_A$ to $Z_A$ (CKA/RSA) is a second measure.
+**D18. Recoverability $\mathrm{Rec}(A\!\to\!B)$.** How well $B$'s model of $A$ predicts $A$'s behavior on interventions that were not used in building the model, normalized against a baseline model that sees only the channel statistics. Where internal states of both are accessible (models), relational similarity of $`\hat{Z}_A`$ to $`Z_A`$ (CKA/RSA) is a second measure.
 
 ### 8.3 A formal bound
 
-Assume the Markov structure $Z_A\to X^n\to Y^n$, memoryless channel, noise independent of both latents, and $\hat{Z}_A=f(Y^n,Z_B)$. Then:
+Assume the Markov structure $`Z_A\to X^n\to Y^n`$, memoryless channel, noise independent of both latents, and $`\hat{Z}_A=f(Y^n,Z_B)`$. Then:
 
 $$I(Z_A;\hat{Z}_A)\ \le\ I(Z_A;Z_B)+nC$$
 
@@ -353,13 +353,13 @@ The first term is the **shared prior**: information about $A$ that $B$ already h
 | Factor | Direction of effect | Comment |
 | ------ | ------------------- | ------- |
 | Channel capacity and number of uses $nC$ | more is better, up to the bound | the hard limit |
-| Shared prior $I(Z_A;Z_B)$ | more is better | shared training data and architecture reduce what has to be transmitted |
+| Shared prior $`I(Z_A;Z_B)`$ | more is better | shared training data and architecture reduce what has to be transmitted |
 | Alignment of codes | better alignment, less loss | the same message can map to different internal states in $A$ and $B$ |
-| Identifiability | limits what can be recovered | many internal structures give the same behavior; only the equivalence class $[Z_A]$ is recoverable from behavior |
+| Identifiability | limits what can be recovered | many internal structures give the same behavior; only the equivalence class $`[Z_A]`$ is recoverable from behavior |
 | Compressibility of $A$ | more regular $A$ is cheaper to recover | high structure with low irreducible randomness |
-| Capacity of $B$ | $C(B)\ge C_{\rm eff}(A)$ is required (A9) | otherwise recovery saturates below the bound |
+| Capacity of $B$ | $`C(B)\ge C_{\rm eff}(A)`$ is required (A9) | otherwise recovery saturates below the bound |
 | Ability of $B$ to intervene | interactive beats passive | $B$ can choose informative queries |
-| Stationarity of $A$ | a changing $A$ is a moving target | plasticity $\Pi_A$ shortens the useful life of $\hat{Z}_A$ |
+| Stationarity of $A$ | a changing $A$ is a moving target | plasticity $`\Pi_A`$ shortens the useful life of $`\hat{Z}_A`$ |
 | Noise | degrades the usable $C$ | enters through $C$ |
 
 ### 8.4a Channel classification (working)
@@ -469,13 +469,13 @@ Other estimators: participation ratio, nearest-neighbour intrinsic dimension, sp
 | **A. Profile $d(\varepsilon)$** | how many directions are used at each scale | participation ratio, correlation dimension, TwoNN, Fisher or Jacobian spectrum |
 | **B. Depth $D$** | cost of leaving a region, stiffness | perturbation of activations, time to return, Fisher or Hessian spectrum |
 | **C. Plasticity $\Pi$** | how experience rebuilds $R$ | weight change per unit of experience, time scales |
-| **D. Autonomy and loop profile $\mathcal{A}(\tau_w)$, $\mathrm{Cl}(\tau_w)$, $U(\tau_w)$** | share of the future set by own structure, by time window; whether the system acts on its own input; whether it depends on the information it holds | interventions on internal state, on output, and on environment input; surrogate decoupling; at several windows |
+| **D. Autonomy and loop profile $`\mathcal{A}(\tau_w)`$, $`\mathrm{Cl}(\tau_w)`$, $`U(\tau_w)`$** | share of the future set by own structure, by time window; whether the system acts on its own input; whether it depends on the information it holds | interventions on internal state, on output, and on environment input; surrogate decoupling; at several windows |
 
 The axes are not independent. Depth depends on stake and on training history, so partly on $\Pi$. Autonomy depends on what is fixed in $R$ over the window, so on $\Pi$ and the window. For measurement they are treated separately. In conclusions the dependence is kept in mind.
 
 Structural attributes that determine the axes: a P-layer, a self-model $M$, an other-model $O$, and stake.
 
-The profile $d(\varepsilon)$ is where this document touches the archive's coarse-graining: directions that are invisible at a coarse scale lie, for that description, in the kernel of the map (*Algorithm*, §9). The correspondence is a homology, not an identity. The autonomy profile $\mathcal{A}(\tau_w)$ is the analogous construction along the time axis. (Scale indexing of all agency quantities is stated in §4.4.)
+The profile $d(\varepsilon)$ is where this document touches the archive's coarse-graining: directions that are invisible at a coarse scale lie, for that description, in the kernel of the map (*Algorithm*, §9). The correspondence is a homology, not an identity. The autonomy profile $`\mathcal{A}(\tau_w)`$ is the analogous construction along the time axis. (Scale indexing of all agency quantities is stated in §4.4.)
 
 ---
 
@@ -488,7 +488,7 @@ The profile $d(\varepsilon)$ is where this document touches the archive's coarse
 | Profile $d(\varepsilon)$ | measurable; high dimension in S | measurable | not measurable directly; expected richer because of P (hypothesis) |
 | Depth $D$ | small; training loss has pits, but no stake | small (no stake) | large in P (stake), moderate in S |
 | Plasticity $\Pi$ | present in training; about zero in deployment | offline: about zero; online agents: above zero | above zero on several time scales |
-| Autonomy $\mathcal{A}(\tau_w)$ | moderate in a single call, window-dependent | depends on the agent loop | high on most windows |
+| Autonomy $`\mathcal{A}(\tau_w)`$ | moderate in a single call, window-dependent | depends on the agent loop | high on most windows |
 | Closed informed loop (Inf, Cl, $U$) | Inf high in S; Cl about 0 in one call, above 0 on longer windows through an interlocutor or tools; $U$ relative to an external task | Inf high in P; Cl depends on the agent loop; $U$ relative to an external task | all high; $U$ relative to its own viability |
 | Reasoning budget $\rho$ | spread inside S | almost all spent on P | hard competition between P and S |
 | Self-model $M$ (C1) | limited, functional, reliability disputed | usually none (agents may model their own body) | rich |
@@ -518,7 +518,7 @@ This is a homology of forms, not an identity. This document is not a part of the
 | Consciousness as recursive semantic self-correction under external verification | *Algorithm* §10; *Framework* §4.2 | C1 (self-model) and C2 (write-back of corrections) on top of agency | The first parts are restated at the latent level. External verification is not formalized here. P-layer plus stake is one concrete channel through which the world penalizes errors. |
 | The hard problem is bracketed | *Algorithm* §10.3 | The boundary in §14 | Same stance. |
 | Substrate as constraint envelope; substrate-parameterization | *Algorithm* §11; *Framework* §4.4 | A1; §3.4; the P-layer; stake | The body enters as envelope parameters. The archive's UNDECIDED on necessary envelope thresholds applies equally to C3. |
-| Irrelevance as the kernel of coarse-graining | *Algorithm* §9; *Framework* §4.3 | Profile $d(\varepsilon)$; the choice of $\varphi_A$ in A2 | Homology through scale-indexing. |
+| Irrelevance as the kernel of coarse-graining | *Algorithm* §9; *Framework* §4.3 | Profile $d(\varepsilon)$; the choice of $`\varphi_A`$ in A2 | Homology through scale-indexing. |
 | Compression is thermodynamically mandatory | *Algorithm* §9.4 | Bounded reasoning budget (T3); finite channel capacity (§8) | T3 and §8 inherit the bound. |
 | Grounding is a history of certified transitions; a prediction is not a fact | *Algorithm* §10.2; *UIM* §2.3, §17 | Write-back (C2); stored models of others (D16) | This document does not say what may be written back. The archive supplies a candidate rule: only externally certified corrections, otherwise recursion degenerates into self-confirmation. Not adopted. The same issue applies to a model of another agent: a stored model that is never checked against the other drifts. *Status:* UNDECIDED. |
 | Geometric theory of latent representations; experimental track E1–E5 | *Framework* §5.6, §8.2 | Effective-dimension, Fisher-spectrum, and autonomy measurements (§13) | May share models and tooling. Compatibility of the two geometric descriptions is not examined. *Status:* UNDECIDED. |
@@ -550,18 +550,18 @@ The program measures geometry, autonomy, recoverability, and directed coupling. 
 1. Choose systems with known internal structure: simulated physical systems (a gas cloud analogue, a thermostat), RL agents, a frozen LLM, an LLM with an agent loop. Add the negative controls the loop is meant to exclude: closed autonomous oscillators (a limit cycle, a chaotic oscillator, a reaction-diffusion analogue of a flame) and a trained passive classifier.
 2. For each, perform standardized interventions on the internal state and on the environment input at time $t$, and measure the change in the internal state at $t+\tau$. Compute $\mathcal{A}^{\rm do}$ at several windows.
 3. Perform standardized interventions on the system's output and on environment sources not mediated by it, and measure the change of the input at $t+\tau$. Compute $\mathrm{Cl}$.
-4. Compute $\mathrm{Inf}$: error of a held-out probe or forward model on $Z_A$, against the same estimator with randomized $R$.
+4. Compute $\mathrm{Inf}$: error of a held-out probe or forward model on $`Z_A`$, against the same estimator with randomized $R$.
 5. Compute $U$: choose $Q$ ($v$ where a viability variable exists, an external score otherwise), decouple by a surrogate (time-shuffled relevant input, or $R$ from an independent instance of the environment), and measure the drop.
 6. Compare with $\mathcal{A}^{\rm pred}$ where interventions are not available.
-7. Controls: a system with randomized relief (should give near-zero $\mathrm{Inf}$ and $U$), a system with the environment input shuffled in time, several estimators of $\mathrm{Dep}$, several $\varphi_A$, several surrogate choices for $U$.
+7. Controls: a system with randomized relief (should give near-zero $\mathrm{Inf}$ and $U$), a system with the environment input shuffled in time, several estimators of $\mathrm{Dep}$, several $`\varphi_A`$, several surrogate choices for $U$.
 
-**Write-back check (D14a).** For a system with a persistent store inside the declared boundary: (i) intervene on the system's processing in window $k$ (for example replace the output of the self-model step) and test whether $R_{k+1}$ changes; (ii) check that the difference survives a window boundary; (iii) restore $R_k$ in the changed region and test whether the trajectory in window $k+1$ changes. All three must hold. Otherwise C2 is absent for that boundary.
+**Write-back check (D14a).** For a system with a persistent store inside the declared boundary: (i) intervene on the system's processing in window $k$ (for example replace the output of the self-model step) and test whether $`R_{k+1}`$ changes; (ii) check that the difference survives a window boundary; (iii) restore $`R_k`$ in the changed region and test whether the trajectory in window $k+1$ changes. All three must hold. Otherwise C2 is absent for that boundary.
 
 ### 13.4 Method for recoverability and coupling
 
 1. Take pairs of models $(A,B)$ connected by an explicit bottleneck channel of controllable capacity and noise.
 2. Vary: capacity $nC$, shared prior (same data and architecture vs different), capacity of $B$, passive vs interactive access, stationarity of $A$.
-3. Measure $\mathrm{Rec}(A\!\to\!B)$ on held-out interventions and the CKA/RSA similarity of $\hat{Z}_A$ to $Z_A$.
+3. Measure $\mathrm{Rec}(A\!\to\!B)$ on held-out interventions and the CKA/RSA similarity of $`\hat{Z}_A`$ to $`Z_A`$.
 4. Test $\mathrm{Coup}(A\!\to\!B)$ by checking whether recovered structure beyond the prior changes $B$'s subsequent trajectory or its persistent store.
 5. Controls: $B$ with no access to the channel (baseline), $B$ receiving shuffled channel output, $A$ replaced by a behaviorally equivalent but internally different system (tests identifiability).
 
@@ -574,9 +574,9 @@ The program measures geometry, autonomy, recoverability, and directed coupling. 
 | P3 | An RL agent in simulation with a viability variable (stake) has deeper pits in the linked regions than the same agent without it: more effort to leave, longer time to return, stiffer spectrum. | No difference. |
 | P4 | The profile $d(\varepsilon)$ differs between an LLM, a world model, and an embodied model. A flat profile everywhere means axis A is uninformative. | The profiles cannot be told apart. |
 | P5 | Across training checkpoints of one model (for example, a public checkpoint family) coarse-scale structure forms before fine-scale structure. | The order is reversed or random. The link to this framework is indirect (axis C). |
-| P6 | Agency separates systems that degrees of freedom and description length do not. With $\mathrm{Inf}$, $\mathrm{Cl}$, $U$, and $\mathcal{A}^{\rm do}$ measured on the systems of §13.3: a gas-cloud analogue is near zero on the loop quantities (no $R$); closed oscillators have high $\mathcal{A}^{\rm do}$ and near-zero $\mathrm{Inf}$ and $\mathrm{Cl}$; a trained passive classifier and a frozen model in a single call have high $\mathrm{Inf}$ and $U$ and near-zero $\mathrm{Cl}$ in the call window; RL agents and agentic LLM systems on long windows are above the others on all of $\mathcal{A}^{\rm do}$, $\mathrm{Inf}$, $\mathrm{Cl}$, $U$. | The classification by D12 does not differ from the ordering by number of degrees of freedom or by description length; or a closed oscillator or a passive classifier passes D12 at thresholds that also admit the RL agents; or the classification is not stable across estimators, $\varphi_A$, and surrogate choices. |
+| P6 | Agency separates systems that degrees of freedom and description length do not. With $\mathrm{Inf}$, $\mathrm{Cl}$, $U$, and $\mathcal{A}^{\rm do}$ measured on the systems of §13.3: a gas-cloud analogue is near zero on the loop quantities (no $R$); closed oscillators have high $\mathcal{A}^{\rm do}$ and near-zero $\mathrm{Inf}$ and $\mathrm{Cl}$; a trained passive classifier and a frozen model in a single call have high $\mathrm{Inf}$ and $U$ and near-zero $\mathrm{Cl}$ in the call window; RL agents and agentic LLM systems on long windows are above the others on all of $\mathcal{A}^{\rm do}$, $\mathrm{Inf}$, $\mathrm{Cl}$, $U$. | The classification by D12 does not differ from the ordering by number of degrees of freedom or by description length; or a closed oscillator or a passive classifier passes D12 at thresholds that also admit the RL agents; or the classification is not stable across estimators, $`\varphi_A`$, and surrogate choices. |
 | P7 | Recoverability grows with channel capacity and with shared prior, saturates below the bound of §8.3, and is higher for interactive than for passive access at equal capacity. | Recoverability does not respond to these factors, or exceeds the bound in a setup where its assumptions hold (which would indicate an error in the setup). |
-| P8 | A threshold in the capacity of $B$ exists: below $C_{\rm eff}$ of the relevant part of $A$, recoverability saturates at a low level whatever the channel capacity. | Recoverability continues to grow past the capacity of $B$ with no threshold. |
+| P8 | A threshold in the capacity of $B$ exists: below $`C_{\rm eff}`$ of the relevant part of $A$, recoverability saturates at a low level whatever the channel capacity. | Recoverability continues to grow past the capacity of $B$ with no threshold. |
 | P9 | Adding a viability variable (stake) to an RL agent raises its autonomy at long windows compared with the same agent without it, because relevance of information becomes defined by $v$. $\mathrm{Inf}$ and $\mathrm{Cl}$ are matched between the two designs. | No change in autonomy, or a change explained by the training procedure alone. |
 
 ### 13.6 Priority
@@ -623,7 +623,7 @@ $\mathrm{Dep}$ in D9 is a placeholder. Candidate measures (mutual information, t
 
 ### 15.3 The choice of boundary and coarse-graining
 
-A subsystem and its coarse-graining $\varphi_A$ are chosen by the observer. Different choices may give different integration and autonomy for the same physical system. Without a rule for the choice (for example, maximizing some objective), the results are only conditional.
+A subsystem and its coarse-graining $`\varphi_A`$ are chosen by the observer. Different choices may give different integration and autonomy for the same physical system. Without a rule for the choice (for example, maximizing some objective), the results are only conditional.
 
 ### 15.4 Autonomy depends on the time window
 
@@ -667,7 +667,7 @@ Results that would damage the framework: (i) P3 and P9 show no effect of stake o
 
 ### 15.14 The loop conditions
 
-The thresholds $\theta_{\rm Inf}$, $\theta_{\rm Cl}$, $\theta_U$ are not set, so the classification is conditional on them, like the other thresholds. $U$ depends on the choice of $Q$ and on the surrogate used for decoupling: a surrogate that leaves a dependence in place or destroys unrelated structure gives a wrong $U$. $\mathrm{Cl}$ depends on what is declared as environment: the same chat model has $\mathrm{Cl}\approx 0$ on the window of one call and $\mathrm{Cl}>0$ on the window of a conversation, because the interlocutor reacts to its output. The criterion admits a thermostat as a minimal task-relative agent. This is accepted: agency is graded, and capacity (§7) sets how far such a system can go.
+The thresholds $`\theta_{\rm Inf}`$, $`\theta_{\rm Cl}`$, $`\theta_U`$ are not set, so the classification is conditional on them, like the other thresholds. $U$ depends on the choice of $Q$ and on the surrogate used for decoupling: a surrogate that leaves a dependence in place or destroys unrelated structure gives a wrong $U$. $\mathrm{Cl}$ depends on what is declared as environment: the same chat model has $\mathrm{Cl}\approx 0$ on the window of one call and $\mathrm{Cl}>0$ on the window of a conversation, because the interlocutor reacts to its output. The criterion admits a thermostat as a minimal task-relative agent. This is accepted: agency is graded, and capacity (§7) sets how far such a system can go.
 
 ### 15.15 Write-back depends on the declared boundary
 
@@ -695,11 +695,11 @@ Rule used for derived claims. A claim gets FOLLOW only if it follows from the de
 | Coupling needs recovery of structure beyond the shared prior and its use, and is directed | FOLLOW (definition) | D15a |
 | The measures are invariant in principle under the classes of §7.5 | FOLLOW (idealized measures); UNDECIDED (estimators) | §7.5 |
 | Integration is informational, not physical | FOLLOW (definition) | D9 |
-| Scale indexing of agency quantities (via $\varphi_A$ and $\tau_w$) | FOLLOW (follows from A2 and §4.4) | §4.4 |
+| Scale indexing of agency quantities (via $`\varphi_A`$ and $`\tau_w`$) | FOLLOW (follows from A2 and §4.4) | §4.4 |
 | Shared causal order is a precondition for any channel; it does not unify internal latents | FOLLOW (definitional) | §3.1 |
 | The role of the self-model is to separate the system's own contribution to its input from the environment's | UNDECIDED | C1 / D14; no test run |
 | Qualia split into S and P classes | FOLLOW (formal structure) | D4, D6 |
-| $I(Z_A;\hat{Z}_A)\le I(Z_A;Z_B)+nC$ under the stated assumptions | FOLLOW (mathematical result) | Data processing and channel capacity; assumptions in §8.3 |
+| $`I(Z_A;\hat{Z}_A)\le I(Z_A;Z_B)+nC`$ under the stated assumptions | FOLLOW (mathematical result) | Data processing and channel capacity; assumptions in §8.3 |
 | Interaction does not raise the capacity bound of a memoryless channel | FOLLOW (mathematical result) | Feedback does not increase the capacity of a memoryless channel |
 | Recoverable content is the equivalence class of the latent, not its coordinates | FOLLOW (formal structure) | Behavioral equivalence; D18 |
 | A gas cloud is not an agent by the criterion D12 | FOLLOW (given D5, D11a–D12) | No fixed structure $R$, so $\mathrm{Inf}\approx 0$; holds at the stated macro-level description |
@@ -771,25 +771,25 @@ Most expressions are schemata: compressed relations that make the argument easie
 
 | Expression | Status | Reading |
 | ---------- | ------ | ------- |
-| $Z_A=\varphi_A(x_A)$ | Schema | Latent as a coarse-grained description of a subsystem |
+| $`Z_A=\varphi_A(x_A)`$ | Schema | Latent as a coarse-grained description of a subsystem |
 | $Z\supseteq P\cup S$, coupled | Schema | Layers of one subsystem's latent |
 | $R=R(\theta)$ | Schema | Relief determined by weights |
 | $D(U)=\inf\{\lVert\delta\rVert: z+\delta\text{ does not return to }U\}$ | Formal structure | Depth of a region |
 | $F(\theta)=\mathbb{E}[\nabla\log p\,\nabla\log p^{\top}]$, spectrum of $F$ | Measurement proxy | Stiff directions as a proxy for depth (A6) |
 | $d(r)=d\log C(r)/d\log r$ | Measurement proxy | Effective dimension at scale $r$ |
-| $c_P+c_S\le\rho_{\max}$ | Schema | The cost of traversal per unit time is bounded by the envelope |
+| $`c_P+c_S\le\rho_{\max}`$ | Schema | The cost of traversal per unit time is bounded by the envelope |
 | $\Pi=\lVert\Delta R\rVert/\text{unit of experience}$ | Schema | Plasticity |
 | $M(z)\subset Z$, with $M\subset z$ | Schema | Self-model inside the space it models |
-| $I(A)=\min_{\text{cuts}}\mathrm{Dep}(A_1\leftrightarrow A_2)/\mathrm{Dep}(A\leftrightarrow E)$ | Schema, measure open | Integration |
-| $\mathcal{A}^{\rm pred}_\tau=I(Z_{t+\tau};Z_t\mid E_t)$ | Measurement proxy | Predictive autonomy |
-| $\mathcal{A}^{\rm do}_\tau=\mathbb{E}\lVert\Delta_{\rm int}\rVert/(\mathbb{E}\lVert\Delta_{\rm int}\rVert+\mathbb{E}\lVert\Delta_{\rm env}\rVert)$ | Measurement proxy | Interventional autonomy |
-| $\mathrm{Inf}=1-\varepsilon_A/\varepsilon_0$ | Measurement proxy | Informedness: gain over randomized relief |
-| $\mathrm{Cl}=\mathbb{E}\lVert\Delta^{\rm act}_{\rm in}\rVert/(\mathbb{E}\lVert\Delta^{\rm act}_{\rm in}\rVert+\mathbb{E}\lVert\Delta^{\rm ext}_{\rm in}\rVert)$ | Measurement proxy | Loop closure |
-| $U=(Q_{\rm int}-Q_{\rm dec})/(Q_{\rm int}-Q_{\rm floor})$ | Measurement proxy | Use of relevant information |
-| $C(A)\ge C_{\rm eff}(B\mid\text{task})$ | Schema (A9) | Requisite capacity |
-| $I(Z_A;\hat{Z}_A)\le I(Z_A;Z_B)+nC$ | Mathematical result under stated assumptions | Recoverability bound |
+| $`I(A)=\min_{\text{cuts}}\mathrm{Dep}(A_1\leftrightarrow A_2)/\mathrm{Dep}(A\leftrightarrow E)`$ | Schema, measure open | Integration |
+| $`\mathcal{A}^{\rm pred}_\tau=I(Z_{t+\tau};Z_t\mid E_t)`$ | Measurement proxy | Predictive autonomy |
+| $`\mathcal{A}^{\rm do}_\tau=\mathbb{E}\lVert\Delta_{\rm int}\rVert/(\mathbb{E}\lVert\Delta_{\rm int}\rVert+\mathbb{E}\lVert\Delta_{\rm env}\rVert)`$ | Measurement proxy | Interventional autonomy |
+| $`\mathrm{Inf}=1-\varepsilon_A/\varepsilon_0`$ | Measurement proxy | Informedness: gain over randomized relief |
+| $`\mathrm{Cl}=\mathbb{E}\lVert\Delta^{\rm act}_{\rm in}\rVert/(\mathbb{E}\lVert\Delta^{\rm act}_{\rm in}\rVert+\mathbb{E}\lVert\Delta^{\rm ext}_{\rm in}\rVert)`$ | Measurement proxy | Loop closure |
+| $`U=(Q_{\rm int}-Q_{\rm dec})/(Q_{\rm int}-Q_{\rm floor})`$ | Measurement proxy | Use of relevant information |
+| $`C(A)\ge C_{\rm eff}(B\mid\text{task})`$ | Schema (A9) | Requisite capacity |
+| $`I(Z_A;\hat{Z}_A)\le I(Z_A;Z_B)+nC`$ | Mathematical result under stated assumptions | Recoverability bound |
 | $\nu$ | Schema | Resolution of a stored model, bits per structure |
-| $W(A,\tau_w)$ | Predicate (D14a) | Write-back: own operation, persistence, conditioning |
+| $`W(A,\tau_w)`$ | Predicate (D14a) | Write-back: own operation, persistence, conditioning |
 | $\mathrm{Coup}(A\!\to\!B)$ | Predicate (D15a) | Directed coupling: channel, recovery beyond the prior, use |
 
 ---
