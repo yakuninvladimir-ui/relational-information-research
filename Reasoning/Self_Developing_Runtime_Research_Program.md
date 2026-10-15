@@ -385,23 +385,23 @@ A vector of independent distances (none of which is privileged):
 - memory-graph edit distance
 - task-performance distance on the retention suite
 
-**Continuity index** \(I(S_t, S_{t+1})\) is a calibrated aggregate; the precise aggregation function is itself an experimental variable and must be reported.
+**Continuity index** $I(S_t, S_{t+1})$ is a calibrated aggregate; the precise aggregation function is itself an experimental variable and must be reported.
 
 A change is admissible only when:
 
-\[
+$$
 C_{t+1} \succ C_t \quad \text{and} \quad I(S_t, S_{t+1}) \ge \tau
-\]
+$$
 
-where \(\tau\) is determined on control groups, not chosen post-hoc.
+where $\tau$ is determined on control groups, not chosen post-hoc.
 
 ---
 
-## 12. Operationalization of \(C\) and \(I\)
+## 12. Operationalization of $C$ and $I$
 
-### 12.1 Capability set \(C\)
+### 12.1 Capability set $C$
 
-\(C\) is defined relative to a concrete artificial environment (Section 17) and consists of:
+$C$ is defined relative to a concrete artificial environment (Section 17) and consists of:
 
 - task success rate on a fixed suite,
 - success rate on a procedurally generated suite,
@@ -411,7 +411,7 @@ where \(\tau\) is determined on control groups, not chosen post-hoc.
 
 All components are measured by the verifier, never by the model.
 
-### 12.2 Structural continuity \(I\)
+### 12.2 Structural continuity $I$
 
 Multiple independent proxies are logged at every checkpoint. The decision rule uses a conservative conjunction or a calibrated weighted score whose weights are frozen before the developmental phases begin.
 
@@ -462,9 +462,9 @@ A purely open-ended chat interface is insufficient; a closed, instrumented micro
 
 ### 16.1 Primary success criterion
 
-\[
+$$
 C_{t+1} \succ C_t \quad \text{subject to} \quad I(S_t, S_{t+1}) \ge \tau
-\]
+$$
 
 with statistical significance over multiple independent runs and against control groups.
 

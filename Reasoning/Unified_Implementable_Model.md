@@ -16,8 +16,8 @@ The mathematical treatment corrects two common errors in box-based semantics. Fi
 
 The resulting model uses three specification relations—required entailment, required incompatibility, and irrelevance—together with a separate epistemic outcome, unresolved. Planning is performed by surface-conditioned, risk-sensitive model predictive control over mixed discrete and continuous actions. Candidate rollouts remain predictive-only; before execution, a deterministic binder constructs a measurable contract and a verifier checks legality, surface compatibility, semantic constraints, and uncertainty. After execution, the official before–action–after tuple is ingested exactly once, producing a four-way verdict: required, forbidden, irrelevant, or unresolved. Canonical claims, assumption lineage, and memory events prevent speculative explanations from being promoted into confirmed mechanics. The same core architecture supports different domains by replacing the perception adapter, action surface, constraint modules, research modules, and recovery policy while preserving the authority, verification, and memory invariants.
 
-> **Canonical alignment (2026-10-14).** The four-way judgment vocabulary of this document is the operational alias system of the canonical verdict space \(V_4=\{\mathrm{FOLLOW}\ (+1),\ \mathrm{OMIT}\ (0),\ \mathrm{NULL}\ (-1),\ \mathrm{UNDECIDED}\ (U)\}
-> fixed in *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems* [12]: REQUIRED ≡ FOLLOW, FORBIDDEN ≡ NULL, IRRELEVANT ≡ OMIT, UNRESOLVED ≡ UNDECIDED. Clause aggregation is governed by the dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW ([12] §4.2), and the structural labels REQ / FORB / IRR of §3 instantiate the canonical Tier-2 ontology relations of [12] §6.2. Where the generic classification of §8 and the contract evaluation \(J(\cdot)\) of [12] §6.1 differ in refinement, [12] is normative (see the note in §8).
+> **Canonical alignment (2026-10-14).** The four-way judgment vocabulary of this document is the operational alias system of the canonical verdict space $V_4=\{\mathrm{FOLLOW}\ (+1),\ \mathrm{OMIT}\ (0),\ \mathrm{NULL}\ (-1),\ \mathrm{UNDECIDED}\ (U)\}$
+> fixed in *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems* [12]: REQUIRED ≡ FOLLOW, FORBIDDEN ≡ NULL, IRRELEVANT ≡ OMIT, UNRESOLVED ≡ UNDECIDED. Clause aggregation is governed by the dominance chain NULL ≻ UNDECIDED ≻ OMIT ≻ FOLLOW ([12] §4.2), and the structural labels REQ / FORB / IRR of §3 instantiate the canonical Tier-2 ontology relations of [12] §6.2. Where the generic classification of §8 and the contract evaluation $J(\cdot)$ of [12] §6.1 differ in refinement, [12] is normative (see the note in §8).
 
 ---
 
@@ -137,31 +137,31 @@ $$
 \mathcal{M} = (\mathcal{X}, \mathcal{O}, \mathcal{A}, \mathcal{T}, \mathcal{Z}, \mathcal{C}),
 $$
 
-where \(x_t \in \mathcal{X}\) is the inaccessible physical state, \(o_t \in \mathcal{O}\) is an observation, \(a_t \in \mathcal{A}\) is an action, \(\mathcal{T}(x_{t+1} \mid x_t, a_t)\) is the transition law, \(\mathcal{Z}(o_t \mid x_t)\) is the observation law, and \(\mathcal{C}\) is the collection of task and safety constraints.
+where $x_t \in \mathcal{X}$ is the inaccessible physical state, $o_t \in \mathcal{O}$ is an observation, $a_t \in \mathcal{A}$ is an action, $\mathcal{T}(x_{t+1} \mid x_t, a_t)$ is the transition law, $\mathcal{Z}(o_t \mid x_t)$ is the observation law, and $\mathcal{C}$ is the collection of task and safety constraints.
 
-At time \(t\), not every action in \(\mathcal{A}\) is necessarily available. The current action surface is
+At time $t$, not every action in $\mathcal{A}$ is necessarily available. The current action surface is
 
 $$
 \Sigma_t = (\mathcal{A}_t, \kappa_t), \qquad \mathcal{A}_t \subseteq \mathcal{A},
 $$
 
-where \(\kappa_t\) contains mode, capability, payload, actuator, communication, and authorization metadata. For a drone, \(\Sigma_t\) may distinguish manual-rate control, position hold, landing, return-to-home, degraded navigation, or payload operation. For a symbolic environment, it may distinguish different interaction modes or newly available action symbols.
+where $\kappa_t$ contains mode, capability, payload, actuator, communication, and authorization metadata. For a drone, $\Sigma_t$ may distinguish manual-rate control, position hold, landing, return-to-home, degraded navigation, or payload operation. For a symbolic environment, it may distinguish different interaction modes or newly available action symbols.
 
 ### 2.2 Trusted observation is not metaphysical truth
 
-The agent cannot directly record \(x_t\). It records a trusted, timestamped observation packet
+The agent cannot directly record $x_t$. It records a trusted, timestamped observation packet
 
 $$
 \bar{o}_t = (o_t, \Sigma_t, m_t),
 $$
 
-where \(m_t\) contains source, timestamp, calibration, synchronization, and estimator metadata. The pair
+where $m_t$ contains source, timestamp, calibration, synchronization, and estimator metadata. The pair
 
 $$
 \epsilon_t = (\bar{o}_t, a_t, \bar{o}_{t+1})
 $$
 
-is the highest-authority transition evidence available to the agent, provided that the environment or control stack accepted \(a_t\) and the returned observation passed ingestion checks. It is called an *authoritative observed transition*; it is not claimed to be the hidden physical state itself.
+is the highest-authority transition evidence available to the agent, provided that the environment or control stack accepted $a_t$ and the returned observation passed ingestion checks. It is called an *authoritative observed transition*; it is not claimed to be the hidden physical state itself.
 
 **Definition 2.1** (Evidence scope). Each result has one of the scopes:
 
@@ -193,7 +193,7 @@ No lower layer may promote its output into a higher evidentiary class without th
 
 ## 3 Three-Way Semantic Specification and Four-Way Judgment
 
-The UIM uses a three-way relation vocabulary inspired by the distinction between consequence, incompatibility, and omission of a relation. Let \(\mathcal{P}\) be a predicate vocabulary. For a pair \((p, q) \in \mathcal{P}^2\), the structural specification label is
+The UIM uses a three-way relation vocabulary inspired by the distinction between consequence, incompatibility, and omission of a relation. Let $\mathcal{P}$ be a predicate vocabulary. For a pair $(p, q) \in \mathcal{P}^2$, the structural specification label is
 
 $$
 R(p, q) \in \{\texttt{REQ}, \texttt{FORB}, \texttt{IRR}\}.
@@ -201,9 +201,9 @@ $$
 
 The labels mean:
 
-1. \(R(p, q) = \texttt{REQ}\): the ontology requires \(p \Rightarrow q\);
-2. \(R(p, q) = \texttt{FORB}\): the ontology requires \(p \land q\) to be impossible for the same grounded argument;
-3. \(R(p, q) = \texttt{IRR}\): no entailment or incompatibility constraint is asserted between \(p\) and \(q\).
+1. $R(p, q) = \texttt{REQ}$: the ontology requires $p \Rightarrow q$;
+2. $R(p, q) = \texttt{FORB}$: the ontology requires $p \land q$ to be impossible for the same grounded argument;
+3. $R(p, q) = \texttt{IRR}$: no entailment or incompatibility constraint is asserted between $p$ and $q$.
 
 Irrelevance is not falsehood. It means that the theory intentionally imposes no relation of the specified kind. Data may still reveal correlation, partial overlap, causal dependence, or a future need to refine the ontology.
 
@@ -215,7 +215,7 @@ $$
 
 Here `UNRESOLVED` is not a fourth structural relation. It records insufficient, predictive-only, stale, unstable, or contradictory evidence. This separation prevents unknown from being treated as false and prevents a legal no-progress action from being treated as a contradiction.
 
-The canonical grounding of the separation is fixed in [12] §1.3 and §4.1: Brusentsov's status 0 (omission of a DNF constituent) is an **ontological** inessentiality of a relation member, distinct from Łukasiewicz–Kleene epistemic truth-value gaps and from Belnap's bilattice; epistemic insufficiency is isolated as the control signal UNRESOLVED (canonical UNDECIDED, \(U\)), never as a fourth structural relation.
+The canonical grounding of the separation is fixed in [12] §1.3 and §4.1: Brusentsov's status 0 (omission of a DNF constituent) is an **ontological** inessentiality of a relation member, distinct from Łukasiewicz–Kleene epistemic truth-value gaps and from Belnap's bilattice; epistemic insufficiency is isolated as the control signal UNRESOLVED (canonical UNDECIDED, $U$), never as a fourth structural relation.
 
 ---
 
@@ -223,13 +223,13 @@ The canonical grounding of the separation is fixed in [12] §1.3 and §4.1: Brus
 
 ### 4.1 Entity and relation grounding
 
-A predicate box is a region in a semantic feature space, not a state-dependent box generated anew for every rollout. Let \(e_{t,i}\) be an object or entity representation extracted from the current scene graph \(G_t\). A grounding map produces
+A predicate box is a region in a semantic feature space, not a state-dependent box generated anew for every rollout. Let $e_{t,i}$ be an object or entity representation extracted from the current scene graph $G_t$. A grounding map produces
 
 $$
 \xi_{t,i} = \psi_\eta(e_{t,i}, G_t) \in \mathbb{R}^m.
 $$
 
-For a binary relation \(r(i, j)\), a relation grounding map may use
+For a binary relation $r(i, j)$, a relation grounding map may use
 
 $$
 \xi^{(2)}_{t,ij} = \psi^{(2)}_\eta(e_{t,i}, e_{t,j}, G_t) \in \mathbb{R}^{m_2}.
@@ -237,7 +237,7 @@ $$
 
 Unary and relational predicates may use separate semantic spaces.
 
-Each unary predicate \(p \in \mathcal{P}\) is represented by a closed axis-aligned box
+Each unary predicate $p \in \mathcal{P}$ is represented by a closed axis-aligned box
 
 $$
 B_p = [\ell_p, u_p] = \{\xi \in \mathbb{R}^m : \ell_p \leq \xi \leq u_p\},
@@ -249,19 +249,19 @@ $$
 \ell_p = c_p - r_p, \qquad u_p = c_p + r_p, \qquad r_p = r_{\min} + \mathrm{softplus}(\rho_p),
 $$
 
-where \(r_{\min} > 0\) prevents numerical collapse and \(u_p\) is the upper endpoint of \(B_p\).
+where $r_{\min} > 0$ prevents numerical collapse and $u_p$ is the upper endpoint of $B_p$.
 
 ### 4.2 Signed membership and epistemic band
 
-For a grounded feature \(\xi\), define the signed box margin
+For a grounded feature $\xi$, define the signed box margin
 
 $$
 \mu_p(\xi) = \min_{1 \leq j \leq m} \min\{\xi_j - \ell_{p,j},\; u_{p,j} - \xi_j\}.
 $$
 
-Then \(\mu_p(\xi) > 0\) means that \(\xi\) lies in the interior of \(B_p\), \(\mu_p(\xi) = 0\) means that it lies on the boundary, and \(\mu_p(\xi) < 0\) means that it lies outside.
+Then $\mu_p(\xi) > 0$ means that $\xi$ lies in the interior of $B_p$, $\mu_p(\xi) = 0$ means that it lies on the boundary, and $\mu_p(\xi) < 0$ means that it lies outside.
 
-Given an epistemic tolerance \(\gamma_p > 0\), the grounded truth status is
+Given an epistemic tolerance $\gamma_p > 0$, the grounded truth status is
 
 $$
 \mathrm{truth}_p(\xi) =
@@ -278,7 +278,7 @@ $$
 \tilde{m}_p(\xi) = \sigma\left(\frac{\mu_p(\xi)}{\tau_p}\right),
 $$
 
-where \(\sigma\) is the logistic sigmoid and \(\tau_p > 0\) is a temperature.
+where $\sigma$ is the logistic sigmoid and $\tau_p > 0$ is a temperature.
 
 ### 4.3 Exact entailment and corrected containment loss
 
@@ -294,19 +294,19 @@ $$
 B_p \subseteq B_q \quad\Longleftrightarrow\quad \ell_q \leq \ell_p \;\text{and}\; u_p \leq u_q
 $$
 
-componentwise. Using \(u_p\) for the upper endpoint of \(B_p\), the exact condition is
+componentwise. Using $u_p$ for the upper endpoint of $B_p$, the exact condition is
 
 $$
 \ell_{q,j} \leq \ell_{p,j}, \qquad u_{p,j} \leq u_{q,j} \qquad \forall j.
 $$
 
-For a desired clearance \(\varepsilon_\Rightarrow \geq 0\), the corrected hinge loss is
+For a desired clearance $\varepsilon_\Rightarrow \geq 0$, the corrected hinge loss is
 
 $$
 \mathcal{L}^\varepsilon_\subseteq(p, q) = \sum_{j=1}^{m} \Bigl( [\ell_{q,j} + \varepsilon_\Rightarrow - \ell_{p,j}]_+ + [u_{p,j} - u_{q,j} + \varepsilon_\Rightarrow]_+ \Bigr).
 $$
 
-For \(\varepsilon_\Rightarrow = 0\), the loss vanishes exactly when \(B_p \subseteq B_q\). A positive margin requires \(B_p\) to lie inside \(B_q\) with coordinatewise clearance.
+For $\varepsilon_\Rightarrow = 0$, the loss vanishes exactly when $B_p \subseteq B_q$. A positive margin requires $B_p$ to lie inside $B_q$ with coordinatewise clearance.
 
 ### 4.4 Exact incompatibility and corrected separation loss
 
@@ -316,13 +316,13 @@ $$
 B_p \cap B_q = \emptyset \quad\Longleftrightarrow\quad \exists j:\; (u_{p,j} < \ell_{q,j}) \lor (u_{q,j} < \ell_{p,j}).
 $$
 
-Define the signed overlap depth in coordinate \(j\) by
+Define the signed overlap depth in coordinate $j$ by
 
 $$
 \delta_j(p, q) = \min(u_{p,j}, u_{q,j}) - \max(\ell_{p,j}, \ell_{q,j}).
 $$
 
-The boxes intersect if and only if \(\delta_j(p, q) \geq 0\) for every coordinate. They are separated by at least \(\varepsilon_\perp > 0\) in some coordinate if and only if
+The boxes intersect if and only if $\delta_j(p, q) \geq 0$ for every coordinate. They are separated by at least $\varepsilon_\perp > 0$ in some coordinate if and only if
 
 $$
 \min_j \delta_j(p, q) \leq -\varepsilon_\perp.
@@ -334,7 +334,7 @@ $$
 \mathcal{L}^\varepsilon_\perp(p, q) = \bigl[\varepsilon_\perp + \min_{1 \leq j \leq m} \delta_j(p, q)\bigr]_+.
 $$
 
-This loss is non-smooth but subdifferentiable almost everywhere. A smooth approximation may replace \(\min\) by the normalized soft minimum
+This loss is non-smooth but subdifferentiable almost everywhere. A smooth approximation may replace $\min$ by the normalized soft minimum
 
 $$
 \mathrm{smin}_\tau(\delta) = -\tau \log\left(\frac{1}{m} \sum_{j=1}^{m} e^{-\delta_j / \tau}\right),
@@ -342,17 +342,17 @@ $$
 
 with the understanding that the exact deployment check remains the empty-intersection condition above.
 
-> **Remark 4.1** (Why a sum of coordinate overlaps is wrong). The quantity \(\sum_j [\delta_j]_+\) vanishes only when every coordinate has non-positive overlap. Empty intersection, however, requires separation in at least one coordinate. The summed-overlap objective therefore enforces a much stronger geometry and can incorrectly push boxes apart along dimensions that need not separate them.
+> **Remark 4.1** (Why a sum of coordinate overlaps is wrong). The quantity $\sum_j [\delta_j]_+$ vanishes only when every coordinate has non-positive overlap. Empty intersection, however, requires separation in at least one coordinate. The summed-overlap objective therefore enforces a much stronger geometry and can incorrectly push boxes apart along dimensions that need not separate them.
 
 ### 4.5 Structural relations versus state constraints
 
-The relations \(B_p \subseteq B_q\) and \(B_p \cap B_q = \emptyset\) are properties of the ontology. They do not need to be re-evaluated as if the boxes themselves changed at every predicted step. Runtime state checking instead evaluates whether grounded entities or relations satisfy atomic predicates and task formulas.
+The relations $B_p \subseteq B_q$ and $B_p \cap B_q = \emptyset$ are properties of the ontology. They do not need to be re-evaluated as if the boxes themselves changed at every predicted step. Runtime state checking instead evaluates whether grounded entities or relations satisfy atomic predicates and task formulas.
 
-For example, if \(B_{\mathrm{square}} \subseteq B_{\mathrm{rectangle}}\) and an entity embedding \(\xi_{t,i}\) is robustly inside \(B_{\mathrm{square}}\), then it is also inside \(B_{\mathrm{rectangle}}\). A planner checks \(\xi_{t,i} \in B_p\) for the predicted state and separately verifies that the ontology remains structurally valid.
+For example, if $B_{\mathrm{square}} \subseteq B_{\mathrm{rectangle}}$ and an entity embedding $\xi_{t,i}$ is robustly inside $B_{\mathrm{square}}$, then it is also inside $B_{\mathrm{rectangle}}$. A planner checks $\xi_{t,i} \in B_p$ for the predicted state and separately verifies that the ontology remains structurally valid.
 
 ### 4.6 Ontology loss
 
-Let \(\Theta^\Rightarrow\) be the required entailments and \(\Theta^\perp\) the required incompatibilities. The structural ontology loss is
+Let $\Theta^\Rightarrow$ be the required entailments and $\Theta^\perp$ the required incompatibilities. The structural ontology loss is
 
 $$
 \mathcal{L}_{\mathrm{ont}} = \sum_{(p,q) \in \Theta^\Rightarrow} \lambda^\Rightarrow_{pq}\, \mathcal{L}^\varepsilon_\subseteq(p, q) + \sum_{(p,q) \in \Theta^\perp} \lambda^\perp_{pq}\, \mathcal{L}^\varepsilon_\perp(p, q).
@@ -360,7 +360,7 @@ $$
 
 Relations marked irrelevant contribute no structural penalty. This does not prevent a separate statistical model from learning correlations between them.
 
-Canonical extensions ([12] §6.2): pointwise evaluation additionally checks the declared contrary set \(\Theta^{\bot}(p)\) with per-predicate epistemic bands \(\gamma_r\); a coordinatewise non-universality barrier \(\mathcal{L}_{\mathrm{non\text{-}univ}}\) enforces Brusentsov's condition \(y'_1\) (\(\Omega_y\subsetneq\Omega_{\mathcal{U}}\)); and clearance consistency between the containment margin \(\varepsilon_{\Rightarrow}\), the separation margin \(\varepsilon_{\bot}\), and the epistemic bands is proven ([12] Theorem 6.1(4)). Propositions 17.1–17.2 below correspond to [12] Theorem 6.1(1) and (3).
+Canonical extensions ([12] §6.2): pointwise evaluation additionally checks the declared contrary set $\Theta^{\bot}(p)$ with per-predicate epistemic bands $\gamma_r$; a coordinatewise non-universality barrier $\mathcal{L}_{\mathrm{non\text{-}univ}}$ enforces Brusentsov's condition $y'_1$ ($\Omega_y\subsetneq\Omega_{\mathcal{U}}$); and clearance consistency between the containment margin $\varepsilon_{\Rightarrow}$, the separation margin $\varepsilon_{\bot}$, and the epistemic bands is proven ([12] Theorem 6.1(4)). Propositions 17.1–17.2 below correspond to [12] Theorem 6.1(1) and (3).
 
 ### 4.7 Expressivity boundary
 
@@ -386,7 +386,7 @@ $$
 h_t = F_\theta\bigl(h_{t-1},\; E_\theta(o_t),\; a_{t-1},\; \Sigma_t\bigr), \qquad q_\theta(s_t \mid h_t),
 $$
 
-where \(s_t\) is a stochastic latent state. An object-centric decoder or slot extractor yields
+where $s_t$ is a stochastic latent state. An object-centric decoder or slot extractor yields
 
 $$
 G_t = (V_t, E_t), \qquad V_t = \{e_{t,1}, \ldots, e_{t,n_t}\},
@@ -402,9 +402,9 @@ $$
 p_\phi(s_{t+1}, G_{t+1}, \Sigma_{t+1} \mid s_t, G_t, \Sigma_t, a_t).
 $$
 
-Predicting \(\Sigma_{t+1}\) is important because an action may change the available action set, control mode, payload state, or authorization surface.
+Predicting $\Sigma_{t+1}$ is important because an action may change the available action set, control mode, payload state, or authorization surface.
 
-A practical ensemble \(\{p_{\phi_r}\}_{r=1}^{M}\) provides epistemic disagreement. For a scalar predicted quantity \(y\), one may use
+A practical ensemble $\{p_{\phi_r}\}_{r=1}^{M}$ provides epistemic disagreement. For a scalar predicted quantity $y$, one may use
 
 $$
 U_{\mathrm{epi}}(y) = \frac{1}{M} \sum_{r=1}^{M} \left(\hat{y}_r - \frac{1}{M} \sum_{k=1}^{M} \hat{y}_k\right)^2.
@@ -414,13 +414,13 @@ Aleatoric uncertainty is represented by each member’s conditional distribution
 
 ### 5.3 Predictive objective
 
-With a target encoder \(\tilde{E}_{\bar{\theta}}\), a stable one-step latent objective is
+With a target encoder $\tilde{E}_{\bar{\theta}}$, a stable one-step latent objective is
 
 $$
 \mathcal{L}_{\mathrm{pred}} = \mathbb{E}\Bigl[\bigl\|\hat{z}_{t+1} - \mathrm{sg}\bigl(\tilde{E}_{\bar{\theta}}(o_{t+1})\bigr)\bigr\|_2^2\Bigr],
 $$
 
-where \(\hat{z}_{t+1} = P_\phi(h_t, a_t, \Sigma_t)\). The target encoder may be an exponential moving average of the online encoder or another stable target construction. A probabilistic alternative is the negative log-likelihood
+where $\hat{z}_{t+1} = P_\phi(h_t, a_t, \Sigma_t)$. The target encoder may be an exponential moving average of the online encoder or another stable target construction. A probabilistic alternative is the negative log-likelihood
 
 $$
 \mathcal{L}_{\mathrm{dyn}} = -\mathbb{E}\log p_\phi(s_{t+1} \mid s_t, a_t, \Sigma_t).
@@ -430,7 +430,7 @@ For long-horizon consistency, one may add multi-step losses with scheduled sampl
 
 ### 5.4 Anti-collapse regularization
 
-A concrete variance–covariance regularizer for a batch \(Z \in \mathbb{R}^{B \times d}\) is
+A concrete variance–covariance regularizer for a batch $Z \in \mathbb{R}^{B \times d}$ is
 
 $$
 \mathcal{L}_{\mathrm{var}} = \frac{1}{d} \sum_{j=1}^{d} \bigl[\gamma - \sqrt{\mathrm{Var}(Z_{:,j}) + \epsilon}\bigr]_+,
@@ -440,7 +440,7 @@ $$
 \mathcal{L}_{\mathrm{cov}} = \frac{1}{d(d-1)} \sum_{i \neq j} \mathrm{Cov}(Z)_{ij}^2.
 $$
 
-A constant representation incurs a strictly positive variance penalty when \(\gamma > 0\). This fact alone does not prove that every collapsed parameterization is absent as a local stationary point under every optimizer and weighting; such a global anti-collapse theorem would require stronger assumptions than are generally available.
+A constant representation incurs a strictly positive variance penalty when $\gamma > 0$. This fact alone does not prove that every collapsed parameterization is absent as a local stationary point under every optimizer and weighting; such a global anti-collapse theorem would require stronger assumptions than are generally available.
 
 A projection-based Gaussian discrepancy such as SIGReg may replace the covariance term, provided its finite-sample statistic, normalization, and gradients are specified explicitly and tested rather than invoked as an informal guarantee.
 
@@ -464,7 +464,7 @@ $$
 C = (\mathrm{id},\; k,\; \tau,\; s,\; r,\; v,\; \alpha,\; c,\; \sigma,\; \mathcal{E},\; \mathcal{S}),
 $$
 
-where \(k\) is a semantic key, \(\tau\) is claim type, \(s\) is subject scope, \(r\) is predicate or relation, \(v\) is value, \(\alpha\) is authority rank, \(c\) is confidence, \(\sigma\) is status, \(\mathcal{E}\) is the set of evidence references, and \(\mathcal{S}\) is the set of superseded claims.
+where $k$ is a semantic key, $\tau$ is claim type, $s$ is subject scope, $r$ is predicate or relation, $v$ is value, $\alpha$ is authority rank, $c$ is confidence, $\sigma$ is status, $\mathcal{E}$ is the set of evidence references, and $\mathcal{S}$ is the set of superseded claims.
 
 Claims are deduplicated by semantic key. If two claims conflict, the higher-authority claim supersedes the lower-authority representation while preserving lineage. Derived summaries may exist for efficiency, but they are marked non-authoritative and refer back to canonical claim identifiers.
 
@@ -523,7 +523,7 @@ $$
 \mathcal{K} = (\mathrm{id},\; \mathcal{D},\; \mu,\; b,\; d,\; \tau_{\mathrm{prog}},\; \tau_{\mathrm{succ}},\; \tau_{\mathrm{fail}},\; \varepsilon,\; h),
 $$
 
-where \(\mathcal{D}\) contains target descriptors and bindings, \(\mu\) is a registered metric, \(b\) is the baseline, \(d \in \{-1, +1\}\) is the favorable direction, the \(\tau\) values are progress, success, and failure thresholds, \(\varepsilon\) is tolerance, and \(h\) is a contract hash.
+where $\mathcal{D}$ contains target descriptors and bindings, $\mu$ is a registered metric, $b$ is the baseline, $d \in \{-1, +1\}$ is the favorable direction, the $\tau$ values are progress, success, and failure thresholds, $\varepsilon$ is tolerance, and $h$ is a contract hash.
 
 The binder computes
 
@@ -537,7 +537,7 @@ $$
 b^- = \mu(G_t; \hat{\mathcal{D}}_t), \qquad b^+ = \mu(G_{t+1}; \hat{\mathcal{D}}_{t+1}).
 $$
 
-If \(|b^- - b| > \varepsilon\), the contract is stale and the outcome is unresolved.
+If $|b^- - b| > \varepsilon$, the contract is stale and the outcome is unresolved.
 
 Define observed improvement
 
@@ -558,9 +558,9 @@ J(\epsilon_t, \mathcal{K}) =
 \end{cases}
 $$
 
-Domain-specific contracts may replace scalar \(\mu\) by a vector metric with a declared partial order, but the order must be fixed before observing the post-action result.
+Domain-specific contracts may replace scalar $\mu$ by a vector metric with a declared partial order, but the order must be fixed before observing the post-action result.
 
-> **Canonical refinement ([12] §6.1).** The classification above is the coarse form of the canonical contract evaluation \(J(\tau_t,K,a,c,\chi_{\mathrm{conf}},\mathcal{C})\). The canonical calculus additionally requires: (i) the neutral band \(|\Delta_{\mathcal{K}}|<\tau_{\mathrm{prog}}\) resolves to IRRELEVANT only when the independently tracked feature delta is either exactly zero (strict stagnation) or lies inside a contract-declared bounded neutral region \(\Omega_{\mathrm{sub}}\); a *resolved* change outside \(\varphi_{\mathrm{exp}}\cup\{\mathbf{0}\}\cup\Omega_{\mathrm{sub}}\) is FORBIDDEN, not IRRELEVANT ([12] Definition 3.1, clause 5); (ii) unexplained strict stagnation on an operator–feature pair already confirmed by the ensemble (\(\chi_{\mathrm{conf}}=1\)) is FORBIDDEN (law falsification), while stagnation on an unconfirmed pair is UNRESOLVED ([12] §4.3, Steps 1–2); (iii) cumulative goal success is recognized by the crossing rule \(\Delta^{\mathrm{tot},-}_{\mathcal{K}}<\theta_{\mathrm{succ}}\le\Delta^{\mathrm{tot},+}_{\mathcal{K}}\), which maps an individually sub-threshold step to REQUIRED when it crosses the success threshold; (iv) \(\Delta_{\mathcal{K}}=0\) alone does not prove stagnation when \(\mu\) is non-injective — metric-flat indifference must not be labeled strict stagnation ([12] §6.1, convention on metric-flat changes). Contract fields map as \(d\equiv s_K\), \(\tau_{\mathrm{prog}}\equiv\theta_{\mathrm{prog}}\), \(\tau_{\mathrm{succ}}\equiv\theta_{\mathrm{succ}}\), \(\tau_{\mathrm{fail}}\equiv\theta_{\mathrm{fail}}\), \(\varepsilon\equiv\varepsilon_{\mathrm{base}}\); the canonical contract additionally carries the route-initial value \(b_0\) and the tracking-confidence threshold \(\theta_{\mathrm{conf}}\), and requires typed certificates (\(\mathcal{C}^{+},\mathcal{C}^{\bot},\mathcal{C}^{\emptyset}\)) for every resolved verdict ([12] §5.3).
+> **Canonical refinement ([12] §6.1).** The classification above is the coarse form of the canonical contract evaluation $J(\tau_t,K,a,c,\chi_{\mathrm{conf}},\mathcal{C})$. The canonical calculus additionally requires: (i) the neutral band $|\Delta_{\mathcal{K}}|<\tau_{\mathrm{prog}}$ resolves to IRRELEVANT only when the independently tracked feature delta is either exactly zero (strict stagnation) or lies inside a contract-declared bounded neutral region $\Omega_{\mathrm{sub}}$; a *resolved* change outside $\varphi_{\mathrm{exp}}\cup\{\mathbf{0}\}\cup\Omega_{\mathrm{sub}}$ is FORBIDDEN, not IRRELEVANT ([12] Definition 3.1, clause 5); (ii) unexplained strict stagnation on an operator–feature pair already confirmed by the ensemble ($\chi_{\mathrm{conf}}=1$) is FORBIDDEN (law falsification), while stagnation on an unconfirmed pair is UNRESOLVED ([12] §4.3, Steps 1–2); (iii) cumulative goal success is recognized by the crossing rule $\Delta^{\mathrm{tot},-}_{\mathcal{K}}<\theta_{\mathrm{succ}}\le\Delta^{\mathrm{tot},+}_{\mathcal{K}}$, which maps an individually sub-threshold step to REQUIRED when it crosses the success threshold; (iv) $\Delta_{\mathcal{K}}=0$ alone does not prove stagnation when $\mu$ is non-injective — metric-flat indifference must not be labeled strict stagnation ([12] §6.1, convention on metric-flat changes). Contract fields map as $d\equiv s_K$, $\tau_{\mathrm{prog}}\equiv\theta_{\mathrm{prog}}$, $\tau_{\mathrm{succ}}\equiv\theta_{\mathrm{succ}}$, $\tau_{\mathrm{fail}}\equiv\theta_{\mathrm{fail}}$, $\varepsilon\equiv\varepsilon_{\mathrm{base}}$; the canonical contract additionally carries the route-initial value $b_0$ and the tracking-confidence threshold $\theta_{\mathrm{conf}}$, and requires typed certificates ($\mathcal{C}^{+},\mathcal{C}^{\bot},\mathcal{C}^{\emptyset}$) for every resolved verdict ([12] §5.3).
 
 ---
 
@@ -572,7 +572,7 @@ $$
 R_h = (a_h,\; \Sigma^{\mathrm{req}}_h,\; \hat{\Sigma}^{\mathrm{exp}}_{h+1},\; \mathcal{K}_h,\; \chi_h),
 $$
 
-where \(\chi_h\) contains target bindings and semantic hypothesis lineage. The action may be emitted only if
+where $\chi_h$ contains target bindings and semantic hypothesis lineage. The action may be emitted only if
 
 $$
 a_h \in \mathcal{A}_t \quad\text{and}\quad \Sigma_t \models \Sigma^{\mathrm{req}}_h.
@@ -602,7 +602,7 @@ $$
 \mathbf{a} = a_{t:t+H-1},
 $$
 
-the world model generates \(M\) stochastic rollouts
+the world model generates $M$ stochastic rollouts
 
 $$
 \hat{\tau}^{(r)} = (s_t,\; \hat{s}^{(r)}_{t+1},\; \ldots,\; \hat{s}^{(r)}_{t+H},\; \hat{\Sigma}^{(r)}_{t+1:t+H}), \qquad r = 1, \ldots, M.
@@ -616,7 +616,7 @@ $$
 \hat{J}(\mathbf{a}) = \frac{1}{M}\sum_{r=1}^{M} J_{\mathrm{task}}(\hat{\tau}^{(r)}) + \lambda_{\mathrm{cvar}}\,\mathrm{CVaR}_\alpha\bigl(J_{\mathrm{risk}}(\hat{\tau}^{(r)})\bigr) + \lambda_{\mathrm{epi}}\,U_{\mathrm{epi}}(\mathbf{a}) - \lambda_{\mathrm{info}}\,I(\mathbf{a}),
 $$
 
-where \(I(\mathbf{a})\) is expected information gain for a registered question. Information gain may justify a probe, but it does not convert the probe into positive task success.
+where $I(\mathbf{a})$ is expected information gain for a registered question. Information gain may justify a probe, but it does not convert the probe into positive task success.
 
 **Algorithm 1** — Verifier-centered receding-horizon control
 
@@ -654,7 +654,7 @@ Ensure:  One emitted action or a controlled stop/recovery decision
 
 ### 10.2 Chance and hard constraints
 
-For each safety constraint \(g_k(s) \leq 0\), the planner may require
+For each safety constraint $g_k(s) \leq 0$, the planner may require
 
 $$
 \mathbb{P}\bigl(g_k(\hat{s}_{t+h}) \leq 0\bigr) \geq 1 - \alpha_k, \qquad h = 1, \ldots, H.
@@ -664,7 +664,7 @@ Constraints with certified runtime monitors remain hard and are checked again im
 
 ### 10.3 Mixed discrete–continuous CEM
 
-For hybrid actions \(a_h = (a^d_h, a^c_h)\), use a factorized proposal
+For hybrid actions $a_h = (a^d_h, a^c_h)$, use a factorized proposal
 
 $$
 q_\omega(\mathbf{a}) = \prod_{h=0}^{H-1} \mathrm{Cat}(a^d_h; \pi_h)\, \mathcal{N}(a^c_h; \mu_h, \Sigma_h),
@@ -690,11 +690,11 @@ $$
 \pi_t = (\mathrm{sequence},\; \mathrm{hash}(\bar{o}_t),\; a_t,\; \mathrm{hash}(\mathcal{K}_t)).
 $$
 
-A second action may not be emitted while \(\pi_t\) remains pending.
+A second action may not be emitted while $\pi_t$ remains pending.
 
 ### 11.3 Post-action phase
 
-After the control stack accepts \(a_t\) and returns \(\bar{o}_{t+1}\), the system must immediately ingest the authoritative transition tuple. The commit operation is idempotent with respect to \(\pi_t\). It:
+After the control stack accepts $a_t$ and returns $\bar{o}_{t+1}$, the system must immediately ingest the authoritative transition tuple. The commit operation is idempotent with respect to $\pi_t$. It:
 
 1. compares trusted before and after observations and action surfaces;
 2. rebuilds grounded scene representations;
@@ -718,7 +718,7 @@ $$
 H = (\mathrm{id},\; \mathcal{P}_H,\; g,\; \rho,\; \mathcal{C}^+,\; \mathcal{C}^-,\; \mathcal{A}_H,\; \mathcal{T}_H,\; \mathcal{S}_H),
 $$
 
-where \(\mathcal{P}_H\) is the parent set, \(g\) is lineage generation, \(\rho\) is revision type, \(\mathcal{C}^+\) and \(\mathcal{C}^-\) are supporting and challenged claim identifiers, \(\mathcal{A}_H\) is an assumption graph, \(\mathcal{T}_H\) is target and metric intent, and \(\mathcal{S}_H\) is the surface and route intent.
+where $\mathcal{P}_H$ is the parent set, $g$ is lineage generation, $\rho$ is revision type, $\mathcal{C}^+$ and $\mathcal{C}^-$ are supporting and challenged claim identifiers, $\mathcal{A}_H$ is an assumption graph, $\mathcal{T}_H$ is target and metric intent, and $\mathcal{S}_H$ is the surface and route intent.
 
 Assumptions have statuses
 
@@ -750,7 +750,7 @@ $$
 M_e = (\mathrm{id},\; h,\; \tau,\; \mathrm{scope},\; \mathrm{authority},\; J,\; \mathcal{P}_e,\; \mathcal{R}_e,\; \chi),
 $$
 
-where \(h\) is a deterministic hash, \(\tau\) is event type, \(J\) is semantic judgment, \(\mathcal{P}_e\) contains parent events, \(\mathcal{R}_e\) contains source records, and \(\chi\) is typed payload.
+where $h$ is a deterministic hash, $\tau$ is event type, $J$ is semantic judgment, $\mathcal{P}_e$ contains parent events, $\mathcal{R}_e$ contains source records, and $\chi$ is typed payload.
 
 Useful event types include:
 
@@ -772,7 +772,7 @@ $$
 M_{\mathrm{cons}} = (\mathcal{F}^+,\; \mathcal{F}^-,\; \mathcal{U},\; \mathcal{T},\; \mathcal{E}_{\mathrm{src}},\; \sigma_{\mathrm{det}},\; \sigma_{\mathrm{prop}}),
 $$
 
-where \(\mathcal{F}^+\) are confirmed facts, \(\mathcal{F}^-\) contradicted facts, \(\mathcal{U}\) unresolved proposals, \(\mathcal{T}\) transferable mechanics, \(\mathcal{E}_{\mathrm{src}}\) source event identifiers, \(\sigma_{\mathrm{det}}\) a deterministic summary, and \(\sigma_{\mathrm{prop}}\) an optional proposer-authored explanation. Only the first six fields may contribute confirmed transfer without further evidence.
+where $\mathcal{F}^+$ are confirmed facts, $\mathcal{F}^-$ contradicted facts, $\mathcal{U}$ unresolved proposals, $\mathcal{T}$ transferable mechanics, $\mathcal{E}_{\mathrm{src}}$ source event identifiers, $\sigma_{\mathrm{det}}$ a deterministic summary, and $\sigma_{\mathrm{prop}}$ an optional proposer-authored explanation. Only the first six fields may contribute confirmed transfer without further evidence.
 
 Negative transfer is scope-sensitive. A failure tied to a transient object identifier, local map patch, battery state, or route binding must not become a universal mission rule.
 
@@ -825,7 +825,7 @@ The weights are not assumed to be commensurate. They must be chosen by dimension
 
 ### 15.1 Observed versus imagined training data
 
-Training batches should retain provenance. Let \(\mathcal{D}_{\mathrm{obs}}\) contain trusted observed transitions and \(\mathcal{D}_{\mathrm{imag}}\) contain model-generated trajectories. Dynamics fitting and factual causal updates use \(\mathcal{D}_{\mathrm{obs}}\). Imagined data may regularize planning or representation learning only under an explicit synthetic-data weight and may not be labeled as observed evidence.
+Training batches should retain provenance. Let $\mathcal{D}_{\mathrm{obs}}$ contain trusted observed transitions and $\mathcal{D}_{\mathrm{imag}}$ contain model-generated trajectories. Dynamics fitting and factual causal updates use $\mathcal{D}_{\mathrm{obs}}$. Imagined data may regularize planning or representation learning only under an explicit synthetic-data weight and may not be labeled as observed evidence.
 
 ---
 
@@ -833,7 +833,7 @@ Training batches should retain provenance. Let \(\mathcal{D}_{\mathrm{obs}}\) co
 
 ### 16.1 Representation alignment
 
-Teacher and student latent coordinates need not be directly comparable. Let \(A\) map student latents into the teacher space. The representation loss is
+Teacher and student latent coordinates need not be directly comparable. Let $A$ map student latents into the teacher space. The representation loss is
 
 $$
 \mathcal{L}^{\mathrm{dist}}_{\mathrm{repr}} = \mathbb{E}\,\|A z^S - z^T\|_2^2,
@@ -849,7 +849,7 @@ $$
 \mathcal{L}^{\mathrm{dist}}_{\mathrm{dyn}} = \mathbb{E}\,\mathrm{KL}\bigl(p^T(s_{t+1} \mid s_t, a_t) \,\|\, p^S(s_{t+1} \mid s_t, a_t)\bigr),
 $$
 
-possibly after mapping student states through \(A\). For ensembles, mean, covariance, and tail-risk predictions should be matched separately.
+possibly after mapping student states through $A$. For ensembles, mean, covariance, and tail-risk predictions should be matched separately.
 
 ### 16.3 Semantic distillation
 
@@ -867,7 +867,7 @@ If teacher and student semantic spaces differ, the grounded samples must be alig
 
 ### 16.4 Logit distillation
 
-For \(K\) classes and temperature \(\tau\),
+For $K$ classes and temperature $\tau$,
 
 $$
 p^{T,\tau}_i = \frac{e^{t_i/\tau}}{\sum_{j=1}^{K} e^{t_j/\tau}}, \qquad p^{S,\tau}_i = \frac{e^{s_i/\tau}}{\sum_{j=1}^{K} e^{s_j/\tau}},
@@ -879,7 +879,7 @@ $$
 \mathcal{L}^{\mathrm{dist}}_{\mathrm{logit}} = \tau^2\,\mathrm{KL}(p^{T,\tau} \,\|\, p^{S,\tau}).
 $$
 
-The exact high-temperature coefficient is stated in Theorem 17.3; it is not generally \(1/2\) unless the class-count normalization is absorbed elsewhere.
+The exact high-temperature coefficient is stated in Theorem 17.3; it is not generally $1/2$ unless the class-count normalization is absorbed elsewhere.
 
 ### 16.5 Teacher authority boundary
 
@@ -889,7 +889,7 @@ A teacher may be more accurate than a student but remains a predictive model. Di
 
 ## 17 Correctness Results and Precise Guarantees
 
-**Proposition 17.1** (Containment-loss correctness). For \(\varepsilon_\Rightarrow \geq 0\), the containment loss satisfies
+**Proposition 17.1** (Containment-loss correctness). For $\varepsilon_\Rightarrow \geq 0$, the containment loss satisfies
 
 $$
 \mathcal{L}^\varepsilon_\subseteq(p, q) = 0
@@ -901,23 +901,23 @@ $$
 \ell_p \geq \ell_q + \varepsilon_\Rightarrow\mathbf{1}, \qquad u_p \leq u_q - \varepsilon_\Rightarrow\mathbf{1}.
 $$
 
-In particular, for zero margin it vanishes if and only if \(B_p \subseteq B_q\).
+In particular, for zero margin it vanishes if and only if $B_p \subseteq B_q$.
 
 *Proof.* Every summand is nonnegative. The sum is zero if and only if each positive-part argument is nonpositive. These inequalities are exactly the stated lower- and upper-endpoint conditions. □
 
-**Proposition 17.2** (Separation-loss correctness). For \(\varepsilon_\perp > 0\), the separation loss satisfies
+**Proposition 17.2** (Separation-loss correctness). For $\varepsilon_\perp > 0$, the separation loss satisfies
 
 $$
 \mathcal{L}^\varepsilon_\perp(p, q) = 0 \quad\Longleftrightarrow\quad \min_j \delta_j(p, q) \leq -\varepsilon_\perp.
 $$
 
-Hence zero loss certifies separation by at least \(\varepsilon_\perp\) in at least one coordinate.
+Hence zero loss certifies separation by at least $\varepsilon_\perp$ in at least one coordinate.
 
-*Proof.* By definition, \([x]_+ = 0\) if and only if \(x \leq 0\). Substituting \(x = \varepsilon_\perp + \min_j \delta_j\) yields the result. □
+*Proof.* By definition, $[x]_+ = 0$ if and only if $x \leq 0$. Substituting $x = \varepsilon_\perp + \min_j \delta_j$ yields the result. □
 
-**Theorem 17.1** (Grounded entailment soundness). If \(B_p \subseteq B_q\) and \(\xi \in B_p\), then \(\xi \in B_q\).
+**Theorem 17.1** (Grounded entailment soundness). If $B_p \subseteq B_q$ and $\xi \in B_p$, then $\xi \in B_q$.
 
-*Proof.* Because \(\xi \in B_p\), \(\ell_p \leq \xi \leq u_p\). Because \(B_p \subseteq B_q\), \(\ell_q \leq \ell_p\) and \(u_p \leq u_q\). Therefore \(\ell_q \leq \xi \leq u_q\), so \(\xi \in B_q\). □
+*Proof.* Because $\xi \in B_p$, $\ell_p \leq \xi \leq u_p$. Because $B_p \subseteq B_q$, $\ell_q \leq \ell_p$ and $u_p \leq u_q$. Therefore $\ell_q \leq \xi \leq u_q$, so $\xi \in B_q$. □
 
 **Theorem 17.2** (Robust entailment under bounded grounding error). Assume
 
@@ -925,19 +925,19 @@ $$
 \ell_p \geq \ell_q + \varepsilon\mathbf{1}, \qquad u_p \leq u_q - \varepsilon\mathbf{1}
 $$
 
-for some \(\varepsilon > 0\). If \(\xi \in B_p\) and \(\|\eta\|_\infty \leq \varepsilon\), then \(\xi + \eta \in B_q\).
+for some $\varepsilon > 0$. If $\xi \in B_p$ and $\|\eta\|_\infty \leq \varepsilon$, then $\xi + \eta \in B_q$.
 
-*Proof.* For every coordinate, \(\xi_j + \eta_j \geq \ell_{p,j} - \varepsilon \geq \ell_{q,j}\) and \(\xi_j + \eta_j \leq u_{p,j} + \varepsilon \leq u_{q,j}\). Thus \(\xi + \eta \in B_q\). □
+*Proof.* For every coordinate, $\xi_j + \eta_j \geq \ell_{p,j} - \varepsilon \geq \ell_{q,j}$ and $\xi_j + \eta_j \leq u_{p,j} + \varepsilon \leq u_{q,j}$. Thus $\xi + \eta \in B_q$. □
 
-**Theorem 17.3** (High-temperature distillation limit). Let \(t, s \in \mathbb{R}^K\) satisfy \(\sum_i t_i = \sum_i s_i = 0\). Then
+**Theorem 17.3** (High-temperature distillation limit). Let $t, s \in \mathbb{R}^K$ satisfy $\sum_i t_i = \sum_i s_i = 0$. Then
 
 $$
 \tau^2\,\mathrm{KL}\bigl(\mathrm{softmax}(t/\tau) \,\|\, \mathrm{softmax}(s/\tau)\bigr) = \frac{1}{2K}\,\|t - s\|_2^2 + O(\tau^{-1})
 $$
 
-as \(\tau \to \infty\).
+as $\tau \to \infty$.
 
-*Proof sketch.* For centered logits, \(\mathrm{softmax}(t/\tau)_i = 1/K + t_i/(K\tau) + O(\tau^{-2})\), and similarly for \(s\). Expanding the KL divergence to second order around the uniform distribution and substituting yields the stated asymptotic. □
+*Proof sketch.* For centered logits, $\mathrm{softmax}(t/\tau)_i = 1/K + t_i/(K\tau) + O(\tau^{-2})$, and similarly for $s$. Expanding the KL divergence to second order around the uniform distribution and substituting yields the stated asymptotic. □
 
 **Proposition 17.3** (Non-promotion invariant). Suppose every factual write API requires evidence scope `OBSERVED_TRANSITION` or `REPLAY_VERIFIED`, and predictive evaluators can emit only `PREDICTIVE_ONLY`. Then no purely predictive computation can create a factual transition or confirmed positive mechanic.
 
@@ -982,15 +982,15 @@ with payload actuation unavailable. A semantic hypothesis that requires payload 
 
 ### 18.3 Bound contract
 
-Assume the proposer suggests “move toward the nearest certified emergency landing zone.” The binder identifies a landing-zone descriptor \(d_L\) and registers
+Assume the proposer suggests “move toward the nearest certified emergency landing zone.” The binder identifies a landing-zone descriptor $d_L$ and registers
 
 $$
 \mu(G_t; d_L) = \text{risk-weighted path distance to } d_L.
 $$
 
-The favorable direction is \(d = -1\), because smaller is better. The binder computes the baseline from the trusted current scene, not from the proposer’s numeric estimate. A candidate action is predictively ranked by expected distance reduction, collision risk, localization uncertainty, and surface stability.
+The favorable direction is $d = -1$, because smaller is better. The binder computes the baseline from the trusted current scene, not from the proposer’s numeric estimate. A candidate action is predictively ranked by expected distance reduction, collision risk, localization uncertainty, and surface stability.
 
-After the accepted action, the verifier recomputes the before and after metric from the trusted transition. A decrease exceeding \(\tau_{\mathrm{prog}}\) is `REQUIRED` progress. A legal action with negligible change is `IRRELEVANT`. An increase beyond the failure margin or a geofence violation is `FORBIDDEN`. A localization discontinuity, stale target binding, or predictive-only evaluation is `UNRESOLVED`.
+After the accepted action, the verifier recomputes the before and after metric from the trusted transition. A decrease exceeding $\tau_{\mathrm{prog}}$ is `REQUIRED` progress. A legal action with negligible change is `IRRELEVANT`. An increase beyond the failure margin or a geofence violation is `FORBIDDEN`. A localization discontinuity, stale target binding, or predictive-only evaluation is `UNRESOLVED`.
 
 ### 18.4 Recovery
 
