@@ -196,14 +196,14 @@ No lower layer may promote its output into a higher evidentiary class without th
 The UIM uses a three-way relation vocabulary inspired by the distinction between consequence, incompatibility, and omission of a relation. Let \(\mathcal{P}\) be a predicate vocabulary. For a pair \((p, q) \in \mathcal{P}^2\), the structural specification label is
 
 $$
-R(p, q) \in \{\text{REQ}, \text{FORB}, \text{IRR}\}.
+R(p, q) \in \{\texttt{REQ}, \texttt{FORB}, \texttt{IRR}\}.
 $$
 
 The labels mean:
 
-1. \(R(p, q) = \text{REQ}\): the ontology requires \(p \Rightarrow q\);
-2. \(R(p, q) = \text{FORB}\): the ontology requires \(p \land q\) to be impossible for the same grounded argument;
-3. \(R(p, q) = \text{IRR}\): no entailment or incompatibility constraint is asserted between \(p\) and \(q\).
+1. \(R(p, q) = \texttt{REQ}\): the ontology requires \(p \Rightarrow q\);
+2. \(R(p, q) = \texttt{FORB}\): the ontology requires \(p \land q\) to be impossible for the same grounded argument;
+3. \(R(p, q) = \texttt{IRR}\): no entailment or incompatibility constraint is asserted between \(p\) and \(q\).
 
 Irrelevance is not falsehood. It means that the theory intentionally imposes no relation of the specified kind. Data may still reveal correlation, partial overlap, causal dependence, or a future need to refine the ontology.
 
