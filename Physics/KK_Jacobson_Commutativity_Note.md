@@ -606,11 +606,11 @@ The first stage does not require a complete theory of quantum gravity.
 
 1. Construct a finite causal network with variables $`U_{xy} \in \mathrm{U}(1)`$.
 2. Define a Wilson-like functional on causal diamonds:
-   $$
+$$
 S_{\mathrm{U}(1)} = \frac{1}{g^2} \sum_D w_D \bigl[1 - \mathrm{Re} W_D\bigr].
 $$
 3. Verify that for small phases,
-   $$
+$$
 1 - \mathrm{Re} W_D \simeq \tfrac{1}{2} \Phi_D^2,
 $$
    and that the continuum limit reproduces $F^2$.
