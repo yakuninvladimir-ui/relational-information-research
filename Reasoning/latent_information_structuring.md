@@ -337,7 +337,7 @@ for various choices of $g_{\mathrm{approx}}$. Test $r > r_0$ (collinearity condi
 | Component | Status | Justification |
 |---|---|---|
 | Volume variation yields the mean curvature vector | Theorem | Calculus of variations |
-| Upper bound on volume $\widehat{\mathrm{Vol}}_\theta$ via $\operatorname{tr} A_\theta$ | Theorem | AM–GM inequality (under smoothness and continuous parameterization conditions) |
+| Upper bound on volume $\widehat{\mathrm{Vol}}_\theta$ via $\mathrm{tr} A_\theta$ | Theorem | AM–GM inequality (under smoothness and continuous parameterization conditions) |
 | $\mathrm{CE}_D(\theta)$ upper-bounds the deficit in $I(Z;Y)$ | Theorem | Properties of $D_{\mathrm{KL}}$; assuming a well-defined decoder $D$ and consistent $H(Y)$ |
 | Equation $\mathbf{H} = \lambda(\nabla i)^\perp$ | Corollary | $\delta\mathcal{L}/\delta\Sigma = 0$ under fixed density |
 | Tangent kernel $\Theta_E = J_E J_E^\dagger$ | Definition | Standard NTK theory |
