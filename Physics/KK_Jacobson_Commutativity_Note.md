@@ -504,7 +504,7 @@ Dark energy is therefore not yet a consequence of this hypothesis.
 The sequence
 
 $$
-w \in \left\{1,\; \tfrac{1}{3},\; -\tfrac{1}{3},\; -1\right\}
+w \in \{1,\; \tfrac{1}{3},\; -\tfrac{1}{3},\; -1\}
 $$
 
 was considered previously.
