@@ -44,7 +44,7 @@ To every causal link an element $U_{xy}\in U(1)$ is assigned that describes para
 The baseline microscopic dynamics of the gauge sector is a Wilson-type functional evaluated on causal diamonds (or lattice plaquettes in the pilot lattice realisation):
 
 $$
-S_{U(1)}[U;C] = \sum_D\frac{1}{g_*^2}\,w_D\bigl(1-\operatorname{Re}W_D\bigr),
+S_{U(1)}[U;C] = \sum_D\frac{1}{g_*^2}\,w_D\bigl(1-\mathrm{Re}W_D\bigr),
 $$
 
 where $W_D$ is the holonomy around the boundary of the diamond (plaquette). In the continuum limit of small phases this action becomes the standard Maxwell term
@@ -90,7 +90,7 @@ $$
 D_{\rm KL}(\sigma\|\rho_{\rm dyn})\le c\cdot N_\partial.
 $$
 
-In the continuum limit, following the logic of Dorau and Much, the relative entropy of a field perturbation (expressed through gradients of $\operatorname{Re}W_D$, i.e., through the tensor $F_{\mu\nu}F^{\mu\nu}$) is proportional to the variation of horizon area. From this proportionality the semi-classical Einstein equations follow automatically.
+In the continuum limit, following the logic of Dorau and Much, the relative entropy of a field perturbation (expressed through gradients of $\mathrm{Re}W_D$, i.e., through the tensor $F_{\mu\nu}F^{\mu\nu}$) is proportional to the variation of horizon area. From this proportionality the semi-classical Einstein equations follow automatically.
 
 ---
 
@@ -142,7 +142,7 @@ A reproducible numerical answer (yes/no + magnitude) for the existence of a stab
 ### Outline of the pilot pipeline
 
 1. **Lattice $U(1)$ (Wilson)** on a 3-d Euclidean lattice with periodic boundaries; Heat-Bath + over-relaxation updates; measurement of plaquette observables and integrated autocorrelation time.
-2. **Operational diamond / boundary** — rectangular or Manhattan region; boundary edges $N_\partial$; collar of plaquettes that touch the boundary; extraction of gauge-invariant descriptors $\{\operatorname{Re}U_p\}$.
+2. **Operational diamond / boundary** — rectangular or Manhattan region; boundary edges $N_\partial$; collar of plaquettes that touch the boundary; extraction of gauge-invariant descriptors $\{\mathrm{Re}U_p\}$.
 3. **Two ensembles** — vacuum $\rho$ (pure Wilson) and perturbed $\sigma$ (Wilson + gauge-invariant plaquette or Wilson-loop bias of strength $\kappa$).
 4. **Classical $D_{\rm KL}$** evaluated exclusively on gauge-invariant boundary descriptors; hard or soft threshold $B=c\cdot N_\partial$; configurations exceeding the threshold receive weight zero or an exponential penalty.
 5. **Residual effective action** — comparison of the full and truncated measures; proxy $\Delta F\approx-\log\langle w\rangle$ (soft) or $-\log(N_{\rm accept}/N_{\rm total})$ (hard).
