@@ -20,7 +20,7 @@ Earlier and superseded materials remain archived on Zenodo.
 ## Repository layout
 
 ```
-├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.5)
+├── Unified Informational-Constructive Framework.md   # synthesis & archive map (v1.6)
 ├── Philosophy/
 │   └── The Algorithm of Being.md
 ├── Physics/
@@ -30,6 +30,7 @@ Earlier and superseded materials remain archived on Zenodo.
 │   └── old_test/                                     # internal working data (see below)
 ├── Reasoning/
 │   ├── Modified_Brusentsov_Entailment_Logic.md       # canonical formal-logical foundation (verdict semantics)
+│   ├── Spectral_and_Matrix_Realization_of_V4.md      # geometric/matrix realization of V4 in latent spaces
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
 │   ├── Self_Developing_Runtime_Research_Program.md
@@ -51,12 +52,13 @@ Earlier and superseded materials remain archived on Zenodo.
 
 | Area          | Document                                                                                                   | Role / status                                                                                                         |
 | ------------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Synthesis** | [Unified Informational-Constructive Framework](Unified%20Informational-Constructive%20Framework.md) | Archive map, cross-level synthesis, thesis statuses (v1.4) |
+| **Synthesis** | [Unified Informational-Constructive Framework](Unified%20Informational-Constructive%20Framework.md) | Archive map, cross-level synthesis, thesis statuses (v1.6) |
 | Philosophy | [The Algorithm of Being](Philosophy/The%20Algorithm%20of%20Being.md) | Philosophical framework |
 | Physics | [Causal Phase Geometry Research Program](Physics/Causal_Phase_Geometry_Research_Program.md) | Open research program with falsification criteria |
 | Physics | [Technical Specification v0.1.1 — Γ_corr Extraction](Physics/Technical_Specification_v0.1.1_Gamma_corr_Extraction.md) | Executable pilot specification: lattice U(1), KL truncation, residual ΔF, null tests |
 | Physics | [KK–Jacobson Commutativity Note](Physics/KK_Jacobson_Commutativity_Note.md) | Technical note on the 5D→4D thermodynamic bridge (5D route frozen; historical) |
 | Reasoning | [Modified Brusentsov Entailment Logic](Reasoning/Modified_Brusentsov_Entailment_Logic.md) | **Canonical formal-logical foundation**: modified Brusentsov DNF, four-valued verdict calculus (FOLLOW / OMIT / NULL / UNDECIDED), typed certificates, ensemble law quantifiers, metric/box/graph semantics; normative reference for verdict semantics across the corpus |
+| Reasoning | [Spectral and Matrix Realization of V₄](Reasoning/Spectral_and_Matrix_Realization_of_V4.md) | Mathematical realization of V₄ in latent spaces: kernel-path quotients, tangent-space diagnostics, four-channel semilattice aggregation and smooth surrogates; normative parent = MBEL §§3–6; related foundations = latent information structuring + Latent Agency Framework |
 | Reasoning | [Unified Implementable Model](Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
 | Reasoning | [External Ternary Judge Adapter](Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
 | Reasoning | [Self-Developing Runtime Research Program](Reasoning/Self_Developing_Runtime_Research_Program.md) | Pre-implementation research program (v0.2): controlled self-development of an LLM under an external verifier |
