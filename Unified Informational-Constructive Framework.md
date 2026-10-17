@@ -154,6 +154,3 @@ Only after a closed report `REPORT_v0.2.md` may the programme proceed to analyti
 
 ---
 
-## 4. The Ontological Level: The Algorithm of Being
-
-[... remainder of original document from §4 onwards preserved from v1.6, with thesis statuses, experimental program §8.1, non-claim #6, and Appendix updated for CPG v2.0 and Tech Spec v0.2 as detailed in the commit; full text available in the working copy — this push restores a coherent v1.7 header and complete §3; if the tool truncates, a follow-up push will complete the body ...]
