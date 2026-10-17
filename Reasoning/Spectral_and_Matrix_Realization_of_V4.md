@@ -2,7 +2,7 @@
 
 **Subtitle:** Tangent-Space Geometry, Kernel-Path Quotients, Four-Channel Verdicts, and Semilattice Aggregation for Neuro-Symbolic State Control  
 **Author:** Vladimir Yakunin  
-**Version:** 1.1 — unified specification (confidence-bound evidence, padding-invariant aggregation, full MBEL/LAF/VIM alignment)  
+**Version:** 2.2 — unified specification (confidence-bound evidence, padding-invariant aggregation, full MBEL/LAF/VIM alignment)  
 **Date:** 2026-10-17  
 **Status:** Formal results are conditional on the assumptions stated below; the existence and learnability of the required geometry remain empirical hypotheses.  
 **Normative parent:** *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems*, especially §§3–6.  
@@ -61,10 +61,10 @@ The following distinction is mandatory throughout:
 | $`G_{k,z_t}`$, $`\widehat\delta^{\,\mathrm{geom}}_k`$, $`\Omega_{\mathrm{sub},k}`$ | Versioned tangent-to-feature map, mapped feature delta, and contract-declared bounded neutral region of non-zero feature changes for active clause $`e_k`$ ($`\varnothing`$ by default) |
 | $`\mathsf{LeakCert}_k,\mathsf{PresCert}_k,\mathsf{RevCert}_k,\mathsf{ProgCert}_k,\mathsf{NeutCert}_k,\mathsf{OutCert}_k`$ | Certified geometric predicates built from the confidence bounds and feature mappings (Definition 3.1, §4.2) |
 | $`\Delta^3`$, $`\mathbf p`$, $`\Phi_{\mathrm{cum}}`$ | Four-channel simplex, soft verdict vector, and cumulative-coordinate map |
-| $`T`$, $`T_g`$, $`\mathrm{sLSE}_T`$, $`\operatorname{sig}`$ | Aggregation temperature, gate temperature, padding-invariant shifted LogSumExp, and the logistic function |
+| $`T`$, $`T_g`$, $`\mathrm{sLSE}_T`$, $`\mathop{sig}`$ | Aggregation temperature, gate temperature, padding-invariant shifted LogSumExp, and the logistic function |
 | $`\otimes`$, $`\succ_{\mathrm{cg}}`$ | Canonical conjunctive step-verdict operation and spatial coarse-graining status order in MBEL |
 
-Symbols of MBEL keep their meaning here. In particular, $`\tau_t`$ always denotes a transition, $`\sigma(\tau_t)`$ an evidence scope, $E$ the bound expectation set, $I$ the global invariant set, and $`\Sigma_t`$ the action surface; temperatures are written $T$ and $`T_g`$, the identity operator is written $`\mathrm{Id}`$, and the logistic function is written $`\operatorname{sig}`$.
+Symbols of MBEL keep their meaning here. In particular, $`\tau_t`$ always denotes a transition, $`\sigma(\tau_t)`$ an evidence scope, $E$ the bound expectation set, $I$ the global invariant set, and $`\Sigma_t`$ the action surface; temperatures are written $T$ and $`T_g`$, the identity operator is written $`\mathrm{Id}`$, and the logistic function is written $`\mathop{sig}`$.
 
 ### 0.3. Verdict order and coarse-graining polarity
 
@@ -112,7 +112,7 @@ K_z:=\ker\bigl(d\pi_\ell(z):T_zD_\ell\to T_{\pi_\ell(z)}Y_\ell\bigr).
 
 A vector $`v\in K_z`$ is therefore a first-order direction along which the coarse-grained descriptor has zero derivative. It does **not**, by itself, prove that a finite transition is irrelevant or that an MBEL verdict must be `OMIT`.
 
-For the basic differential construction, assume that $`\operatorname{rank}d\pi_\ell`$ is locally constant on each regular stratum, so $K$ is a continuous (and smooth when $`\pi_\ell`$ is smooth) vector subbundle there. If rank changes, all claims about projectors apply only stratumwise; paths crossing strata must be handled by an explicitly specified admissibility rule.
+For the basic differential construction, assume that $`\mathop{rank}d\pi_\ell`$ is locally constant on each regular stratum, so $K$ is a continuous (and smooth when $`\pi_\ell`$ is smooth) vector subbundle there. If rank changes, all claims about projectors apply only stratumwise; paths crossing strata must be handled by an explicitly specified admissibility rule.
 
 ### 1.2. Definition of kernel paths
 
@@ -280,7 +280,7 @@ h_z(u_{\mathrm{exp},k},u_{\mathrm{exp},k})=1.
 For an active clause, put
 
 ```math
-W^{\mathrm{act}}_{k,z}:=\operatorname{span}\{u_{\mathrm{exp},k}(z)\},\qquad
+W^{\mathrm{act}}_{k,z}:=\mathop{span}\{u_{\mathrm{exp},k}(z)\},\qquad
 W^{\mathrm{inv}}_{k,z}:=K_z^{\perp_h}\cap \bigl(W^{\mathrm{act}}_{k,z}\bigr)^{\perp_h}.
 ```
 
@@ -325,7 +325,7 @@ This is an **orthogonal splitting selected by the contract**, not an automatic s
 Let $`z_t,z_{t+1}\in D_\ell`$. A raw coordinate difference $`z_{t+1}-z_t`$ is an ambient chord and need not belong to $`T_{z_t}D_\ell`$. When the endpoints lie in a common normal neighborhood for the declared Riemannian metric $`h`$, define
 
 ```math
-\xi_t:=\operatorname{Log}^{h}_{z_t}(z_{t+1})\in T_{z_t}D_\ell.
+\xi_t:=\mathop{Log}^{h}_{z_t}(z_{t+1})\in T_{z_t}D_\ell.
 ```
 
 For a longer transition, the path must be subdivided into locally valid steps or its tangent path must be supplied. If only endpoints are available and the implementation uses a projected ambient chord, that quantity is an approximation in the chosen coordinates and must be marked as such; it is not coordinate-invariant by definition.
@@ -359,7 +359,7 @@ and local kernel-direction motion by
 \nu_k:=\|\xi_{\mathrm{ker},k}\|_{h}.
 ```
 
-The nonnegative number $`\nu_k`$ is only a **local diagnostic**. Because kernel distributions can vary with position, $`\xi_{\mathrm{ker},k}\ne0`$ alone does not prove that the finite endpoint transition is kernel-path equivalent. Equivalence of the endpoints must be established by Definition 1.2 or by a separately verified path witness.  **Confidence set.** Let $`\mathsf{Cov}_{\mathrm{epi},k}`$be the covariance operator for the estimated displacement on the essential tangent space$`T^{\mathrm{ess}}_{k,z}:=\operatorname{Im}(P_{\mathrm{ess},k})`$. Assume it is positive definite on that subspace; if an estimate is rank-deficient (an ensemble of $N$ models yields rank at most $`N-1`$), a declared regularization$`\mathsf{Cov}_{\mathrm{epi},k}+\lambda_{\mathrm{cov}}\mathrm{Id}`$ is part of the protocol and is used throughout. In an $`h`$-orthonormal basis and with a confidence radius$`\gamma_{\mathrm{snr}}>0`$ fixed in the verifier contract, put
+The nonnegative number $`\nu_k`$ is only a **local diagnostic**. Because kernel distributions can vary with position, $`\xi_{\mathrm{ker},k}\ne0`$ alone does not prove that the finite endpoint transition is kernel-path equivalent. Equivalence of the endpoints must be established by Definition 1.2 or by a separately verified path witness.  **Confidence set.** Let $`\mathsf{Cov}_{\mathrm{epi},k}`$be the covariance operator for the estimated displacement on the essential tangent space$`T^{\mathrm{ess}}_{k,z}:=\mathop{Im}(P_{\mathrm{ess},k})`$. Assume it is positive definite on that subspace; if an estimate is rank-deficient (an ensemble of $N$ models yields rank at most $`N-1`$), a declared regularization$`\mathsf{Cov}_{\mathrm{epi},k}+\lambda_{\mathrm{cov}}\mathrm{Id}`$ is part of the protocol and is used throughout. In an $`h`$-orthonormal basis and with a confidence radius$`\gamma_{\mathrm{snr}}>0`$ fixed in the verifier contract, put
 
 ```math
 \mathcal B_k:=\Bigl\{\xi\in T^{\mathrm{ess}}_{k,z}:\;
@@ -391,7 +391,7 @@ with $`s_{\mathrm{act},k}:=0`$ for a preservation clause, and define
 \beta_k^{-}\le\beta(\xi)\le\beta_k^{+}.
 ```
 
-*Proof.* Write $`\xi-\xi_{\mathrm{ess},k}=\mathsf{Cov}_{\mathrm{epi},k}^{1/2}w`$with$`\|w\|\le\gamma_{\mathrm{snr}}`$, which is the definition of $`\mathcal B_k`$. Because $`u_{\mathrm{exp},k}\in\operatorname{Im}(P_{\mathrm{act},k})`$and$`P_{\mathrm{act},k}`$is$`h`$-symmetric,$`\alpha(\xi)=u_{\mathrm{exp},k}^{\mathsf T}\xi`$. By the Cauchy–Schwarz inequality,
+*Proof.* Write $`\xi-\xi_{\mathrm{ess},k}=\mathsf{Cov}_{\mathrm{epi},k}^{1/2}w`$with$`\|w\|\le\gamma_{\mathrm{snr}}`$, which is the definition of $`\mathcal B_k`$. Because $`u_{\mathrm{exp},k}\in\mathop{Im}(P_{\mathrm{act},k})`$and$`P_{\mathrm{act},k}`$is$`h`$-symmetric,$`\alpha(\xi)=u_{\mathrm{exp},k}^{\mathsf T}\xi`$. By the Cauchy–Schwarz inequality,
 
 ```math
 |\alpha(\xi)-\alpha_k|=\bigl|(\mathsf{Cov}_{\mathrm{epi},k}^{1/2}u_{\mathrm{exp},k})^{\mathsf T}w\bigr|\le s_{\mathrm{act},k}\,\gamma_{\mathrm{snr}}.
@@ -545,7 +545,7 @@ The following table describes the conditions under which the spectral diagnostic
 Let $`v_k=v(e_k,\tau_t)`$ be the crisp clause verdicts returned by the MBEL clause cascade. Let $`v_{\mathrm{scope}}`$ be `FOLLOW` for authoritative observed/replay scope and `UNDECIDED` otherwise. Let $`v_{\mathrm{inv}}`$ aggregate the global invariant verdicts: a certified violation ($`Viol=1\land AuthSafety=1`$) gives `NULL`, an apparent but unauthenticated violation ($`Viol=1\land AuthSafety=0`$) gives `UNDECIDED`, and no violation gives `FOLLOW`. Define the empty-product guard (MBEL Axiom 4.1)
 
 ```math
-\operatorname{prog}(E):=
+\mathop{prog}(E):=
 \begin{cases}
 \mathrm{OMIT},&E_{\mathrm{act}}=\varnothing,\\
 \mathrm{FOLLOW},&E_{\mathrm{act}}\ne\varnothing.
@@ -555,10 +555,10 @@ Let $`v_k=v(e_k,\tau_t)`$ be the crisp clause verdicts returned by the MBEL clau
 Then
 
 ```math
-\operatorname{Verdict}(E,\tau_t)=
+\mathop{Verdict}(E,\tau_t)=
  v_{\mathrm{scope}}\otimes v_{\mathrm{inv}}
  \otimes\Bigl(\bigotimes_{e_k\in E}v_k\Bigr)
- \otimes\operatorname{prog}(E),
+ \otimes\mathop{prog}(E),
 ```
 
 with the empty $`\otimes`$-product equal to `FOLLOW`. This is the MBEL priority-semilattice realization. The spectral layer is an evidence extractor for the clause outcomes, not a second, competing semantics.
@@ -647,7 +647,7 @@ Because the coordinatewise maximum of nondecreasing three-vectors is nondecreasi
 To enforce MBEL Axiom 4.1 (Prohibition of Vacuous Truth) on the simplex, define the progress-guard vector
 
 ```math
-\mathbf p_{\mathrm{prog}}(E):=\mathbf e_{(\operatorname{prog}(E))}=
+\mathbf p_{\mathrm{prog}}(E):=\mathbf e_{(\mathop{prog}(E))}=
 \begin{cases}
 \mathbf e_{(0)},&E_{\mathrm{act}}=\varnothing,\\
 \mathbf e_{(+)},&E_{\mathrm{act}}\ne\varnothing.
@@ -669,7 +669,7 @@ Including $`\mathbf p_{\mathrm{prog}}(E)`$guarantees that when$`E_{\mathrm{act}}
 =\mathbf e_{\max_{\preceq_V}\{v_1,\ldots,v_M\}},
 ```
 
-and the complete product over $`\mathcal P(E,\tau_t)`$reproduces$`\operatorname{Verdict}(E,\tau_t)`$ of §4.4 identically.  *Proof.* Coordinatewise maximum on $`\mathcal Q`$ is associative, commutative, and idempotent. The bijection $`\Phi_{\mathrm{cum}}`$transports these properties to$`\Delta^3`$. The image of `FOLLOW` is $`(0,0,0)`$, the identity for coordinatewise maximum; the image of `NULL` is $`(1,1,1)`$, which absorbs every element of $`\mathcal Q`$. The four crisp images form a totally ordered chain in the same order as $`V_4`$, so the maximum of a collection of crisp images is the image of its most severe verdict. Including $`\mathbf p_{\mathrm{prog}}(E)=\mathbf e_{(\operatorname{prog}(E))}`$ matches every factor of §4.4. $`\square`$
+and the complete product over $`\mathcal P(E,\tau_t)`$reproduces$`\mathop{Verdict}(E,\tau_t)`$ of §4.4 identically.  *Proof.* Coordinatewise maximum on $`\mathcal Q`$ is associative, commutative, and idempotent. The bijection $`\Phi_{\mathrm{cum}}`$transports these properties to$`\Delta^3`$. The image of `FOLLOW` is $`(0,0,0)`$, the identity for coordinatewise maximum; the image of `NULL` is $`(1,1,1)`$, which absorbs every element of $`\mathcal Q`$. The four crisp images form a totally ordered chain in the same order as $`V_4`$, so the maximum of a collection of crisp images is the image of its most severe verdict. Including $`\mathbf p_{\mathrm{prog}}(E)=\mathbf e_{(\mathop{prog}(E))}`$ matches every factor of §4.4. $`\square`$
 
 The extension to non-crisp simplex points is a mathematically defined join under the cumulative order. It is not, without further semantics, an expected-value operation or a Bayesian aggregation of independent evidence.
 
@@ -708,7 +708,7 @@ By Theorem 5.2(3), factors equal to `FOLLOW` (the common case for $`v_{\mathrm{s
 
 ### 6.1. Separation between surrogate scores and factual verdicts
 
-Let $`\operatorname{sig}(x)=(1+e^{-x})^{-1}`$. A differentiable gate may be useful for route ranking or parameter optimization, but its output is not a certificate. The exact post-transition verdict remains the crisp MBEL result of §4.4. Predictions from a `PREDICTIVE_ONLY` rollout may contribute to a separate pre-action risk score; they must not be promoted to a factual `NULL`, `FOLLOW`, or committed state record.
+Let $`\mathop{sig}(x)=(1+e^{-x})^{-1}`$. A differentiable gate may be useful for route ranking or parameter optimization, but its output is not a certificate. The exact post-transition verdict remains the crisp MBEL result of §4.4. Predictions from a `PREDICTIVE_ONLY` rollout may contribute to a separate pre-action risk score; they must not be promoted to a factual `NULL`, `FOLLOW`, or committed state record.
 
 The following construction is one admissible surrogate for a **single clause** $`e_k`$, built to mirror the confidence-bound predicates of §4.2 and the priority table of §4.3; it is not claimed to be the unique or universally calibrated gate. Let $`T_g>0`$ be its temperature. The Boolean inputs of §4.1 enter as $`\{0,1\}`$-valued numbers:$`\mathsf{Au}:=\mathbb I[\mathsf{Auth}]`$,$`\mathsf{Re}:=\mathbb I[\mathsf{Rel}]`$,$`C^{\bot}:=\mathbb I[\text{a valid }\mathsf{Cert}^{\bot}_k\text{ exists}]`$,$`u_{\mathrm{cert}}:=\mathbb I[\text{a required certificate or witness is missing or invalid}]`$,$`u_{\mathrm{map}}:=(1-\iota_k)a_k\mathbb I[\mathsf{Cons}^{\mathrm{geom}}_k=0]`$,$`\mathsf{Zero}_k`$,$`\mathsf{Eq}`$, and $`B_{\mathrm{geom}}`$;$`\iota_k:=1`$ for a preservation clause ($`e_k\in E_{\mathrm{inv}}`$) and $`\iota_k:=0`$ for an active clause ($`e_k\in E_{\mathrm{act}}`$).
 
@@ -718,11 +718,11 @@ For an active clause with $`\mathsf{Cons}^{\mathrm{geom}}_k=1`$, let $`m_{\mathr
 
 ```math
 \begin{aligned}
-b_{\mathrm{br}}&:=\operatorname{sig}\!\Bigl(\frac{\beta_k^{-}-\varepsilon_{\mathrm{orth}}}{T_g}\Bigr), &
-b_{\mathrm{ok}}&:=\operatorname{sig}\!\Bigl(\frac{\varepsilon_{\mathrm{orth}}-\beta_k^{+}}{T_g}\Bigr),\\
-r_{\mathrm{br}}&:=\operatorname{sig}\!\Bigl(\frac{-\varepsilon_{\mathrm{rev}}-\alpha_k^{+}}{T_g}\Bigr), &
-r_{\mathrm{pr}}&:=\operatorname{sig}\!\Bigl(\frac{\alpha_k^{-}-\theta_{\mathrm{prog}}}{T_g}\Bigr),\\
-r_{\mathrm{ne}}&:=\operatorname{sig}\!\Bigl(\frac{\theta_{\mathrm{prog}}-\alpha_k^{+}}{T_g}\Bigr)\operatorname{sig}\!\Bigl(\frac{\alpha_k^{-}+\varepsilon_{\mathrm{rev}}}{T_g}\Bigr).
+b_{\mathrm{br}}&:=\mathop{sig}\!\Bigl(\frac{\beta_k^{-}-\varepsilon_{\mathrm{orth}}}{T_g}\Bigr), &
+b_{\mathrm{ok}}&:=\mathop{sig}\!\Bigl(\frac{\varepsilon_{\mathrm{orth}}-\beta_k^{+}}{T_g}\Bigr),\\
+r_{\mathrm{br}}&:=\mathop{sig}\!\Bigl(\frac{-\varepsilon_{\mathrm{rev}}-\alpha_k^{+}}{T_g}\Bigr), &
+r_{\mathrm{pr}}&:=\mathop{sig}\!\Bigl(\frac{\alpha_k^{-}-\theta_{\mathrm{prog}}}{T_g}\Bigr),\\
+r_{\mathrm{ne}}&:=\mathop{sig}\!\Bigl(\frac{\theta_{\mathrm{prog}}-\alpha_k^{+}}{T_g}\Bigr)\mathop{sig}\!\Bigl(\frac{\alpha_k^{-}+\varepsilon_{\mathrm{rev}}}{T_g}\Bigr).
 \end{aligned}
 ```
 
@@ -821,10 +821,10 @@ If a proposer or policy can optimize the same loss that determines its verifier'
 2. **Gradient separation.** During proposer/policy optimization, the verifier-owned quantities enter through a stop-gradient boundary. In particular, for a planned tangent displacement $`\hat\xi_t`$,
 
 ```math
-\hat\alpha_k^{\mathrm{plan}}= \operatorname{sg}\!\left(h(u_{\mathrm{exp},k},P_{\mathrm{act},k}\,\cdot)\right)[\hat\xi_t], \qquad \hat\beta_k^{\mathrm{plan}}= \left\|\operatorname{sg}(P_{\mathrm{inv},k})\hat\xi_t\right\|_h,
+\hat\alpha_k^{\mathrm{plan}}= \mathop{sg}\!\left(h(u_{\mathrm{exp},k},P_{\mathrm{act},k}\,\cdot)\right)[\hat\xi_t], \qquad \hat\beta_k^{\mathrm{plan}}= \left\|\mathop{sg}(P_{\mathrm{inv},k})\hat\xi_t\right\|_h,
 ```
 
-   where $`\operatorname{sg}`$ blocks gradients into the verifier-owned functional, projector, metric, **and encoder** parameters. Gradients may optimize the proposed action/displacement but must not update the verifier basis through this path. 3. **Encoder authority.** $`K_z`$,$`h_z`$, the projectors, and every diagnostic are functions of the latent coordinates. A proposer that can update the encoder through its own objective could therefore reshape $Z$, and with it $`K_z`$ and the projectors, without touching any other verifier-owned parameter. Verdict evidence is consequently computed only with a frozen, versioned verifier checkpoint $`\mathsf{Enc}_{\mathrm{ver}}`$. If the proposer shares network parameters with that encoder, the verdict path uses $`\operatorname{sg}(\theta_{\mathrm{ver}})`$: no gradient from any verifier-evaluated quantity ($`\alpha_k,\beta_k,\nu_k`$, the confidence bounds, the gates of §6) reaches the shared parameters. Replacing the verifier checkpoint is a versioned event: $K$, the projectors, the feature maps $`G_{k,z_t}`$, the covariance estimates, and all thresholds must be re-estimated and re-validated before the new checkpoint may produce factual verdicts. Latent states predicted by the proposer's own world model are used for planning only (item 4).
+   where $`\mathop{sg}`$ blocks gradients into the verifier-owned functional, projector, metric, **and encoder** parameters. Gradients may optimize the proposed action/displacement but must not update the verifier basis through this path. 3. **Encoder authority.** $`K_z`$,$`h_z`$, the projectors, and every diagnostic are functions of the latent coordinates. A proposer that can update the encoder through its own objective could therefore reshape $Z$, and with it $`K_z`$ and the projectors, without touching any other verifier-owned parameter. Verdict evidence is consequently computed only with a frozen, versioned verifier checkpoint $`\mathsf{Enc}_{\mathrm{ver}}`$. If the proposer shares network parameters with that encoder, the verdict path uses $`\mathop{sg}(\theta_{\mathrm{ver}})`$: no gradient from any verifier-evaluated quantity ($`\alpha_k,\beta_k,\nu_k`$, the confidence bounds, the gates of §6) reaches the shared parameters. Replacing the verifier checkpoint is a versioned event: $K$, the projectors, the feature maps $`G_{k,z_t}`$, the covariance estimates, and all thresholds must be re-estimated and re-validated before the new checkpoint may produce factual verdicts. Latent states predicted by the proposer's own world model are used for planning only (item 4).
 4. **No factual promotion.** Soft scores on predictive-only rollouts may rank candidate routes or trigger a separately specified conservative safety veto. They do not establish that a transition occurred. Only post-action `OBSERVED_TRANSITION` or `REPLAY_VERIFIED` evidence processed by the MBEL cascade may update committed state or law counters.
 5. **Limited guarantee.** Stop-gradient and checkpoint freezing block these particular optimization pathways; they do not prove that the verifier is correct, that its external data are unbiased, or that all forms of proposer/verifier collusion are impossible. Those properties require independent tests and authority separation.
 
