@@ -52,7 +52,7 @@ The following distinction is mandatory throughout:
 | $`\mathcal G_\ell=(\mathsf{Vert}_\ell,\mathsf{Ed}_\ell)`$ | Quotient transition graph at scale $`\ell`$ |
 | $`g_I`$ | Operational information bilinear form, typically $`g_{\mathrm{approx}}`$; it may be positive semidefinite |
 | $`h_z`$ | Explicit positive-definite inner product used to define projections and tangent norms |
-| $`P_{\mathrm{ker},k},P_{\mathrm{act},k},P_{\mathrm{inv},k}`$; $`W^{\mathrm{act}}_{k,z},W^{\mathrm{inv}}_{k,z}`$ | Kernel, active, and invariant $`h_z`$-orthogonal projectors for clause $`e_k`$, and the images of the last two |
+| $`P_{\mathrm{ker},k},P_{\mathrm{act},k},P_{\mathrm{inv},k}`$; $`W^{\mathrm{act}}_{k,z},W^{\mathrm{inv}}_{k,z}`$ | Kernel, active, and invariant $`h_z`$ -orthogonal projectors for clause $`e_k`$, and the images of the last two |
 | $`P_s, E^s_z, E^u_z`$ | Non-orthogonal dynamical dichotomy projector and stable/unstable Oseledets subspaces from LAF |
 | $`\xi_t\in T_{z_t}\mathcal M`$ | Local tangent displacement for a transition |
 | $`\alpha_k,\beta_k,\nu_k`$ | Point estimates of directed progress, invariant leakage, and local kernel motion |
@@ -61,10 +61,10 @@ The following distinction is mandatory throughout:
 | $`G_{k,z_t}`$, $`\widehat\delta^{\,\mathrm{geom}}_k`$, $`\Omega_{\mathrm{sub},k}`$ | Versioned tangent-to-feature map, mapped feature delta, and contract-declared bounded neutral region of non-zero feature changes for active clause $`e_k`$ ($`\varnothing`$ by default) |
 | $`\mathsf{LeakCert}_k,\mathsf{PresCert}_k,\mathsf{RevCert}_k,\mathsf{ProgCert}_k,\mathsf{NeutCert}_k,\mathsf{OutCert}_k`$ | Certified geometric predicates built from the confidence bounds and feature mappings (Definition 3.1, §4.2) |
 | $`\Delta^3`$, $`\mathbf p`$, $`\Phi_{\mathrm{cum}}`$ | Four-channel simplex, soft verdict vector, and cumulative-coordinate map |
-| $`T`$, $`T_g`$, $`\mathrm{sLSE}_T`$, $`\mathop{sig}`$ | Aggregation temperature, gate temperature, padding-invariant shifted LogSumExp, and the logistic function |
+| $`T`$, $`T_g`$, $`\mathrm{sLSE}_T`$, $`\mathrm{sig}`$ | Aggregation temperature, gate temperature, padding-invariant shifted LogSumExp, and the logistic function |
 | $`\otimes`$, $`\succ_{\mathrm{cg}}`$ | Canonical conjunctive step-verdict operation and spatial coarse-graining status order in MBEL |
 
-Symbols of MBEL keep their meaning here. In particular, $`\tau_t`$ always denotes a transition, $`\sigma(\tau_t)`$ an evidence scope, $E$ the bound expectation set, $I$ the global invariant set, and $`\Sigma_t`$ the action surface; temperatures are written $T$ and $`T_g`$, the identity operator is written $`\mathrm{Id}`$, and the logistic function is written $`\mathop{sig}`$.
+Symbols of MBEL keep their meaning here. In particular, $`\tau_t`$ always denotes a transition, $`\sigma(\tau_t)`$ an evidence scope, $E$ the bound expectation set, $I$ the global invariant set, and $`\Sigma_t`$ the action surface; temperatures are written $T$ and $`T_g`$, the identity operator is written $`\mathrm{Id}`$, and the logistic function is written $`\mathrm{sig}`$.
 
 ### 0.3. Verdict order and coarse-graining polarity
 
@@ -112,7 +112,7 @@ K_z:=\ker\bigl(d\pi_\ell(z):T_zD_\ell\to T_{\pi_\ell(z)}Y_\ell\bigr).
 
 A vector $`v\in K_z`$ is therefore a first-order direction along which the coarse-grained descriptor has zero derivative. It does **not**, by itself, prove that a finite transition is irrelevant or that an MBEL verdict must be `OMIT`.
 
-For the basic differential construction, assume that $`\mathop{rank}d\pi_\ell`$ is locally constant on each regular stratum, so $K$ is a continuous (and smooth when $`\pi_\ell`$ is smooth) vector subbundle there. If rank changes, all claims about projectors apply only stratumwise; paths crossing strata must be handled by an explicitly specified admissibility rule.
+For the basic differential construction, assume that $`\mathrm{rank}d\pi_\ell`$ is locally constant on each regular stratum, so $K$ is a continuous (and smooth when $`\pi_\ell`$ is smooth) vector subbundle there. If rank changes, all claims about projectors apply only stratumwise; paths crossing strata must be handled by an explicitly specified admissibility rule.
 
 ### 1.2. Definition of kernel paths
 
@@ -162,7 +162,7 @@ This definition makes the graph vertices equivalence classes of states connected
 
 for almost every $s$. An absolutely continuous function whose derivative vanishes almost everywhere is constant. Hence $`\pi_\ell\circ\gamma`$ is constant on the whole path, and its endpoint values are equal. $`\square`$
 
-The converse does not hold in general: two points may lie in the same fiber $`\pi_\ell^{-1}(y)`$ without being joinable by a kernel path inside the declared domain. Consequently, the kernel-path equivalence is generally a **finer partition** than equality of $`\pi_\ell`$-values, and $`D_\ell/\!\sim_{K,\ell}`$ may have more classes than the set $`\pi_\ell(D_\ell)`$. Fiber connectivity must not be assumed without proof.
+The converse does not hold in general: two points may lie in the same fiber $`\pi_\ell^{-1}(y)`$ without being joinable by a kernel path inside the declared domain. Consequently, the kernel-path equivalence is generally a **finer partition** than equality of $`\pi_\ell`$ -values, and $`D_\ell/\!\sim_{K,\ell}`$ may have more classes than the set $`\pi_\ell(D_\ell)`$. Fiber connectivity must not be assumed without proof.
 
 **Proposition 1.3 (Kernel-path classes are fiber components).** Let $`U\subseteq D_\ell`$ be an open region on which $`\pi_\ell`$ is $`C^1`$ with constant rank, and restrict admissible paths to $U$. Then the kernel-path classes in $U$ are exactly the path-connected components of the fibers $`\pi_\ell^{-1}(y)\cap U`$.
 
@@ -240,7 +240,7 @@ This is the required compatibility condition $`\sim_{K,\ell}\subseteq\sim_{K,\el
 
 **Proposition 2.1 (A sufficient condition for quotient compatibility).** Suppose $`D_\ell\subseteq D_{\ell'}`$ and the coarser map factors through the finer one on $`D_\ell`$, that is, $`\pi_{\ell'}=f\circ\pi_\ell`$ with $f$ of class $`C^1`$. Then $`K^{(\ell)}_z\subseteq K^{(\ell')}_z`$ at every point where both kernels are defined, hence $`\sim_{K,\ell}\subseteq\sim_{K,\ell'}`$ on $`D_\ell`$, and $`\mathrm{cl}_{\ell\to\ell'}`$ is well-defined.
 
-*Proof.* $`d\pi_{\ell'}(z)=df(\pi_\ell(z))\circ d\pi_\ell(z)`$ vanishes on $`K^{(\ell)}_z`$. Every admissible $`\ell`$-kernel path in $`D_\ell\subseteq D_{\ell'}`$ is therefore an admissible $`\ell'`$-kernel path. $`\square`$
+*Proof.* $`d\pi_{\ell'}(z)=df(\pi_\ell(z))\circ d\pi_\ell(z)`$ vanishes on $`K^{(\ell)}_z`$. Every admissible $`\ell`$ -kernel path in $`D_\ell\subseteq D_{\ell'}`$ is therefore an admissible $`\ell'`$ -kernel path. $`\square`$
 
 Factorization is sufficient, not necessary; when it fails, compatibility must be verified directly. In addition, for status assignment across multiple coarse-graining steps $`\ell\to\ell'\to\ell''`$ to be compositional under $`\succ_{\mathrm{cg}}`$, the essential element subsets must satisfy the preimage compatibility condition of MBEL Proposition 6.1(2):
 
@@ -280,7 +280,7 @@ h_z(u_{\mathrm{exp},k},u_{\mathrm{exp},k})=1.
 For an active clause, put
 
 ```math
-W^{\mathrm{act}}_{k,z}:=\mathop{span}\{u_{\mathrm{exp},k}(z)\},\qquad
+W^{\mathrm{act}}_{k,z}:=\mathrm{span}\{u_{\mathrm{exp},k}(z)\},\qquad
 W^{\mathrm{inv}}_{k,z}:=K_z^{\perp_h}\cap \bigl(W^{\mathrm{act}}_{k,z}\bigr)^{\perp_h}.
 ```
 
@@ -309,7 +309,7 @@ P_{u,k}^2=P_{u,k},\quad P_{u,k}P_{v,k}=0\;(u\ne v),\quad
 P_{u,k}^{*h}=P_{u,k},
 ```
 
-where $`P^{*h}`$ is the adjoint under $`h_z`$. In an $`h_z`$-orthonormal basis, these are ordinary symmetric idempotent matrices. Define
+where $`P^{*h}`$ is the adjoint under $`h_z`$. In an $`h_z`$ -orthonormal basis, these are ordinary symmetric idempotent matrices. Define
 
 ```math
 P_{\mathrm{ess},k}:=P_{\mathrm{act},k}+P_{\mathrm{inv},k}
@@ -318,14 +318,14 @@ P_{\mathrm{ess},k}:=P_{\mathrm{act},k}+P_{\mathrm{inv},k}
 
 This is an **orthogonal splitting selected by the contract**, not an automatic spectral decomposition produced by the encoder. If an active expectation admits a multidimensional cone rather than one reference direction, the active space can be generalized to the span of that cone; scalar projection onto a single $`u_{\mathrm{exp},k}`$ is then insufficient and the verifier must also test cone membership.
 
-**Distinction between ambient normal curvature and intrinsic tangent gradients.** In *The Law of Useful Information Structuring in Model Latent Spaces* (§3.2), the stationary equation $`\mathbf H(z)=\lambda(\nabla_Z i(z))^\perp`$ balances the mean curvature vector $`\mathbf H(z)`$ of the embedded submanifold $`\mathcal M\subset Z`$ against the component of the ambient information gradient $`(\nabla_Z i(z))^\perp\in N_z\mathcal M=(T_z\mathcal M)^\perp`$ **normal to $`\mathcal M`$ in $`Z`$**. Because $`(\nabla_Z i(z))^\perp`$ lies in the normal bundle $`N_z\mathcal M`$, its projection onto $`T_zD_\ell\subseteq T_z\mathcal M`$ vanishes identically; it governs how encoder training bends the embedding $`\mathcal M`$ inside $`Z`$, not how a state moves along a fixed $`\mathcal M`$. A candidate active direction $`u_{\mathrm{exp},k}(z)\in T_zD_\ell`$ on a fixed manifold may instead be motivated by the **intrinsic tangential gradient** $`\nabla_{\mathcal M}i(z)=(\nabla_Z i(z))^{\top}\in T_z\mathcal M`$ (projected into $`K_z^{\perp_h}`$). Even so, it does not define the verifier's authority: the direction used here must be fixed by the bound clause and externally grounded evidence.
+**Distinction between ambient normal curvature and intrinsic tangent gradients.** In *The Law of Useful Information Structuring in Model Latent Spaces* (§3.2), the stationary equation $`\mathbf H(z)=\lambda(\nabla_Z i(z))^\perp`$ balances the mean curvature vector $`\mathbf H(z)`$ of the embedded submanifold $`\mathcal M\subset Z`$ against the component of the ambient information gradient $`(\nabla_Z i(z))^\perp\in N_z\mathcal M=(T_z\mathcal M)^\perp`$ **normal to $`\mathcal M`$ in $`Z`$ **. Because $`(\nabla_Z i(z))^\perp`$ lies in the normal bundle $`N_z\mathcal M`$, its projection onto $`T_zD_\ell\subseteq T_z\mathcal M`$ vanishes identically; it governs how encoder training bends the embedding $`\mathcal M`$ inside $`Z`$, not how a state moves along a fixed $`\mathcal M`$. A candidate active direction $`u_{\mathrm{exp},k}(z)\in T_zD_\ell`$ on a fixed manifold may instead be motivated by the **intrinsic tangential gradient** $`\nabla_{\mathcal M}i(z)=(\nabla_Z i(z))^{\top}\in T_z\mathcal M`$ (projected into $`K_z^{\perp_h}`$). Even so, it does not define the verifier's authority: the direction used here must be fixed by the bound clause and externally grounded evidence.
 
 ### 3.3. A transition as a tangent vector
 
 Let $`z_t,z_{t+1}\in D_\ell`$. A raw coordinate difference $`z_{t+1}-z_t`$ is an ambient chord and need not belong to $`T_{z_t}D_\ell`$. When the endpoints lie in a common normal neighborhood for the declared Riemannian metric $`h`$, define
 
 ```math
-\xi_t:=\mathop{Log}^{h}_{z_t}(z_{t+1})\in T_{z_t}D_\ell.
+\xi_t:=\mathrm{Log}^{h}_{z_t}(z_{t+1})\in T_{z_t}D_\ell.
 ```
 
 For a longer transition, the path must be subdivided into locally valid steps or its tangent path must be supplied. If only endpoints are available and the implementation uses a projected ambient chord, that quantity is an approximation in the chosen coordinates and must be marked as such; it is not coordinate-invariant by definition.
@@ -359,14 +359,14 @@ and local kernel-direction motion by
 \nu_k:=\|\xi_{\mathrm{ker},k}\|_{h}.
 ```
 
-The nonnegative number $`\nu_k`$ is only a **local diagnostic**. Because kernel distributions can vary with position, $`\xi_{\mathrm{ker},k}\ne0`$ alone does not prove that the finite endpoint transition is kernel-path equivalent. Equivalence of the endpoints must be established by Definition 1.2 or by a separately verified path witness.  **Confidence set.** Let $`\mathsf{Cov}_{\mathrm{epi},k}`$be the covariance operator for the estimated displacement on the essential tangent space$`T^{\mathrm{ess}}_{k,z}:=\mathop{Im}(P_{\mathrm{ess},k})`$. Assume it is positive definite on that subspace; if an estimate is rank-deficient (an ensemble of $N$ models yields rank at most $`N-1`$), a declared regularization$`\mathsf{Cov}_{\mathrm{epi},k}+\lambda_{\mathrm{cov}}\mathrm{Id}`$ is part of the protocol and is used throughout. In an $`h`$-orthonormal basis and with a confidence radius$`\gamma_{\mathrm{snr}}>0`$ fixed in the verifier contract, put
+The nonnegative number $`\nu_k`$ is only a **local diagnostic**. Because kernel distributions can vary with position, $`\xi_{\mathrm{ker},k}\ne0`$ alone does not prove that the finite endpoint transition is kernel-path equivalent. Equivalence of the endpoints must be established by Definition 1.2 or by a separately verified path witness. **Confidence set.** Let $`\mathsf{Cov}_{\mathrm{epi},k}`$ be the covariance operator for the estimated displacement on the essential tangent space $`T^{\mathrm{ess}}_{k,z}:=\mathrm{Im}(P_{\mathrm{ess},k})`$. Assume it is positive definite on that subspace; if an estimate is rank-deficient (an ensemble of $N$ models yields rank at most $`N-1`$), a declared regularization $`\mathsf{Cov}_{\mathrm{epi},k}+\lambda_{\mathrm{cov}}\mathrm{Id}`$ is part of the protocol and is used throughout. In an $`h`$ -orthonormal basis and with a confidence radius $`\gamma_{\mathrm{snr}}>0`$ fixed in the verifier contract, put
 
 ```math
 \mathcal B_k:=\Bigl\{\xi\in T^{\mathrm{ess}}_{k,z}:\;
 (\xi-\xi_{\mathrm{ess},k})^{\mathsf T}\,\mathsf{Cov}_{\mathrm{epi},k}^{-1}\,(\xi-\xi_{\mathrm{ess},k})\le\gamma_{\mathrm{snr}}^{2}\Bigr\}.
 ```
 
-The contract accepts $`\mathcal B_k`$ as the epistemic confidence set of the true essential displacement; the coverage probability it carries is a calibration question, not a consequence of the construction. The overall Mahalanobis statistic $`\mathrm{snr}_k:=\sqrt{\xi_{\mathrm{ess},k}^{\mathsf T}\mathsf{Cov}_{\mathrm{epi},k}^{-1}\xi_{\mathrm{ess},k}}`$satisfies$`\mathrm{snr}_k>\gamma_{\mathrm{snr}}`$if and only if$`0\notin\mathcal B_k`$, that is, if and only if the displacement is distinguishable from zero. It is a diagnostic only and is **not** used in any verdict condition below: a large displacement along one component says nothing about the resolution of another component, and for a preservation clause the relevant question is not whether the signal exceeds the noise but whether the leakage is certifiably within tolerance.  **Component noise scales and confidence bounds.** In an $`h`$-orthonormal basis put
+The contract accepts $`\mathcal B_k`$ as the epistemic confidence set of the true essential displacement; the coverage probability it carries is a calibration question, not a consequence of the construction. The overall Mahalanobis statistic $`\mathrm{snr}_k:=\sqrt{\xi_{\mathrm{ess},k}^{\mathsf T}\mathsf{Cov}_{\mathrm{epi},k}^{-1}\xi_{\mathrm{ess},k}}`$ satisfies $`\mathrm{snr}_k>\gamma_{\mathrm{snr}}`$ if and only if $`0\notin\mathcal B_k`$, that is, if and only if the displacement is distinguishable from zero. It is a diagnostic only and is **not** used in any verdict condition below: a large displacement along one component says nothing about the resolution of another component, and for a preservation clause the relevant question is not whether the signal exceeds the noise but whether the leakage is certifiably within tolerance. **Component noise scales and confidence bounds.** In an $`h`$ -orthonormal basis put
 
 ```math
 s_{\mathrm{act},k}:=\bigl\|\mathsf{Cov}_{\mathrm{epi},k}^{1/2}\,u_{\mathrm{exp},k}\bigr\|
@@ -384,14 +384,14 @@ with $`s_{\mathrm{act},k}:=0`$ for a preservation clause, and define
 \beta_k^{-}:=\max\{0,\;\beta_k-\gamma_{\mathrm{snr}}\,s_{\mathrm{inv},k}\}.
 ```
 
-**Lemma 3.1 (Confidence-ball bounds).** For every $`\xi\in\mathcal B_k`$, let $`\alpha(\xi):=h(u_{\mathrm{exp},k},P_{\mathrm{act},k}\xi)`$and$`\beta(\xi):=\|P_{\mathrm{inv},k}\xi\|_h`$. Then
+**Lemma 3.1 (Confidence-ball bounds).** For every $`\xi\in\mathcal B_k`$, let $`\alpha(\xi):=h(u_{\mathrm{exp},k},P_{\mathrm{act},k}\xi)`$ and $`\beta(\xi):=\|P_{\mathrm{inv},k}\xi\|_h`$. Then
 
 ```math
 \alpha_k^{-}\le\alpha(\xi)\le\alpha_k^{+},\qquad
 \beta_k^{-}\le\beta(\xi)\le\beta_k^{+}.
 ```
 
-*Proof.* Write $`\xi-\xi_{\mathrm{ess},k}=\mathsf{Cov}_{\mathrm{epi},k}^{1/2}w`$with$`\|w\|\le\gamma_{\mathrm{snr}}`$, which is the definition of $`\mathcal B_k`$. Because $`u_{\mathrm{exp},k}\in\mathop{Im}(P_{\mathrm{act},k})`$and$`P_{\mathrm{act},k}`$is$`h`$-symmetric,$`\alpha(\xi)=u_{\mathrm{exp},k}^{\mathsf T}\xi`$. By the Cauchy–Schwarz inequality,
+*Proof.* Write $`\xi-\xi_{\mathrm{ess},k}=\mathsf{Cov}_{\mathrm{epi},k}^{1/2}w`$ with $`\|w\|\le\gamma_{\mathrm{snr}}`$, which is the definition of $`\mathcal B_k`$. Because $`u_{\mathrm{exp},k}\in\mathrm{Im}(P_{\mathrm{act},k})`$ and $`P_{\mathrm{act},k}`$ is $`h`$ -symmetric, $`\alpha(\xi)=u_{\mathrm{exp},k}^{\mathsf T}\xi`$. By the Cauchy–Schwarz inequality,
 
 ```math
 |\alpha(\xi)-\alpha_k|=\bigl|(\mathsf{Cov}_{\mathrm{epi},k}^{1/2}u_{\mathrm{exp},k})^{\mathsf T}w\bigr|\le s_{\mathrm{act},k}\,\gamma_{\mathrm{snr}}.
@@ -403,7 +403,7 @@ Since $`P_{\mathrm{inv},k}P_{\mathrm{ess},k}=P_{\mathrm{inv},k}`$, we have $`\be
 |\beta(\xi)-\beta_k|\le\|P_{\mathrm{inv},k}\mathsf{Cov}_{\mathrm{epi},k}^{1/2}w\|\le s_{\mathrm{inv},k}\,\gamma_{\mathrm{snr}}.
 ```
 
-The lower bound $`\beta_k^{-}`$ is the maximum of this bound and $0$, since $`\beta(\xi)\ge0`$.$`\square`$  **Definition 3.1 (Certified directional and invariant predicates).** For a clause $`e_k`$ put
+The lower bound $`\beta_k^{-}`$ is the maximum of this bound and $0$, since $`\beta(\xi)\ge0`$. $`\square`$ **Definition 3.1 (Certified directional and invariant predicates).** For a clause $`e_k`$ put
 
 ```math
 \begin{aligned}
@@ -415,7 +415,7 @@ The lower bound $`\beta_k^{-}`$ is the maximum of this bound and $0$, since $`\b
 \end{aligned}
 ```
 
-By Lemma 3.1, each predicate states that *every* displacement in $`\mathcal B_k`$satisfies the corresponding inequality: leakage beyond tolerance, leakage within tolerance, reversal, progress, and a progress value inside the neutral band$`[-\varepsilon_{\mathrm{rev}},\theta_{\mathrm{prog}})`$. The last three are meaningful for active clauses only.  **Proposition 3.2 (Mutual exclusivity of directional confidence predicates).** For any clause $`e_k`$,$`\mathsf{LeakCert}_k`$and$`\mathsf{PresCert}_k`$are mutually exclusive; for any active clause,$`\mathsf{RevCert}_k`$,$`\mathsf{ProgCert}_k`$, and $`\mathsf{NeutCert}_k`$ are pairwise mutually exclusive.  *Proof.* $`\mathsf{LeakCert}_k`$and$`\mathsf{PresCert}_k`$are incompatible because$`\beta_k^{-}\le\beta_k^{+}`$. For the active predicates use $`\alpha_k^{-}\le\alpha_k^{+}`$:$`\mathsf{RevCert}_k`$contradicts$`\mathsf{NeutCert}_k`$(it would give$`\alpha_k^{-}\ge-\varepsilon_{\mathrm{rev}}`$and$`\alpha_k^{+}<-\varepsilon_{\mathrm{rev}}`$);$`\mathsf{RevCert}_k`$contradicts$`\mathsf{ProgCert}_k`$(it would give$`\alpha_k^{+}<-\varepsilon_{\mathrm{rev}}\le0<\theta_{\mathrm{prog}}\le\alpha_k^{-}\le\alpha_k^{+}`$); and$`\mathsf{ProgCert}_k`$contradicts$`\mathsf{NeutCert}_k`$($`\alpha_k^{-}\ge\theta_{\mathrm{prog}}`$and$`\alpha_k^{+}<\theta_{\mathrm{prog}}`$).$`\square`$
+By Lemma 3.1, each predicate states that *every* displacement in $`\mathcal B_k`$ satisfies the corresponding inequality: leakage beyond tolerance, leakage within tolerance, reversal, progress, and a progress value inside the neutral band $`[-\varepsilon_{\mathrm{rev}},\theta_{\mathrm{prog}})`$. The last three are meaningful for active clauses only. **Proposition 3.2 (Mutual exclusivity of directional confidence predicates).** For any clause $`e_k`$, $`\mathsf{LeakCert}_k`$ and $`\mathsf{PresCert}_k`$ are mutually exclusive; for any active clause, $`\mathsf{RevCert}_k`$, $`\mathsf{ProgCert}_k`$, and $`\mathsf{NeutCert}_k`$ are pairwise mutually exclusive. *Proof.* $`\mathsf{LeakCert}_k`$ and $`\mathsf{PresCert}_k`$ are incompatible because $`\beta_k^{-}\le\beta_k^{+}`$. For the active predicates use $`\alpha_k^{-}\le\alpha_k^{+}`$: $`\mathsf{RevCert}_k`$ contradicts $`\mathsf{NeutCert}_k`$ (it would give $`\alpha_k^{-}\ge-\varepsilon_{\mathrm{rev}}`$ and $`\alpha_k^{+}<-\varepsilon_{\mathrm{rev}}`$); $`\mathsf{RevCert}_k`$ contradicts $`\mathsf{ProgCert}_k`$ (it would give $`\alpha_k^{+}<-\varepsilon_{\mathrm{rev}}\le0<\theta_{\mathrm{prog}}\le\alpha_k^{-}\le\alpha_k^{+}`$); and $`\mathsf{ProgCert}_k`$ contradicts $`\mathsf{NeutCert}_k`$ ($`\alpha_k^{-}\ge\theta_{\mathrm{prog}}`$ and $`\alpha_k^{+}<\theta_{\mathrm{prog}}`$). $`\square`$
 
 **Exact redundancy and stagnation use descriptors, not geometry.** For exact redundancy use the structural descriptor from MBEL,
 
@@ -423,7 +423,7 @@ By Lemma 3.1, each predicate states that *every* displacement in $`\mathcal B_k`
 H_t:=\psi(\bar o_t),\qquad H_{t+1}:=\psi(\bar o_{t+1}),
 ```
 
-not equality of latent coordinates alone. In particular, $`z_t=z_{t+1}`$is neither necessary nor sufficient for$`H_t=H_{t+1}`$ when the encoder is non-injective or changes between versions. Stagnation of a clause is a statement about the clause's own tracked feature, $`\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)=\mathbf 0`$; it is established by authoritative observation (§4.1) and the MBEL confirmation rule, never by a Mahalanobis statistic of a zero displacement, which is zero by definition.
+not equality of latent coordinates alone. In particular, $`z_t=z_{t+1}`$ is neither necessary nor sufficient for $`H_t=H_{t+1}`$ when the encoder is non-injective or changes between versions. Stagnation of a clause is a statement about the clause's own tracked feature, $`\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)=\mathbf 0`$; it is established by authoritative observation (§4.1) and the MBEL confirmation rule, never by a Mahalanobis statistic of a zero displacement, which is zero by definition.
 
 ---
 
@@ -440,7 +440,7 @@ For each clause $`e_k`$, let
 \gamma_{\mathrm{snr}}>0
 ```
 
-be fixed contract parameters ($`\gamma_{\mathrm{snr}}`$ is the confidence radius of §3.4). For each active clause $`e_k\in E_{\mathrm{act}}`$, let $`\mathcal F_k`$denote its observed feature-delta space (typically a subset of$`\mathbb R^d`$), and define
+be fixed contract parameters ($`\gamma_{\mathrm{snr}}`$ is the confidence radius of §3.4). For each active clause $`e_k\in E_{\mathrm{act}}`$, let $`\mathcal F_k`$ denote its observed feature-delta space (typically a subset of $`\mathbb R^d`$), and define
 
 ```math
 \Omega_{\mathrm{sub},k}\subseteq\mathcal F_k\setminus\{\mathbf 0\},
@@ -448,7 +448,7 @@ be fixed contract parameters ($`\gamma_{\mathrm{snr}}`$ is the confidence radius
 \Omega_{\mathrm{sub},k}\cap\varphi_{\mathrm{exp},k}=\varnothing.
 ```
 
-The set $`\Omega_{\mathrm{sub},k}`$ is the contract-declared bounded neutral region of non-zero **observed feature changes**, as specified by MBEL Definition 3.1(5). It is **empty by default** ($`\Omega_{\mathrm{sub},k}=\varnothing`$), is disjoint from $`\varphi_{\mathrm{exp},k}`$, and must be expressed in the feature-delta space rather than the latent tangent space. An admissible feature change in $`\varphi_{\mathrm{exp},k}`$whose metric progress is below$`\theta_{\mathrm{prog}}`$ is a separate MBEL sub-threshold neutral case (§6.1 of MBEL); it does not need to be added to $`\Omega_{\mathrm{sub},k}`$. Record the units, calibration set, metric contract, encoder version, and confidence policy for both the map and the neutral set.
+The set $`\Omega_{\mathrm{sub},k}`$ is the contract-declared bounded neutral region of non-zero **observed feature changes**, as specified by MBEL Definition 3.1(5). It is **empty by default** ($`\Omega_{\mathrm{sub},k}=\varnothing`$), is disjoint from $`\varphi_{\mathrm{exp},k}`$, and must be expressed in the feature-delta space rather than the latent tangent space. An admissible feature change in $`\varphi_{\mathrm{exp},k}`$ whose metric progress is below $`\theta_{\mathrm{prog}}`$ is a separate MBEL sub-threshold neutral case (§6.1 of MBEL); it does not need to be added to $`\Omega_{\mathrm{sub},k}`$. Record the units, calibration set, metric contract, encoder version, and confidence policy for both the map and the neutral set.
 
 To compare geometry with the normative feature-space clauses, the contract must supply a versioned map
 
@@ -458,16 +458,16 @@ G_{k,z_t}:T_{z_t}D_\ell\longrightarrow\mathcal F_k,
 \widehat\delta^{\,\mathrm{geom}}_k:=G_{k,z_t}(\xi_t),
 ```
 
-where $`\mathcal F_k`$is the feature-delta space in which$`\varphi_{\mathrm{exp},k}`$and$`\Omega_{\mathrm{sub},k}`$ are defined. The map must be calibrated against the authoritative observed change $`\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)`$ under a declared consistency tolerance. The consistency test must also verify the metric–feature contract: the directed-progress score $`\alpha_k`$, the invariant-leakage statistic $`\beta_k`$, and their thresholds must use a declared calibration that is coherent with the mapped/observed feature change; this is a contract assumption, not an automatic consequence of $`G_{k,z_t}`$. Let $`\mathsf{Cons}^{\mathrm{geom}}_k=1`$ mean that the versioned map and this full consistency check pass for the transition. If the map is missing, version-mismatched, or inconsistent with the observed feature delta, set $`\mathsf{Cons}^{\mathrm{geom}}_k=0`$ and do not use its geometric output as a decisive witness: the verifier must fall back to the ordinary MBEL evidence rules, and return `UNDECIDED` when the relevant feature-space outcome cannot otherwise be resolved.
+where $`\mathcal F_k`$ is the feature-delta space in which $`\varphi_{\mathrm{exp},k}`$ and $`\Omega_{\mathrm{sub},k}`$ are defined. The map must be calibrated against the authoritative observed change $`\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)`$ under a declared consistency tolerance. The consistency test must also verify the metric–feature contract: the directed-progress score $`\alpha_k`$, the invariant-leakage statistic $`\beta_k`$, and their thresholds must use a declared calibration that is coherent with the mapped/observed feature change; this is a contract assumption, not an automatic consequence of $`G_{k,z_t}`$. Let $`\mathsf{Cons}^{\mathrm{geom}}_k=1`$ mean that the versioned map and this full consistency check pass for the transition. If the map is missing, version-mismatched, or inconsistent with the observed feature delta, set $`\mathsf{Cons}^{\mathrm{geom}}_k=0`$ and do not use its geometric output as a decisive witness: the verifier must fall back to the ordinary MBEL evidence rules, and return `UNDECIDED` when the relevant feature-space outcome cannot otherwise be resolved.
 
-For an active clause with $`\mathsf{Cons}^{\mathrm{geom}}_k=1`$, the image of the confidence ball $`G_{k,z_t}(\mathcal B_k)\subseteq\mathcal F_k`$ defines three certified feature-set predicates: - $`\mathsf{Cone}^{\mathrm{in}}_k:\iff G_{k,z_t}(\mathcal B_k)\subseteq\varphi_{\mathrm{exp},k}`$(in the one-dimensional realization where$`\varphi_{\mathrm{exp},k}`$is the positive half-line along$`u_{\mathrm{exp},k}`$, this is implied by $`\alpha_k^{-}>0`$); - $`\mathsf{SubSetCert}_k:\iff G_{k,z_t}(\mathcal B_k)\subseteq\Omega_{\mathrm{sub},k}`$(false whenever$`\Omega_{\mathrm{sub},k}=\varnothing`$); - $`\mathsf{OutCert}_k:\iff G_{k,z_t}(\mathcal B_k)\subseteq\mathcal F_k\setminus\bigl(\varphi_{\mathrm{exp},k}\cup\{\mathbf 0\}\cup\Omega_{\mathrm{sub},k}\bigr)`$ (every displacement in the confidence ball maps to a nonzero out-of-contract feature change, MBEL Definition 3.1(5)).  Because $`\varphi_{\mathrm{exp},k}`$,$`\Omega_{\mathrm{sub},k}`$, and $`\mathcal F_k\setminus(\varphi_{\mathrm{exp},k}\cup\{\mathbf 0\}\cup\Omega_{\mathrm{sub},k})`$are pairwise disjoint, at most one of$`\mathsf{Cone}^{\mathrm{in}}_k`$,$`\mathsf{SubSetCert}_k`$, and $`\mathsf{OutCert}_k`$ can hold.  The following Boolean items are inherited from the MBEL verifier rather than inferred solely from latent geometry:  - $`\mathsf{Auth}(\tau_t)`$: the evidence scope is `OBSERVED_TRANSITION` or `REPLAY_VERIFIED`;
-- $`\mathsf{Rel}(e_k,\tau_t)`$: the clause is reliably grounded/tracked; - $`\mathsf{Cert}^{\bot}_k`$,$`\mathsf{Cert}^{+}_k`$: valid incompatibility or fulfillment certificate (including$`\mathcal C^\bot`$for a destructive outcome under obstruction$`a_k=1,c_k=0`$violating$`\mathsf{Ob}_{\mathrm{safety}}`$, MBEL §3.4 and §5.3); a required certificate or witness that is missing or invalid makes the clause unresolved; - $`\mathsf{Cert}^{c}_k`$: a context/obstruction witness obtained strictly from pre-outcome evidence (MBEL §3.2); - $`\mathsf{Zero}_k`$: an authoritative observation that the clause's tracked feature delta vanishes,$`\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)=\mathbf 0`$, with no intra-step transient activity on $`(s_k,F_k)`$; - $`\mathsf{Eq}(\tau_t)`$: an authoritative observation that$`H_{t+1}=H_t`$; it implies $`\mathsf{Zero}_k`$ for every clause; - $`B_{\mathrm{geom}}`$: the contract explicitly authorizes the certified geometric breach predicates as an incompatibility witness; - $`a_k,c_k,\chi_{\mathrm{conf},k}`$: operator activation, unobstructed context, and prior confirmation flags as defined by MBEL, with$`\chi_{\mathrm{conf},k}`$evaluated on the ensemble before$`\tau_t`$is ingested ($`\mathcal T_{t-1}`$, MBEL §3.4).  Geometric margins can support a certificate only if the contract explicitly accepts the metric, projectors, thresholds, confidence set, feature map, and measurement procedure as a valid witness. A large $`\beta_k`$or negative$`\alpha_k`$ in an ungrounded latent space is not, on its own, an authoritative contradiction.
+For an active clause with $`\mathsf{Cons}^{\mathrm{geom}}_k=1`$, the image of the confidence ball $`G_{k,z_t}(\mathcal B_k)\subseteq\mathcal F_k`$ defines three certified feature-set predicates: - $`\mathsf{Cone}^{\mathrm{in}}_k:\iff G_{k,z_t}(\mathcal B_k)\subseteq\varphi_{\mathrm{exp},k}`$ (in the one-dimensional realization where $`\varphi_{\mathrm{exp},k}`$ is the positive half-line along $`u_{\mathrm{exp},k}`$, this is implied by $`\alpha_k^{-}>0`$); - $`\mathsf{SubSetCert}_k:\iff G_{k,z_t}(\mathcal B_k)\subseteq\Omega_{\mathrm{sub},k}`$ (false whenever $`\Omega_{\mathrm{sub},k}=\varnothing`$); - $`\mathsf{OutCert}_k:\iff G_{k,z_t}(\mathcal B_k)\subseteq\mathcal F_k\setminus\bigl(\varphi_{\mathrm{exp},k}\cup\{\mathbf 0\}\cup\Omega_{\mathrm{sub},k}\bigr)`$ (every displacement in the confidence ball maps to a nonzero out-of-contract feature change, MBEL Definition 3.1(5)). Because $`\varphi_{\mathrm{exp},k}`$, $`\Omega_{\mathrm{sub},k}`$, and $`\mathcal F_k\setminus(\varphi_{\mathrm{exp},k}\cup\{\mathbf 0\}\cup\Omega_{\mathrm{sub},k})`$ are pairwise disjoint, at most one of $`\mathsf{Cone}^{\mathrm{in}}_k`$, $`\mathsf{SubSetCert}_k`$, and $`\mathsf{OutCert}_k`$ can hold. The following Boolean items are inherited from the MBEL verifier rather than inferred solely from latent geometry: - $`\mathsf{Auth}(\tau_t)`$: the evidence scope is `OBSERVED_TRANSITION` or `REPLAY_VERIFIED`;
+- $`\mathsf{Rel}(e_k,\tau_t)`$: the clause is reliably grounded/tracked; - $`\mathsf{Cert}^{\bot}_k`$, $`\mathsf{Cert}^{+}_k`$: valid incompatibility or fulfillment certificate (including $`\mathcal C^\bot`$ for a destructive outcome under obstruction $`a_k=1,c_k=0`$ violating $`\mathsf{Ob}_{\mathrm{safety}}`$, MBEL §3.4 and §5.3); a required certificate or witness that is missing or invalid makes the clause unresolved; - $`\mathsf{Cert}^{c}_k`$: a context/obstruction witness obtained strictly from pre-outcome evidence (MBEL §3.2); - $`\mathsf{Zero}_k`$: an authoritative observation that the clause's tracked feature delta vanishes, $`\delta_{\mathrm{obs}}(s_k,F_k;\tau_t)=\mathbf 0`$, with no intra-step transient activity on $`(s_k,F_k)`$; - $`\mathsf{Eq}(\tau_t)`$: an authoritative observation that $`H_{t+1}=H_t`$; it implies $`\mathsf{Zero}_k`$ for every clause; - $`B_{\mathrm{geom}}`$: the contract explicitly authorizes the certified geometric breach predicates as an incompatibility witness; - $`a_k,c_k,\chi_{\mathrm{conf},k}`$: operator activation, unobstructed context, and prior confirmation flags as defined by MBEL, with $`\chi_{\mathrm{conf},k}`$ evaluated on the ensemble before $`\tau_t`$ is ingested ($`\mathcal T_{t-1}`$, MBEL §3.4). Geometric margins can support a certificate only if the contract explicitly accepts the metric, projectors, thresholds, confidence set, feature map, and measurement procedure as a valid witness. A large $`\beta_k`$ or negative $`\alpha_k`$ in an ungrounded latent space is not, on its own, an authoritative contradiction.
 
 ### 4.2. Contract-level geometric conditions (aligned with MBEL §3.1, §3.3, and §4.3)
 
 To maintain strict conformance with MBEL §3.3 (*Remark on Tier separation*), §3.4, and §4.3 (Step 1a), geometric predicates must respect three normative rules:
 1. **Inactive operator immunity for active clauses:** If $`e_k\in E_{\mathrm{act}}`$ and the tested operator was **not** invoked ($`a_k=0`$), an exogenous contrary change or orthogonal leakage caused by another operator or external factor is incidental to $`e_k`$ (`OMIT_INCIDENTAL`, MBEL §3.3 rows 8–12) and must **never** trigger `NULL` for $`e_k`$. By contrast, a preservation clause ($`e_k\in E_{\mathrm{inv}}`$) triggers `NULL` upon a certified breach regardless of $`a_k`$.
-2. **Separation of effect law and obstructed safety obligation ($`ac'y^\bot`$, MBEL §3.3–3.4):** Under obstruction ($`e_k\in E_{\mathrm{act}}, a_k=1, c_k=0`$), the effect law $`\Lambda=(ac\Rightarrow y)`$ is outside its applicability domain. A destructive outcome under obstruction violates the separate safety obligation $`\mathsf{Ob}_{\mathrm{safety}}`$ and activates `NULL` only when certified by a valid safety incompatibility certificate $`\mathsf{Cert}^{\bot}_k=1`$; geometric scores ($`B_{\mathrm{geom}}`$) alone do not substitute for $`\mathsf{Cert}^{\bot}_k`$when$`c_k=0`$.
+2. **Separation of effect law and obstructed safety obligation ($`ac'y^\bot`$, MBEL §3.3–3.4):** Under obstruction ($`e_k\in E_{\mathrm{act}}, a_k=1, c_k=0`$), the effect law $`\Lambda=(ac\Rightarrow y)`$ is outside its applicability domain. A destructive outcome under obstruction violates the separate safety obligation $`\mathsf{Ob}_{\mathrm{safety}}`$ and activates `NULL` only when certified by a valid safety incompatibility certificate $`\mathsf{Cert}^{\bot}_k=1`$; geometric scores ($`B_{\mathrm{geom}}`$) alone do not substitute for $`\mathsf{Cert}^{\bot}_k`$ when $`c_k=0`$.
 3. **Closure of the partition on active changes (MBEL Definitions 3.1–3.2 and §6.1):** For an active clause ($`e_k\in E_{\mathrm{act}}`$) invoked in an unobstructed context ($`a_k=c_k=1`$), a resolved non-zero change is sub-threshold neutral (`OMIT_INCIDENTAL`) if either (i) it lies in the expected set ($`\mathsf{Cone}^{\mathrm{in}}_k`$) with sub-threshold non-reversing progress ($`\mathsf{NeutCert}_k`$) and preserved invariants ($`\mathsf{PresCert}_k`$) — which remains neutral even when $`\Omega_{\mathrm{sub},k}=\varnothing`$ — or (ii) it is certified inside the explicitly declared neutral region ($`\mathsf{SubSetCert}_k\land\mathsf{PresCert}_k`$). Conversely, a resolved change certified outside $`\varphi_{\mathrm{exp},k}\cup\{\mathbf 0\}\cup\Omega_{\mathrm{sub},k}`$ ($`\mathsf{OutCert}_k`$) is an out-of-contract active breach.
 
 Accordingly, for an active clause define thethree mutually exclusive certified geometric classes:
@@ -480,7 +480,7 @@ G^{\mathrm{neut}}_k&:=\mathsf{Cons}^{\mathrm{geom}}_k\land\mathsf{PresCert}_k\la
 \end{aligned}
 ```
 
-and for a preservation clause ($`e_k\in E_{\mathrm{inv}}`$) define $`G^{\mathrm{breach}}_k:=\mathsf{LeakCert}_k`$and$`G^{\mathrm{pres}}_k:=\mathsf{PresCert}_k`$. By Proposition 3.2 and the disjointness of $`\mathsf{Cone}^{\mathrm{in}}_k`$,$`\mathsf{SubSetCert}_k`$, and $`\mathsf{OutCert}_k`$, at most one of $`G^{\mathrm{breach}}_k, G^{\mathrm{real}}_k, G^{\mathrm{neut}}_k`$(and at most one of$`G^{\mathrm{breach}}_k, G^{\mathrm{pres}}_k`$) can hold.
+and for a preservation clause ($`e_k\in E_{\mathrm{inv}}`$) define $`G^{\mathrm{breach}}_k:=\mathsf{LeakCert}_k`$ and $`G^{\mathrm{pres}}_k:=\mathsf{PresCert}_k`$. By Proposition 3.2 and the disjointness of $`\mathsf{Cone}^{\mathrm{in}}_k`$, $`\mathsf{SubSetCert}_k`$, and $`\mathsf{OutCert}_k`$, at most one of $`G^{\mathrm{breach}}_k, G^{\mathrm{real}}_k, G^{\mathrm{neut}}_k`$ (and at most one of $`G^{\mathrm{breach}}_k, G^{\mathrm{pres}}_k`$) can hold.
 
 **Certified unobstructed or invariant breach.** Combining tier separation and context gating gives:
 
@@ -499,7 +499,7 @@ and for a preservation clause ($`e_k\in E_{\mathrm{inv}}`$) define $`G^{\mathrm{
 \chi_{\mathrm{conf},k}=1\land \mathsf{Auth}(\tau_t)=1\land\mathsf{Rel}(e_k,\tau_t)=1\land\mathsf{Zero}_k.
 ```
 
-If the descriptor changes in other features while $`(s_k,F_k)`$is unchanged, stagnation still holds; whole-descriptor equality$`\mathsf{Eq}(\tau_t)`$ is the criterion for `OMIT_REDUNDANT` only.
+If the descriptor changes in other features while $`(s_k,F_k)`$ is unchanged, stagnation still holds; whole-descriptor equality $`\mathsf{Eq}(\tau_t)`$ is the criterion for `OMIT_REDUNDANT` only.
 
 **Geometric resolution.** Geometry is *needed* for a clause only when the observation and activation flags have not already fixed its outcome:
 
@@ -521,7 +521,7 @@ and it *resolves* the clause when one of the certified classes holds in a form t
 \end{cases}
 ```
 
-The geometric evidence is **insufficient** when $`\mathsf{GeoUnres}_k:=\mathsf{Need}_k\land\neg\mathsf{Res}_k`$: the confidence set straddles a threshold, or$`\mathsf{Cons}^{\mathrm{geom}}_k=0`$on an active clause that requires feature-space resolution, or a geometric breach occurs without contract authorization ($`B_{\mathrm{geom}}=0`$or$`c_k=0`$without$`\mathsf{Cert}^{\bot}_k`$).
+The geometric evidence is **insufficient** when $`\mathsf{GeoUnres}_k:=\mathsf{Need}_k\land\neg\mathsf{Res}_k`$: the confidence set straddles a threshold, or $`\mathsf{Cons}^{\mathrm{geom}}_k=0`$ on an active clause that requires feature-space resolution, or a geometric breach occurs without contract authorization ($`B_{\mathrm{geom}}=0`$ or $`c_k=0`$ without $`\mathsf{Cert}^{\bot}_k`$).
 
 ### 4.3. Sufficient spectral conditions, with MBEL priority
 
@@ -545,7 +545,7 @@ The following table describes the conditions under which the spectral diagnostic
 Let $`v_k=v(e_k,\tau_t)`$ be the crisp clause verdicts returned by the MBEL clause cascade. Let $`v_{\mathrm{scope}}`$ be `FOLLOW` for authoritative observed/replay scope and `UNDECIDED` otherwise. Let $`v_{\mathrm{inv}}`$ aggregate the global invariant verdicts: a certified violation ($`Viol=1\land AuthSafety=1`$) gives `NULL`, an apparent but unauthenticated violation ($`Viol=1\land AuthSafety=0`$) gives `UNDECIDED`, and no violation gives `FOLLOW`. Define the empty-product guard (MBEL Axiom 4.1)
 
 ```math
-\mathop{prog}(E):=
+\mathrm{prog}(E):=
 \begin{cases}
 \mathrm{OMIT},&E_{\mathrm{act}}=\varnothing,\\
 \mathrm{FOLLOW},&E_{\mathrm{act}}\ne\varnothing.
@@ -555,13 +555,13 @@ Let $`v_k=v(e_k,\tau_t)`$ be the crisp clause verdicts returned by the MBEL clau
 Then
 
 ```math
-\mathop{Verdict}(E,\tau_t)=
+\mathrm{Verdict}(E,\tau_t)=
  v_{\mathrm{scope}}\otimes v_{\mathrm{inv}}
  \otimes\Bigl(\bigotimes_{e_k\in E}v_k\Bigr)
- \otimes\mathop{prog}(E),
+ \otimes\mathrm{prog}(E),
 ```
 
-with the empty $`\otimes`$-product equal to `FOLLOW`. This is the MBEL priority-semilattice realization. The spectral layer is an evidence extractor for the clause outcomes, not a second, competing semantics.
+with the empty $`\otimes`$ -product equal to `FOLLOW`. This is the MBEL priority-semilattice realization. The spectral layer is an evidence extractor for the clause outcomes, not a second, competing semantics.
 
 ---
 
@@ -647,7 +647,7 @@ Because the coordinatewise maximum of nondecreasing three-vectors is nondecreasi
 To enforce MBEL Axiom 4.1 (Prohibition of Vacuous Truth) on the simplex, define the progress-guard vector
 
 ```math
-\mathbf p_{\mathrm{prog}}(E):=\mathbf e_{(\mathop{prog}(E))}=
+\mathbf p_{\mathrm{prog}}(E):=\mathbf e_{(\mathrm{prog}(E))}=
 \begin{cases}
 \mathbf e_{(0)},&E_{\mathrm{act}}=\varnothing,\\
 \mathbf e_{(+)},&E_{\mathrm{act}}\ne\varnothing.
@@ -660,7 +660,7 @@ When aggregating a full transition over scope vector $`\mathbf p_{\mathrm{scope}
 \mathcal P(E,\tau_t):=\bigl(\mathbf p_1,\ldots,\mathbf p_{n_E},\,\mathbf e_{(v_{\mathrm{scope}})},\,\mathbf e_{(v_{\mathrm{inv}})},\,\mathbf p_{\mathrm{prog}}(E)\bigr).
 ```
 
-Including $`\mathbf p_{\mathrm{prog}}(E)`$guarantees that when$`E_{\mathrm{act}}=\varnothing`$and all preservation clauses$`e_k\in E_{\mathrm{inv}}`$evaluate to$`\mathbf e_{(+)}`$ (`FOLLOW`), the aggregate evaluates to $`\mathbf e_{(0)}`$ (`OMIT`), never to `FOLLOW`.
+Including $`\mathbf p_{\mathrm{prog}}(E)`$ guarantees that when $`E_{\mathrm{act}}=\varnothing`$ and all preservation clauses $`e_k\in E_{\mathrm{inv}}`$ evaluate to $`\mathbf e_{(+)}`$ (`FOLLOW`), the aggregate evaluates to $`\mathbf e_{(0)}`$ (`OMIT`), never to `FOLLOW`.
 
 **Theorem 5.1 (Semilattice realization).** The operation $`\bigotimes`$ is associative, commutative, and idempotent. Its identity is $`\mathbf e_{(+)}`$ (`FOLLOW`) and its absorbing element is $`\mathbf e_{(-)}`$ (`NULL`). For crisp inputs,
 
@@ -669,38 +669,38 @@ Including $`\mathbf p_{\mathrm{prog}}(E)`$guarantees that when$`E_{\mathrm{act}}
 =\mathbf e_{\max_{\preceq_V}\{v_1,\ldots,v_M\}},
 ```
 
-and the complete product over $`\mathcal P(E,\tau_t)`$reproduces$`\mathop{Verdict}(E,\tau_t)`$ of §4.4 identically.  *Proof.* Coordinatewise maximum on $`\mathcal Q`$ is associative, commutative, and idempotent. The bijection $`\Phi_{\mathrm{cum}}`$transports these properties to$`\Delta^3`$. The image of `FOLLOW` is $`(0,0,0)`$, the identity for coordinatewise maximum; the image of `NULL` is $`(1,1,1)`$, which absorbs every element of $`\mathcal Q`$. The four crisp images form a totally ordered chain in the same order as $`V_4`$, so the maximum of a collection of crisp images is the image of its most severe verdict. Including $`\mathbf p_{\mathrm{prog}}(E)=\mathbf e_{(\mathop{prog}(E))}`$ matches every factor of §4.4. $`\square`$
+and the complete product over $`\mathcal P(E,\tau_t)`$ reproduces $`\mathrm{Verdict}(E,\tau_t)`$ of §4.4 identically. *Proof.* Coordinatewise maximum on $`\mathcal Q`$ is associative, commutative, and idempotent. The bijection $`\Phi_{\mathrm{cum}}`$ transports these properties to $`\Delta^3`$. The image of `FOLLOW` is $`(0,0,0)`$, the identity for coordinatewise maximum; the image of `NULL` is $`(1,1,1)`$, which absorbs every element of $`\mathcal Q`$. The four crisp images form a totally ordered chain in the same order as $`V_4`$, so the maximum of a collection of crisp images is the image of its most severe verdict. Including $`\mathbf p_{\mathrm{prog}}(E)=\mathbf e_{(\mathrm{prog}(E))}`$ matches every factor of §4.4. $`\square`$
 
 The extension to non-crisp simplex points is a mathematically defined join under the cumulative order. It is not, without further semantics, an expected-value operation or a Bayesian aggregation of independent evidence.
 
 ### 5.4. Padding-invariant smooth aggregation
 
-A smooth relaxation used for training must neither let neutral factors manufacture severity nor dilute a certified `NULL`. Plain LogSumExp fails the first requirement: a stack consisting of one `OMIT` vector and five `FOLLOW` vectors acquires a spurious `NULL` mass of about $`0.18`$at temperature$`0.1`$. Normalized LogMeanExp, $`T\log(\frac1M\sum_m e^{x_m/T})`$, fails the second: a single certified `NULL` among five `FOLLOW` factors receives a `NULL` mass of only about $`0.36`$at temperature$`0.5`$and$`0.82`$at temperature$`0.1`$, requiring artificial temperature rescaling as $M$ grows. The following operator avoids both defects directly.  For $`x\in[0,1]^M`$and a temperature$`T>0`$ define the **padding-invariant shifted LogSumExp**
+A smooth relaxation used for training must neither let neutral factors manufacture severity nor dilute a certified `NULL`. Plain LogSumExp fails the first requirement: a stack consisting of one `OMIT` vector and five `FOLLOW` vectors acquires a spurious `NULL` mass of about $`0.18`$ at temperature $`0.1`$. Normalized LogMeanExp, $`T\log(\frac1M\sum_m e^{x_m/T})`$, fails the second: a single certified `NULL` among five `FOLLOW` factors receives a `NULL` mass of only about $`0.36`$ at temperature $`0.5`$ and $`0.82`$ at temperature $`0.1`$, requiring artificial temperature rescaling as $M$ grows. The following operator avoids both defects directly. For $`x\in[0,1]^M`$ and a temperature $`T>0`$ define the **padding-invariant shifted LogSumExp**
 
 ```math
 \mathrm{sLSE}_T(x_1,\ldots,x_M):=
 \min\Bigl\{1,\;T\log\Bigl(1+\sum_{m=1}^{M}\bigl(e^{x_m/T}-1\bigr)\Bigr)\Bigr\}.
 ```
 
-For $`\mathbf p_1,\dots,\mathbf p_M\in\Delta^3`$with$`Q_m:=\Phi_{\mathrm{cum}}(\mathbf p_m)`$, put
+For $`\mathbf p_1,\dots,\mathbf p_M\in\Delta^3`$ with $`Q_m:=\Phi_{\mathrm{cum}}(\mathbf p_m)`$, put
 
 ```math
 q_j^{(T)}:=\mathrm{sLSE}_T(Q_{1,j},\ldots,Q_{M,j}),\qquad
 \bigotimes_{T,m=1}^{M}\mathbf p_m:=\Phi_{\mathrm{cum}}^{-1}\bigl(\mathbf q^{(T)}\bigr).
 ```
 
-Every factor with $`x_m=0`$contributes$`e^{0}-1=0`$ to the sum and is therefore inert.  **Theorem 5.2 (Properties of the relaxed join).** Let $`T>0`$,$`M\ge1`$,$`\mathbf p_m\in\Delta^3`$,$`Q_m=\Phi_{\mathrm{cum}}(\mathbf p_m)`$, let $`q^{(0)}_j:=\max_m Q_{m,j}`$be the exact cumulative join, and let$`K_j:=\#\{m:Q_{m,j}>0\}`$. Then:  1. **Closure.** $`0\le q_1^{(T)}\le q_2^{(T)}\le q_3^{(T)}\le1`$; hence $`\bigotimes_T\mathbf p_m\in\Delta^3`$. 2. **One-sided bound.** $`q^{(0)}_j\le q_j^{(T)}\le\min\{1,\;q^{(0)}_j+T\log K_j\}`$(with$`q_j^{(T)}=0`$when$`K_j=0`$). In the cumulative order, the relaxed join is never less severe than the exact join of its inputs. 3. **Padding invariance.** Appending any number of factors equal to $`\mathbf e_{(+)}`$ (`FOLLOW`) does not change $`\mathbf q^{(T)}`$. More generally, coordinate $j$ignores every factor with$`Q_{m,j}=0`$. 4. **Exactness on crisp inputs.** If every $`\mathbf p_m`$is a vertex of$`\Delta^3`$, then $`\bigotimes_T\mathbf p_m=\bigotimes\mathbf p_m`$for every$`T>0`$. In particular a factor equal to $`\mathbf e_{(-)}`$ (`NULL`) forces the output $`\mathbf e_{(-)}`$at every temperature, and the case$`M=1`$is exact for every$`\mathbf p_1\in\Delta^3`$. 5. **Uniform convergence.** $`\Bigl\|\bigotimes_{T,m=1}^{M}\mathbf p_m-\bigotimes_{m=1}^{M}\mathbf p_m\Bigr\|_\infty\le T\log M`$.  *Proof.* (2) Keep only the maximal term: $`1+\sum_m(e^{x_m/T}-1)\ge e^{\max_m x_m/T}`$, so the logarithmic expression is at least $`\max_m x_m`$, and the cap at $1$does not lower it below$`\max_m x_m\le1`$. For the upper bound let $`K\ge1`$be the number of$m$with$`x_m>0`$and$`a:=\max_m x_m/T`$. Every nonzero term is at most $`e^{a}-1`$, so $`1+\sum_m(e^{x_m/T}-1)\le1+K(e^{a}-1)\le Ke^{a}`$, because $`Ke^{a}-\bigl(1+Ke^{a}-K\bigr)=K-1\ge0`$; taking $`T\log`$gives$`\max_m x_m+T\log K`$. If $`K=0`$, all $`x_m=0`$ and the value is $0$. (1)$`\mathrm{sLSE}_T`$is nondecreasing in each argument, and$`Q_{m,j}\le Q_{m,j+1}`$for every$m$, so $`q_j^{(T)}\le q_{j+1}^{(T)}`$; the range $`[0,1]`$ follows from (2) and the cap. By the formula for $`\Phi_{\mathrm{cum}}^{-1}`$ in §5.2, the four output coordinates are then nonnegative and sum to $1$. (3) A zero argument contributes $0$to the sum. (4) For crisp inputs all$`Q_{m,j}\in\{0,1\}`$. If some $`Q_{m,j}=1`$, the sum is at least $`e^{1/T}-1`$, the logarithmic expression is at least $1$and the cap gives$`q_j^{(T)}=1=q_j^{(0)}`$; otherwise all arguments vanish and $`q_j^{(T)}=0=q_j^{(0)}`$. For $`M=1`$,$`T\log(1+e^{x/T}-1)=x`$. (5) Put$`\delta_j:=q_j^{(T)}-q_j^{(0)}\in[0,T\log M]`$by (2). The four coordinates of$`\Phi_{\mathrm{cum}}^{-1}`$are$`1-q_3`$,$`q_3-q_2`$,$`q_2-q_1`$, and $`q_1`$; their errors are $`-\delta_3`$,$`\delta_3-\delta_2`$,$`\delta_2-\delta_1`$, and $`\delta_1`$, each of absolute value at most $`T\log M`$.$`\square`$  **Remarks.**  1. *Smoothness.* $`\mathrm{sLSE}_T`$is$`C^\infty`$ except on the closed set where the cap is active. There its value is exactly $1$ (the certified-severity regime), so the function is locally Lipschitz and almost everywhere differentiable, and its gradient vanishes in that regime. A $`C^\infty`$ variant would replace the cap by a smooth saturation; it would forfeit the exactness statement (4) and is not specified here. 2. *Bias direction.* The bias is conservative: relaxed severity is never below the exact severity. The price is an over-estimate of at most $`T\log K_j`$ when several non-neutral factors ($`K_j\ge2`$) accumulate; choose $`T\ll1/\log M`$ when that over-estimate matters.
+Every factor with $`x_m=0`$ contributes $`e^{0}-1=0`$ to the sum and is therefore inert. **Theorem 5.2 (Properties of the relaxed join).** Let $`T>0`$, $`M\ge1`$, $`\mathbf p_m\in\Delta^3`$, $`Q_m=\Phi_{\mathrm{cum}}(\mathbf p_m)`$, let $`q^{(0)}_j:=\max_m Q_{m,j}`$ be the exact cumulative join, and let $`K_j:=\#\{m:Q_{m,j}>0\}`$. Then: 1. **Closure.** $`0\le q_1^{(T)}\le q_2^{(T)}\le q_3^{(T)}\le1`$; hence $`\bigotimes_T\mathbf p_m\in\Delta^3`$. 2. **One-sided bound.** $`q^{(0)}_j\le q_j^{(T)}\le\min\{1,\;q^{(0)}_j+T\log K_j\}`$ (with $`q_j^{(T)}=0`$ when $`K_j=0`$). In the cumulative order, the relaxed join is never less severe than the exact join of its inputs. 3. **Padding invariance.** Appending any number of factors equal to $`\mathbf e_{(+)}`$ (`FOLLOW`) does not change $`\mathbf q^{(T)}`$. More generally, coordinate $j$ignores every factor with $`Q_{m,j}=0`$. 4. **Exactness on crisp inputs.** If every $`\mathbf p_m`$ is a vertex of $`\Delta^3`$, then $`\bigotimes_T\mathbf p_m=\bigotimes\mathbf p_m`$ for every $`T>0`$. In particular a factor equal to $`\mathbf e_{(-)}`$ (`NULL`) forces the output $`\mathbf e_{(-)}`$ at every temperature, and the case $`M=1`$ is exact for every $`\mathbf p_1\in\Delta^3`$. 5. **Uniform convergence.** $`\Bigl\|\bigotimes_{T,m=1}^{M}\mathbf p_m-\bigotimes_{m=1}^{M}\mathbf p_m\Bigr\|_\infty\le T\log M`$. *Proof.* (2) Keep only the maximal term: $`1+\sum_m(e^{x_m/T}-1)\ge e^{\max_m x_m/T}`$, so the logarithmic expression is at least $`\max_m x_m`$, and the cap at $1$does not lower it below $`\max_m x_m\le1`$. For the upper bound let $`K\ge1`$ be the number of$m$with $`x_m>0`$ and $`a:=\max_m x_m/T`$. Every nonzero term is at most $`e^{a}-1`$, so $`1+\sum_m(e^{x_m/T}-1)\le1+K(e^{a}-1)\le Ke^{a}`$, because $`Ke^{a}-\bigl(1+Ke^{a}-K\bigr)=K-1\ge0`$; taking $`T\log`$ gives $`\max_m x_m+T\log K`$. If $`K=0`$, all $`x_m=0`$ and the value is $0$. (1) $`\mathrm{sLSE}_T`$ is nondecreasing in each argument, and $`Q_{m,j}\le Q_{m,j+1}`$ for every$m$, so $`q_j^{(T)}\le q_{j+1}^{(T)}`$; the range $`[0,1]`$ follows from (2) and the cap. By the formula for $`\Phi_{\mathrm{cum}}^{-1}`$ in §5.2, the four output coordinates are then nonnegative and sum to $1$. (3) A zero argument contributes $0$to the sum. (4) For crisp inputs all $`Q_{m,j}\in\{0,1\}`$. If some $`Q_{m,j}=1`$, the sum is at least $`e^{1/T}-1`$, the logarithmic expression is at least $1$and the cap gives $`q_j^{(T)}=1=q_j^{(0)}`$; otherwise all arguments vanish and $`q_j^{(T)}=0=q_j^{(0)}`$. For $`M=1`$, $`T\log(1+e^{x/T}-1)=x`$. (5) Put $`\delta_j:=q_j^{(T)}-q_j^{(0)}\in[0,T\log M]`$ by (2). The four coordinates of $`\Phi_{\mathrm{cum}}^{-1}`$ are $`1-q_3`$, $`q_3-q_2`$, $`q_2-q_1`$, and $`q_1`$; their errors are $`-\delta_3`$, $`\delta_3-\delta_2`$, $`\delta_2-\delta_1`$, and $`\delta_1`$, each of absolute value at most $`T\log M`$. $`\square`$ **Remarks.** 1. *Smoothness.* $`\mathrm{sLSE}_T`$ is $`C^\infty`$ except on the closed set where the cap is active. There its value is exactly $1$ (the certified-severity regime), so the function is locally Lipschitz and almost everywhere differentiable, and its gradient vanishes in that regime. A $`C^\infty`$ variant would replace the cap by a smooth saturation; it would forfeit the exactness statement (4) and is not specified here. 2. *Bias direction.* The bias is conservative: relaxed severity is never below the exact severity. The price is an over-estimate of at most $`T\log K_j`$ when several non-neutral factors ($`K_j\ge2`$) accumulate; choose $`T\ll1/\log M`$ when that over-estimate matters.
 3. *Semantics.* The operator remains a join under the cumulative order. It is not a Bayesian aggregation of independent evidence (coordinatewise maxima correspond to a comonotone coupling of the inputs), and the soft scores are not calibrated probabilities.
 
 ### 5.5. Assembling the relaxed verdict
 
-Applying $`\bigotimes_T`$to the complete factor list$`\mathcal P(E,\tau_t)`$ of §5.3 yields the relaxed transition verdict:
+Applying $`\bigotimes_T`$ to the complete factor list $`\mathcal P(E,\tau_t)`$ of §5.3 yields the relaxed transition verdict:
 
 ```math
 \mathbf p^{(T)}:=\bigotimes_{T}\bigl(\mathbf p_1,\ldots,\mathbf p_{n_E},\,\mathbf e_{(v_{\mathrm{scope}})},\,\mathbf e_{(v_{\mathrm{inv}})},\,\mathbf p_{\mathrm{prog}}(E)\bigr).
 ```
 
-By Theorem 5.2(3), factors equal to `FOLLOW` (the common case for $`v_{\mathrm{scope}}`$,$`v_{\mathrm{inv}}`$, satisfied preservation clauses $`e_k\in E_{\mathrm{inv}}`$, and $`\mathbf p_{\mathrm{prog}}(E)`$when$`E_{\mathrm{act}}\ne\varnothing`$) do not influence the result at any temperature; by (4), the relaxation coincides with the exact verdict whenever all inputs are crisp (including the Axiom 4.1 case$`E_{\mathrm{act}}=\varnothing`$), in particular on every verifier-side evaluation; by (2), the relaxed verdict is never less severe than the exact join of its inputs. It is a training and ranking surrogate only (§6, §7).
+By Theorem 5.2(3), factors equal to `FOLLOW` (the common case for $`v_{\mathrm{scope}}`$, $`v_{\mathrm{inv}}`$, satisfied preservation clauses $`e_k\in E_{\mathrm{inv}}`$, and $`\mathbf p_{\mathrm{prog}}(E)`$ when $`E_{\mathrm{act}}\ne\varnothing`$) do not influence the result at any temperature; by (4), the relaxation coincides with the exact verdict whenever all inputs are crisp (including the Axiom 4.1 case $`E_{\mathrm{act}}=\varnothing`$), in particular on every verifier-side evaluation; by (2), the relaxed verdict is never less severe than the exact join of its inputs. It is a training and ranking surrogate only (§6, §7).
 
 ---
 
@@ -708,31 +708,31 @@ By Theorem 5.2(3), factors equal to `FOLLOW` (the common case for $`v_{\mathrm{s
 
 ### 6.1. Separation between surrogate scores and factual verdicts
 
-Let $`\mathop{sig}(x)=(1+e^{-x})^{-1}`$. A differentiable gate may be useful for route ranking or parameter optimization, but its output is not a certificate. The exact post-transition verdict remains the crisp MBEL result of §4.4. Predictions from a `PREDICTIVE_ONLY` rollout may contribute to a separate pre-action risk score; they must not be promoted to a factual `NULL`, `FOLLOW`, or committed state record.
+Let $`\mathrm{sig}(x)=(1+e^{-x})^{-1}`$. A differentiable gate may be useful for route ranking or parameter optimization, but its output is not a certificate. The exact post-transition verdict remains the crisp MBEL result of §4.4. Predictions from a `PREDICTIVE_ONLY` rollout may contribute to a separate pre-action risk score; they must not be promoted to a factual `NULL`, `FOLLOW`, or committed state record.
 
-The following construction is one admissible surrogate for a **single clause** $`e_k`$, built to mirror the confidence-bound predicates of §4.2 and the priority table of §4.3; it is not claimed to be the unique or universally calibrated gate. Let $`T_g>0`$ be its temperature. The Boolean inputs of §4.1 enter as $`\{0,1\}`$-valued numbers:$`\mathsf{Au}:=\mathbb I[\mathsf{Auth}]`$,$`\mathsf{Re}:=\mathbb I[\mathsf{Rel}]`$,$`C^{\bot}:=\mathbb I[\text{a valid }\mathsf{Cert}^{\bot}_k\text{ exists}]`$,$`u_{\mathrm{cert}}:=\mathbb I[\text{a required certificate or witness is missing or invalid}]`$,$`u_{\mathrm{map}}:=(1-\iota_k)a_k\mathbb I[\mathsf{Cons}^{\mathrm{geom}}_k=0]`$,$`\mathsf{Zero}_k`$,$`\mathsf{Eq}`$, and $`B_{\mathrm{geom}}`$;$`\iota_k:=1`$ for a preservation clause ($`e_k\in E_{\mathrm{inv}}`$) and $`\iota_k:=0`$ for an active clause ($`e_k\in E_{\mathrm{act}}`$).
+The following construction is one admissible surrogate for a **single clause** $`e_k`$, built to mirror the confidence-bound predicates of §4.2 and the priority table of §4.3; it is not claimed to be the unique or universally calibrated gate. Let $`T_g>0`$ be its temperature. The Boolean inputs of §4.1 enter as $`\{0,1\}`$ -valued numbers: $`\mathsf{Au}:=\mathbb I[\mathsf{Auth}]`$, $`\mathsf{Re}:=\mathbb I[\mathsf{Rel}]`$, $`C^{\bot}:=\mathbb I[\text{a valid }\mathsf{Cert}^{\bot}_k\text{ exists}]`$, $`u_{\mathrm{cert}}:=\mathbb I[\text{a required certificate or witness is missing or invalid}]`$, $`u_{\mathrm{map}}:=(1-\iota_k)a_k\mathbb I[\mathsf{Cons}^{\mathrm{geom}}_k=0]`$, $`\mathsf{Zero}_k`$, $`\mathsf{Eq}`$, and $`B_{\mathrm{geom}}`$; $`\iota_k:=1`$ for a preservation clause ($`e_k\in E_{\mathrm{inv}}`$) and $`\iota_k:=0`$ for an active clause ($`e_k\in E_{\mathrm{act}}`$).
 
-For an active clause with $`\mathsf{Cons}^{\mathrm{geom}}_k=1`$, let $`m_{\mathrm{cone}}\in[0,1]`$,$`m_{\mathrm{sub}}\in[0,1]`$, and $`m_{\mathrm{out}}\in[0,1]`$be contract-calibrated smooth indicators of$`\mathsf{Cone}^{\mathrm{in}}_k`$,$`\mathsf{SubSetCert}_k`$, and $`\mathsf{OutCert}_k`$, respectively (with $`m_{\mathrm{sub}}\equiv0`$when$`\Omega_{\mathrm{sub},k}=\varnothing`$, and $`m_{\mathrm{cone}}\equiv1, m_{\mathrm{out}}\equiv0`$in the one-dimensional realization where positive progress along$`u_{\mathrm{exp},k}`$exhausts$`\varphi_{\mathrm{exp},k}`$).
+For an active clause with $`\mathsf{Cons}^{\mathrm{geom}}_k=1`$, let $`m_{\mathrm{cone}}\in[0,1]`$, $`m_{\mathrm{sub}}\in[0,1]`$, and $`m_{\mathrm{out}}\in[0,1]`$ be contract-calibrated smooth indicators of $`\mathsf{Cone}^{\mathrm{in}}_k`$, $`\mathsf{SubSetCert}_k`$, and $`\mathsf{OutCert}_k`$, respectively (with $`m_{\mathrm{sub}}\equiv0`$ when $`\Omega_{\mathrm{sub},k}=\varnothing`$, and $`m_{\mathrm{cone}}\equiv1, m_{\mathrm{out}}\equiv0`$ in the one-dimensional realization where positive progress along $`u_{\mathrm{exp},k}`$ exhausts $`\varphi_{\mathrm{exp},k}`$).
 
 **Certified geometric scores.** With the confidence bounds of §3.4,
 
 ```math
 \begin{aligned}
-b_{\mathrm{br}}&:=\mathop{sig}\!\Bigl(\frac{\beta_k^{-}-\varepsilon_{\mathrm{orth}}}{T_g}\Bigr), &
-b_{\mathrm{ok}}&:=\mathop{sig}\!\Bigl(\frac{\varepsilon_{\mathrm{orth}}-\beta_k^{+}}{T_g}\Bigr),\\
-r_{\mathrm{br}}&:=\mathop{sig}\!\Bigl(\frac{-\varepsilon_{\mathrm{rev}}-\alpha_k^{+}}{T_g}\Bigr), &
-r_{\mathrm{pr}}&:=\mathop{sig}\!\Bigl(\frac{\alpha_k^{-}-\theta_{\mathrm{prog}}}{T_g}\Bigr),\\
-r_{\mathrm{ne}}&:=\mathop{sig}\!\Bigl(\frac{\theta_{\mathrm{prog}}-\alpha_k^{+}}{T_g}\Bigr)\mathop{sig}\!\Bigl(\frac{\alpha_k^{-}+\varepsilon_{\mathrm{rev}}}{T_g}\Bigr).
+b_{\mathrm{br}}&:=\mathrm{sig}\!\Bigl(\frac{\beta_k^{-}-\varepsilon_{\mathrm{orth}}}{T_g}\Bigr), &
+b_{\mathrm{ok}}&:=\mathrm{sig}\!\Bigl(\frac{\varepsilon_{\mathrm{orth}}-\beta_k^{+}}{T_g}\Bigr),\\
+r_{\mathrm{br}}&:=\mathrm{sig}\!\Bigl(\frac{-\varepsilon_{\mathrm{rev}}-\alpha_k^{+}}{T_g}\Bigr), &
+r_{\mathrm{pr}}&:=\mathrm{sig}\!\Bigl(\frac{\alpha_k^{-}-\theta_{\mathrm{prog}}}{T_g}\Bigr),\\
+r_{\mathrm{ne}}&:=\mathrm{sig}\!\Bigl(\frac{\theta_{\mathrm{prog}}-\alpha_k^{+}}{T_g}\Bigr)\mathrm{sig}\!\Bigl(\frac{\alpha_k^{-}+\varepsilon_{\mathrm{rev}}}{T_g}\Bigr).
 \end{aligned}
 ```
 
-They are the smooth counterparts of $`\mathsf{LeakCert}_k`$,$`\mathsf{PresCert}_k`$,$`\mathsf{RevCert}_k`$,$`\mathsf{ProgCert}_k`$, and $`\mathsf{NeutCert}_k`$. Define the clause-applicability factor for incompatibility
+They are the smooth counterparts of $`\mathsf{LeakCert}_k`$, $`\mathsf{PresCert}_k`$, $`\mathsf{RevCert}_k`$, $`\mathsf{ProgCert}_k`$, and $`\mathsf{NeutCert}_k`$. Define the clause-applicability factor for incompatibility
 
 ```math
 \kappa_{\bot,k}:=\iota_k+(1-\iota_k)a_k\in\{0,1\},
 ```
 
-and the smooth counterparts of $`G^{\mathrm{breach}}_k`$,$`G^{\mathrm{real}}_k`$, and $`G^{\mathrm{neut}}_k`$:
+and the smooth counterparts of $`G^{\mathrm{breach}}_k`$, $`G^{\mathrm{real}}_k`$, and $`G^{\mathrm{neut}}_k`$:
 
 ```math
 \begin{aligned}
@@ -749,7 +749,7 @@ h_{\mathrm{br}}&:=\iota_k b_{\mathrm{br}}+(1-\iota_k)a_k c_k\,g_{\mathrm{br},k}^
 d_-:=\mathsf{Au}\,\mathsf{Re}\,\kappa_{\bot,k}\Bigl[C^{\bot}+(1-C^{\bot})\bigl(S_k+(1-S_k)\,B_{\mathrm{geom}}\,h_{\mathrm{br}}\bigr)\Bigr].
 ```
 
-Because $`h_{\mathrm{br}}`$carries the factor$`a_k c_k`$ on active clauses, an uninvoked active clause ($`a_k=0`$) has $`\kappa_{\bot,k}=0\implies d_-=0`$, and an obstructed active clause ($`a_k=1,c_k=0`$) activates $`d_-`$only through a valid safety certificate$`C^{\bot}=1`$under$`\mathsf{Ob}_{\mathrm{safety}}`$.
+Because $`h_{\mathrm{br}}`$ carries the factor $`a_k c_k`$ on active clauses, an uninvoked active clause ($`a_k=0`$) has $`\kappa_{\bot,k}=0\implies d_-=0`$, and an obstructed active clause ($`a_k=1,c_k=0`$) activates $`d_-`$ only through a valid safety certificate $`C^{\bot}=1`$ under $`\mathsf{Ob}_{\mathrm{safety}}`$.
 
 **Uncertainty score.** Geometry is needed only when the observation has not fixed the outcome,
 
@@ -764,7 +764,7 @@ and it resolves the clause with score
 +(1-\iota_k)\bigl[1-(1-c_k B_{\mathrm{geom}}g_{\mathrm{br},k}^{\mathrm{act}})(1-g_{\mathrm{real},k}^{\mathrm{act}})(1-g_{\mathrm{neut},k}^{\mathrm{act}})\bigr].
 ```
 
-Define the components $`u_{\mathrm{scope}}:=1-\mathsf{Au}`$,$`u_{\mathrm{rel}}:=1-\mathsf{Re}`$,$`u_{\mathrm{stag}}:=(1-\iota_k)\,a_k c_k(1-\chi_{\mathrm{conf},k})\,\mathsf{Zero}_k`$,$`u_{\mathrm{geo}}:=\mathrm{need}_k\,(1-\mathrm{res}_k)`$, and
+Define the components $`u_{\mathrm{scope}}:=1-\mathsf{Au}`$, $`u_{\mathrm{rel}}:=1-\mathsf{Re}`$, $`u_{\mathrm{stag}}:=(1-\iota_k)\,a_k c_k(1-\chi_{\mathrm{conf},k})\,\mathsf{Zero}_k`$, $`u_{\mathrm{geo}}:=\mathrm{need}_k\,(1-\mathrm{res}_k)`$, and
 
 ```math
 d_U:=1-(1-u_{\mathrm{scope}})(1-u_{\mathrm{rel}})(1-u_{\mathrm{cert}})(1-u_{\mathrm{map}})(1-u_{\mathrm{stag}})(1-u_{\mathrm{geo}}).
@@ -792,18 +792,18 @@ A preservation clause has $`\iota_k=1\implies g_+=1`$, so $`p_k^{(0)}=0`$: in MB
 
 ### 6.2. Properties and limits of the gate
 
-Because all Boolean inputs, smooth membership indicators, and sigmoid scores lie in $`[0,1]`$, and each of $`d_-`$,$`d_U`$,$`g_+`$is built from them by products and by the maps$`x\mapsto1-(1-x)(1-y)`$, every score above lies in $`[0,1]`$. Consequently,
+Because all Boolean inputs, smooth membership indicators, and sigmoid scores lie in $`[0,1]`$, and each of $`d_-`$, $`d_U`$, $`g_+`$ is built from them by products and by the maps $`x\mapsto1-(1-x)(1-y)`$, every score above lies in $`[0,1]`$. Consequently,
 
 ```math
 p_k^{(s)}\ge0\quad(s\in\{+,0,U,-\}),\qquad
 p_k^{(+)}+p_k^{(0)}+p_k^{(U)}+p_k^{(-)}=1.
 ```
 
-The identity follows from $`p_k^{(+)}+p_k^{(0)}=r_k`$and$`d_-+(1-d_-)d_U+(1-d_-)(1-d_U)=1`$.  If all non-Boolean confidence bounds stay strictly away from their thresholds, the relevant certificate flags are fixed, and the smooth indicators $`m_{\mathrm{cone}}, m_{\mathrm{sub}}, m_{\mathrm{out}}`$agree with their hard counterparts, then as$`T_g\to0^+`$ the sigmoid scores converge to the corresponding indicator predicates of §3.4 and §4.2, and the vector converges pointwise to the crisp clause basis vector prescribed by rows 1–4 and 7–8 of §4.3:
-1. **Inactive active clauses ($`e_k\in E_{\mathrm{act}}, a_k=0`$):** $`\kappa_{\bot,k}=0\implies d_-=0`$,$`\mathrm{need}_k=0`$,$`u_{\mathrm{stag}}=0`$, and $`g_+=0`$; when reliably grounded with valid certificates, $`\mathbf p_k\to\mathbf e_{(0)}`$ (`OMIT`) even if another operator caused $`\beta_k^{-}>\varepsilon_{\mathrm{orth}}`$or$`\alpha_k^{+}<-\varepsilon_{\mathrm{rev}}`$.
-2. **Satisfied preservation clauses ($`e_k\in E_{\mathrm{inv}}, \beta_k^{+}<\varepsilon_{\mathrm{orth}}`$):** $`b_{\mathrm{br}}\to0`$,$`b_{\mathrm{ok}}\to1`$,$`\mathrm{res}_k\to1`$, and $`g_+=1`$, so $`\mathbf p_k\to\mathbf e_{(+)}`$ (`FOLLOW`) without any SNR penalty when $`\beta_k=0`$.
-3. **Sub-threshold versus out-of-contract active changes ($`e_k\in E_{\mathrm{act}}, a_k=c_k=1`$):** Certified expected-set sub-threshold progress ($`G^{\mathrm{neut}}_k`$) gives $`g_{\mathrm{neut},k}^{\mathrm{act}}\to1`$,$`\mathrm{res}_k\to1`$,$`g_+\to0`$, so $`\mathbf p_k\to\mathbf e_{(0)}`$ (`OMIT`) even when $`\Omega_{\mathrm{sub},k}=\varnothing`$. Certified out-of-contract change ($`\mathsf{OutCert}_k`$) gives $`g_{\mathrm{br},k}^{\mathrm{act}}\to1`$, which yields $`\mathbf p_k\to\mathbf e_{(-)}`$ (`NULL`) when $`B_{\mathrm{geom}}=1`$and$`\mathbf p_k\to\mathbf e_{(U)}`$ (`UNDECIDED`) when $`B_{\mathrm{geom}}=0`$.
-4. **Obstructed active clauses ($`e_k\in E_{\mathrm{act}}, a_k=1, c_k=0`$):** A destructive breach activates $`d_-\to1`$ (`NULL`) only when certified by $`C^{\bot}=1`$under$`\mathsf{Ob}_{\mathrm{safety}}`$; a resolved non-destructive soft stop gives $`\mathbf p_k\to\mathbf e_{(0)}`$ (`OMIT`).
+The identity follows from $`p_k^{(+)}+p_k^{(0)}=r_k`$ and $`d_-+(1-d_-)d_U+(1-d_-)(1-d_U)=1`$. If all non-Boolean confidence bounds stay strictly away from their thresholds, the relevant certificate flags are fixed, and the smooth indicators $`m_{\mathrm{cone}}, m_{\mathrm{sub}}, m_{\mathrm{out}}`$ agree with their hard counterparts, then as $`T_g\to0^+`$ the sigmoid scores converge to the corresponding indicator predicates of §3.4 and §4.2, and the vector converges pointwise to the crisp clause basis vector prescribed by rows 1–4 and 7–8 of §4.3:
+1. **Inactive active clauses ($`e_k\in E_{\mathrm{act}}, a_k=0`$):** $`\kappa_{\bot,k}=0\implies d_-=0`$, $`\mathrm{need}_k=0`$, $`u_{\mathrm{stag}}=0`$, and $`g_+=0`$; when reliably grounded with valid certificates, $`\mathbf p_k\to\mathbf e_{(0)}`$ (`OMIT`) even if another operator caused $`\beta_k^{-}>\varepsilon_{\mathrm{orth}}`$ or $`\alpha_k^{+}<-\varepsilon_{\mathrm{rev}}`$.
+2. **Satisfied preservation clauses ($`e_k\in E_{\mathrm{inv}}, \beta_k^{+}<\varepsilon_{\mathrm{orth}}`$):** $`b_{\mathrm{br}}\to0`$, $`b_{\mathrm{ok}}\to1`$, $`\mathrm{res}_k\to1`$, and $`g_+=1`$, so $`\mathbf p_k\to\mathbf e_{(+)}`$ (`FOLLOW`) without any SNR penalty when $`\beta_k=0`$.
+3. **Sub-threshold versus out-of-contract active changes ($`e_k\in E_{\mathrm{act}}, a_k=c_k=1`$):** Certified expected-set sub-threshold progress ($`G^{\mathrm{neut}}_k`$) gives $`g_{\mathrm{neut},k}^{\mathrm{act}}\to1`$, $`\mathrm{res}_k\to1`$, $`g_+\to0`$, so $`\mathbf p_k\to\mathbf e_{(0)}`$ (`OMIT`) even when $`\Omega_{\mathrm{sub},k}=\varnothing`$. Certified out-of-contract change ($`\mathsf{OutCert}_k`$) gives $`g_{\mathrm{br},k}^{\mathrm{act}}\to1`$, which yields $`\mathbf p_k\to\mathbf e_{(-)}`$ (`NULL`) when $`B_{\mathrm{geom}}=1`$ and $`\mathbf p_k\to\mathbf e_{(U)}`$ (`UNDECIDED`) when $`B_{\mathrm{geom}}=0`$.
+4. **Obstructed active clauses ($`e_k\in E_{\mathrm{act}}, a_k=1, c_k=0`$):** A destructive breach activates $`d_-\to1`$ (`NULL`) only when certified by $`C^{\bot}=1`$ under $`\mathsf{Ob}_{\mathrm{safety}}`$; a resolved non-destructive soft stop gives $`\mathbf p_k\to\mathbf e_{(0)}`$ (`OMIT`).
 
 No pointwise convergence claim is made at threshold boundaries. The vector $`\mathbf p_k`$ is a training/ranking surrogate. It is not a truth posterior and never substitutes for certificate validation or the crisp verdict at commit time.
 
@@ -813,18 +813,18 @@ No pointwise convergence claim is made at threshold boundaries. The vector $`\ma
 
 ### 7.1. Failure mode
 
-If a proposer or policy can optimize the same loss that determines its verifier's encoder, metric, projector basis, expected direction, or kernel, it may increase its apparent score by reshaping $Z$, rotating $`u_{\mathrm{exp},k}`$toward generated motion, or enlarging$`K_z`$ so that invariant-changing directions appear irrelevant. This is a self-confirming-basis failure, not a property excluded by the geometry itself.
+If a proposer or policy can optimize the same loss that determines its verifier's encoder, metric, projector basis, expected direction, or kernel, it may increase its apparent score by reshaping $Z$, rotating $`u_{\mathrm{exp},k}`$ toward generated motion, or enlarging $`K_z`$ so that invariant-changing directions appear irrelevant. This is a self-confirming-basis failure, not a property excluded by the geometry itself.
 
 ### 7.2. Invariant 7.1 (Projector and encoder authority)
 
-1. **Independent grounding.** The choice of $`\pi_\ell`$, the kernel-path admissibility rule, the projector construction, $`h`$,$`u_{\mathrm{exp},k}`$,$`G_{k,z_t}`$,$`\Omega_{\mathrm{sub},k}`$, covariance estimates, the confidence radius $`\gamma_{\mathrm{snr}}`$, all thresholds, **and the grounding-encoder checkpoint $`\mathsf{Enc}_{\mathrm{ver}}`$used to compute$`z_t`$,$`z_{t+1}`$, and hence $`\xi_t`$**, belong to the binder/verifier authority. Their provenance, calibration data, and versions must be logged. Training VIM on the same data does not by itself establish that these choices are valid.
+1. **Independent grounding.** The choice of $`\pi_\ell`$, the kernel-path admissibility rule, the projector construction, $`h`$, $`u_{\mathrm{exp},k}`$, $`G_{k,z_t}`$, $`\Omega_{\mathrm{sub},k}`$, covariance estimates, the confidence radius $`\gamma_{\mathrm{snr}}`$, all thresholds, **and the grounding-encoder checkpoint $`\mathsf{Enc}_{\mathrm{ver}}`$ used to compute $`z_t`$, $`z_{t+1}`$, and hence $`\xi_t`$ **, belong to the binder/verifier authority. Their provenance, calibration data, and versions must be logged. Training VIM on the same data does not by itself establish that these choices are valid.
 2. **Gradient separation.** During proposer/policy optimization, the verifier-owned quantities enter through a stop-gradient boundary. In particular, for a planned tangent displacement $`\hat\xi_t`$,
 
 ```math
-\hat\alpha_k^{\mathrm{plan}}= \mathop{sg}\!\left(h(u_{\mathrm{exp},k},P_{\mathrm{act},k}\,\cdot)\right)[\hat\xi_t], \qquad \hat\beta_k^{\mathrm{plan}}= \left\|\mathop{sg}(P_{\mathrm{inv},k})\hat\xi_t\right\|_h,
+\hat\alpha_k^{\mathrm{plan}}= \mathrm{sg}\!\left(h(u_{\mathrm{exp},k},P_{\mathrm{act},k}\,\cdot)\right)[\hat\xi_t], \qquad \hat\beta_k^{\mathrm{plan}}= \left\|\mathrm{sg}(P_{\mathrm{inv},k})\hat\xi_t\right\|_h,
 ```
 
-   where $`\mathop{sg}`$ blocks gradients into the verifier-owned functional, projector, metric, **and encoder** parameters. Gradients may optimize the proposed action/displacement but must not update the verifier basis through this path. 3. **Encoder authority.** $`K_z`$,$`h_z`$, the projectors, and every diagnostic are functions of the latent coordinates. A proposer that can update the encoder through its own objective could therefore reshape $Z$, and with it $`K_z`$ and the projectors, without touching any other verifier-owned parameter. Verdict evidence is consequently computed only with a frozen, versioned verifier checkpoint $`\mathsf{Enc}_{\mathrm{ver}}`$. If the proposer shares network parameters with that encoder, the verdict path uses $`\mathop{sg}(\theta_{\mathrm{ver}})`$: no gradient from any verifier-evaluated quantity ($`\alpha_k,\beta_k,\nu_k`$, the confidence bounds, the gates of §6) reaches the shared parameters. Replacing the verifier checkpoint is a versioned event: $K$, the projectors, the feature maps $`G_{k,z_t}`$, the covariance estimates, and all thresholds must be re-estimated and re-validated before the new checkpoint may produce factual verdicts. Latent states predicted by the proposer's own world model are used for planning only (item 4).
+ where $`\mathrm{sg}`$ blocks gradients into the verifier-owned functional, projector, metric, **and encoder** parameters. Gradients may optimize the proposed action/displacement but must not update the verifier basis through this path. 3. **Encoder authority.** $`K_z`$, $`h_z`$, the projectors, and every diagnostic are functions of the latent coordinates. A proposer that can update the encoder through its own objective could therefore reshape $Z$, and with it $`K_z`$ and the projectors, without touching any other verifier-owned parameter. Verdict evidence is consequently computed only with a frozen, versioned verifier checkpoint $`\mathsf{Enc}_{\mathrm{ver}}`$. If the proposer shares network parameters with that encoder, the verdict path uses $`\mathrm{sg}(\theta_{\mathrm{ver}})`$: no gradient from any verifier-evaluated quantity ($`\alpha_k,\beta_k,\nu_k`$, the confidence bounds, the gates of §6) reaches the shared parameters. Replacing the verifier checkpoint is a versioned event: $K$, the projectors, the feature maps $`G_{k,z_t}`$, the covariance estimates, and all thresholds must be re-estimated and re-validated before the new checkpoint may produce factual verdicts. Latent states predicted by the proposer's own world model are used for planning only (item 4).
 4. **No factual promotion.** Soft scores on predictive-only rollouts may rank candidate routes or trigger a separately specified conservative safety veto. They do not establish that a transition occurred. Only post-action `OBSERVED_TRANSITION` or `REPLAY_VERIFIED` evidence processed by the MBEL cascade may update committed state or law counters.
 5. **Limited guarantee.** Stop-gradient and checkpoint freezing block these particular optimization pathways; they do not prove that the verifier is correct, that its external data are unbiased, or that all forms of proposer/verifier collusion are impossible. Those properties require independent tests and authority separation.
 
@@ -837,18 +837,18 @@ If a proposer or policy can optimize the same loss that determines its verifier'
 The information-structuring document (*VIM*) defines an operational metric approximation and a VIM objective that balances a volume surrogate against a predictive-information constraint. Its assumptions are required for the stated surrogate bounds. This document does not strengthen those claims into a theorem that optimization must create an exact kernel distribution.
 
 In particular:
-1. **Spectrum of $`g_I`$versus$`K_z`$:** The implication
+1. **Spectrum of $`g_I`$ versus $`K_z`$:** The implication
 
 ```math
 \text{VIM volume minimization}\;\Longrightarrow\; \text{exact zero eigenvalues identifying }K_z
 ```
 
-   is **not established** by the cited variational objective alone. Small eigenvalues of an empirical induced metric can be evidence for candidate low-sensitivity directions, but converting them into $`K_z`$ requires a selected coarse-graining map, a declared numerical tolerance or rank criterion, and validation that the resulting paths preserve the coarse descriptor. A low eigenvalue is not an equivalence relation by itself.
+ is **not established** by the cited variational objective alone. Small eigenvalues of an empirical induced metric can be evidence for candidate low-sensitivity directions, but converting them into $`K_z`$ requires a selected coarse-graining map, a declared numerical tolerance or rank criterion, and validation that the resulting paths preserve the coarse descriptor. A low eigenvalue is not an equivalence relation by itself.
 2. **Normal curvature versus tangential active directions:** As noted in §3.2, the VIM stationarity condition $`\mathbf H(z)=\lambda(\nabla_Z i(z))^\perp`$ equates the mean curvature vector of $`\mathcal M\subset Z`$ to the *normal* component of the information gradient in $`N_z\mathcal M=(T_z\mathcal M)^\perp`$. Because $`N_z\mathcal M`$ is orthogonal to $`T_z\mathcal M`$, $`(\nabla_Z i(z))^\perp`$ has zero projection onto $`T_zD_\ell`$; any task-progress direction $`u_{\mathrm{exp},k}(z)\in T_zD_\ell`$ lives in the tangent bundle and relates at most to the *tangential* gradient $`\nabla_{\mathcal M} i(z)=(\nabla_Z i(z))^\top`$, subject to external verifier grounding.
-3. **Static $`h_z`$-orthogonal projectors versus LAF dynamical dichotomy projectors:** In the *Latent Agency Framework* (LAF, §4.2 D7, §5.2 D11, §10, §12), tangent-space dynamics $`v(n+1)=M(n)v(n)`$ under the state-transition Jacobian $`M(n)=\partial G_R(z)/\partial z`$ induce an Oseledets splitting $`T_z\mathcal M=E^s_z\oplus E^u_z`$ into a stable (contracting) subspace $`E^s_z`$ ($`\lambda_i<0`$, transverse to the attractor) and an unstable/neutral subspace $`E^u_z`$ ($`\lambda_i\ge0`$, along the attractor), separated by the one-step minimum-norm response / dichotomy projector $`P_s=R^{vv}`$. Three mathematical distinctions between the LAF splitting and the contract splitting $`T_zD_\ell=K_z\oplus_h W^{\mathrm{act}}_{k,z}\oplus_h W^{\mathrm{inv}}_{k,z}`$ of §3.2 must be maintained:
-   - *Non-orthogonality:* In non-normal dynamical systems (such as recurrent networks), $`E^s_z`$ and $`E^u_z`$ intersect at oblique angles and $`P_s`$ is an **oblique (non-self-adjoint) idempotent**, whereas $`P_{\mathrm{ker},k},P_{\mathrm{act},k},P_{\mathrm{inv},k}`$ are strictly $`h_z`$-self-adjoint ($`P^{*h}=P`$).
-   - *Functional role of contraction ($`E^s_z`$ vs $`K_z`$ vs $`W^{\mathrm{inv}}_{k,z}`$):* While LAF §12 notes a macro-scale homology between coarse-graining kernels and rapidly decaying perturbations, in LAF (D7, T2) strong transverse contraction in $`E^s_z`$ (measured by $`\kappa(U)=-\int_{-\infty}^0 s F'(s)\,ds`$) is also the dynamical mechanism that maintains attractor depth $`D(U)`$ and homeostatic/viability invariants under stake. Consequently, depending on the clause and time window $`\tau_w`$, directions in $`E^s_z`$ may correspond either to irrelevant micro-perturbations that relax back to the same macro-state ($`K_z`$) or to actively stabilized viability invariants ($`W^{\mathrm{inv}}_{k,z}`$), whereas active state transitions between basins or along a trajectory manifold occur along $`E^u_z`$ (or across basin boundaries).
-   - *Coordinate invariance:* LAF's Lyapunov spectrum $`\{\lambda_i\}`$, $`D_{\mathrm{KY}}`$, and $`h_{\mathrm{KS}}`$ are diffeomorphism invariants of the autonomous flow $`G_R`$, whereas the clause projectors of §3.2 are contract-selected operators anchored to externally grounded descriptors $`\psi(\bar o_t)`$, the frozen verifier encoder $`\mathsf{Enc}_{\mathrm{ver}}`$, and the chosen metric $`h_z`$.
+3. **Static $`h_z`$ -orthogonal projectors versus LAF dynamical dichotomy projectors:** In the *Latent Agency Framework* (LAF, §4.2 D7, §5.2 D11, §10, §12), tangent-space dynamics $`v(n+1)=M(n)v(n)`$ under the state-transition Jacobian $`M(n)=\partial G_R(z)/\partial z`$ induce an Oseledets splitting $`T_z\mathcal M=E^s_z\oplus E^u_z`$ into a stable (contracting) subspace $`E^s_z`$ ($`\lambda_i<0`$, transverse to the attractor) and an unstable/neutral subspace $`E^u_z`$ ($`\lambda_i\ge0`$, along the attractor), separated by the one-step minimum-norm response / dichotomy projector $`P_s=R^{vv}`$. Three mathematical distinctions between the LAF splitting and the contract splitting $`T_zD_\ell=K_z\oplus_h W^{\mathrm{act}}_{k,z}\oplus_h W^{\mathrm{inv}}_{k,z}`$ of §3.2 must be maintained:
+ - *Non-orthogonality:* In non-normal dynamical systems (such as recurrent networks), $`E^s_z`$ and $`E^u_z`$ intersect at oblique angles and $`P_s`$ is an **oblique (non-self-adjoint) idempotent**, whereas $`P_{\mathrm{ker},k},P_{\mathrm{act},k},P_{\mathrm{inv},k}`$ are strictly $`h_z`$ -self-adjoint ($`P^{*h}=P`$).
+ - *Functional role of contraction ($`E^s_z`$ vs $`K_z`$ vs $`W^{\mathrm{inv}}_{k,z}`$):* While LAF §12 notes a macro-scale homology between coarse-graining kernels and rapidly decaying perturbations, in LAF (D7, T2) strong transverse contraction in $`E^s_z`$ (measured by $`\kappa(U)=-\int_{-\infty}^0 s F'(s)\,ds`$) is also the dynamical mechanism that maintains attractor depth $`D(U)`$ and homeostatic/viability invariants under stake. Consequently, depending on the clause and time window $`\tau_w`$, directions in $`E^s_z`$ may correspond either to irrelevant micro-perturbations that relax back to the same macro-state ($`K_z`$) or to actively stabilized viability invariants ($`W^{\mathrm{inv}}_{k,z}`$), whereas active state transitions between basins or along a trajectory manifold occur along $`E^u_z`$ (or across basin boundaries).
+ - *Coordinate invariance:* LAF's Lyapunov spectrum $`\{\lambda_i\}`$, $`D_{\mathrm{KY}}`$, and $`h_{\mathrm{KS}}`$ are diffeomorphism invariants of the autonomous flow $`G_R`$, whereas the clause projectors of §3.2 are contract-selected operators anchored to externally grounded descriptors $`\psi(\bar o_t)`$, the frozen verifier encoder $`\mathsf{Enc}_{\mathrm{ver}}`$, and the chosen metric $`h_z`$.
 
 ### 8.2. Empirical hypotheses
 
