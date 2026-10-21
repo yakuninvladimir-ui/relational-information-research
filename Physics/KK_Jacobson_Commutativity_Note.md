@@ -6,7 +6,15 @@ V. Yakunin
 
 July 15, 2026
 
-> **STATUS: HISTORICAL — route frozen (August 2026).** The physical-radion branch ($`H_R`$) / literal 5D Kaluza–Klein route recorded in this note is frozen. It is superseded by the single-hypothesis $`(H_P)`$ formulation in `Causal_Phase_Geometry_Research_Program.md` (August 2026) and catalogued as **NULL (frozen August 2026)** in the Unified Informational-Constructive Framework, §7. Kept for provenance; not an active research direction.
+> **STATUS: HISTORICAL — route frozen (August 2026).** The physical-radion branch (# KK–Jacobson Commutativity Note
+
+**Discrete Causal Structure, U(1) Holonomies, and the Thermodynamic Origin of the Einstein–Maxwell System**
+
+V. Yakunin
+
+July 15, 2026
+
+H_R`$) / literal 5D Kaluza–Klein route recorded in this note is frozen. It is superseded by the current program *Causal Phase Program v3.9* (`Causal_Phase_Program_v3.md`, October 2026), where the rejection of fixed extra dimensions and of dimensions postulated prior to kernel factorization is recorded as **NULL** (Registry §8, item 20), and it is catalogued as **NULL (frozen August 2026)** in the Unified Informational-Constructive Framework, §7. Kept for provenance; not an active research direction.
 
 ---
 

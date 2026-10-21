@@ -1,11 +1,13 @@
 # Technical Specification v0.2 (CONSOLIDATED)
 
+> **STATUS: FROZEN — historical specification (October 21, 2026); never executed.** The active verification program of the physics corpus is now Protocols V1–V7 of *Causal Phase Program v3.9* (`Physics/Causal_Phase_Program_v3.md`). Technical Specification **v0.3**, implementing V1–V7 on the v3.9 reference implementation, is planned and not yet created. Mode B of this document targeted the same local-condensation / void-rarefaction mechanism now tested by Protocol V3, but under the v2.0 $D_{\rm KL} \le c \cdot N_\partial$ mechanics; the document is retained for continuity of the pilot design (observables, null tests D1–D8, resource budget) and is not an active deliverable.
+
 ## Software Complex for Stochastic Verification of Local Condensation and Global Decompression on a Budget-Constrained Causal-Phase Graph
 
 **Version:** 0.2.0 (consolidates v0.1 static baseline and v0.2 dynamic-topology test)  
 **Date:** 17 October 2026  
 **Author:** Vladimir Yakunin  
-**Status:** Executable technical specification (single-track priority)  
+**Status:** Frozen — historical specification; superseded as the active pilot track by Causal Phase Program v3.9 (Protocols V1–V7; Technical Specification v0.3 pending)  
 **Target Hardware:** AMD Ryzen 5 5500 (6c/12t), 16 GB RAM, RX 6650 XT (CPU + Numba FP64 pipeline; GPU optional/not required)  
 
 **Primary Scientific Question:**  

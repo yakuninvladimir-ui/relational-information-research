@@ -1,12 +1,12 @@
 # Unified Informational-Constructive Framework
 
-## Version 1.7
+## Version 1.8
 
 **Author:** Vladimir Yakunin
 
-**Date:** 2026-10-17 (v1.7 revision; v1.6: 2026-10-17; v1.5: 2026-10-14; v1.4: 2026-10-13; v1.3: 2026-10-05; v1.2: 2026-09-23)
+**Date:** 2026-10-21 (v1.8 revision; v1.7: 2026-10-17; v1.6: 2026-10-17; v1.5: 2026-10-14; v1.4: 2026-10-13; v1.3: 2026-10-05; v1.2: 2026-09-23)
 
-**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), Causal-Phase Geometry Research Program v2.0 (October 2026; matrix kinematics, budget-constrained dual origin of dark-sector effects), Technical Specification v0.2 (consolidated pilot: frozen + dynamic-budget graph), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.9 (October 2026), the Latent Agency Framework v2.0 (October 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), the canonical Modified Brusentsov Entailment Logic specification (October 2026), the Spectral and Matrix Realization of V₄ in Latent Spaces (October 2026), and the preliminary ternary-judge MVP results (August 2026)
+**Status:** archive synthesis document; aligned with the revised edition of "The Algorithm of Being" (2026), the Causal Phase Program v3.9 (October 21, 2026; structuring triad, binary-diamond selection, Oseledets–Landauer bridge, protocols V1–V7), the Causal-Phase Geometry Research Program v2.0 (October 17, 2026; historical — the $\Gamma_{\rm corr}$ continuum formulation), Technical Specification v0.2 (frozen historical pilot; v0.3 pending), the geometric theory of latent representations (September 2026), the ARC-AGI-3 LCLD Agent specifications V10.9 (October 2026), the Latent Agency Framework v2.1 (October 21, 2026), the Self-Developing Runtime Research Program v0.2 (September 2026), the canonical Modified Brusentsov Entailment Logic specification (October 2026), the Spectral and Matrix Realization of V₄ in Latent Spaces v2.2 (October 17, 2026), and the preliminary ternary-judge MVP results (August 2026)
 
 ## 1. Central Thesis
 
@@ -46,7 +46,7 @@ The archive's physics program admits no external global time: proper time is def
 
 $$1+z = \frac{(-u^\mu k_\mu)_{\rm em}}{(-u^\mu k_\mu)_{\rm obs}}$$
 
-An algebraic echo of the same thesis is the Connes–Rovelli thermal time hypothesis [24]: a state on an algebra generates its own time evolution through the modular flow. **The operational content of time is a ratio of rates; the time axis is a derived bookkeeping tool.**
+In the Causal Phase Program v3.9 (§5.1) this becomes fully combinatorial: relative operational time between subsystems is the ratio of accumulated gauge-invariant holonomy cycles along worldtubes, $R^{(\ell)}_{AB}=\Delta N^{(\ell)}_A/\Delta N^{(\ell)}_B$, and the Lorentzian signature $(-,+,+,+)$ itself arises from budget competition between spatial propagation and internal diamond synchronization. An algebraic echo of the same thesis is the Connes–Rovelli thermal time hypothesis [24]: a state on an algebra generates its own time evolution through the modular flow. **The operational content of time is a ratio of rates; the time axis is a derived bookkeeping tool.**
 
 ### 2.4. Operational time
 
@@ -78,7 +78,7 @@ Relation → Constraint → Structure → Semantics → Intelligence
 
 ---
 
-## 3. The Physical Level: Causal Phase Geometry (Hypothesis (H_P))
+## 3. The Physical Level: Causal Phase Program
 
 ### 3.1. The three-layer stack of the program
 
@@ -87,20 +87,20 @@ The archive's physics works with an explicit stack, not a single "foundation":
 | Layer | Object | Status |
 |---|---|---|
 | Level 0 — algebraic substrate | "Space of Algebras" (the Connes lineage: Gelfand duality, spectral triples, thermal time [22–24]) | Conjecture; regulative idea; formalization deferred |
-| Level 1 — causal-phase network | Discrete causal order with U(1) holonomies, represented as a strictly upper-triangular causal-phase transfer matrix $W_{xy}=r_{xy}e^{i\theta_{xy}}$; continuum limits under hypothesis (H_P) | Active program with falsification criteria; pilot numerics v0.2 |
-| Level 2 — continuum geometry | Lorentzian metric, gauge connection, effective equations from relative entropy; explicit $\Gamma_{\rm corr}$ with dual regimes | Established structures + open quantitative extraction of residual $H_{\mu\nu}^{\rm corr}$ |
+| Level 1 — causal-phase complex | Discrete causal order with U(1) holonomies on Hasse links, encoded as a nilpotent causal-phase transfer matrix $W_{xy}=R_{xy}e^{i\theta_{xy}}$; structuring triad $(\mathcal{I}_A,\partial A,\mathcal{E}_A)$; continuum limits | Active program (CPP v3.9) with verification protocols V1–V7; executable specification v0.3 pending (v0.2 frozen) |
+| Level 2 — continuum geometry | Lorentzian metric, gauge connection, three-component effective Einstein–Maxwell decomposition ($T^{\rm bulk}$, $T^{\rm interface}$, $\Lambda_{\rm eff}[I_{\rm erase}]$) | Established structures + open continuum limit (Protocol V4); historical $\Gamma_{\rm corr}$ formulation in CPG v2.0 |
 
 The "Space of Algebras" is not a claimed foundation but a deep conjectural layer whose fate is tied to the intermediate one: failure of the causal-phase program by its own criteria demotes the conjecture to a historical footnote.
 
-### 3.2. Fundamental kinematics (hypothesis (H_P))
+### 3.2. Fundamental kinematics
 
-The base structure is a locally finite causal set $(\mathcal{C},\prec)$ equipped with U(1) holonomies on oriented links, encoded as a single nilpotent complex **causal-phase transfer matrix**:
+The base structure is a finite (or locally finite) causal set $(X,\prec)$ equipped with U(1) holonomies on oriented Hasse links, encoded as a single nilpotent complex **causal-phase transfer matrix**:
 
-$$W_{xy}=r_{xy}\,e^{i\theta_{xy}},\qquad r_{xy}\in\{0,1\},\quad\theta_{xy}\in[0,2\pi).$$
+$$W_{xy}=R_{xy}\,e^{i\theta_{xy}},\qquad R_{xy}\in\{0,1\},\quad\theta_{xy}\in[0,2\pi),\quad W^N=0,$$
 
-Irreducible links ($I(x,y)=\emptyset$) form the null (lightlike) radiative scaffold; massive matter corresponds to dense clusters of multi-step causal chains ($|I(x,y)|\gg 1$) that accumulate proper time and discrete volume. Coarse-graining yields continuum geometry:
+where $R$ is the Boolean Hasse matrix — strictly upper-triangular and transitively irreducible (no edges short-circuiting directed paths of length $\ge2$). Unbranched null chains (two-step waist width $K_{xy}=0$) form the lightlike radiative scaffold and transmit phase without accumulating gauge-invariant holonomy; massive matter corresponds to structured complexes with waists $K_{xy}\ge2$, whose elementary causal diamonds carry irreducible phase dynamics tied together by the exact Wilson interference identity $\sum_{a<b}(1-\cos\Phi_{ab})=\tfrac12K_{xy}J_{xy}$ (CPP v3.9, Prop 1.1). Coarse-graining yields continuum geometry:
 
-$$(\mathcal{C},\prec,W)\xrightarrow{\pi_\ell}(\mathcal{M}_4,g_{\mu\nu},A_\mu).$$
+$$(X,R,\Theta)\xrightarrow{\pi_\ell}(\mathcal{M}_4,g_{\mu\nu},A_\mu).$$
 
 - The causal order fixes the light cones and the conformal class of the metric.
 - The volume measure (element count in an interval) fixes the proper-time scale.
@@ -110,47 +110,39 @@ The phase layer is treated strictly as an **internal** fibre:
 
 $$U(1)\hookrightarrow P\xrightarrow{\pi}M_4,\quad\delta\ell_*=0.$$
 
-No free radion, no physical fifth dimension, no KK tower. The competing physical-radion branch (H_R) has been frozen (August 2026). Full matrix kinematics, radiative-scaffold vs. timelike-condensation distinction, and kernel-path quotient alignment are given in **Causal-Phase Geometry Research Program v2.0**.
+No free radion, no physical fifth dimension, no KK tower; postulating fixed microscopic dimensions prior to kernel factorization is rejected (CPP v3.9 Registry item 20, NULL). The competing physical-radion branch (H_R) has been frozen (August 2026). The full formal specification — Hasse criteria, the structuring triad $(\mathcal{I}_A,\partial A,\mathcal{E}_A)$, the variational selection of binary causal diamonds ($K^{\rm eff}_{xy}=2$, Thm 3.1), and the $3+1$ minimality argument (§3.3 of v3.9) — is given in **Causal Phase Program v3.9**.
 
-### 3.3. Relative-entropy origin of gravity and the constraint triad
+### 3.3. Thermodynamic bridge at the interface and the constraint triad
 
-Macroscopic gravity is obtained from quantum-information principles (Dorau–Much approach [25]): the role of heat flux is played by the quantum relative entropy (Araki–Uhlmann) evaluated on a horizon. The Casini link between the Bekenstein bound and the non-negativity of relative entropy supplies the informational constraint that, after coarse-graining, yields the semi-classical Einstein equation.
+The historical v2.0 program derived gravity through the relative-entropy route (Dorau–Much [25]; Araki–Uhlmann; the Casini link between the Bekenstein bound and the non-negativity of relative entropy), with the local bound $D_{\rm KL}(\sigma_D\|\rho_{\rm dyn,D})\le c\cdot N_\partial$ on causal diamonds and a classical Kullback–Leibler proxy in the pilot stage. That route is retained in CPG v2.0 as historical; it was never executed numerically, and the full modular relative entropy was never claimed.
 
-A classical Kullback–Leibler proxy on gauge-invariant boundary descriptors is used in the pilot numerical stage; it is **not** claimed to be the full modular relative entropy.
+In **CPP v3.9** the thermodynamic bridge is the **Oseledets–Landauer erasure-flux theorem** (Thm 4.1): a stationary dissipative attractor under boundary noise must expel information across its outgoing interface at the rate
 
-The local Bekenstein–Casini bound on a causal diamond reads
+$$\dot I_{\rm erase}(\mathcal{I}_A\to\partial^+A)\ \ge\ \frac{\kappa(A)-h_{\rm KS}(A)}{\ln 2},\qquad \dot Q_{\rm ext}\ \ge\ k_B T_{\partial A}\bigl(\kappa(A)-h_{\rm KS}(A)\bigr),$$
 
-$$D_{\rm KL}(\sigma_D\|\rho_{\rm dyn,D})\le c\cdot N_\partial.$$
+where $\kappa(A)$ is the transverse Oseledets contraction and $h_{\rm KS}(A)$ the internal entropy production (Landauer price per bit). The interface capacity is combinatorially bounded, $C(\partial^+A)\le c_0|\partial^+A|_E$, which together with the data-processing inequality yields the recoverability bound (Prop 2.1) — the physical-level counterpart of the constraint triad: distinction, action, and rate are paid across the boundary of every localized structure. Synchronization across the interface is governed by the boundary kernel-inclusion criterion $\ker\Pi_{\mathcal{I},\partial A}\subseteq\ker\Pi_{\mathcal{E},\partial A}$ (Prop 2.2): precision sparsity (Markov screening) coexists with exactly mediated long-range covariance $\Sigma_{\mathcal{I}\mathcal{E}}\ne0$.
 
-Globally, under a conserved causal-distinction rate (Margolus–Levitin), the tangent-space Lyapunov dichotomy of the Latent Agency Framework (stable subspace $E^s$ vs. unstable $E^u$) implies that local condensation necessarily depletes intermediate vertices along long-range null links in complementary voids.
+Globally, an exact combinatorial identity (Prop 6.1) partitions coherent diamonds across internal bulks, interfaces, and the external channel. The dynamical hypothesis H-LG (UNDECIDED; Protocols V2–V3) states that local condensation drives phase-mediated rarefaction of voids beyond combinatorial edge subtraction — the seed of effective metric expansion.
 
-### 3.4. The correlation functional $\Gamma_{\rm corr}$ and the dual origin of dark-sector effects
+### 3.4. Effective field equations: three-component decomposition and the dual origin of dark-sector effects
 
-Under hypothesis (H_P) the effective action is the constrained variational functional
+In the macroscopic regime where null paths ($K_{xy}=0$) reconstruct the conformal structure of $g_{\mu\nu}$ and link phases $\theta_{xy}=\int_x^y A_\mu dx^\mu$ induce the Maxwell field strength, the Landauer interface balance $\delta Q_{\rm ext}=T_{\partial A}\,\delta S_{\rm interface}$ (Thm 4.1) together with the Raychaudhuri equation on local causal screens yields the target Einstein–Maxwell equation of state (CPP v3.9 §6.2; UNDECIDED — Protocol V4):
 
-$$\Gamma_P[g,A,\Psi,\lambda,\Lambda_0]=\Gamma_0[g,A,\Psi]-\int d^4x\sqrt{-g}\,\lambda(x)\bigl[i(x)-\mathcal{B}_{\max}(x)\bigr]_+-\Lambda_0\int d^4x\sqrt{-g}\,(\rho_{\rm vert}-\bar\rho_0),$$
+$$R_{\mu\nu}-\tfrac12Rg_{\mu\nu}+\Lambda_{\rm eff}[I_{\rm erase}]\,g_{\mu\nu}=\frac{8\pi G_{\rm eff}}{c^4}\Bigl(T^{\rm bulk}_{\mu\nu}(\mathcal{I}_A)+T^{\rm interface}_{\mu\nu}(\partial A)+T^{\rm em}_{\mu\nu}(F_{\alpha\beta})\Bigr).$$
 
-so that the residual is identified explicitly as
+1. **$T^{\rm bulk}_{\mu\nu}(\mathcal{I}_A)$ — localized massive matter:** the contribution of high-synchronization diamond and vortical complexes ($\lambda_2>\lambda_{\rm crit}$, $H_{\rm rot}\ne0$).
+2. **$T^{\rm interface}_{\mu\nu}(\partial A)$ — synchronization-shell tension ("dark matter" regime):** the boundary transition zone where the frequency mismatch between the internal clock $\omega_A$ and the external channel is balanced by embedding curvature $\mathbf H=\lambda(\nabla i)^\perp$ (Prop 3.1) and precision-weighted prediction error (Prop 2.2). At galactic scales this extended interface produces an effective gravitational potential without new particle species in the halo.
+3. **$\Lambda_{\rm eff}[I_{\rm erase}]\,g_{\mu\nu}$ — global channel response ("dark energy" regime):** cumulative null-mode injection across all outgoing interfaces rarefies the external channel (H-LG), coupled to bulk and interface stress-energy via the Bianchi identity.
 
-$$\boxed{\Gamma_{\rm corr}[g,A,\Psi]=-\int d^4x\sqrt{-g}\Bigl\{\lambda(x)\bigl[i(x)-\mathcal{B}_{\max}(x)\bigr]_++\Lambda_{\rm budget}(x)\Bigr\}}.$$
+Dense cores that reach interface saturation $\eta_{\rm sat}\ge1$ enter the post-horizon phase (§6.3 of v3.9; UNDECIDED — Protocol V6): the outgoing interface screens deeper bulk layers, radiates thermally with area-law entropy $\propto|\partial^+A|_E$, and the interior transitions to a high-rank matrix phase $K^{\rm eff}_{xy}\ge3$.
 
-Its geometric response $H_{\mu\nu}^{\rm corr}=-2/\sqrt{-g}\,\delta\Gamma_{\rm corr}/\delta g^{\mu\nu}$ splits into two coupled regimes (Causal-Phase Geometry v2.0):
+The explicit correlation functional $\Gamma_{\rm corr}$ of the v2.0 program — the KKT form $\lambda(x)[i(x)-\mathcal B_{\max}(x)]_+$ plus the budget term — is retained in **CPG v2.0 (historical)**; in v3.9 the same physics is carried by the triad decomposition above. Whether any of these signals is quantitatively real is the object of protocols V1–V7, whose executable specification (Tech Spec v0.3) is pending.
 
-1. **Regime I (local condensation — effective dark matter).** On the boundary of saturated regions ($\nabla D_{\rm KL}\neq 0$) the Lagrange multiplier induces a normal surface-tension response $\mathbf{H}=\lambda(\nabla i)^\perp$ (VIM minimal-surface balance), reproducing flat galactic rotation curves and black-hole/halo scaling without independent halo fields.
-2. **Regime II (global decompression — effective dark energy).** Because the total rate of causal-event generation is bounded, sequestering vertices into high-density local attractors depletes intermediate timelike events along long-range null links spanning cosmic voids. Relative to fixed local (baryonic) rulers this manifests as positive metric volume expansion ($h_{\rm KS}>0$ in $E^u$).
+### 3.5. Computational verification program
 
-Thus quantum gravity is identified not as a quantization of attractive spin-2 gravitons, but as the global entropic decompression of the causal scaffold driven by local informational condensation. Whether the quantitative residual is measurable and stable is the concrete question of the pilot stage.
+The frontal program is **protocols V1–V7** (CPP v3.9 §7): graph-level tests with pre-registered numerical pass/fail thresholds and control ensembles — V1 binary-diamond collapse and dimension selection; V2 Oseledets contraction vs. interface flux; V3 phase-mediated void rarefaction; V4 interfacial synchronization shell; V5 compact-to-filamentary architecture transition; V6 horizon saturation; V7 kernel inclusion, solenoidal spectral gap, integrator truncation. A self-contained reference implementation (Python / NumPy / SciPy) is given in CPP v3.9 §9.
 
-### 3.5. Pilot numerical programme (v0.2)
-
-Because Stage v0.1 was not executed prior to the theoretical synthesis of October 2026, the static lattice of v0.1 is retained as the exact $\mathrm{Mobility}=0$ control branch inside a single consolidated software complex. **Technical Specification v0.2** defines:
-
-- **Mode A (`topology_mode="frozen"` — v0.1 baseline):** fixed 3D layered causal lattice; only U(1) phases update. Answers: does informational truncation produce a non-zero residual $\Delta F$ on a fixed background?
-- **Mode B (`topology_mode="dynamic_budget"` — v0.2 core test):** both phases and causal links evolve under Metropolis–Hastings rewiring that **strictly conserves** total vertex and link counts $N_V,N_E$ and causal acyclicity. Directly tests whether local $D_{\rm KL}$ saturation forces topological condensation in the core ($\Delta N_\partial>0$) and topological rarefaction / effective metric expansion in the void ($\delta\rho_{\rm void}<0$, $z_{\rm void}^{\rm eff}>0$).
-
-Primary observables, eight mandatory null tests (D1–D8), resource budget, and decision criteria under the $V_4$ verdict standard (FOLLOW / NULL / UNDECIDED) are fixed in the specification. Full continuum 4D reconstruction, SPARC fitting and DESI $H(z)$ contact remain explicitly excluded from v0.2.
-
-Only after a closed report `REPORT_v0.2.md` may the programme proceed to analytical comparison with the VIM surface-tension kernel or to continuum-limit cosmological tests.
+**Technical Specification v0.2 is frozen and was never executed.** Its Mode A (frozen topology; residual $\Delta F$) and Mode B (budget-conserving rewiring; observables $\Delta N_\partial$, $\delta\rho_{\rm void}$, $z^{\rm eff}_{\rm void}$; null tests D1–D8) targeted the same condensation–rarefaction mechanism that Protocol V3 now covers, but under the v2.0 mechanics of $D_{\rm KL}\le c\,N_\partial$. **Technical Specification v0.3**, implementing V1–V7 on the v3.9 reference implementation, is planned and not yet created. Until a closed report exists, no empirical claim of the physics program is certified.
 
 ---
 
@@ -297,6 +289,7 @@ The three levels — physical, ontological, engineering — are structurally ali
 | Verification | Experiment, observed transition; relative-entropy diagnostics | The world as external verifier | Verifier; OBSERVED_TRANSITION; FalseFollowRate |
 | Memory | Recorded trace (Landauer price [12]) | Grounding = history of certified transitions | Event-sourced Memory |
 | Substrate | Material carrier within the constraint triad | Constraint envelope | The agent's hardware and compute budget |
+| **Structuring triad** | Internal relief $\mathcal{I}_A$ / bilateral interface $\partial A$ / external channel $\mathcal{E}_A$; kernel-inclusion synchronization (CPP v3.9 §2) | Markov blanket: internal / boundary / external states; recoverability bound (LAF v2.1 §8) | Isolated memory contours and the authority boundary: committed state / verification interface / untrusted proposals (V10.9) |
 | **Latent geometric structure** | — | — | Informational minimal surface: $\Sigma$ as minimal-volume embedding in $`g_{\mathrm{approx}}`$ under informational constraint $`I(Z;Y) \geq R_{\mathrm{task}}`$ |
 
 **Irrelevance.** The physical analogue of irrelevance is not "degrees of freedom outside the light cone" (that is a different, kinematic phenomenon) but the kernel of coarse-graining: microstates erased by the map $`\pi: \Omega_{\rm micro} \to \Omega_{\rm macro}`$, and RG-irrelevant operators whose contribution decays with scale. This correspondence is consistent with §4.3 and with the definition of OMIT as membership in the kernel of the state-update map.
@@ -316,20 +309,25 @@ Statuses are attached to theses, not to documents. A document may be complete as
 | Irrelevance = kernel of description; two indexings (goal / scale) | The Algorithm of Being (§9); this document (§4.3) | FOLLOW as formalism |
 | Consciousness: recursive modeling under external verification | The Algorithm of Being (§10); this document (§4.2) | FOLLOW as an architectural frame; the hard problem is UNDECIDED |
 | Substrate as constraint envelope | The Algorithm of Being (§11); this document (§4.4) | FOLLOW as a frame; numerical envelope bounds are UNDECIDED |
-| Causal-phase network $(\mathcal{C},\prec)+U(1)\to(\mathcal{M}_4,g_{\mu\nu},A_\mu)$ under (H_P) only; matrix kinematics $W_{xy}=r_{xy}e^{i\theta_{xy}}$ | Causal-Phase Geometry Research Program v2.0 | UNDECIDED: active program with falsification criteria and pilot numerics v0.2 |
-| Physical-radion branch (H_R) / 5D KK | KK–Jacobson Commutativity Note | NULL (frozen August 2026) |
-| $\Gamma_{\rm corr}$ as residual of informational truncation; dual regimes (local surface-tension condensation = effective DM; global budget-driven void decompression = effective DE) | Causal-Phase Geometry Research Program v2.0; Technical Specification v0.2 | UNDECIDED: formal identification of $\Gamma_{\rm corr}$ is FOLLOW under the stated variational principle; quantitative residual and dual-regime signals are the object of pilot v0.2 |
-| Relative-entropy (Dorau–Much [25] / Araki–Uhlmann / Casini) route to gravity | Causal-Phase Geometry Research Program v2.0 | UNDECIDED: theoretical frame; classical KL proxy used in pilot |
-| Budget conservation $\Rightarrow$ local condensation forces complementary void rarefaction (formal graph statement) | Causal-Phase Geometry Research Program v2.0; Technical Specification v0.2 | FOLLOW as elementary conservation on finite graphs; dynamical magnitude and continuum limit are UNDECIDED (tested in Mode B of v0.2) |
+| Causal-phase complex $(X,R,\Theta)$: causal order + U(1) transport as a nilpotent matrix $W=Re^{i\Theta}$; Hasse criteria, Wilson interference identity, gauge invariants; null radiative scaffold vs. timelike condensation | Causal Phase Program v3.9 (§§1–2; Registry items 1–2) | FOLLOW as formal algebra within the model; physical realization of the continuum limit is UNDECIDED (Protocol V1) |
+| Physical-radion branch (H_R) / 5D KK; fixed microscopic dimensions postulated prior to kernel factorization | KK–Jacobson Commutativity Note (historical); CPP v3.9 Registry item 20 | NULL (frozen August 2026) |
+| Structuring triad $(\mathcal{I}_A,\partial A,\mathcal{E}_A)$; indivisibility criterion; interface recoverability bound; precision sparsity and boundary kernel-inclusion synchronization | CPP v3.9 (§2; Registry items 3–4) | FOLLOW as definitions and exact Gaussian identities; numerical certification in Protocol V7 |
+| Binary-diamond selection $K^{\rm eff}_{xy}=2$; transverse $SU(2)\to SO(3)$ algebra; minimal $3+1$ architecture | CPP v3.9 (Thm 3.1, §3.3; Registry items 6–7, 13) | FOLLOW as theorems under stated assumptions; spontaneous emergence of $3+1$ is UNDECIDED (Protocol V1) |
+| Helmholtz decomposition; solenoidal acceleration of relaxation $\gamma(Q)\ge\gamma(0)$ | CPP v3.9 (Prop 3.2; Registry item 8) | FOLLOW as theorem; numerical certification in Protocol V7(b) |
+| Oseledets–Landauer bridge: erasure flux $\dot I_{\rm erase}\ge(\kappa-h_{\rm KS})/\ln 2$ across $\partial^+A$ | CPP v3.9 (Thm 4.1; Registry items 9, 14) | FOLLOW under stated stationarity assumptions; physical correspondence to radiation flux is UNDECIDED (Protocol V2) |
+| Operational time as ratio of holonomy cycles; combinatorial Lorentzian signature; integrator chains $\to$ second-order inertia; synchronization criterion and ball instability $\tau_{\rm sync}=\Theta(N^{3/d})$ | CPP v3.9 (§5; Registry items 10–11, 17) | FOLLOW as mathematical results; universal filamentary architecture (cosmic web $\leftrightarrow$ neural networks) is UNDECIDED (Protocol V5) |
+| Exact balance identity of coherent diamonds; phase-mediated void rarefaction (H-LG, effective dark energy); interface synchronization-shell tension (effective dark matter); three-component Einstein–Maxwell decomposition | CPP v3.9 (§6; Registry items 12, 15–16); historical $\Gamma_{\rm corr}$ formulation: CPG v2.0 | Balance identity FOLLOW; dynamical mechanism and continuum decomposition UNDECIDED (Protocols V3–V4); observational contact (SPARC, DESI/DES-SN5YR) deferred to the post-v0.3 stage per CPG v2.0 §5.1 |
+| Interface saturation $\eta_{\rm sat}\ge1$: horizon screening and interior high-rank phase $K^{\rm eff}_{xy}\ge3$ | CPP v3.9 (§6.3; Registry item 18) | UNDECIDED (Protocol V6) |
+| Relative-entropy (Dorau–Much [25] / Araki–Uhlmann / Casini) route to gravity | CPG v2.0 (historical); CPP v3.9 References item 3 | Historical frame; superseded as the primary thermodynamic bridge by the Oseledets–Landauer theorem (Thm 4.1); the classical KL proxy of the frozen pilot v0.2 was never executed |
 | Space of Algebras (Level 0) | The Algorithm of Being (§2); this document (§3.1) | UNDECIDED: a conjecture, not a foundation |
 | Modified Brusentsov entailment logic; four-valued verdict calculus $`V_4`$ (FOLLOW / OMIT / NULL / UNDECIDED) with dominance semilattice; MDNF of conditional entailment; typed certificates; ensemble law quantifiers; metric, box, and graph realizations | Modified_Brusentsov_Entailment_Logic.md (October 2026) | FOLLOW: formal specification — the canonical reference for verdict semantics corpus-wide (theorems proven internally); implementation conformance and empirical validation per its §7.3 are UNDECIDED |
 | Ternary requirement semantics; authority hierarchy | Unified Implementable Model v2.0 | FOLLOW: specified |
 | External verifier; FOLLOW/OMIT/NULL/UNDECIDED; FalseFollowRate | External Ternary Judge Adapter; Draft: ternary_judge.md; canonical verdict semantics: [26] | FOLLOW: protocol; preliminary controlled-corpus MVP empirics exist (Reasoning/Draft/ternary_judge.md, run of 2026-08-09: FFR 0.362 → 0.035 at coverage 0.81; effect depends primarily on judge competence); open-domain transfer is UNDECIDED and remains in the §8 program |
 | Agent V10.9 (Tri-Agent, Brusentsov 4-valued verdicts) | ARCHITECTURAL / ENGINEERING SPECIFICATION (Version 10.9) | FOLLOW: specification; the ARC-AGI-3 benchmark is in the §8 program |
 | Controlled self-development of a language model under an external verifier (capability growth at bounded structural continuity) | Self-Developing Runtime Research Program v0.2 (2026-09-11) | UNDECIDED: pre-implementation specification; success/failure criteria and control groups fixed |
-| Latent Agency Framework: graded agency (integration, persistence, informational autonomy); relief vs reasoning budget; recoverability bound; nine measurable predictions | Latent_Agency_Framework.md (v2.0, 2026-10-09; successor to Unified Latent Space of Consciousness v1.0) | UNDECIDED: working hypothesis; predictions untested; the hard problem is bracketed |
+| Latent Agency Framework: graded agency (integration, persistence, informational autonomy); relief vs reasoning budget; recoverability bound and kernel-inclusion synchronization; Helmholtz decomposition and integrator-chain truncation of boundary dynamics; ten measurable predictions | Latent_Agency_Framework.md (v2.1, 2026-10-21; successor to LAF v2.0 and Unified Latent Space of Consciousness v1.0) | UNDECIDED: working hypothesis; predictions untested; stationary Markov-blanket mechanics is a necessary boundary kinematics, not a sufficient agency criterion; the hard problem is bracketed |
 | Informational minimal surfaces: $\mathbf{H} = \lambda(\nabla i)^\perp$ as stationary condition; VIM surrogates bound the variational functional | Latent Information Structuring | UNDECIDED: active experimental program (E1–E5); mathematical framework is FOLLOW |
-| Kernel-path quotient realization of $V_4$; tangent-space diagnostics as geometric evidence; exact and smooth cumulative-coordinate semilattice aggregation | Spectral and Matrix Realization of $V_4$ in Latent Spaces (v1.0, 2026-10-17) | FOLLOW as formal construction under stated assumptions; existence/learnability of the required kernel geometry and empirical certification of projectors remain UNDECIDED |
+| Kernel-path quotient realization of $V_4$; tangent-space diagnostics as geometric evidence; exact and smooth cumulative-coordinate semilattice aggregation | Spectral and Matrix Realization of $V_4$ in Latent Spaces (v2.2, 2026-10-17) | FOLLOW as formal construction under stated assumptions; existence/learnability of the required kernel geometry and empirical certification of projectors remain UNDECIDED |
 
 The rule for reading the archive: **status is attached to the thesis, not to the document.** A document may be technically complete (FOLLOW as a specification) while recording open questions (UNDECIDED as empirics). Conflating these statuses is the same error as passing a prediction off as an observation.
 
@@ -339,8 +337,9 @@ The rule for reading the archive: **status is attached to the thesis, not to the
 
 ### 8.1. Physics
 
-- **Pilot stage v0.2 (consolidated).** Single software complex with Mode A (frozen topology = former v0.1 baseline: residual $\Delta F$ under classical KL truncation) and Mode B (dynamic budget-conserving rewiring: core condensation $\Delta N_\partial$, void depletion $\delta\rho_{\rm void}$, effective void expansion $z_{\rm void}^{\rm eff}$). Eight mandatory null tests D1–D8; decision criteria under $V_4$ (FOLLOW / NULL / UNDECIDED). See Technical Specification v0.2. Closed report `REPORT_v0.2.md` required before any further step.
-- **Post-v0.2.** If Mode B yields a confirmed pilot signal (FOLLOW): extract empirical radial profile $\Delta\rho(r)$ and compare analytically with the VIM surface-tension kernel $\mathbf{H}=\lambda(\nabla i)^\perp$; thereafter cautious continuum-limit contact with SPARC and cosmological observables under a single parameter set. If the residual / dual-regime signals vanish (NULL): documented negative result or revision of the constraint definition. UNDECIDED (numerical insufficiency) triggers parallel tempering or larger $L$ before any physical claim.
+- **Frontal program: protocols V1–V7 (CPP v3.9 §7).** Graph-level computational tests with pre-registered pass/fail thresholds and control ensembles: V1 binary-diamond collapse and dimension selection; V2 Oseledets contraction vs. interface flux; V3 phase-mediated void rarefaction; V4 interfacial synchronization shell; V5 compact→filamentary transition; V6 horizon saturation; V7 kernel inclusion, solenoidal gap, integrator truncation. Reference implementation: CPP v3.9 §9 (Python / NumPy / SciPy). The $V_4$ Registry (§8 of v3.9) is updated according to protocol outcomes.
+- **Executable specification: pending.** Technical Specification v0.2 (Mode A/B budget-conserving pilot; null tests D1–D8) is frozen and was never executed; its Mode B targeted the same condensation–rarefaction mechanism now tested by Protocol V3. Technical Specification **v0.3**, implementing V1–V7, is planned and not yet created. A closed report remains the gate: until it exists, no empirical claim of the physics program is certified.
+- **Deferred observational stage.** Protocols V1–V7 are purely graph-level. The observational falsification criteria formulated in the historical CPG v2.0 §5.1 (a single capacity parameter spanning both SPARC rotation curves and $H(z)$; the supernova time-dilation scaling $\Delta t_{\rm obs}=(1+z)\Delta t_{\rm em}$) remain program commitments for the post-v0.3 continuum-contact stage. If a protocol reaches its refutation criterion, the corresponding Registry items 13–18 of v3.9 close as NULL and the observational stage is void.
 
 ### 8.2. Engineering
 
@@ -362,7 +361,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 3. **It does not claim novelty for the triad as such.** The "information–energy–time" pairs are old (Landauer, Margolus–Levitin, Mandelstam–Tamm). The novelty — if any — lies in binding the triad to a concrete physics program and to an executable engineering semantics.
 4. **It does not claim a solution to the hard problem of consciousness.** The "recursive modeling under external verification" frame is architectural, not phenomenological. Qualia lie outside this framework's competence.
 5. **It does not claim substrate independence for consciousness.** It claims substrate-parameterization: the architecture of consciousness is realized only within the constraint envelope of a material carrier, and that carrier is the interface to the external verifier.
-6. **It does not claim that $\Gamma_{\rm corr}$ has already been computed or fitted to data.** The formal identification of $\Gamma_{\rm corr}$ and of the dual regimes is given in Causal-Phase Geometry v2.0; the pilot stage v0.2 is precisely the first quantitative test of whether a measurable residual and the condensation–decompression signals appear under informational truncation on a budget-conserving graph.
+6. **It does not claim that any physical hypothesis of the program has been tested.** The exact mathematical results of Causal Phase Program v3.9 are FOLLOW within the model; all its physical hypotheses (Registry items 13–18) are UNDECIDED pending protocols V1–V7, for which no executable specification exists yet (Technical Specification v0.3 is pending; v0.2 is frozen and was never executed). The historical $\Gamma_{\rm corr}$ functional of CPG v2.0 has never been computed or fitted to data.
 7. **It does not claim completeness.** The document is a snapshot as of the version date. The §7 statuses are subject to revision per the §8 results, in both directions: UNDECIDED may become FOLLOW, and FOLLOW may become NULL.
 
 ---
@@ -372,18 +371,17 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 | File | Level | Language | Role in the framework |
 |---|---|---|---|
 | The Algorithm of Being (Revised) | Ontology | EN | The philosophical frame: triad, kernel, consciousness under verification, substrate envelope |
-| Causal-Phase Geometry Research Program v2.0 (Oct 2026) | Physics | EN | Level 1 under (H_P): matrix kinematics $W$, dual origin of dark-sector effects (local surface-tension condensation / global budget-driven decompression), explicit $\Gamma_{\rm corr}$; supersedes Aug 2026 draft |
-| Causal Phase Geometry Research Program (Aug 2026) | Physics | EN | Historical predecessor of v2.0 (kept for continuity) |
-| Technical Specification v0.2 (consolidated) | Physics | EN | Executable pilot: Mode A (frozen = former v0.1) + Mode B (dynamic budget-conserving graph); primary observables $\Delta F$, $\Delta N_\partial$, $\delta\rho_{\rm void}$, $z_{\rm void}^{\rm eff}$; null tests D1–D8 |
-| Technical Specification v0.1.1 — $\Gamma_{\rm corr}$ Extraction | Physics | EN | Historical static-lattice pilot (now the Mode A control branch of v0.2) |
-| KK–Jacobson Commutativity Note | Physics | EN | Historical (5D route frozen) |
+| Causal Phase Program v3.9 (Oct 21, 2026; `Physics/Causal_Phase_Program_v3.md`) | Physics | EN | Active formal specification and research program: structuring triad $(\mathcal{I}_A,\partial A,\mathcal{E}_A)$, binary-diamond selection $K^{\rm eff}=2$, Oseledets–Landauer bridge, three-component Einstein–Maxwell decomposition, horizon saturation, protocols V1–V7, $V_4$ registry, reference implementation; supersedes CPG v2.0 |
+| Causal-Phase Geometry Research Program v2.0 (Oct 17, 2026) | Physics | EN | Historical predecessor of v3.9; source of the $\Gamma_{\rm corr}$ continuum formulation, the $\mathrm{sLSE}_T$ aggregation bridge, and the observational falsification criteria (SPARC / DESI / DES-SN5YR) |
+| Technical Specification v0.2 (consolidated) | Physics | EN | Frozen historical pilot design: Mode A (frozen topology) + Mode B (budget-conserving rewiring); observables $\Delta F$, $\Delta N_\partial$, $\delta\rho_{\rm void}$, $z_{\rm void}^{m eff}$; null tests D1–D8; never executed; to be replaced by v0.3 (pending) |
+| KK–Jacobson Commutativity Note | Physics | EN | Historical (5D route frozen August 2026; NULL per CPP v3.9 Registry item 20) |
 | Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus (`Reasoning/Modified_Brusentsov_Entailment_Logic.md`) | Reasoning (formal logic) | EN | Canonical formal foundation of verdict semantics corpus-wide: MDNF, $`V_4`$ and dominance semilattice, decision cascade, evidence scopes, typed certificates, ensemble law quantifiers, metric/box/graph realizations |
 | Unified Implementable Model v2.0 | Engineering | EN | The agent's architectural ontology |
 | External Ternary Judge Adapter | Engineering | EN | The external-verification protocol |
 | ARC-AGI-3 LCLD Agent: Architectural + Engineering Specifications (Version 10.9) | Engineering | EN | The V10.9 instantiation (Tri-Agent, isolated memory contours, Brusentsov 4-valued verdict logic; aligned to the canonical specification [26]) |
 | The Law of Useful Information Structuring in Model Latent Spaces (`Reasoning/latent_information_structuring.md`) | Reasoning (substrate geometry) | EN | Geometric theory of latent representations: variational principle, VIM surrogates, NTK-filtered dynamics, experimental program (E1–E5) |
 | Spectral and Matrix Realization of $V_4$ in Latent Spaces (`Reasoning/Spectral_and_Matrix_Realization_of_V4.md`) | Reasoning (geometry ↔ logic) | EN | Continuous geometric realization of the $V_4$ verdict calculus: kernel-path quotients, tangent-space diagnostics as evidence for MBEL, exact and smooth semilattice aggregation; normative parent = [26] §§3–6 |
-| Latent Agency Framework (v2.0) | Reasoning | EN | Working hypothesis: latent-space agency (integration, persistence, autonomy); relief vs budget; recoverability bound; nine measurable predictions; hard problem bracketed. Successor to Unified Latent Space of Consciousness v1.0 |
+| Latent Agency Framework (v2.1, Oct 21, 2026) | Reasoning | EN | Working hypothesis: latent-space agency (integration, persistence, autonomy); relief vs budget; recoverability bound and kernel-inclusion synchronization; Helmholtz decomposition and integrator-chain truncation; ten measurable predictions; hard problem bracketed. Successor to LAF v2.0 and Unified Latent Space of Consciousness v1.0 |
 | Self-Developing Runtime Research Program v0.2 | Reasoning | EN | Pre-implementation specification: controlled self-development of an LLM under an external verifier, with control groups and success/failure criteria |
 | Draft: Propose, Judge, Commit (ternary_judge.md); Hierarchical Ternary KG as RAG Alternative | Reasoning (drafts) | EN | Working drafts, not catalogued as formal deliverables: the judge architecture with preliminary MVP results; ternary hierarchical knowledge graph as a RAG alternative |
 | Unified Informational-Constructive Framework (this document) | Synthesis | EN | The map of theses, statuses, and cross-level dependencies |
@@ -392,7 +390,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 
 ## References
 
-- [6] V. Yakunin, *Causal Phase Geometry Research Program* (2026).
+- [6] V. Yakunin, *Causal Phase Program, Version 3.9* (October 21, 2026); this repository, `Physics/Causal_Phase_Program_v3.md` — the active physics specification (supersedes the Causal-Phase Geometry Research Program drafts of August–October 2026; v2.0 is retained in the repository as historical).
 - [7] V. Yakunin, *Causal Structure, U(1) Holonomies, and the Thermodynamic Origin of the Einstein–Maxwell System* (2026).
 - [8] V. Yakunin, *Unified Implementable Model, Version 2.0: Verifier-Centered Latent World Models with Evidence-Grounded Three-Way Semantics* (2026).
 - [9] V. Yakunin, *External Ternary Judge Adapter for OpenClaw and DeepSeek V4 API: Engineering Whitepaper* (2026).
@@ -413,4 +411,4 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 
 ---
 
-*End of document. Version 1.7. Feedback and objections — via repository issues.*
+*End of document. Version 1.8. Feedback and objections — via repository issues.*

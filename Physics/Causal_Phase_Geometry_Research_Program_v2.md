@@ -1,12 +1,14 @@
 # Causal-Phase Geometry Research Program (v2.0)
 
+> **STATUS: HISTORICAL — superseded (October 21, 2026).** This program is superseded by *Causal Phase Program v3.9* (`Physics/Causal_Phase_Program_v3.md`, October 21, 2026). The present document is retained as the historical source of three elements not reproduced in v3.9: (1) the explicit continuum correlation functional $\Gamma_{\rm corr}$ in KKT form, (2) the $\mathrm{sLSE}_T$ non-diluting aggregation bridge to *Spectral and Matrix Realization of $V_4$* §5.4, and (3) the observational falsification criteria (SPARC rotation curves, DESI BAO, DES-SN5YR time dilation) that remain deferred program commitments for the post-v0.3 continuum-contact stage. Not an active deliverable.
+
 **Matrix Kinematics, Budget-Constrained Coarse-Graining, and the Dual Origin of Dark Sector Effects**
 
 **Author:** Vladimir Yakunin  
 **Version:** 2.0  
 **Date:** October 17, 2026  
-**Status:** Active research program under hypothesis $H_P$ (incorporating formal mathematical structures from VIM v1.0, LAF v2.0, and Spectral Realization of $V_4$ v2.2)  
-**Supersedes:** `Causal_Phase_Geometry_Research_Program.md` (August 2026 draft)
+**Status:** Historical — superseded by Causal Phase Program v3.9 (October 21, 2026)  
+**Supersedes:** the August 2026 draft *Causal-Phase Geometry Research Program* (removed from the repository)
 
 ---
 
