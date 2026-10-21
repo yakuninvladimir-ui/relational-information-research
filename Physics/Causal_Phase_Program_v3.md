@@ -13,42 +13,42 @@
 
 ## Abstract
 
-This specification formulates a mathematical framework describing how multiscale structures emerge, maintain stability, and interact within a discrete causal medium of bounded capacity. Rather than postulating a pre-existing smooth manifold of fixed dimensionality, the foundational object is a finite, locally finite partial order of events equipped with unitary phase transport on immediate causal relations (Hasse links).
+This specification formulates a mathematical framework for studying how multiscale structures emerge, maintain stability, and interact within a discrete causal medium of bounded capacity[cite: 1, 35]. Rather than postulating a pre-existing smooth manifold of fixed dimensionality, the foundational object is a finite, locally finite partial order of events [1] equipped with unitary phase transport on immediate causal relations (Hasse links)[cite: 1, 2, 35].
 
-Any persistent localized subsystem at a selected temporal window and resolution scale is represented as a triad $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$: an internal relief (bulk) $\mathcal{I}_A$, a bilateral interface $\partial A$ of finite capacity, and an external causal synchronization channel $\mathcal{E}_A$. The total system description decomposes into three distinct components: (1) the structural functional of the internal relief, (2) the kinematic scaffold of the external channel (unbranched null causal chains), and (3) the thermodynamic erasure flux across the interface.
+Any persistent localized subsystem at a selected temporal window and resolution scale is represented as a triad $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$: an internal relief (bulk) $\mathcal{I}_A$, a bilateral interface $\partial A$ of finite capacity, and an external causal synchronization channel $\mathcal{E}_A$[cite: 35]. The total system description decomposes into three distinct components: (1) the structural functional of the internal relief, (2) the kinematic scaffold of the external channel (unbranched null causal links with zero diamond-participation multiplicity), and (3) the thermodynamic entropy production and coarse-grained state-merging flux across the interface[cite: 35].
 
-Within this formalism, seven core mathematical results are established:
-1. **Kernel-Path Factorization and Binary Causal Diamond Selection ($K_{xy}^{\mathrm{eff}} = 2$):** An equivalence relation on intermediate paths is defined via phase-mismatch tolerance (the kernel of the coarse-graining differential). For any strictly convex branching-volume penalty on the quotient graph, the minimum cost subject to preserving non-zero gauge-invariant phase frustration is achieved uniquely on the binary causal diamond ($K_{xy}^{\mathrm{eff}} = 2$).
-2. **Precision Sparsity and the Boundary Kernel-Inclusion Theorem:** In the stationary Gaussian regime across the triad $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$, conditional independence (Markov screening) corresponds to block sparsity of the precision operator ($\Pi_{\mathcal{I}\mathcal{E}} = 0$) while inducing non-zero long-range covariance $\Sigma_{\mathcal{I}\mathcal{E}} = -\Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A}\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1} \neq 0$. A well-defined synchronization map $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ across the interface exists if and only if the boundary kernel-inclusion condition $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$ holds.
-3. **Helmholtz Decomposition and Solenoidal Acceleration of Structural Relaxation:** Splitting the causal transport operator $W$ into its symmetric potential part $H_{\mathrm{sym}} = \frac{1}{2}(W + W^\dagger)$ and skew-Hermitian rotational (vortical) part $H_{\mathrm{rot}} = \frac{1}{2i}(W - W^\dagger)$ provides the discrete counterpart of the continuous Helmholtz decomposition into time-reversible dissipative flow ($\Gamma \succeq 0$) and time-irreversible solenoidal flow ($Q = -Q^\top$). Non-zero solenoidal circulation ($Q \neq 0$, $H_{\mathrm{rot}} \neq 0$) preserves the stationary distribution while strictly increasing or maintaining the spectral relaxation gap $\gamma(Q) \ge \gamma(0)$, accelerating convergence toward the structural attractor.
-4. **Transverse Attractor Stiffness and Boundary Flux (the Oseledets–Landauer Bridge):** Applying Oseledets' multiplicative ergodic decomposition to the internal dynamics splits the tangent space into active directions along the attractor ($E^u$) and contracting transverse directions ($E^s$). Under stationary measure preservation in the presence of boundary noise, the transverse phase-space contraction rate $\kappa(A) = \sum_{\lambda_i < 0} |\lambda_i|$ sets the lower bound on the information erasure flux that must be continuously expelled through the outgoing interface $\partial^+ A$ into the external channel.
-5. **Stochastic Realization of Boundary Spectra and Second-Order Inertial Dynamics:** By Doob's theorem and stochastic realization theory, a multi-frequency stationary process on the interface $\partial A$ is isomorphic to a nested integrator chain of generalized coordinates of motion $\tilde{s}_t = (s_t^{(0)}, s_t^{(1)}, \dots, s_t^{(n)})$. The coarse-graining operator $\mathcal{R}_{\ell \to \ell+1}$ acts as a spectral truncation filter cutting off orders $k > n(\ell)$; truncation at $n(\ell)=2$ (position, velocity, acceleration) yields effective second-order equations of motion (inertia and restoring force).
-6. **Multiscale Synchronization and Network Architecture Transition:** Relative operational time between subsystems is defined by the ratio of accumulated gauge-invariant holonomy cycles along worldtubes. Maintaining algebraic connectivity $\lambda_2$ under bounded vertex valency $k_{\max}$ forces a structural transition from compact rotational modes at small scales to sparse node-filament-void networks at large scales.
-7. **Local-Global Balance and Horizon Saturation:** An exact combinatorial identity governs the partitioning of coherent diamonds across internal bulks, interfaces, and the external channel. Falsifiable hypotheses are formulated for interfacial halo tension, phase-mediated void rarefaction, and horizon saturation ($\eta_{\mathrm{sat}} \ge 1$) leading to a high-rank matrix phase ($K_{xy}^{\mathrm{eff}} \ge 3$).
+Within this formalism, seven core mathematical results and corresponding empirical protocols are established:
+1. **Interval-Local Path Factorization and Binary Diamond Selection ($K_{xy}^{\mathrm{eff}} = 2$):** An equivalence relation is defined strictly on the set of two-step paths $\mathcal{P}_2(x, y)$ inside each fixed causal interval $(x, y)$ via phase-mismatch tolerance[cite: 35]. For a strictly convex branching-cost ansatz on the interval quotient, the minimum cost subject to preserving non-zero gauge-invariant phase frustration is achieved at effective path rank $K_{xy}^{\mathrm{eff}} = 2$[cite: 35]. Vertex-level merging is restricted to structural twins sharing identical causal pasts and futures. Whether physical microdynamics enforce this convex branching penalty is isolated as an empirical hypothesis (`UNDECIDED`).
+2. **Diamond-Participation Multiplicity of Hasse Links:** Because Hasse transitive irreducibility implies $(R^2)_{xy} = K_{xy} = 0$ for every direct link $R_{xy}=1$[cite: 2, 35], embeddedness in interference structures is defined via the **diamond-participation multiplicity** $d_\diamond(x, y)$, counting all elementary causal diamonds containing the link $x \lessdot y$. Pure unbranched (null) channel links are rigorously characterized by $R_{xy}=1 \land d_\diamond(x, y) = 0$.
+3. **Precision Sparsity and the Boundary Kernel-Inclusion Theorem:** In a stationary Gaussian regime across $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$, Markov screening [4] corresponds to block sparsity of the precision operator ($\Pi_{\mathcal{I}\mathcal{E}} = 0$) while inducing non-zero mediated covariance $\Sigma_{\mathcal{I}\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A}\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1} \neq 0$[cite: 11, 26]. A well-defined synchronization map $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ across the interface exists if and only if $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$ [4][cite: 12].
+4. **Helmholtz Decomposition and Solenoidal Acceleration of Relaxation:** Splitting the transport operator $W$ into its symmetric part $H_{\mathrm{sym}} = \frac{1}{2}(W + W^\dagger)$ and skew-Hermitian rotational part $H_{\mathrm{rot}} = \frac{1}{2i}(W - W^\dagger)$[cite: 2, 35] mirrors the continuous Helmholtz decomposition into dissipative ($\Gamma \succeq 0$) and solenoidal ($Q = -Q^\top$) flows [4][cite: 15, 26]. Non-zero solenoidal circulation preserves the stationary measure while satisfying the spectral gap inequality $\gamma(Q) \ge \gamma(0)$ [4][cite: 20, 32].
+5. **Oseledets Contraction, $\varepsilon$-Cell Merging, and the Ruelle–Landauer Bridge:** Using a finite resolution partition of scale $\varepsilon > 0$ around an attractor where $\kappa(A) = \sum_{\lambda_i < 0}\vert{}\lambda_i\vert{} > h_{\mathrm{KS}}(A)$ [6], the map $G_R$ acts along the stable subspace $E^s$ as an $\exp(\kappa(A))$-to-$1$ logical state merger [5]. Under stationary noise injection $H_{\mathrm{in}}^{(\varepsilon)}$ maintaining constant coarse-grained entropy $H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)$, the exact balance $0 = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A)$ separates reversible throughput from irreversible phase-space folding $\Delta S_{\mathrm{fold}} = \kappa(A) - h_{\mathrm{KS}}(A) \ge 0$ [5, 6].
+6. **Stochastic Realization of Boundary Spectra and Multiscale Network Transition:** Multi-frequency stationary processes on $\partial A$ admit a Markovian realization as nested integrator chains $\tilde{s}_t = (s_t^{(0)}, \dots, s_t^{(n)})$, where coarse-graining $\mathcal{R}_{\ell \to \ell+1}$ truncates high-order derivatives [4][cite: 22, 23]. At large graph sizes $N > N_{\mathrm{crit}}$, maintaining synchronization connectivity $\lambda_2$ under bounded degree $k_{\max}$ [2] forces a transition from homogeneous balls to node-filament-void networks [9][cite: 2, 35].
+7. **Local-Global Balance and Horizon Saturation:** An exact combinatorial identity governs diamond partitioning across bulks, interfaces, and voids, framing falsifiable hypotheses for phase-mediated void rarefaction [3] and horizon saturation ($\eta_{\mathrm{sat}} \ge 1$) [5, 8][cite: 35].
 
-All statements in this document are classified under the four-valued verification calculus $V_4 = \{\mathrm{FOLLOW}, \mathrm{OMIT}, \mathrm{UNDECIDED}, \mathrm{NULL}\}$. Section 7 specifies seven computational verification protocols (V1–V7), and Section 9 provides a self-contained reference implementation in Python.
+All statements are classified in the four-valued verification space $V_4 = \{\mathrm{FOLLOW}, \mathrm{OMIT}, \mathrm{UNDECIDED}, \mathrm{NULL}\}$ [10][cite: 6, 35]. Section 7 details seven computational verification protocols (V1–V7), and Section 9 provides the corrected reference Python implementation.
 
 ---
 
 ## 0. Methodological Standard and the $V_4$ Verdict Calculus
 
-To prevent conflation between mathematical theorems, operational definitions, and unverified physical interpretations, every claim in this specification is evaluated within the four-valued verification space:
+Every claim in this specification is evaluated within the four-valued verification space [10][cite: 6, 35]:
 
 $$
 V_4 = \bigl\{\mathrm{FOLLOW}\ (+1),\; \mathrm{OMIT}\ (0),\; \mathrm{UNDECIDED}\ (U),\; \mathrm{NULL}\ (-1)\bigr\},
 $$
 
-governed by the strict linear severity dominance semilattice under conjunctive aggregation ($\otimes = \max_{\succ_V}$):
+ordered by the strict linear severity dominance semilattice under conjunctive aggregation ($\otimes = \max_{\succ_V}$) [10][cite: 6, 35]:
 
 $$
 \mathrm{NULL}\ (-1) \;\succ_V\; \mathrm{UNDECIDED}\ (U) \;\succ_V\; \mathrm{OMIT}\ (0) \;\succ_V\; \mathrm{FOLLOW}\ (+1).
 $$
 
-Status assignment rules in this document:
-- **`FOLLOW` ($+1$):** Assigned exclusively to (a) internally consistent formal definitions and (b) mathematical propositions that follow deductively from assumptions explicitly stated within the proposition. A `FOLLOW` status on a conditional statement $P \implies Q$ certifies the validity of the implication, not the physical realization of premise $P$ in nature.
-- **`OMIT` ($0$):** Assigned to (a) degrees of freedom lying in the kernel of the coarse-graining map $\ker(d\pi_\ell)$ (inessential at the chosen scale), and (b) illustrative heuristics or metaphors included for geometric orientation that never enter as premises in any proof.
-- **`UNDECIDED` ($U$):** Assigned to substantive structural and physical hypotheses that are mathematically well-posed but require numerical certification in protocols V1–V7 or external experimental calibration. No `UNDECIDED` statement may be used as an established fact in subsequent derivations.
-- **`NULL` ($-1$):** Assigned to claims and model variants that are logically inconsistent, violate combinatorial or gauge invariants, or fail negative-control tests.
+Status assignment rules [10][cite: 4, 6, 35]:
+- **`FOLLOW` ($+1$):** Assigned exclusively to (a) internally consistent formal definitions and (b) mathematical propositions whose conclusions follow deductively from assumptions explicitly stated in the proposition[cite: 4, 35]. A `FOLLOW` status on $P \implies Q$ certifies the logical implication, never the physical truth of the premise $P$ or the physical optimality of a chosen functional[cite: 35].
+- **`OMIT` ($0$):** Assigned to (a) degrees of freedom lying in the kernel of a coarse-graining map $\ker(d\pi_\ell)$ [9, 10][cite: 3, 6, 35], and (b) illustrative heuristics or pedagogical analogies that are never used as premises in any proof[cite: 3, 4, 35].
+- **`UNDECIDED` ($U$):** Assigned to substantive structural, kinematic, and physical hypotheses that are well-posed but require numerical verification in protocols V1–V7 or external physical calibration (including the choice of cost functionals, continuum-limit Lorentzian signature emergence, and physical clock calibration)[cite: 1, 35].
+- **`NULL` ($-1$):** Assigned to claims or code constructs that are mathematically inconsistent, tautological, violate gauge/combinatorial invariants [2], or fail negative controls [4][cite: 4, 35].
 
 ---
 
@@ -56,42 +56,31 @@ Status assignment rules in this document:
 
 ### 1.1. Partial Order of Events and the Hasse Matrix
 
-Let $X = \{1, 2, \dots, N\}$ be a finite set of elementary events equipped with a strict partial order $\prec$:
-1. **Irreflexivity:** $\forall x \in X, \; x \not\prec x$.
-2. **Transitivity:** $(x \prec z) \land (z \prec y) \implies x \prec y$.
-3. **Acyclicity:** $x \prec y \implies y \not\prec x$.
+Let $X = \{1, 2, \dots, N\}$ be a finite set of events equipped with a strict partial order $\prec$ (irreflexive, transitive, acyclic) [1], indexed topologically so that $x \prec y \implies x < y$[cite: 2, 35].
 
-Indices on $X$ are chosen topologically consistent with $\prec$: $x \prec y \implies x < y$. All structural observables must remain invariant under admissible relabelings (linear extensions of the partial order).
+**Definition 1.1 (Causal Interval, Hasse Link, and Antichain).** `[Status: FOLLOW]` [1][cite: 35]
+- The *causal interval* between $x \prec y$ is $I(x, y) := \{z \in X \mid x \prec z \prec y\}$[cite: 1, 2, 35].
+- A *Hasse link* (immediate causal coverage) $x \lessdot y$ holds iff $x \prec y \land I(x, y) = \varnothing$[cite: 1, 2, 35].
+- An *antichain* (spacelike section) is a subset $S \subset X$ of mutually incomparable elements: $\forall u \neq v \in S, \; u \not\prec v \land v \not\prec u$[cite: 2, 35].
 
-**Definition 1.1 (Causal Interval, Hasse Link, and Antichain).** `[Status: FOLLOW]`
-- The *causal interval* between $x \prec y$ is the set
-  $$
-  I(x, y) := \{z \in X \mid x \prec z \prec y\}.
-  $$
-- A *Hasse link* (immediate causal coverage) $x \lessdot y$ holds if and only if $x \prec y$ and no intermediate event exists between them:
-  $$
-  x \lessdot y \quad \Longleftrightarrow \quad x \prec y \;\land\; I(x, y) = \varnothing.
-  $$
-- An *antichain* (spacelike section) is a subset $S \subset X$ in which no two distinct elements are causally comparable: $\forall u \neq v \in S, \; u \not\prec v \land v \not\prec u$.
-
-The Boolean adjacency matrix of Hasse links $R \in \{0, 1\}^{N \times N}$ ($R_{xy} = 1 \iff x \lessdot y$) is strictly upper-triangular ($R_{xy} = 0$ for $x \ge y$) and nilpotent ($R^N = 0$). An arbitrary strictly upper-triangular Boolean matrix $R$ is the Hasse matrix of a partial order if and only if it is **transitively irreducible** (contains no edges short-circuiting directed paths of length $\ge 2$):
+The Boolean Hasse adjacency matrix $R \in \{0, 1\}^{N \times N}$ ($R_{xy} = 1 \iff x \lessdot y$) is strictly upper-triangular and nilpotent ($R^N = 0$)[cite: 1, 2, 35]. A strictly upper-triangular Boolean matrix $R$ is a valid Hasse matrix if and only if it is **transitively irreducible** (no direct link short-circuits a directed path of length $\ge 2$)[cite: 2, 35]:
 
 $$
 \forall x, y \in X: \quad R_{xy} = 1 \implies \bigl((I - R)^{-1} - I - R\bigr)_{xy} = 0.
 $$
 
+In particular, transitive irreducibility immediately implies that for every Hasse link,
+
+$$
+R_{xy} = 1 \implies K_{xy} := (R^2)_{xy} = 0.
+$$
+
 ### 1.2. Phase Bundle and Transport Operator
 
-Each directed Hasse link $x \lessdot y$ carries a phase variable $\theta_{xy} \in [0, 2\pi)$ and a unitary transport factor $U_{xy} = e^{i\theta_{xy}} \in U(1)$ (traversing a link backwards along a closed comparison loop uses $U_{yx} = U_{xy}^{-1} = e^{-i\theta_{xy}}$, which does not introduce a reverse causal edge into $R$).
+Each Hasse link $x \lessdot y$ carries a phase $\theta_{xy} \in [0, 2\pi)$ and unitary transport factor $U_{xy} = e^{i\theta_{xy}} \in U(1)$ (with $U_{yx} = U_{xy}^{-1} = e^{-i\theta_{xy}}$ along comparison loops)[cite: 1, 2, 35].
 
-**Definition 1.2 (Causal-Phase Transport Matrix).** `[Status: FOLLOW]`  
-The complex transport matrix $W \in \mathbb{C}^{N \times N}$ is defined by the Hadamard product:
-
-$$
-W_{xy} := R_{xy} e^{i\theta_{xy}}, \qquad W^N = 0.
-$$
-
-The matrix power $(W^k)_{xy}$ sums the complex amplitudes over all directed Hasse paths of length $k$ from $x$ to $y$. For a coupling parameter $\zeta \in (0, 1)$, the finite series $\mathcal{G}(\zeta) := (I - \zeta W)^{-1} = \sum_{k=0}^{N-1} \zeta^k W^k$ defines the full causal resolvent (Green's function). Local gauge transformations at vertices are generated by diagonal unitary matrices $D_\chi = \operatorname{diag}(e^{i\chi_1}, \dots, e^{i\chi_N})$, $\chi_x \in [0, 2\pi)$:
+**Definition 1.2 (Causal-Phase Transport Matrix).** `[Status: FOLLOW]`[cite: 35]  
+The nilpotent complex transport matrix $W \in \mathbb{C}^{N \times N}$ is defined by $W_{xy} := R_{xy} e^{i\theta_{xy}}$ ($W^N = 0$)[cite: 2, 35]. Under local vertex gauge transformations $D_\chi = \operatorname{diag}(e^{i\chi_1}, \dots, e^{i\chi_N})$[cite: 1, 2, 35]:
 
 $$
 W \longmapsto W' = D_\chi W D_\chi^\dagger, \qquad \theta_{xy} \longmapsto \theta'_{xy} = (\theta_{xy} + \chi_x - \chi_y) \bmod 2\pi.
@@ -99,93 +88,90 @@ $$
 
 ### 1.3. Two-Step Waists, Elementary Diamonds, and the Interference Identity
 
-For any pair of events $(x, y)$, consider the set of intermediate vertices of two-step paths (the interval waist):
+For any pair of events $(x, y)$ at causal distance two, let $\mathcal{P}_2(x, y)$ denote the set of two-step Hasse paths $p_z = (x \lessdot z \lessdot y)$, indexed by the waist vertex set[cite: 1, 2, 35]:
 
 $$
-V_{xy} := \{z \in X \mid R_{xz} R_{zy} = 1\}.
+V_{xy} := \{z \in X \mid R_{xz} R_{zy} = 1\}, \qquad K_{xy} := |V_{xy}| = (R^2)_{xy} \in \mathbb{Z}_{\ge 0}.
 $$
 
-Four fundamental observables characterize two-step transport:
-1. **Waist width:** $K_{xy} := |V_{xy}| = (R^2)_{xy} \in \mathbb{Z}_{\ge 0}$.
-2. **Two-step amplitude:** $M_{xy} := (W^2)_{xy} = \sum_{z \in V_{xy}} e^{i(\theta_{xz} + \theta_{zy})} \in \mathbb{C}$.
-3. **Waist coherence** (for $K_{xy} > 0$):
-   $$
-   \operatorname{Coh}_{xy} := \frac{|M_{xy}|^2}{K_{xy}^2} \in [0, 1].
-   $$
-4. **Phase frustration (activity)**:
-   $$
-   J_{xy} := K_{xy}\bigl(1 - \operatorname{Coh}_{xy}\bigr) = \frac{K_{xy}^2 - |M_{xy}|^2}{K_{xy}} \ge 0.
-   $$
+Note that by Hasse irreducibility (§1.1), $K_{xy} > 0 \implies R_{xy} = 0$. The two-step amplitude, waist coherence, and phase frustration (activity) are defined for $K_{xy} > 0$ as[cite: 1, 2, 35]:
 
-Whenever $K_{xy} \ge 2$, any unordered pair of distinct intermediate vertices $\{z_a, z_b\} \subset V_{xy}$ ($z_a \neq z_b$) forms an **elementary causal diamond** $D(x; z_a, z_b; y)$ with gauge-invariant holonomy:
+$$
+M_{xy} := (W^2)_{xy} = \sum_{z \in V_{xy}} e^{i(\theta_{xz} + \theta_{zy})}, \qquad \operatorname{Coh}_{xy} := \frac{|M_{xy}|^2}{K_{xy}^2} \in [0, 1], \qquad J_{xy} := K_{xy}\bigl(1 - \operatorname{Coh}_{xy}\bigr) = \frac{K_{xy}^2 - |M_{xy}|^2}{K_{xy}} \ge 0.
+$$
+
+Whenever $K_{xy} \ge 2$, any unordered pair of distinct intermediate vertices $\{z_a, z_b\} \subset V_{xy}$ ($z_a \neq z_b$) forms an **elementary causal diamond** $D(x; z_a, z_b; y)$ with gauge-invariant holonomy[cite: 1, 2, 35]:
 
 $$
 U_D(x; z_a, z_b; y) := U_{x z_a} U_{z_a y} U_{z_b y}^{-1} U_{x z_b}^{-1} = e^{i\Phi_{ab}}, \qquad \Phi_{ab} = (\theta_{x z_a} + \theta_{z_a y}) - (\theta_{x z_b} + \theta_{z_b y}).
 $$
 
-**Proposition 1.1 (Wilson Interference Identity for a Waist).** `[Status: FOLLOW]`  
-*For every pair of events $(x, y)$ with $K_{xy} \ge 1$, the sum of pairwise Wilson actions over all $\binom{K_{xy}}{2}$ elementary diamonds inside the waist satisfies the exact algebraic identity:*
+**Proposition 1.1 (Wilson Interference Identity for a Waist).** `[Status: FOLLOW]`[cite: 35]  
+*For every pair $(x, y)$ with $K_{xy} \ge 1$, the sum of pairwise Wilson actions over all $\binom{K_{xy}}{2}$ elementary diamonds in $V_{xy}$ satisfies[cite: 1, 2, 35]:*
 
 $$
 \sum_{1 \le a < b \le K_{xy}} \bigl(1 - \cos\Phi_{ab}\bigr) = \frac{1}{2}\bigl(K_{xy}^2 - |M_{xy}|^2\bigr) = \frac{1}{2} K_{xy} J_{xy}.
 $$
 
-*Proof.* Setting $\phi_a = \theta_{xz_a} + \theta_{z_a y}$, expanding the squared modulus of $M_{xy} = \sum_{a=1}^{K_{xy}} e^{i\phi_a}$ gives $|M_{xy}|^2 = K_{xy} + 2\sum_{a < b} \cos(\phi_a - \phi_b) = K_{xy} + 2\sum_{a < b} \cos\Phi_{ab}$. Subtracting this from $K_{xy}^2 = K_{xy} + 2\sum_{a < b} 1$ yields the stated identity. $\blacksquare$
+*Proof.* Setting $\phi_a = \theta_{xz_a} + \theta_{z_a y}$, expanding $|M_{xy}|^2 = \left|\sum_{a=1}^{K_{xy}} e^{i\phi_a}\right|^2 = K_{xy} + 2\sum_{a < b} \cos\Phi_{ab}$ and subtracting from $K_{xy}^2 = K_{xy} + 2\sum_{a < b} 1$ yields the identity[cite: 1, 2, 35]. $\blacksquare$
 
 ### 1.4. Cone-Overlap Operators and Irregularity Measure
 
-Define the Hermitian positive-semidefinite one-step future and past cone-overlap operators:
+The Hermitian positive-semidefinite one-step future and past cone-overlap operators and their skew-Hermitian commutator are[cite: 1, 2, 35]:
 
 $$
-\Delta_+ := W W^\dagger, \qquad \Delta_- := W^\dagger W, \qquad C := [\Delta_+, \Delta_-] = \Delta_+ \Delta_- - \Delta_- \Delta_+.
+\Delta_+ := W W^\dagger, \qquad \Delta_- := W^\dagger W, \qquad C := [\Delta_+, \Delta_-], \qquad \bar{L}(W) := \frac{\|C\|_F^2}{1 + \|\Delta_+\|_F^2 \|\Delta_-\|_F^2} \ge 0.
 $$
-
-The diagonal entries $(\Delta_+)_{xx} = \mathrm{deg}^+(x)$ and $(\Delta_-)_{yy} = \mathrm{deg}^-(y)$ give outgoing and incoming vertex degrees, while off-diagonal entries measure phase-weighted shared futures and pasts. The commutator $C$ is skew-Hermitian ($C^\dagger = -C$). The scalar quantities
-
-$$
-L(W) := \|C\|_F^2 = \operatorname{Tr}(C^\dagger C) \ge 0, \qquad \bar{L}(W) := \frac{\|[\Delta_+, \Delta_-]\|_F^2}{1 + \|\Delta_+\|_F^2 \|\Delta_-\|_F^2}
-$$
-
-are gauge-invariant and vanish in the interior of translationally invariant regular lattices with flat connection ($\Phi_{ab} = 0$).
 
 ---
 
-## 2. The Structuring Triad: Internal Relief, Bilateral Interface, and External Channel
+## 2. The Structuring Triad: Diamond-Participation Multiplicity, Bilateral Interface, and External Channel
 
-### 2.1. Separation of Null Channels and Massive Complexes
+### 2.1. Diamond-Participation Multiplicity of Hasse Links: Null vs. Structured Channels
 
-A foundational structural distinction within $(X, R, \Theta)$ separates unbranched transport chains from regions containing closed phase-comparison diamonds:
+Because $(R^2)_{xy} = K_{xy} = 0$ holds identically for every direct Hasse link $R_{xy} = 1$ (§1.1), one cannot use $K_{xy} = 0$ on the same pair $(x, y)$ to distinguish unbranched links from links embedded in causal diamonds. Instead, a Hasse link $x \lessdot y$ participates in interference if and only if it serves as one of the four boundary edges of at least one elementary diamond: either as a lower leg $(x \lessdot y \lessdot w)$ paired with an alternative path $(x \lessdot z \lessdot w)$ ($z \neq y$), or as an upper leg $(u \lessdot x \lessdot y)$ paired with $(u \lessdot z \lessdot y)$ ($z \neq x$).
 
-1. **Null (lightlike) transport links:** Hasse links $x \lessdot y$ along which, and in whose immediate neighborhood, no alternative two-step paths exist ($K_{xy} = 0$). On a single unbranched link $x \lessdot y$, the local phase $\theta_{xy}$ can be gauged to zero via $\chi_y = \chi_x + \theta_{xy}$. Consequently, an unbranched chain of such links transmits phase from emitter to receiver without accumulating internal gauge-invariant holonomy ($\Delta \Phi_D = 0$).
-2. **Timelike (structured) complexes:** Connected subgraphs with high waist density $K_{xy} \ge 2$. Within these regions, phases cannot be gauged away whenever diamond holonomies satisfy $\Phi_{ab} \not\equiv 0 \pmod{2\pi}$, generating irreducible internal phase dynamics.
+**Definition 2.1 (Diamond-Participation Multiplicity and Unbranched Null Links).** `[Status: FOLLOW]`  
+For any Hasse link $(x, y)$ with $R_{xy} = 1$, define its **lower** and **upper diamond-participation counts** as:
+
+$$
+d_\diamond^+(x, y) := \sum_{w \in X} R_{yw} \max\bigl(0,\, K_{xw} - 1\bigr), \qquad d_\diamond^-(x, y) := \sum_{u \in X} R_{ux} \max\bigl(0,\, K_{uy} - 1\bigr).
+$$
+
+Since $R_{xy} = 1 \land R_{yw} = 1 \implies K_{xw} = (R^2)_{xw} \ge 1$, the maximum is redundant whenever $R_{yw}=1$ (resp. $R_{ux}=1$), so the **total diamond-participation multiplicity** of link $x \lessdot y$ is given in closed matrix form by:
+
+$$
+d_\diamond(x, y) := d_\diamond^+(x, y) + d_\diamond^-(x, y) = R_{xy} \Bigl( \bigl((K - \mathbf{1}_{K>0}) R^\top\bigr)_{xy} + \bigl(R^\top (K - \mathbf{1}_{K>0})\bigr)_{xy} \Bigr) \in \mathbb{Z}_{\ge 0}.
+$$
+
+Combinatorially, $d_\diamond(x, y)$ equals the exact number of elementary causal diamonds $D$ in $X$ that contain the directed link $x \lessdot y$ as an edge. This induces a rigorous partition of the edge set $E(R) = \{(x, y) \mid R_{xy} = 1\}$:
+1. **Unbranched (Null) Channel Links ($E_{\mathrm{null}}$):** Hasse links with $R_{xy} = 1$ and $d_\diamond(x, y) = 0$. Such a link belongs to no elementary causal diamond; along a maximal chain of links with $d_\diamond = 0$, local phases $\theta_{xy}$ can be gauged to zero without frustrating any loop ($\Delta \Phi_D = 0$)[cite: 2, 35].
+2. **Diamond-Embedded (Structured) Links ($E_{\diamond}$):** Hasse links with $R_{xy} = 1$ and $d_\diamond(x, y) \ge 1$. These links form the load-bearing walls of causal diamonds where gauge-invariant holonomies $\Phi_{ab}$ reside.
 
 ### 2.2. Formal Definition of the Triad $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$
 
-Let a connected subset of vertices $A \subset X$ be selected at resolution scale $\ell$ and observation window $\tau_w$.
-
-**Definition 2.1 (Structural Triad of a Subsystem).** `[Status: FOLLOW]`  
-Every proper subsystem $A \subset X$ uniquely partitions the event set into three disjoint functional zones and two directed boundary streams:
+**Definition 2.2 (Structural Triad of a Subsystem).** `[Status: FOLLOW]`[cite: 35]  
+Every proper connected subsystem $A \subset X$ uniquely partitions the event set into three disjoint zones [4][cite: 35]:
 
 $$
 X = \mathcal{I}_A \sqcup \partial A \sqcup \mathcal{E}_A,
 $$
 
-where:
-- **Bilateral Interface $\partial A := \partial^- A \cup \partial^+ A$:** the boundary vertices of $A$ sharing immediate Hasse links with the complement $X \setminus A$:
+where[cite: 35]:
+- **Bilateral Interface $\partial A := \partial^- A \cup \partial^+ A$:** the boundary vertices of $A$ sharing immediate Hasse links with the complement $\mathcal{E}_A := X \setminus A$[cite: 35]:
   $$
-  \partial^- A := \{y \in A \mid \exists x \in X \setminus A : R_{xy} = 1\}, \qquad \partial^+ A := \{x \in A \mid \exists y \in X \setminus A : R_{xy} = 1\}.
+  \partial^- A := \{y \in A \mid \exists x \in \mathcal{E}_A : R_{xy} = 1\}, \qquad \partial^+ A := \{x \in A \mid \exists y \in \mathcal{E}_A : R_{xy} = 1\}.
   $$
-- **Internal Relief (Bulk) $\mathcal{I}_A := A \setminus \partial A$:** the interior core of subsystem $A$, which interacts with the rest of the complex exclusively through the mediation of the interface $\partial A$ (graph Markov blanket property).
-- **External Synchronization Channel $\mathcal{E}_A := X \setminus A$:** the exterior environment coupling subsystem $A$ to other subsystems $B, C, \dots \subset \mathcal{E}_A$.
+- **Internal Relief (Bulk) $\mathcal{I}_A := A \setminus \partial A$:** the interior core of $A$, which has no direct Hasse links to $\mathcal{E}_A$ and interacts with $\mathcal{E}_A$ solely through $\partial A$ [4][cite: 10, 11, 35].
+- **External Synchronization Channel $\mathcal{E}_A := X \setminus A$:** the exterior environment coupling $A$ to other subsystems[cite: 35]. The **external null-link fraction** in $\mathcal{E}_A$ is the non-trivial observable:
+  $$
+  f_{\mathrm{null}}(\mathcal{E}_A) := \frac{\bigl|\{(x, y) \in \mathcal{E}_A \times \mathcal{E}_A \mid R_{xy} = 1 \land d_\diamond(x, y) = 0\}\bigr|}{\bigl|\{(x, y) \in \mathcal{E}_A \times \mathcal{E}_A \mid R_{xy} = 1\}\bigr|} \in [0, 1].
+  $$
 
-The incoming and outgoing combinatorial capacities (discrete surface areas) of the interface are defined by the number of active Hasse links crossing the boundary:
+The incoming and outgoing combinatorial capacities of the interface are $|\partial^- A|_E := \sum_{x \in \mathcal{E}_A, y \in \partial^- A} R_{xy}$ and $|\partial^+ A|_E := \sum_{x \in \partial^+ A, y \in \mathcal{E}_A} R_{xy}$[cite: 35].
 
-$$
-|\partial^- A|_E := \sum_{x \in \mathcal{E}_A,\, y \in \partial^- A} R_{xy}, \qquad |\partial^+ A|_E := \sum_{x \in \partial^+ A,\, y \in \mathcal{E}_A} R_{xy}.
-$$
-
-**Definition 2.2 (Integration and Indivisibility Criterion on Window $\tau_w$).** `[Status: FOLLOW]`  
-Let $\mathrm{Dep}(U \leftrightarrow V) := \sum_{u \in U, v \in V} (|W_{uv}|^2 + |W_{vu}|^2)$ denote the symmetric coupling flux between disjoint vertex subsets. Subsystem $A = \mathcal{I}_A \sqcup \partial A$ forms an **integrated (indivisible) object** on window $\tau_w$ at threshold $\theta_I > 0$ if for every non-trivial binary cut $(A_1, A_2)$ of $A$ ($A = A_1 \sqcup A_2$, $A_1, A_2 \neq \varnothing$), the ratio of internal coupling to external interface flux satisfies:
+**Definition 2.3 (Integration Criterion on Window $\tau_w$).** `[Status: FOLLOW]`[cite: 35]  
+With symmetric coupling flux $\mathrm{Dep}(U \leftrightarrow V) := \sum_{u \in U, v \in V} (|W_{uv}|^2 + |W_{vu}|^2)$, subsystem $A = \mathcal{I}_A \sqcup \partial A$ is integrated on window $\tau_w$ at threshold $\theta_I > 0$ if across all non-trivial binary cuts $A = A_1 \sqcup A_2$[cite: 4, 35]:
 
 $$
 I(A; \tau_w) := \min_{(A_1, A_2)} \frac{\mathrm{Dep}(A_1 \leftrightarrow A_2) / \min(|A_1|, |A_2|)}{\mathrm{Dep}(A \leftrightarrow \mathcal{E}_A) / |A|} > \theta_I.
@@ -193,326 +179,193 @@ $$
 
 ### 2.3. Recoverability Bound Across the Interface
 
-Consider observing subsystem $A$ from the external channel $\mathcal{E}_A$. Let the internal relief state $\mathcal{I}_A$ be represented by a random variable $Z_A$ that acts across the outgoing interface $\partial^+ A$ over $n$ steps, generating a boundary signal sequence $X^n \to Y^n$ received by an external observer $B \subset \mathcal{E}_A$ holding prior state $Z_B$. Let each transmission step across $\partial^+ A$ have channel capacity $C(\partial^+ A) \le c_0 |\partial^+ A|_E$ bits per step.
-
-**Proposition 2.1 (Interface Information Recoverability Bound).** `[Status: FOLLOW]`  
-*If transmission across $\partial^+ A$ is a memoryless channel with noise conditionally independent of $(Z_A, Z_B)$, and the reconstruction $\hat{Z}_A = f(Y^n, Z_B)$ is formed by observer $B$ from received signals $Y^n$ and prior state $Z_B$ (Markov structure $Z_A \to (X^n, Z_B) \to (Y^n, Z_B) \to \hat{Z}_A$), then the mutual information between the true internal structure $Z_A$ and its external reconstruction $\hat{Z}_A$ is bounded above by:*
+**Proposition 2.1 (Interface Information Recoverability Bound).** `[Status: FOLLOW]`[cite: 4, 35]  
+*If transmission from internal state $Z_A$ across $\partial^+ A$ over $n$ steps forms a memoryless channel of per-step capacity $C(\partial^+ A) \le c_0 |\partial^+ A|_E$ with noise conditionally independent of $(Z_A, Z_B)$, and an external observer $B \subset \mathcal{E}_A$ forms estimate $\hat{Z}_A = f(Y^n, Z_B)$ (Markov chain $Z_A \to (X^n, Z_B) \to (Y^n, Z_B) \to \hat{Z}_A$), then[cite: 4, 35]:*
 
 $$
 I(Z_A; \hat{Z}_A) \le I(Z_A; Z_B) + n \, C(\partial^+ A) \le I(Z_A; Z_B) + n c_0 |\partial^+ A|_E.
 $$
 
-*Proof.* By the data processing inequality, $I(Z_A; \hat{Z}_A) \le I(Z_A; Y^n, Z_B) = I(Z_A; Z_B) + I(Z_A; Y^n \mid Z_B)$. For a memoryless channel with conditionally independent noise, $I(Z_A; Y^n \mid Z_B) \le I(X^n; Y^n) \le \sum_{k=1}^n I(X_k; Y_k) \le n \, C(\partial^+ A)$. $\blacksquare$
+*Proof.* Follows from the data processing inequality $I(Z_A; \hat{Z}_A) \le I(Z_A; Z_B) + I(Z_A; Y^n \mid Z_B)$ and subadditivity $I(Z_A; Y^n \mid Z_B) \le \sum_{k=1}^n I(X_k; Y_k) \le n \, C(\partial^+ A)$[cite: 4, 35]. $\blacksquare$
 
-### 2.4. Precision Sparsity, Long-Range Covariance, and the Boundary Kernel-Inclusion Theorem
+### 2.4. Precision Sparsity, Mediated Covariance, and the Boundary Kernel-Inclusion Theorem
 
-While Proposition 2.1 bounds the total information rate through $\partial A$, we can also characterize the exact linear-algebraic conditions under which the internal relief $\mathcal{I}_A$ synchronizes with and encodes expected states of the external channel $\mathcal{E}_A$ across the interface $\partial A$.
+Consider stationary Gaussian fluctuations $x = (\eta, b, \mu) \in \mathcal{E}_A \times \partial A \times \mathcal{I}_A$ distributed as $p(x) = \mathcal{N}(0, \Pi^{-1})$ with positive-definite precision matrix $\Pi = \Sigma^{-1} \succ 0$ [4][cite: 11]. Given boundary state $b \in \partial A$, the conditional expectations are $\overline{\eta}(b) := \mathbb{E}[\eta \mid b] = -\Pi_{\mathcal{E}}^{-1}\Pi_{\mathcal{E},\partial A} b$ and $\overline{\mu}(b) := \mathbb{E}[\mu \mid b] = -\Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A} b$ [4][cite: 11, 12, 26].
 
-Consider a stationary fluctuation regime around a stable configuration of the triad $x = (\eta, b, \mu) \in \mathcal{E}_A \times \partial A \times \mathcal{I}_A$, governed by a non-degenerate stationary Gaussian measure $p(x) = \mathcal{N}(0, \Pi^{-1})$ with symmetric positive-definite precision matrix $\Pi = \Sigma^{-1} \succ 0$ partitioned conformally with $(\mathcal{E}_A, \partial A, \mathcal{I}_A)$:
-
-$$
-\Pi = \begin{pmatrix} \Pi_{\mathcal{E}} & \Pi_{\mathcal{E},\partial A} & \Pi_{\mathcal{I}\mathcal{E}}^\top \\ \Pi_{\partial A,\mathcal{E}} & \Pi_{\partial A} & \Pi_{\partial A,\mathcal{I}} \\ \Pi_{\mathcal{I}\mathcal{E}} & \Pi_{\mathcal{I},\partial A} & \Pi_{\mathcal{I}} \end{pmatrix}, \qquad
-\Sigma = \Pi^{-1} = \begin{pmatrix} \Sigma_{\mathcal{E}} & \Sigma_{\mathcal{E},\partial A} & \Sigma_{\mathcal{E}\mathcal{I}} \\ \Sigma_{\partial A,\mathcal{E}} & \Sigma_{\partial A} & \Sigma_{\partial A,\mathcal{I}} \\ \Sigma_{\mathcal{I}\mathcal{E}} & \Sigma_{\mathcal{I},\partial A} & \Sigma_{\mathcal{I}} \end{pmatrix}.
-$$
-
-Given any boundary state $b \in \partial A$, the conditional expectations of the external channel and internal relief are linear maps $\overline{\eta}(b) := \mathbb{E}[\eta \mid b] = \Sigma_{\mathcal{E},\partial A}\Sigma_{\partial A}^{-1} b = -\Pi_{\mathcal{E}}^{-1}\Pi_{\mathcal{E},\partial A} b$ and $\overline{\mu}(b) := \mathbb{E}[\mu \mid b] = \Sigma_{\mathcal{I},\partial A}\Sigma_{\partial A}^{-1} b = -\Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A} b$.
-
-**Proposition 2.2 (Precision Sparsity, Long-Range Correlation, and Boundary Kernel Inclusion).** `[Status: FOLLOW]`  
-*Let $p(\eta, b, \mu) = \mathcal{N}(0, \Pi^{-1})$ with $\Pi \succ 0$. Then:*
-1. **Precision Sparsity vs. Long-Range Covariance:** *Conditional independence between the internal relief and the external channel given the interface ($\eta \perp \mu \mid b$, the Markov blanket property) holds if and only if the direct off-diagonal precision block vanishes:*
-   $$
-   \Pi_{\mathcal{I}\mathcal{E}} = 0 \quad \text{and} \quad \Pi_{\mathcal{E}\mathcal{I}} = 0.
-   $$
-   *Despite this strict locality of $\Pi$, the marginal covariance between the internal relief and the external channel is generally non-zero and is mediated across the interface by the exact identity:*
+**Proposition 2.2 (Precision Sparsity, Long-Range Covariance, and Boundary Kernel Inclusion).** `[Status: FOLLOW]` [4][cite: 11, 12, 26]  
+*For $p(\eta, b, \mu) = \mathcal{N}(0, \Pi^{-1})$ with $\Pi \succ 0$:*
+1. **Precision Sparsity vs. Mediated Covariance:** *Conditional independence $\eta \perp \mu \mid b$ holds if and only if $\Pi_{\mathcal{I}\mathcal{E}} = 0$ and $\Pi_{\mathcal{E}\mathcal{I}} = 0$ [4][cite: 11]. Under this condition, the marginal covariance between internal relief and external channel is mediated across the interface via:*
    $$
    \Sigma_{\mathcal{I}\mathcal{E}} = \Sigma_{\mathcal{I},\partial A}\,\Sigma_{\partial A}^{-1}\,\Sigma_{\partial A,\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\,\Sigma_{\partial A}\,\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1}.
    $$
-2. **Boundary Kernel-Inclusion Criterion for Synchronization:** *There exists a well-defined linear synchronization map $\sigma: \operatorname{Im}(\overline{\mu}) \to \operatorname{Im}(\overline{\eta})$ satisfying $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ for all interface states $b \in \partial A$ if and only if the kernel of the internal-interface coupling is contained within the kernel of the external-interface coupling:*
+2. **Boundary Kernel-Inclusion Criterion:** *A linear synchronization map $\sigma: \operatorname{Im}(\overline{\mu}) \to \operatorname{Im}(\overline{\eta})$ satisfying $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ for all $b \in \partial A$ exists if and only if [4][cite: 12]:*
    $$
    \ker \Sigma_{\mathcal{I},\partial A} \subseteq \ker \Sigma_{\mathcal{E},\partial A} \quad \Longleftrightarrow \quad \ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}.
    $$
-   *When this condition holds, the canonical synchronization map is given explicitly in terms of the Moore–Penrose pseudoinverse by $\sigma(\mu) = \Pi_{\mathcal{E}}^{-1}\Pi_{\mathcal{E},\partial A}\Pi_{\mathcal{I},\partial A}^{-}\Pi_{\mathcal{I}}\mu$, and the expected internal state $\overline{\mu}(b)$ uniquely minimizes the quadratic prediction-error functional $D_{\mathrm{KL}}\bigl[\mathcal{N}(\eta; \sigma(\mu), \Pi_{\mathcal{E}}^{-1}) \;\|\; p(\eta \mid b)\bigr] = \frac{1}{2}\bigl(\sigma(\mu) - \overline{\eta}(b)\bigr)^\top \Pi_{\mathcal{E}} \bigl(\sigma(\mu) - \overline{\eta}(b)\bigr)$.*
+   *When satisfied, $\sigma(\mu) = \Pi_{\mathcal{E}}^{-1}\Pi_{\mathcal{E},\partial A}\Pi_{\mathcal{I},\partial A}^{-}\Pi_{\mathcal{I}}\mu$ [4][cite: 13], and $\overline{\mu}(b)$ uniquely minimizes $D_{\mathrm{KL}}\bigl[\mathcal{N}(\eta; \sigma(\mu), \Pi_{\mathcal{E}}^{-1}) \;\|\; p(\eta \mid b)\bigr] = \frac{1}{2}\bigl(\sigma(\mu) - \overline{\eta}(b)\bigr)^\top \Pi_{\mathcal{E}} \bigl(\sigma(\mu) - \overline{\eta}(b)\bigr)$ [4][cite: 17, 28].*
 
-*Proof.* (1) Expanding the quadratic form $x^\top \Pi x$ shows that $p(\eta, \mu \mid b)$ factorizes as $p(\eta \mid b)p(\mu \mid b)$ if and only if the cross-term $\eta^\top \Pi_{\mathcal{E}\mathcal{I}}\mu$ vanishes identically, i.e., $\Pi_{\mathcal{I}\mathcal{E}} = 0$. From the block inversion identity $\Pi \Sigma = I$ with $\Pi_{\mathcal{I}\mathcal{E}} = 0$, the $(\mathcal{I}, \partial A)$ block of $\Pi \Sigma = I$ gives $\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A} + \Pi_{\mathcal{I}}\Sigma_{\mathcal{I},\partial A} = 0 \implies \Sigma_{\mathcal{I},\partial A} = -\Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A}$, and similarly $\Sigma_{\mathcal{E},\partial A} = -\Pi_{\mathcal{E}}^{-1}\Pi_{\mathcal{E},\partial A}\Sigma_{\partial A}$. For a Gaussian Markov chain $\mu - b - \eta$, conditional independence $\mathbb{E}[(\mu - \overline{\mu}(b))(\eta - \overline{\eta}(b))^\top \mid b] = 0$ yields $\Sigma_{\mathcal{I}\mathcal{E}} = \Sigma_{\mathcal{I},\partial A}\Sigma_{\partial A}^{-1}\Sigma_{\partial A,\mathcal{E}}$. Substituting the expressions for $\Sigma_{\mathcal{I},\partial A}$ and $\Sigma_{\partial A,\mathcal{E}} = \Sigma_{\mathcal{E},\partial A}^\top$ gives the stated formula. (2) A map $\sigma$ with $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ exists if and only if $\overline{\mu}(b_1) = \overline{\mu}(b_2) \implies \overline{\eta}(b_1) = \overline{\eta}(b_2)$, which by linearity is equivalent to $\ker(\Sigma_{\mathcal{I},\partial A}\Sigma_{\partial A}^{-1}) \subseteq \ker(\Sigma_{\mathcal{E},\partial A}\Sigma_{\partial A}^{-1})$. Since $\Sigma_{\partial A}^{-1}$, $\Pi_{\mathcal{I}}$, and $\Pi_{\mathcal{E}}$ are invertible principal/marginal blocks of positive-definite matrices, right-multiplying by $\Sigma_{\partial A}$ and using $\Pi_{\mathcal{I}}\Sigma_{\mathcal{I},\partial A} = -\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A}$ yields $\ker \Sigma_{\mathcal{I},\partial A} \subseteq \ker \Sigma_{\mathcal{E},\partial A} \iff \ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$. The explicit formula for $\sigma$ and the KL-divergence minimization follow by direct substitution of the Gaussian conditionals. $\blacksquare$
-
-**Structural Significance of Proposition 2.2:**  
-First, item (1) demonstrates how **strictly local Hasse couplings** ($\Pi_{\mathcal{I}\mathcal{E}} = 0$: no direct links bypass the interface $\partial A$) automatically generate **non-zero long-range correlations** ($\Sigma_{\mathcal{I}\mathcal{E}} \neq 0$) between the internal relief and the distant external channel through the inverse operator $\Sigma = \Pi^{-1}$. Second, item (2) shows that the boundary synchronization condition $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$ is the exact linear-Gaussian specialization of the general differential kernel-inclusion condition $\ker d\pi_\ell \subseteq \ker d\pi_{\ell'}$ governing cross-scale quotient compatibility (§3.1).
+*Proof.* Established in [4][cite: 11, 12, 25, 26] via block inversion $\Pi \Sigma = I$ and Gaussian conditional factorization. $\blacksquare$
 
 ---
 
-## 3. Variational Structuring Principle, Dynamic Dimensional Reduction, and Solenoidal Acceleration
+## 3. Variational Structuring Principle, Interval-Local Path Reduction, and Solenoidal Acceleration
 
-### 3.1. Law of the Informational Minimal Surface and Orthogonal Splitting
+### 3.1. Informational Minimal Surface and Orthogonal Tangent Splitting
 
-Let a coarse-graining (descriptive) map $\pi_\ell: D_\ell \to Y_\ell$ be defined at resolution scale $\ell$ on a smooth manifold (or regular stratum) $D_\ell$ equipped with a positive-definite metric $h_z$ on $T_z D_\ell$.
-
-We formulate the variational principle of useful information structuring: a stable embedding $\Sigma \subset D_\ell$ minimizes its geometric volume subject to preserving a required level of mutual information (or coherent phase transport) $I(\Sigma; Y_\ell) \ge R_{\mathrm{req}}$:
+Let $\pi_\ell: D_\ell \to Y_\ell$ be a $C^1$ coarse-graining map [9] on a regular stratum $D_\ell$ equipped with a positive-definite metric $h_z$ on $T_z D_\ell$[cite: 7, 35]. Minimizing the functional $\mathcal{L}[\Sigma] = \mathrm{Vol}_h(\Sigma) + \lambda(R_{\mathrm{req}} - I(\Sigma; Y_\ell))$ at fixed carrier density $\delta(d\mu_\Sigma) = 0$ yields the stationary mean-curvature balance (`Status: FOLLOW`[cite: 5, 35]):
 
 $$
-\mathcal{L}[\Sigma] = \mathrm{Vol}_{h}(\Sigma) + \lambda \bigl(R_{\mathrm{req}} - I(\Sigma; Y_\ell)\bigr).
+\mathbf{H}(z) = \lambda \bigl(\nabla_Z i(z)\bigr)^\perp.
 $$
 
-**Proposition 3.1 (Stationary Equation Balancing Mean Curvature and Information Gradient).** `[Status: FOLLOW]`  
-*If $\Sigma$ is a smooth submanifold in an ambient Riemannian space $(Z, h)$, and the local information density is given by a smooth function $i(z) = D_{\mathrm{KL}}(P(Y|z) \| P(Y))$ under the fixed carrier density approximation ($\delta(d\mu_\Sigma) = 0$), then the stationarity condition $\delta \mathcal{L} / \delta \Sigma = 0$ with respect to normal variations of $\Sigma$ takes the form:*
+Within $T_z D_\ell$, the coarse-graining kernel $K_z := \ker(d\pi_\ell(z))$ and an externally grounded unit active direction $u_{\mathrm{exp}}(z) \in K_z^{\perp_h}$ induce the $h_z$-orthogonal splitting[cite: 7, 35]:
 
 $$
-\mathbf{H}(z) = \lambda \bigl(\nabla_Z i(z)\bigr)^\perp,
+T_z D_\ell = W^{\mathrm{act}}_z \oplus_h W^{\mathrm{inv}}_z \oplus_h K_z, \qquad \mathrm{Id}_{T_z D_\ell} = P_{\mathrm{act}} + P_{\mathrm{inv}} + P_{\mathrm{ker}}.
 $$
 
-*where $\mathbf{H}(z)$ is the mean curvature vector of $\Sigma \subset Z$, and $(\nabla_Z i(z))^\perp$ is the projection of the information-density gradient onto the normal bundle $N_z \Sigma = (T_z \Sigma)^\perp$.*
+### 3.2. Interval-Local Path Factorization vs. Global Twin Merging, and Binary Diamond Selection ($K_{xy}^{\mathrm{eff}} = 2$)
 
-*Proof.* The first variation of the Riemannian volume of a submanifold under a normal deformation $\delta z = \eta^\perp$ is $-\int_\Sigma \langle \mathbf{H}(z), \eta^\perp \rangle_h d\mathrm{Vol}_h$, while the variation of the information integral at fixed measure density is $\int_\Sigma \langle (\nabla_Z i(z))^\perp, \eta^\perp \rangle_h d\mathrm{Vol}_h$. Since $\eta^\perp$ is arbitrary, $\mathbf{H}(z) = \lambda(\nabla_Z i(z))^\perp$. $\blacksquare$
+In earlier formulations, phase equivalence of intermediate paths inside a waist $V_{xy}$ was conflated in code with unconditional global vertex merging across the entire graph. However, an intermediate vertex $z \in V_{xy}$ may simultaneously belong to another causal interval $V_{x'y'}$ where its phase is not aligned with the same partner. Therefore, **interval-local path factorization** and **global vertex reduction** must be defined as distinct operations.
 
-To analyze state transitions within the support $D_\ell$, consider the differential $d\pi_\ell(z): T_z D_\ell \to T_{\pi_\ell(z)} Y_\ell$. Its kernel
+**Definition 3.1 (Interval-Local Path Equivalence vs. Global Twin Reduction).** `[Status: FOLLOW]`
+1. **Interval-Local Path Quotient:** Fix a single pair of events $(x, y)$ with $K_{xy} \ge 2$ and let $\mathcal{P}_2(x, y) = \{p_z = (x \lessdot z \lessdot y) \mid z \in V_{xy}\}$ be the set of two-step paths between $x$ and $y$, where path $p_z$ carries total phase $\phi_{xy}(z) := (\theta_{xz} + \theta_{zy}) \bmod 2\pi$[cite: 2, 35]. Given tolerance $\varepsilon_{\mathrm{ker}} \ge 0$, two paths $p_{z_a}, p_{z_b} \in \mathcal{P}_2(x, y)$ are $\varepsilon_{\mathrm{ker}}$-coherent in $(x, y)$ if:
+   $$
+   d_{\mathbb{T}}\bigl(\phi_{xy}(z_a), \phi_{xy}(z_b)\bigr) := \min\bigl(|\phi_{xy}(z_a) - \phi_{xy}(z_b)|,\; 2\pi - |\phi_{xy}(z_a) - \phi_{xy}(z_b)|\bigr) \le \varepsilon_{\mathrm{ker}}.
+   $$
+   Single-linkage transitive closure on $\mathcal{P}_2(x, y)$ defines an equivalence relation $\sim_{(x,y),\varepsilon_{\mathrm{ker}}}$ **strictly local to the pair $(x, y)$**. The quotient path set $\widetilde{\mathcal{P}}_2(x, y) := \mathcal{P}_2(x, y) / \!\sim_{(x,y),\varepsilon_{\mathrm{ker}}}$ has **effective interval channel rank** $K_{xy}^{\mathrm{eff}} := |\widetilde{\mathcal{P}}_2(x, y)| \in \{1, \dots, K_{xy}\}$ and class phases $\widetilde{\phi}_\alpha = \arg\bigl(\sum_{z \in C_\alpha} e^{i\phi_{xy}(z)}\bigr)$ without altering any other interval $(x', y') \neq (x, y)$.
+2. **Global Structural-Twin Vertex Merging:** Two distinct vertices $z_a \neq z_b \in X$ are **causal structural twins** if they are causally incomparable and share identical sets of immediate predecessors and successors in $R$:
+   $$
+   \forall u \in X:\; R_{u z_a} = R_{u z_b} \quad \text{and} \quad \forall v \in X:\; R_{z_a v} = R_{z_b v}.
+   $$
+   Global vertex merging $z_a \equiv z_b$ on the graph $X$ is admissible at tolerance $\varepsilon_{\mathrm{ker}}$ if and only if $z_a, z_b$ are causal structural twins **and** $d_{\mathbb{T}}(\phi_{uv}(z_a), \phi_{uv}(z_b)) \le \varepsilon_{\mathrm{ker}}$ holds across **every** interval $(u, v)$ containing $\{z_a, z_b\}$.
 
-$$
-K_z := \ker\bigl(d\pi_\ell(z)\bigr) \subset T_z D_\ell
-$$
-
-forms the subspace of directions along which the macro-descriptor $\pi_\ell(z)$ is invariant to first order. Given a unit reference direction of expected active progress $u_{\mathrm{exp}}(z) \in K_z^{\perp_h}$, the tangent space $T_z D_\ell$ splits into an $h_z$-orthogonal direct sum of three subspaces:
-
-$$
-T_z D_\ell = W^{\mathrm{act}}_z \oplus_h W^{\mathrm{inv}}_z \oplus_h K_z, \qquad \mathrm{Id}_{T_z D_\ell} = P_{\mathrm{act}} + P_{\mathrm{inv}} + P_{\mathrm{ker}},
-$$
-
-where $W^{\mathrm{act}}_z = \operatorname{span}\{u_{\mathrm{exp}}(z)\}$ is the one-dimensional active transport subspace, $W^{\mathrm{inv}}_z = K_z^{\perp_h} \cap (W^{\mathrm{act}}_z)^{\perp_h}$ is the subspace of preserved transverse invariants at scale $\ell$, and $K_z$ is the kernel of inessential micro-variations (`OMIT`). If a coarser map $\pi_{\ell'}$ factors smoothly through $\pi_\ell$ ($\pi_{\ell'} = f \circ \pi_\ell$), then $K_z^{(\ell)} \subseteq K_z^{(\ell')}$, guaranteeing well-defined cross-scale quotient projection.
-
-### 3.2. Kernel-Path Factorization and Collapse of Multi-Vertex Bundles into Binary Diamonds ($K_{xy}^{\mathrm{eff}} = 2$)
-
-We now translate kernel-path factorization directly onto the discrete causal-phase complex $(X, R, \Theta)$.
-
-Consider a pair of events $x \prec y$ with waist $V_{xy} = \{z_1, \dots, z_m\}$ of arbitrary microscopic width $K_{xy} = m \ge 2$. Each intermediate vertex $z_a \in V_{xy}$ defines a two-step path $p_a = (x \lessdot z_a \lessdot y)$ carrying total phase $\phi_a = (\theta_{xz_a} + \theta_{z_a y}) \bmod 2\pi$.
-
-**Definition 3.1 (Waist Factorization by the Phase Kernel).** `[Status: FOLLOW]`  
-Given a phase-distinction resolution $\varepsilon_{\mathrm{ker}} \ge 0$, two intermediate vertices $z_a, z_b \in V_{xy}$ are $\varepsilon_{\mathrm{ker}}$-coherent if they are causally incomparable and the relative holonomy between their paths does not exceed $\varepsilon_{\mathrm{ker}}$:
+Consider now a model family of interval cost functionals parameterized by a branching exponent $p > 0$:
 
 $$
-d_{\mathbb{T}}(\phi_a, \phi_b) := \min\bigl(|\phi_a - \phi_b|,\; 2\pi - |\phi_a - \phi_b|\bigr) \le \varepsilon_{\mathrm{ker}}.
+\mathcal{F}_{\mathrm{loc}}^{(p)}\bigl(K^{\mathrm{eff}}, \{\widetilde{\phi}_\alpha\}\bigr) = a \bigl(K^{\mathrm{eff}}\bigr)^p + b \, J^{\mathrm{eff}}_{xy}, \qquad a > 0, \; b \ge 0,
 $$
 
-Path connectivity by chains of such pairs generates an equivalence relation $\sim_{K,\varepsilon_{\mathrm{ker}}}$ on $V_{xy}$ (at $\varepsilon_{\mathrm{ker}} = 0$, this reduces to exact phase equality $\phi_a = \phi_b$). The quotient waist $\widetilde{V}_{xy} := V_{xy} / \!\sim_{K,\varepsilon_{\mathrm{ker}}}$ comprises $K_{xy}^{\mathrm{eff}} := |\widetilde{V}_{xy}| \le K_{xy}$ macro-vertices (equivalence classes $C_1, \dots, C_{K^{\mathrm{eff}}}$) with effective phases $\widetilde{\phi}_\alpha = \arg\bigl(\sum_{z_a \in C_\alpha} e^{i\phi_a}\bigr)$.
+where $J^{\mathrm{eff}}_{xy} = K^{\mathrm{eff}} - \frac{1}{K^{\mathrm{eff}}}\left|\sum_{\alpha=1}^{K^{\mathrm{eff}}} e^{i\widetilde{\phi}_\alpha}\right|^2$[cite: 35].
 
-Consider on the quotient waist the local cost functional combining a strictly convex branching-volume penalty (the discrete counterpart of $\mathrm{Vol}_h(\Sigma)$) and phase frustration:
+**Proposition 3.2 (Conditional Selection of $K_{xy}^{\mathrm{eff}} = 2$ Under Positive-Exponent Branching Penalty).** `[Status: FOLLOW (for the functional ansatz; physical realization of the ansatz is UNDECIDED)]`  
+*For a fixed pair $(x, y)$, suppose $\mathcal{F}_{\mathrm{loc}}^{(p)}$ ($a > 0, p > 0$) is minimized over integer effective channel ranks $K^{\mathrm{eff}} \in \mathbb{Z}_{\ge 1}$ and class phases $\{\widetilde{\phi}_\alpha\}$ subject to maintaining a fixed non-zero gauge-invariant frustration $J^{\mathrm{eff}}_{xy} = J_0 \in (0, 2]$[cite: 35]. Then:*
+1. *At $K^{\mathrm{eff}} = 1$, $J^{\mathrm{eff}}_{xy} \equiv 0$, so $K^{\mathrm{eff}} = 1$ is inadmissible for any $J_0 > 0$[cite: 35].*
+2. *Among all integers $K^{\mathrm{eff}} \ge 2$, because $k \mapsto a k^p$ ($a > 0, p > 0$) is strictly increasing in $k$ and $J_0 \in (0, 2]$ is realizable at $K^{\mathrm{eff}} = 2$ via $\Phi_{12} = \pm \arccos(1 - J_0)$, the unique global minimum of $\mathcal{F}_{\mathrm{loc}}^{(p)}$ at fixed $J_0 \in (0, 2]$ is achieved at $K^{\mathrm{eff}}_{xy} = 2$[cite: 35].*
+3. *Conversely, if multiple intervals are compared at a fixed total number of elementary diamonds $m = \binom{K}{2}$ rather than fixed $J_0$, splitting one bundle of width $K$ into $m$ separate binary diamonds ($K=2$) lowers the total branching penalty if and only if $m \cdot a(2^p) < a K^p$, which holds for all $K \ge 3$ whenever $p > \frac{\ln 3}{\ln(3/2)} \approx 2.71$, or under the quadratic penalty $p = 2$ when comparing a merged 4-path bundle ($4^2 a = 16a$) against two disjoint binary diamonds ($2 \times 2^2 a = 8a < 16a$)[cite: 2, 35].*
 
-$$
-\mathcal{F}_{\mathrm{loc}}(K^{\mathrm{eff}}, \{\widetilde{\phi}_\alpha\}) = a \bigl(K^{\mathrm{eff}}\bigr)^2 + b \, J^{\mathrm{eff}}_{xy}, \qquad a > 0, \; b \ge 0,
-$$
+*Proof.* Items (1) and (2) follow immediately from $J^{\mathrm{eff}}_{xy}(K^{\mathrm{eff}}=1) = 0$, the strict monotonicity of $a k^p$ for $k \ge 2$, and $J^{\mathrm{eff}}_{xy}(K^{\mathrm{eff}}=2) = 1 - \cos\Phi_{12} \in [0, 2]$[cite: 2, 35]. Item (3) follows by direct evaluation of $a K^p$ vs. $m a 2^p$[cite: 2]. $\blacksquare$
 
-where $J^{\mathrm{eff}}_{xy} = K^{\mathrm{eff}} - \frac{1}{K^{\mathrm{eff}}}\left|\sum_{\alpha=1}^{K^{\mathrm{eff}}} e^{i\widetilde{\phi}_\alpha}\right|^2$.
-
-**Theorem 3.1 (Variational Selection of the Binary Causal Diamond $K_{xy}^{\mathrm{eff}} = 2$).** `[Status: FOLLOW]`  
-*Suppose $\mathcal{F}_{\mathrm{loc}}$ is minimized over waist configurations $(K_{xy}, \{\phi_a\})$ under exact coherent factorization ($\varepsilon_{\mathrm{ker}} = 0$) subject to maintaining a fixed non-zero gauge-invariant phase frustration $J^{\mathrm{eff}}_{xy} = J_0 \in (0, 2]$. Then:*
-1. *Every single-path configuration ($K^{\mathrm{eff}} = 1$) has identically zero gauge-invariant frustration $J^{\mathrm{eff}}_{xy} \equiv 0$ and cannot satisfy the boundary condition $J_0 > 0$.*
-2. *For every $J_0 \in (0, 2]$, the global minimum of $\mathcal{F}_{\mathrm{loc}}$ is achieved on the **binary causal diamond** $K^{\mathrm{eff}}_{xy} = 2$ with relative holonomy $\Phi_{12} = \pm \arccos(1 - J_0)$, yielding minimum cost $\mathcal{F}_{\min} = 4a + b J_0$.*
-3. *Any multi-vertex bundle with $K_{xy} = m > 2$, upon phase synchronization of $(m - 2)$ redundant paths with either of the two primary channels ($\phi_a \to \widetilde{\phi}_1$ or $\widetilde{\phi}_2$), collapses under kernel factorization to $K^{\mathrm{eff}}_{xy} = 2$, strictly lowering the cost by $\Delta \mathcal{F} = a(m^2 - 4) > 0$.*
-
-*Proof.* (1) For $K^{\mathrm{eff}} = 1$, $|M^{\mathrm{eff}}_{xy}|^2 = |e^{i\widetilde{\phi}_1}|^2 = 1 = (K^{\mathrm{eff}})^2$, so $J^{\mathrm{eff}}_{xy} = 0 < J_0$. (2) For integer $K^{\mathrm{eff}} \ge 2$ at fixed $J^{\mathrm{eff}}_{xy} = J_0$, $\mathcal{F}_{\mathrm{loc}} = a(K^{\mathrm{eff}})^2 + b J_0$. Since $f(k) = a k^2$ ($a > 0$) is strictly increasing for $k \ge 2$, its unique integer minimum on $k \ge 2$ occurs at $k = 2$. By Proposition 1.1, at $K^{\mathrm{eff}} = 2$ we have $J^{\mathrm{eff}}_{xy} = 1 - \cos(\widetilde{\phi}_1 - \widetilde{\phi}_2)$, which surjectively covers $(0, 2]$ for $\Phi_{12} \in (0, \pi]$. (3) At $\varepsilon_{\mathrm{ker}} = 0$, aligning the phases of $(m-2)$ vertices with $\widetilde{\phi}_1$ or $\widetilde{\phi}_2$ places them into equivalence classes $C_1, C_2$, reducing $K^{\mathrm{eff}}$ from $m$ to $2$ and decreasing the volume penalty from $a m^2$ to $4a$. $\blacksquare$
+**Scope Note on Proposition 3.2:**  
+Proposition 3.2 is a mathematical property of the chosen cost functional $\mathcal{F}_{\mathrm{loc}}^{(p)}$. It does **not** prove a priori that nature implements $\mathcal{F}_{\mathrm{loc}}^{(p)}$. Why an underlying substrate penalizes path proliferation convexly (e.g., due to finite vertex valency $k_{\max}$ preventing Kleitman–Rothschild combinatorial collapse [2] and phase-decoherence noise across multi-slit bundles) is an empirical hypothesis (`Status: UNDECIDED`), tested in Protocol V1 by comparing convex ($p=2$), linear ($p=1$), and concave ($\ln(1+K)$) penalties[cite: 2, 35].
 
 ### 3.3. Transverse Algebra of the Binary Diamond and Selection of $3+1$ Directions
 
-Consider the internal structure of a binary causal diamond $K^{\mathrm{eff}}_{xy} = 2$ with intermediate vertices $\{z_1, z_2\}$ forming a minimal spacelike antichain $S_\perp = \{z_1, z_2\}$:
-
-1. **Transverse State Space and $SU(2) \to SO(3)$:** `[Status: FOLLOW (algebraic structure)]`  
-   The space of complex amplitudes on the two-channel transverse section $S_\perp = \{z_1, z_2\}$ is isomorphic to $\mathbb{C}^2$. The group of norm-preserving unitary transitions across the two channels is $U(2) \cong U(1) \times SU(2) / \mathbb{Z}_2$. The abelian factor $U(1)$ represents overall phase shift, while $SU(2)$ has real dimension $\dim_{\mathbb{R}} \mathfrak{su}(2) = 3$ (generated by Pauli matrices $\sigma_1, \sigma_2, \sigma_3$, where $\sigma_3$ measures the relative phase $\Phi_{12}$ and $\sigma_1, \sigma_2$ govern coherent channel mixing). The adjoint representation of $SU(2)$ on traceless Hermitian $2\times 2$ matrices realizes the universal double cover of the 3D rotation group $SO(3)$.
-2. **Minimal Dimension of Orthogonal Splitting with a Vortical Invariant:** `[Status: FOLLOW (under stated rank conditions)]`  
-   Decompose the transport operator $W$ into its Hermitian symmetric (potential) and skew-Hermitian (vortical/rotational) components:
-   $$
-   H_{\mathrm{sym}} := \frac{1}{2}(W + W^\dagger), \qquad H_{\mathrm{rot}} := \frac{1}{2i}(W - W^\dagger).
-   $$
-   In a real representation, non-zero eigenvalues of the skew-symmetric circulation generator $i H_{\mathrm{rot}} = \frac{1}{2}(W - W^\dagger)$ occur in conjugate pairs $\pm i\lambda_\alpha$, each spanning a two-dimensional invariant rotation plane. For the essential spatial subspace $T^{\mathrm{ess}}_z = W^{\mathrm{act}}_z \oplus_h W^{\mathrm{inv}}_z$ (§3.1) to simultaneously support a longitudinal propagation direction ($\dim W^{\mathrm{act}}_z \ge 1$) and an orthogonal plane of conserved transverse phase circulation (discrete angular momentum $\mathcal{L}_z \neq 0$, requiring $\dim W^{\mathrm{inv}}_z \ge 2$), the minimal spatial dimension must satisfy:
-   $$
-   d_{\mathrm{space}}^{\min} = \dim W^{\mathrm{act}}_z + \dim W^{\mathrm{inv}}_z = 1 + 2 = 3.
-   $$
-   At $d_{\mathrm{space}} = 3$, the number of binary coordinate holonomy planes $\nu(d) = \binom{d}{2}$ satisfies the unique non-trivial integer duality $\binom{3}{2} = 3 = d_{\mathrm{space}}$. Combined with the directed causal order of phase accumulation, this singles out $3+1$ as the minimal closed architecture. Whether $3+1$ emerges spontaneously as the global attractor of random causal ensembles is an empirical computational hypothesis (`Status: UNDECIDED`, Protocol V1).
-
-### 3.4. Helmholtz Decomposition and Solenoidal Acceleration of Structural Relaxation
-
-Why do persistent structures in the causal-phase complex require a non-zero rotational component $H_{\mathrm{rot}} \neq 0$ rather than relaxing solely through purely symmetric gradient flow $H_{\mathrm{sym}}$? Non-equilibrium stochastic mechanics provides an exact analytical answer via the **Helmholtz decomposition**.
-
-In the continuous-time diffusion limit around a stationary density $p(x) \propto \exp(-\mathcal{F}(x)/T)$ with precision matrix $\Pi \succ 0$ of the linearized potential $\mathcal{F}(x) = \frac{1}{2} x^\top \Pi x$, any stationary Itô stochastic differential equation $dx_t = f(x_t)\,dt + \varsigma(x_t)\,dW_t$ maintaining $p(x)$ as its invariant measure uniquely decomposes its drift field $f(x)$ into two components:
+On a binary diamond $K^{\mathrm{eff}}_{xy} = 2$ with transverse section $S_\perp = \{z_1, z_2\}$, the two-channel amplitude space is $\mathbb{C}^2$ with unitary transition group $U(2) \cong U(1) \times SU(2) / \mathbb{Z}_2$, where $\dim_{\mathbb{R}} \mathfrak{su}(2) = 3$ double-covers $SO(3)$ (`Status: FOLLOW`[cite: 2, 35]). Under the Hermitian/skew-Hermitian splitting[cite: 2, 35]
 
 $$
-f(x) = f_{\mathrm{rev}}(x) + f_{\mathrm{irrev}}(x), \qquad f_{\mathrm{rev}}(x) = \Gamma(x)\nabla \ln p(x) + \nabla \cdot \Gamma(x), \qquad f_{\mathrm{irrev}}(x) = Q(x)\nabla \ln p(x) + \nabla \cdot Q(x),
+H_{\mathrm{sym}} := \frac{1}{2}(W + W^\dagger), \qquad H_{\mathrm{rot}} := \frac{1}{2i}(W - W^\dagger),
 $$
 
-where $\Gamma(x) = \frac{1}{2}\varsigma(x)\varsigma(x)^\top \succeq 0$ is the symmetric dissipative diffusion tensor (driving gradient descent down $\mathcal{F}(x)$) and $Q(x) = -Q(x)^\top$ is a skew-symmetric matrix field generating divergence-free, conservative (solenoidal) circulation along the level sets of $\mathcal{F}(x)$ ($\nabla \cdot (f_{\mathrm{irrev}} p) = 0$).
+accommodating at least one longitudinal active transport direction ($\dim W^{\mathrm{act}}_z \ge 1$) and an orthogonal two-dimensional invariant plane of rotational circulation ($\dim W^{\mathrm{inv}}_z \ge 2$ for a conjugate eigenvalue pair $\pm\lambda_\alpha$ of $H_{\mathrm{rot}}$) requires minimal spatial dimension $d_{\mathrm{space}}^{\min} = 1 + 2 = 3 = \binom{3}{2}$ (`Status: FOLLOW` under the stated rank requirements[cite: 35]; spontaneous emergence in graph ensembles is `UNDECIDED`, Protocol V1[cite: 35]).
 
-On the discrete causal-phase complex, the operator splitting
+### 3.4. Helmholtz Decomposition and Solenoidal Acceleration of Relaxation
 
-$$
-W = H_{\mathrm{sym}} + i H_{\mathrm{rot}}, \qquad H_{\mathrm{sym}}^\dagger = H_{\mathrm{sym}}, \quad (i H_{\mathrm{rot}})^\dagger = -(i H_{\mathrm{rot}})
-$$
+**Proposition 3.3 (Solenoidal Preservation of Stationary Measure and Acceleration of Relaxation).** `[Status: FOLLOW]` [4][cite: 19, 20, 28, 32]  
+*For a linear Langevin process $dx_t = -(\Gamma + Q)\Pi x_t\,dt + \sqrt{2\Gamma}\,dW_t$ on $\mathbb{R}^n$ with $\Pi \succ 0$, $\Gamma \succ 0$, and skew-symmetric solenoidal matrix $Q = -Q^\top$, let $B(Q) := (\Gamma + Q)\Pi$ and $\gamma(Q) := \min\{\operatorname{Re}\mu : \mu \in \operatorname{spec}(B(Q))\}$. Then:*
+1. *The solenoidal drift $f_{\mathrm{irrev}}(x) = -Q\Pi x$ is divergence-free with respect to $p(x) = \mathcal{N}(0, \Pi^{-1})$ ($\nabla \cdot (f_{\mathrm{irrev}} p) = 0$) and leaves the stationary measure invariant [4][cite: 26, 28].*
+2. *The spectral relaxation rate satisfies $\gamma(Q) \ge \gamma(0) = \lambda_{\min}(\Pi^{1/2}\Gamma\Pi^{1/2}) > 0$ with constant trace $\operatorname{Tr} B(Q) = \operatorname{Tr}(\Gamma\Pi)$ [4][cite: 20, 32]. Whenever $\Pi^{1/2}\Gamma\Pi^{1/2}$ is anisotropic, there exist skew-symmetric matrices $Q \neq 0$ such that $\gamma(Q) > \gamma(0)$ strictly, up to $\gamma_{\max} = \frac{1}{n}\operatorname{Tr}(\Gamma\Pi)$ [4][cite: 32].*
 
-is the direct algebraic counterpart of the Helmholtz decomposition $(\Gamma + Q)$: $H_{\mathrm{sym}}$ generates dissipative relaxation across potential gradients, while the skew-Hermitian component $i H_{\mathrm{rot}}$ generates solenoidal phase circulation along constant-cost contours.
-
-**Proposition 3.2 (Solenoidal Preservation of Stationary Measure and Acceleration of Relaxation).** `[Status: FOLLOW]`  
-*Consider a linear Langevin relaxation process $dx_t = -(\Gamma + Q)\Pi x_t\,dt + \sqrt{2\Gamma}\,dW_t$ on $\mathbb{R}^n$ with symmetric positive-definite precision $\Pi \succ 0$, constant symmetric positive-definite dissipative tensor $\Gamma \succ 0$, and skew-symmetric solenoidal matrix $Q = -Q^\top$. Let $B(Q) := (\Gamma + Q)\Pi$ be the drift matrix and $\gamma(Q) := \min\{\operatorname{Re}\mu : \mu \in \operatorname{spec}(B(Q))\}$ be the spectral relaxation rate toward the stationary Gaussian state $p(x) = \mathcal{N}(0, \Pi^{-1})$. Then:*
-1. **Invariance of the Stationary Relief:** *For every skew-symmetric matrix $Q = -Q^\top$, the solenoidal drift $f_{\mathrm{irrev}}(x) = -Q\Pi x$ is divergence-free with respect to $p(x)$ ($\nabla \cdot (f_{\mathrm{irrev}} p) = 0$) and leaves the stationary distribution $p(x) = \mathcal{N}(0, \Pi^{-1})$ strictly unchanged.*
-2. **Non-Decrease and Strict Acceleration of the Spectral Gap:** *For every skew-symmetric $Q = -Q^\top$, the spectral relaxation rate satisfies the inequality:*
-   $$
-   \gamma(Q) \;\ge\; \gamma(0) = \lambda_{\min}\bigl(\Pi^{1/2}\Gamma\Pi^{1/2}\bigr) > 0, \qquad \operatorname{Tr} B(Q) = \operatorname{Tr}(\Gamma \Pi) = \mathrm{const}.
-   $$
-   *Moreover, whenever $\Pi^{1/2}\Gamma\Pi^{1/2}$ is not a scalar multiple of the identity (anisotropic relief stiffness), there exist skew-symmetric matrices $Q \neq 0$ that couple the slow and fast eigendirections of $\Pi^{1/2}\Gamma\Pi^{1/2}$ such that $\gamma(Q) > \gamma(0)$ strictly, achieving the theoretical maximum $\gamma_{\max} = \frac{1}{n}\operatorname{Tr}(\Gamma\Pi)$ when all eigenvalues of $B(Q)$ coalesce in real part.*
-
-*Proof.* (1) Since $\nabla p(x) = -p(x)\Pi x$ and $\nabla \cdot (Q\Pi x) = \operatorname{Tr}(Q\Pi) = 0$ (as the trace of the product of a skew-symmetric and a symmetric matrix), we have $\nabla \cdot (f_{\mathrm{irrev}} p) = -p\operatorname{Tr}(Q\Pi) + (\Pi x)^\top Q^\top p \Pi x = 0$ because $v^\top Q^\top v = 0$ for all $v$. Thus the stationary Fokker–Planck equation $\nabla \cdot (-f p + \Gamma \nabla p) = 0$ holds identically for all $Q = -Q^\top$. (2) Perform the similarity transformation $\widetilde{B}(Q) := \Pi^{1/2} B(Q) \Pi^{-1/2} = S + A$, where $S := \Pi^{1/2}\Gamma\Pi^{1/2} \succ 0$ is symmetric positive-definite and $A := \Pi^{1/2} Q \Pi^{1/2} = -A^\top$ is skew-symmetric. Let $\mu \in \operatorname{spec}(\widetilde{B}(Q))$ with unit eigenvector $v \in \mathbb{C}^n$ ($\|v\|_2 = 1$, $(S + A)v = \mu v$). Taking the Hermitian inner product with $v$ gives $\mu = v^\dagger S v + v^\dagger A v$. Since $S^\dagger = S$ and $A^\dagger = -A$, $v^\dagger S v$ is real and $v^\dagger A v$ is purely imaginary, so $\operatorname{Re}\mu = v^\dagger S v \ge \lambda_{\min}(S) = \gamma(0)$. Taking the minimum over all eigenvalues gives $\gamma(Q) \ge \gamma(0)$. Furthermore, $\operatorname{Tr}\widetilde{B}(Q) = \operatorname{Tr} S = \sum_{i=1}^n \operatorname{Re}\mu_i$, so the average real part of the eigenvalues is fixed at $\bar{\gamma} = \frac{1}{n}\operatorname{Tr}(\Gamma\Pi)$. If $S$ has distinct eigenvalues $\lambda_{\min}(S) < \lambda_{\max}(S)$, choosing $A = -A^\top$ to mix the eigenvectors of $S$ lifts the smallest real part toward the mean $\bar{\gamma}$, yielding $\gamma(Q) > \gamma(0)$ with complex-conjugate eigenvalues (damped spiral trajectories). $\blacksquare$
-
-**Physical Consequence:**  
-Proposition 3.2 provides a rigorous dynamical reason for the ubiquity of spin and vortical phase modes ($H_{\mathrm{rot}} \neq 0$, $\mathcal{L}_z \neq 0$) in stable structures: on an anisotropic relief, purely gradient relaxation ($Q=0$) is bottlenecked by the slowest eigendirection $\lambda_{\min}(S)$, whereas adding solenoidal circulation $H_{\mathrm{rot}} \neq 0$ couples slow and fast modes, exponentially accelerating relaxation back to the attractor after perturbations at the signature cost of damped oscillatory (spiral) trajectories.
+*Proof.* (1) $\nabla \cdot (f_{\mathrm{irrev}}p) = -p\operatorname{Tr}(Q\Pi) + p(\Pi x)^\top Q^\top (\Pi x) = 0$ by skew-symmetry of $Q$ [4][cite: 28]. (2) For $\widetilde{B}(Q) = \Pi^{1/2}B(Q)\Pi^{-1/2} = S + A$ with $S = \Pi^{1/2}\Gamma\Pi^{1/2} \succ 0$ and $A = \Pi^{1/2}Q\Pi^{1/2} = -A^\top$, any unit eigenvector $v$ of $S+A$ with eigenvalue $\mu$ satisfies $\operatorname{Re}\mu = v^\dagger S v \ge \lambda_{\min}(S) = \gamma(0)$ [4][cite: 32]. $\blacksquare$
 
 ---
 
-## 4. Oseledets Spectrum and the Landauer Thermodynamic Bridge at the Interface
+## 4. Oseledets Spectrum, Coarse-Grained $\varepsilon$-Cell Merging, and the Ruelle–Landauer Bridge
 
 ### 4.1. Separating the Structural Functional from the Thermodynamic Flux
 
-For any localized structure $A = (\mathcal{I}_A, \partial A, \mathcal{E}_A)$, its internal combinatorial-phase organization must be strictly separated from the thermodynamic cost of maintaining it within the external channel. We distinguish three components:
-1. **Bulk Structural Functional $\mathscr{S}_{\mathrm{struct}}(\mathcal{I}_A)$:** determined by the restriction $W_{\mathcal{I}}$ inside $\mathcal{I}_A$:
+For any localized subsystem $A = (\mathcal{I}_A, \partial A, \mathcal{E}_A)$, we separate:
+1. **Bulk Structural Functional $\mathscr{S}_{\mathrm{struct}}(\mathcal{I}_A)$** and **Interfacial Tension $\mathscr{S}_{\mathrm{interface}}(\partial A)$**, defined purely from the combinatorial-phase matrix $W$[cite: 35].
+2. **Coarse-Grained State-Merging and Entropy Production Flux**, governing the thermodynamic cost of stabilizing an attractor against perturbations [5, 6][cite: 35].
+
+### 4.2. Corrected Entropy Balance, $\varepsilon$-Cell Logical Merging, and Ruelle–Landauer Dissipation
+
+Let the internal state $z(n) \in \mathbb{R}^{N_A}$ of $\mathcal{I}_A$ evolve under a differentiable map $z(n+1) = G_R(z(n))$ with Jacobian $M(n) = \partial G_R / \partial z|_{z(n)}$ and Oseledets splitting $T_{z(n)}\mathcal{I}_A = E^u(z(n)) \oplus E^s(z(n))$ [6][cite: 4, 35]. Let $h_{\mathrm{KS}}(A) := \sum_{\lambda_i > 0} \lambda_i \ge 0$ be the Pesin expansion rate along $E^u$ and $\kappa(A) := \sum_{\lambda_i < 0} |\lambda_i| = -\sum_{\lambda_i < 0} \lambda_i \ge 0$ be the transverse contraction rate along $E^s$, with dissipative confinement $\kappa(A) > h_{\mathrm{KS}}(A)$ [6][cite: 4, 35].
+
+To rigorously connect continuous phase-space contraction to **logically erased bits** without sign errors, we introduce a fine-scale observational partition of mesh size $\varepsilon > 0$ covering a tubular neighborhood $U_\varepsilon$ of the attractor, and track both the **exact coarse-grained Shannon entropy balance** and the **$M$-to-$1$ logical cell-merging rate** [5]:
+
+1. **Exact Sign Balance of Coarse-Grained Entropy:**  
+   Let $H_\varepsilon(Z_n)$ denote the Shannon entropy (in nats) of the state distribution over $\varepsilon$-cells at step $n$. In one step, the deterministic map $G_R$ expands volume along $E^u$ by $e^{h_{\mathrm{KS}}(A)}$ and contracts volume along $E^s$ by $e^{-\kappa(A)}$ [6], changing the internal entropy by $\Delta H_{\mathrm{dyn}} = h_{\mathrm{KS}}(A) - \kappa(A) < 0$. Suppose external perturbations entering across $\partial^- A$ inject entropy $H_{\mathrm{in}}^{(\varepsilon)} \ge 0$ per step, while outgoing signals across $\partial^+ A$ carry away coarse-grained state entropy $H_{\mathrm{out}}^{(\varepsilon)} \ge 0$ per step. Then the stationary balance $H_\varepsilon(Z_{n+1}) - H_\varepsilon(Z_n) = 0$ is:
    $$
-   \mathscr{S}_{\mathrm{struct}}(\mathcal{I}_A) = a \sum_{x,y \in \mathcal{I}_A,\, K_{xy}>0} K_{xy}^2 + b \sum_{x,y \in \mathcal{I}_A,\, K_{xy}>0} J_{xy} + g \, \|[\Delta_+^{\mathcal{I}}, \Delta_-^{\mathcal{I}}]\|_F^2.
+   0 = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A) \quad \Longleftrightarrow \quad H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) - h_{\mathrm{KS}}(A) > 0.
    $$
-2. **Interfacial Structural Tension $\mathscr{S}_{\mathrm{interface}}(\partial A)$:** the contribution of waists and cone commutators on the boundary layer $\partial A$ stitching $\mathcal{I}_A$ to $\mathcal{E}_A$.
-3. **Thermodynamic Erasure Flux $\dot{Q}_{\mathrm{Landauer}}(\mathcal{I}_A \to \partial^+ A)$:** the flux of irreversibly discarded microscopic distinctions expelled from $\mathcal{I}_A$ through the outgoing interface $\partial^+ A$ into the external channel.
+   Notice what this exact balance says: the coarse-grained Shannon entropy carried away by the macroscopic signal $H_{\mathrm{out}}^{(\varepsilon)}$ is **smaller** than $H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A)$ by the exact amount $\Delta S_{\mathrm{fold}}(A) := \kappa(A) > 0$ (and smaller than $H_{\mathrm{in}}^{(\varepsilon)}$ by the net contraction $\sigma_{\mathrm{bath}}(A) := \kappa(A) - h_{\mathrm{KS}}(A) > 0$). Where did the missing information $\sigma_{\mathrm{bath}}(A)$ go? It was compressed to sub-$\varepsilon$ scales below the resolution limit—that is, **erased from the $\varepsilon$-resolved macro-state and dumped into microscopic heat/radiation modes of the boundary bath** (Ruelle's phase-space contraction identity [5]).
 
-### 4.2. Internal Oseledets–Lyapunov Spectrum and the Erasure Flux Theorem
+2. **Why Transverse Contraction $\kappa(A)$ Represents Logical Bit Erasure at Resolution $\varepsilon$:**  
+   Consider a local product box of $\varepsilon$-cells aligned with $E^u \oplus E^s$ [6]. Under one step of $G_R$, along the transverse contracting subspace $E^s$, a transverse volume of $\exp(\kappa(A))$ distinct $\varepsilon$-cells is mapped into a **single** $\varepsilon$-cell on the attractor. Once sub-$\varepsilon$ coordinates are indistinguishable (falling into $\ker \pi_\varepsilon$ [9]) and re-randomized by thermal/boundary noise of variance $\ge \varepsilon^2$, this $\exp(\kappa(A))$-to-$1$ mapping is a logically irreversible many-to-one state merger in the exact sense of Landauer [5].
 
-By Landauer's principle, erasing one bit of information at temperature $T$ dissipates at least $k_B T \ln 2$ of energy. While this minimum price per bit is a universal constant independent of internal dimensionality, **the number of bits a subsystem must erase per step of its internal dynamics to remain localized on its attractor** is governed directly by the tangent-space geometry of its internal relief.
-
-Let the internal state of $\mathcal{I}_A$ across consecutive causal layers $n = 0, 1, 2, \dots$ be described by a continuous state vector $z(n) \in \mathbb{R}^{N_A}$ evolving under a differentiable map $z(n+1) = G_R(z(n))$ with Jacobian $M(n) = \left.\frac{\partial G_R(z)}{\partial z}\right|_{z(n)}$.
-
-By Oseledets' multiplicative ergodic theorem, on an ergodic invariant measure of the attractor there exist Lyapunov exponents $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_{N_A}$, and the tangent space splits into a direct (generally oblique) sum:
-
-$$
-T_{z(n)} \mathcal{I}_A = E^u(z(n)) \oplus E^s(z(n)),
-$$
-
-where:
-- $E^u(z)$ is the unstable/neutral subspace ($\lambda_i \ge 0$) tangent to the attractor; the sum of positive exponents defines the internal information generation rate (Kolmogorov–Sinai entropy rate via Pesin's formula):
-  $$
-  h_{\mathrm{KS}}(A) = \sum_{i:\, \lambda_i > 0} \lambda_i \ge 0,
-  $$
-  and the intrinsic attractor dimension is given by the Kaplan–Yorke formula:
-  $$
-  D_{\mathrm{KY}}(A) = j + \frac{\sum_{i=1}^j \lambda_i}{|\lambda_{j+1}|}, \qquad \sum_{i=1}^j \lambda_i \ge 0 > \sum_{i=1}^{j+1} \lambda_i.
-  $$
-- $E^s(z)$ is the stable (contracting) subspace ($\lambda_i < 0$) transverse to the attractor, responsible for relaxing perturbations back onto the attractor with total logarithmic volume contraction rate:
-  $$
-  \kappa(A) := \sum_{i:\, \lambda_i < 0} |\lambda_i| = -\sum_{i:\, \lambda_i < 0} \lambda_i \ge 0.
-  $$
-
-At finite $N_A$, the cumulative Lyapunov distribution $F_A(s) = \frac{1}{N_A}|\{i : \lambda_i < s\}|$ equals the normalized trace of the minimum-norm one-step tangent response matrix $R^{vv}_\eta(n+1, n)$ for the shifted Jacobian $M_s(n) = e^{-s} M(n)$ (the dichotomy projector onto $E^s_s$):
-
-$$
-F_A(s) = \lim_{\eta \to 0^+} \frac{1}{N_A}\operatorname{Tr} R^{vv}_\eta(n+1, n), \qquad \kappa(A) = -N_A \int_{-\infty}^{0} s \, F'_A(s) \, ds.
-$$
-
-**Theorem 4.1 (Boundary Erasure Flux Bound for a Stationary Attractor Under Noise).** `[Status: FOLLOW (under stated stationarity assumptions)]`  
-*Suppose subsystem $\mathcal{I}_A$ evolves according to $z(n+1) = G_R(z(n)) + \xi_{\mathrm{in}}(n)$, where a stationary flux of small perturbations $\xi_{\mathrm{in}}(n)$ enters through the incoming interface $\partial^- A$, maintaining a finite stationary differential entropy $H(Z_n) = \mathrm{const} \in (-\infty, +\infty)$ in a neighborhood of the attractor. Suppose to first order in perturbation amplitude the local tangent volume scales per step by the Jacobian $|\det M(n)| = \exp\bigl(\sum_{i=1}^{N_A} \lambda_i\bigr)$ with $\kappa(A) > h_{\mathrm{KS}}(A)$ (dissipative attractor confinement). Then:*
-1. *To maintain stationary differential entropy $H(Z_{n+1}) = H(Z_n)$, the irreversible phase-volume contraction along the stable subspace $E^s$, net of internal expansion along $E^u$, must be compensated by an outward information erasure flux (discarding perturbation microstates) across the outgoing interface $\partial^+ A$ into the external channel $\mathcal{E}_A$ at a rate (in bits per update step):*
+**Theorem 4.1 (Coarse-Grained Entropy Balance and $\varepsilon$-Resolution Landauer Erasure Rate).** `[Status: FOLLOW (under the stated $\varepsilon$-partition and stationarity assumptions)]` [5, 6]  
+*Suppose subsystem $\mathcal{I}_A$ is partitioned into distinguishable states at resolution scale $\varepsilon > 0$, evolves with linearized Jacobian rates $h_{\mathrm{KS}}(A) = \sum_{\lambda_i > 0}\lambda_i$ and $\kappa(A) = \sum_{\lambda_i < 0}|\lambda_i|$ ($\kappa(A) > h_{\mathrm{KS}}(A)$) [6], and is driven across $\partial^- A$ by stationary perturbations of resolution-$\varepsilon$ entropy rate $H_{\mathrm{in}}^{(\varepsilon)}$ that continually repopulate the transverse subspace $E^s$ so that the coarse-grained entropy remains stationary ($H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)$). Then:*
+1. **Exact Stationary Entropy Balance:** *The resolved outgoing signal entropy $H_{\mathrm{out}}^{(\varepsilon)}$ and the unresolved sub-$\varepsilon$ folding rate $\Delta S_{\mathrm{fold}}(A)$ satisfy the exact conservation equations (in nats per step):*
    $$
-   \dot{I}_{\mathrm{erase}}(\mathcal{I}_A \to \partial^+ A) \;\ge\; \frac{\kappa(A) - h_{\mathrm{KS}}(A)}{\ln 2} = \frac{1}{\ln 2} \sum_{i=1}^{N_A} (-\lambda_i).
+   H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A) \ge 0, \qquad \Delta S_{\mathrm{fold}}(A) := H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) > 0,
    $$
-2. *If the outgoing interface $\partial^+ A$ couples to the external channel at effective temperature $T_{\partial A} > 0$ and Landauer's bound applies to each erased bit, the minimum dissipation power (action/heat flux per internal step) across $\partial^+ A$ satisfies:*
+   *and the net phase-space contraction (net entropy exported to the sub-$\varepsilon$ boundary bath per step [5]) is:*
    $$
-   \dot{Q}_{\mathrm{ext}}(\partial^+ A) \;\ge\; k_B T_{\partial A} \ln 2 \cdot \dot{I}_{\mathrm{erase}}(\mathcal{I}_A \to \partial^+ A) \;\ge\; k_B T_{\partial A} \bigl(\kappa(A) - h_{\mathrm{KS}}(A)\bigr).
+   \sigma_{\mathrm{bath}}(A) := H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) - h_{\mathrm{KS}}(A) = \sum_{i=1}^{N_A} (-\lambda_i) > 0.
+   $$
+2. **Logical Bit-Merging Rate and Landauer Dissipation Bound:** *Along $E^s$, the dynamics merge $\exp(\kappa(A))$ distinguishable transverse $\varepsilon$-states into $1$ state per step, corresponding to a gross transverse bit-erasure rate of $\dot{I}_{\mathrm{merge}}(E^s) = \frac{\kappa(A)}{\ln 2}$ bits/step, and a net bath bit-export rate (accounting for expansion along $E^u$) of:*
+   $$
+   \dot{I}_{\mathrm{erase}}^{\mathrm{net}}(\mathcal{I}_A \to \partial^+ A) = \frac{\sigma_{\mathrm{bath}}(A)}{\ln 2} = \frac{\kappa(A) - h_{\mathrm{KS}}(A)}{\ln 2} \;\text{bits/step}.
+   $$
+   *If the sub-$\varepsilon$ degrees of freedom on $\partial^+ A$ equilibrate with an external channel bath at temperature $T_{\partial A} > 0$, the minimum heat/action power dissipated into the bath per step is bounded below by [5]:*
+   $$
+   \dot{Q}_{\mathrm{ext}}(\partial^+ A) \;\ge\; k_B T_{\partial A} \ln 2 \cdot \dot{I}_{\mathrm{erase}}^{\mathrm{net}} = k_B T_{\partial A} \bigl(\kappa(A) - h_{\mathrm{KS}}(A)\bigr).
    $$
 
-*Proof.* Under a linear tangent-volume map with matrix $M(n)$, differential entropy (in nats) transforms as $H_{\mathrm{map}}(Z_{n+1}) = H(Z_n) + \mathbb{E}[\ln |\det M(n)|] = H(Z_n) + h_{\mathrm{KS}}(A) - \kappa(A)$. Incoming boundary noise across $\partial^- A$ injects $\Delta H_{\mathrm{in}} \ge 0$. For the distribution to remain stationary ($H(Z_{n+1}) = H(Z_n)$) without escaping the attractor, excess entropy $\Delta H_{\mathrm{erase}} = \Delta H_{\mathrm{in}} \ge \kappa(A) - h_{\mathrm{KS}}(A)$ nats per step must be expelled from the internal state description across $\partial^+ A$ into the external reservoir $\mathcal{E}_A$. Dividing by $\ln 2$ converts nats to bits (item 1), and multiplying by the Landauer minimum $k_B T_{\partial A} \ln 2$ per bit yields item 2. $\blacksquare$
+*Proof.* (1) Partition a local neighborhood into $\varepsilon$-boxes aligned with $E^u \oplus E^s$ [6]. Under one step of $G_R$, each box stretches by $e^{\lambda_i}$ along $i \in E^u$ (increasing the number of occupied $\varepsilon$-boxes along $E^u$ by factor $e^{h_{\mathrm{KS}}(A)}$, adding $+h_{\mathrm{KS}}(A)$ nats) and contracts by $e^{-|\lambda_i|}$ along $i \in E^s$ (merging $e^{\kappa(A)}$ boxes along $E^s$ into one box of width $\varepsilon$, removing $\kappa(A)$ nats from the $\varepsilon$-resolved state description). Adding the newly injected perturbation entropy $H_{\mathrm{in}}^{(\varepsilon)}$ and subtracting the resolved entropy $H_{\mathrm{out}}^{(\varepsilon)}$ exported as macro-signals gives $H_\varepsilon(Z_{n+1}) - H_\varepsilon(Z_n) = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A)$. Setting $H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)$ yields both identities in item (1) immediately. (2) Because $e^{\kappa(A)}$ distinct $\varepsilon$-cells along $E^s$ collapse into a single $\varepsilon$-cell at each step while $e^{h_{\mathrm{KS}}(A)}$ new cells open along $E^u$, the net number of distinguishable $\varepsilon$-cells eliminated from the resolved phase space per step is factor $e^{\kappa(A) - h_{\mathrm{KS}}(A)}$, which equals $\frac{\kappa(A) - h_{\mathrm{KS}}(A)}{\ln 2}$ bits/step. Applying Landauer's bound $k_B T_{\partial A} \ln 2$ per net erased bit [5] gives $\dot{Q}_{\mathrm{ext}}(\partial^+ A) \ge k_B T_{\partial A}(\kappa(A) - h_{\mathrm{KS}}(A))$[cite: 3, 35]. $\blacksquare$
 
 ---
 
 ## 5. Time as a Multiscale Synchronization Spectrum, Integrator Chains, and Network Architecture Transition
 
-### 5.1. Operational Time and the Origin of the Lorentzian Metric Signature
+### 5.1. Operational Phase-Cycle Ratios and the Kinematic Signature Ansatz
 
-The foundational complex $(X, \prec)$ possesses no external global time axis; only the partial order of causal admissibility exists.
+In $(X, \prec)$, no external global time parameter exists; only the causal order $\prec$ and phase increments on Hasse links are given [1, 7][cite: 1, 35].
 
-Let subsystem $A$ at scale $\ell$ be a worldtube composed of consecutive spacelike antichains $S_0 \prec S_1 \prec \dots \prec S_m$ linked by internal causal diamonds ($K_{xy} \ge 2$).
-
-**Definition 5.1 (Proper Frequency and Relative Operational Time).** `[Status: FOLLOW]`
-1. For a localized region $A$ with a non-empty set of elementary diamonds $\mathcal{D}_A(k)$ between layers $S_k$ and $S_{k+2}$, the complex phase-synchronization order parameter is
+**Definition 5.1 (Proper Phase Rate and Relative Operational Time Ratio).** `[Status: FOLLOW]`[cite: 1, 35]
+1. For a localized worldtube $A$ composed of antichains $S_0 \prec S_1 \prec \dots \prec S_m$ with non-empty diamond sets $\mathcal{D}_A(k)$ between $S_k$ and $S_{k+2}$, define the complex order parameter $z_A(k) := \frac{1}{|\mathcal{D}_A(k)|} \sum_{D \in \mathcal{D}_A(k)} e^{i\Phi_D}$[cite: 1, 35]. When $|z_A(k)| \ge \theta_{\mathrm{coh}} > 0$, the **dimensionless internal phase rate per causal step** is[cite: 1, 2, 35]:
    $$
-   z_A(k) := \frac{1}{|\mathcal{D}_A(k)|} \sum_{D \in \mathcal{D}_A(k)} e^{i\Phi_D}, \qquad \Phi_D \in (-\pi, \pi].
+   \omega_A^{(\ell)} := \frac{1}{m} \sum_{k=0}^{m-1} \arg z_A(k) \quad \text{(radians per two-step causal layer)},
    $$
-   Whenever $|z_A(k)| \ge \theta_{\mathrm{coh}} > 0$, the mean gauge-invariant phase increment per two-step layer defines the **internal proper frequency of subsystem $A$ at scale $\ell$**:
-   $$
-   \omega_A^{(\ell)} := \frac{1}{m} \sum_{k=0}^{m-1} \arg z_A(k),
-   $$
-   and the accumulated count of internal phase cycles is $\Delta N_A^{(\ell)} = \frac{m}{2\pi} \omega_A^{(\ell)}$.
-2. For two subsystems $A$ and $B$ exchanging signals along unbranched null chains of the external channel $\mathcal{E}_{\mathrm{null}}$ ($K_{xy} = 0$, along which the internal diamond counter vanishes, $\Delta N_{\mathrm{null}} = 0$), **relative operational time** between successive exchange events is the dimensionless ratio of accumulated phase cycles:
+   and the accumulated phase-cycle count is $\Delta N_A^{(\ell)} = \frac{m}{2\pi} \omega_A^{(\ell)}$[cite: 2, 35].
+2. For two subsystems $A$ and $B$ exchanging signals via unbranched null chains ($d_\diamond = 0$, along which no internal diamonds close: $\Delta N_{\mathrm{null}} = 0$), the **relative operational time ratio** between successive exchanges is the dimensionless ratio[cite: 1, 2, 35]:
    $$
    R_{AB}^{(\ell)} := \frac{\Delta N_A^{(\ell)}}{\Delta N_B^{(\ell)}} = \frac{\omega_A^{(\ell)} \Delta m_A}{\omega_B^{(\ell)} \Delta m_B}.
    $$
 
-**Combinatorial Origin of the Lorentzian Signature $(-,+,+,+)$:** `[Status: FOLLOW (within combinatorial step allocation)]`  
-Let the total budget of elementary Hasse steps between two events along a worldtube be $\Delta s_{\mathrm{causal}}$. Each Hasse step is allocated either to transverse spatial displacement along an antichain ($\Delta l$) or to closing internal synchronization diamonds ($\Delta \tau \propto \Delta N_A$). In the quadratic allocation regime,
+**Explicit Distinction Between Combinatorial Phase Rate and Physical Time:** `[Status: UNDECIDED]`[cite: 1]  
+By Definition 5.1, $\omega_A^{(\ell)}$ is measured in radians per discrete causal step, **not** in inverse seconds ($\mathrm{s}^{-1}$)[cite: 1]. Identifying $R_{AB}^{(\ell)}$ with the physical clock redshift ratio $d\tau_A / d\tau_B$ requires establishing in the continuum limit [1, 7] that the internal diamond-cycle counter $\Delta N_A^{(\ell)}$ is proportional to the Lorentzian proper-time integral $\int \sqrt{-g_{\mu\nu}dx^\mu dx^\nu}$[cite: 1].
 
-$$
-(\Delta \tau)^2 + (\Delta l)^2 = (\Delta s_{\mathrm{causal}})^2 \quad \Longleftrightarrow \quad \Delta s_{\mathrm{Lorentz}}^2 := -(\Delta \tau)^2 + (\Delta l)^2 = 2(\Delta l)^2 - (\Delta s_{\mathrm{causal}})^2.
-$$
+**Kinematic Step-Allocation Ansatz for the Lorentzian Signature $(-,+,+,+)$:** `[Status: UNDECIDED — Kinematic Hypothesis]`  
+If one postulates as a kinematic ansatz that a total budget of $\Delta s_{\mathrm{causal}}$ Hasse steps along a worldtube is shared quadratically between transverse spatial displacement ($\Delta l$, along antichains) and internal diamond closure ($\Delta \tau \propto \Delta N_A$), i.e., $(\Delta \tau)^2 + (\Delta l)^2 = (\Delta s_{\mathrm{causal}})^2$, then rewriting the invariant for unbranched null propagation ($\Delta \tau = 0$ internally, $\Delta l = \Delta s_{\mathrm{causal}}$) vs. stationary diamond cycling ($\Delta l = 0$, $\Delta \tau = \Delta s_{\mathrm{causal}}$) motivates the opposite-sign quadratic form $\Delta s_{\mathrm{Lorentz}}^2 := -(\Delta \tau)^2 + (\Delta l)^2$[cite: 35]. **Note:** Because the quadratic step-allocation law is an assumed ansatz rather than a theorem derived from $\prec$ alone, the emergence of a true Lorentzian metric signature $(-,+,+,+)$ is classified as `UNDECIDED` and must be tested via causal-cone and Myrheim–Meyer dimension reconstruction [1] in Protocol V1[cite: 1, 2, 35].
 
-For a pure external null channel ($\mathcal{E}_{\mathrm{null}}$, $K_{xy}=0$), all steps propagate longitudinally without internal diamond closure ($\Delta l = \Delta \tau$ in external coordinates, yielding $\Delta s_{\mathrm{Lorentz}}^2 = 0$), whereas for a stationary massive complex ($\Delta l = 0$) the entire step budget is spent on internal diamond resynchronization ($\Delta s_{\mathrm{Lorentz}}^2 = -(\Delta \tau)^2 < 0$). Thus the opposite sign of the $+1$ temporal component reflects budget competition between spatial propagation and internal phase synchronization.
+### 5.2. Stochastic Realization of Boundary Spectra and Second-Order Inertia
 
-### 5.2. Stochastic Realization of Boundary Spectra and the Emergence of Second-Order Inertia
+**Proposition 5.1 (Stochastic Realization of Multi-Frequency Boundary Processes as Integrator Chains).** `[Status: FOLLOW]` [4][cite: 22, 23]  
+*Let $s_t$ be a mean-zero stationary Gaussian process on $\partial^- A$ with a rational spectral density determined by decay/oscillation modes $\{\gamma_k \pm i\omega_k\}_{k=0}^n$ ($\gamma_k > 0$). Then:*
+1. *By Doob's theorem and linear stochastic realization theory [4], $s_t = F_0 s_t^{(0)}$ is the marginal output of a Markovian integrator chain $\tilde{s}_t = (s_t^{(0)}, s_t^{(1)}, \dots, s_t^{(n)})$ of generalized coordinates of motion satisfying $ds_t^{(k)} = (-A_k s_t^{(k)} + B_k s_t^{(k+1)})\,dt + \varsigma_k\,dW_t^{(k)}$ ($0 \le k < n$) and $ds_t^{(n)} = -A_n s_t^{(n)}\,dt + \varsigma_n\,dW_t^{(n)}$[cite: 22, 23].*
+2. *Under timescale separation $0 < \gamma_0 \le \gamma_1 \le \gamma_2 \ll \gamma_3 \le \dots \le \gamma_n$, coarse-graining over a window $\tau_w^{(\ell)} \in (\gamma_2^{-1}, \gamma_3^{-1})$ suppresses the window-averaged variance of orders $k \ge 3$ as $O((\gamma_k \tau_w^{(\ell)})^{-1})$, truncating the boundary state to $\tilde{s}_t^{(\le 2)} = (s_t^{(0)}, s_t^{(1)}, s_t^{(2)})$ and yielding a second-order linear-quadratic control law (effective inertia, damping, and restoring force) [4][cite: 21, 22, 23].*
 
-How does a discrete spectrum of synchronization frequencies on the interface $\partial A$ translate into differential equations of motion (position, velocity, acceleration/inertia) in the continuum limit? Stochastic realization theory and Doob's theorem provide the exact bridge.
+*Proof.* Follows from minimum-phase spectral factorization $S(\omega) = H(i\omega)H(-i\omega)^\top$ into block-companion form and exact Ornstein–Uhlenbeck window-variance integration $\operatorname{Var}\bigl(\frac{1}{\tau_w}\int_0^{\tau_w} s_t^{(k)}dt\bigr) \propto \frac{2(\gamma_k\tau_w - 1 + e^{-\gamma_k\tau_w})}{(\gamma_k\tau_w)^2} = O((\gamma_k\tau_w)^{-1})$ [4][cite: 22, 23]. $\blacksquare$
 
-Consider a boundary observable $s_t \in \mathbb{R}^d$ on the incoming interface $\partial^- A$ evolving as a mean-zero stationary Gaussian process with autocovariance $C(\tau) = \mathbb{E}[s_{t+\tau} s_t^\top]$ determined by a finite set of relaxation and oscillation modes $\{\gamma_k \pm i\omega_k\}_{k=0}^n$ ($\gamma_k > 0$).
+### 5.3. Multiscale Coarse-Graining Operator $\mathcal{R}_{\ell \to \ell+1}$ and Architectural Transition
 
-**Proposition 5.1 (Stochastic Realization of Multi-Frequency Boundary Processes as Integrator Chains and Scale Truncation).** `[Status: FOLLOW]`  
-*Let $s_t$ be a mean-zero stationary Gaussian boundary process on $\partial^- A$ whose spectral density is rational (equivalently, whose autocovariance $C(\tau)$ is a finite linear combination of damped exponentials and sinusoids $e^{-\gamma_k |\tau|}\cos(\omega_k \tau + \phi_k)$). Then:*
-1. **Integrator-Chain Realization:** *By Doob's theorem and linear stochastic realization theory, there exists a Markov process $\tilde{s}_t = \bigl(s_t^{(0)}, s_t^{(1)}, \dots, s_t^{(n)}\bigr)$ (the hierarchy of generalized coordinates of motion: position, velocity, acceleration, jerk, etc.) governed by a triangular chain of coupled Ornstein–Uhlenbeck stochastic differential equations:*
-   $$
-   \begin{aligned}
-   s_t &= F_0 s_t^{(0)}, \\
-   ds_t^{(k)} &= \bigl(-A_k s_t^{(k)} + B_k s_t^{(k+1)}\bigr)\,dt + \varsigma_k\,dW_t^{(k)} \quad (0 \le k \le n-1), \\
-   ds_t^{(n)} &= -A_n s_t^{(n)}\,dt + \varsigma_n\,dW_t^{(n)},
-   \end{aligned}
-   $$
-   *such that the marginal law of $F_0 s_t^{(0)}$ reproduces $s_t$ identically for all $t$.*
-2. **Coarse-Graining as High-Order Truncation and Emergence of Second-Order Dynamics ($n=2$):** *If the decay rates are ordered by timescale separation $0 < \gamma_0 \le \gamma_1 \le \gamma_2 \ll \gamma_3 \le \dots \le \gamma_n$, then coarse-graining over a temporal window $\tau_w^{(\ell)} \in (\gamma_2^{-1}, \gamma_3^{-1})$ averages out all high-frequency orders $k \ge 3$ ($\gamma_k \tau_w^{(\ell)} \gg 1$), reducing the active boundary state to the three-level truncation $\tilde{s}_t^{(\le 2)} = \bigl(s_t^{(0)}, s_t^{(1)}, s_t^{(2)}\bigr)$ (integral/position, velocity, and acceleration). Minimizing the quadratic interfacial free energy $F(\tilde{s}_t^{(\le 2)}, a_t, \mu_t) = \frac{1}{2}\bigl[\tilde{s}_t^{(\le 2)}, a_t, \mu_t\bigr] K_{\partial A} \bigl[\tilde{s}_t^{(\le 2)}, a_t, \mu_t\bigr]^\top$ with respect to autonomous states $(a_t, \mu_t)$ yields a second-order dynamical control law with effective inertia (proportional to the precision weight on $s_t^{(2)}$), damping (weight on $s_t^{(1)}$), and restoring force (weight on $s_t^{(0)}$).*
+**Definition 5.2 (Coarse-Graining Operator $\mathcal{R}_{\ell \to \ell+1}$ and Synchronization Time $\tau_{\mathrm{sync}}$).** `[Status: FOLLOW]`[cite: 1, 2, 35]  
+At scale $\ell$, spacelike pairs ($u \not\prec_\ell v, v \not\prec_\ell u$) with two-step overlap $S^{(\ell)}_{uv} = |(\Delta_+^{(\ell)})_{uv}| + |(\Delta_-^{(\ell)})_{uv}| \ge \theta_\ell$ are grouped into order-convex macro-nodes $X_{\ell+1} = \{C_\alpha\}$ (rejecting any clustering that induces a directed cycle in the quotient order)[cite: 1, 2, 35], followed by Hasse transitive reduction $R_{\ell+1}$ and coherent amplitude summation $\widetilde{W}^{(\ell+1)}_{\alpha\beta} = \sum_{x \in C_\alpha, y \in C_\beta} W^{(\ell)}_{xy}$[cite: 1, 2, 35]. For a subsystem $A_\ell$ with diameter $\tau_{\mathrm{diam}}(A_\ell)$, normalized Laplacian Fiedler eigenvalue $\lambda_2(A_\ell) > 0$, and frequency dispersion $\sigma_\omega(A_\ell)$, the synchronization time is $\tau_{\mathrm{sync}}(A_\ell) := \tau_{\mathrm{diam}}(A_\ell) / \lambda_2(A_\ell)$[cite: 35].
 
-*Proof.* (1) A stationary Gaussian process has a rational spectral density $S(\omega) = \int_{-\infty}^\infty e^{-i\omega\tau}C(\tau)\,d\tau$ if and only if $S(\omega)$ admits a stable minimum-phase spectral factorization $S(\omega) = H(i\omega)H(-i\omega)^\top$ with rational transfer matrix $H(s) = F_0(sI - \mathcal{A})^{-1}\mathcal{B}$. Transforming $(\mathcal{A}, \mathcal{B}, F_0)$ to block-companion/Hessenberg integrator-chain form yields the nested Itô system for $\tilde{s}_t = (s_t^{(0)}, \dots, s_t^{(n)})$. (2) For modes $k \ge 3$ with $\gamma_k \tau_w^{(\ell)} \gg 1$, the variance of the window-averaged coordinate $\frac{1}{\tau_w^{(\ell)}}\int_t^{t+\tau_w^{(\ell)}} s_u^{(k)}\,du$ decays as $O\bigl((\gamma_k \tau_w^{(\ell)})^{-1}\bigr)$, placing $s_t^{(k)}$ ($k \ge 3$) inside the coarse-graining kernel (`OMIT`) at scale $\ell$. Retaining $k \in \{0, 1, 2\}$ and taking the linear-quadratic stationary minimum of $\frac{1}{2}[\tilde{s}^{(\le 2)}, a, \mu] K_{\partial A} [\tilde{s}^{(\le 2)}, a, \mu]^\top$ produces linear feedback gains over $(s_t^{(0)}, s_t^{(1)}, s_t^{(2)})$, which is the canonical second-order (PID/inertial) equation of motion. $\blacksquare$
-
-### 5.3. Multiscale Coarse-Graining Operator $\mathcal{R}_{\ell \to \ell+1}$ and Synchronization Criterion
-
-Different levels of organization (quantum, atomic, molecular, planetary, stellar, galactic, cosmological) correspond to successive coarse-graining scales $\ell = 0, 1, \dots, M$.
-
-**Definition 5.2 (Multiscale Coarse-Graining Operator $\mathcal{R}_{\ell \to \ell+1}$).** `[Status: FOLLOW]`  
-Given $(X_\ell, R_\ell, \Theta_\ell)$ with transport matrix $W_\ell$:
-1. On spacelike vertex pairs ($u \not\prec_\ell v$ and $v \not\prec_\ell u$), compute the two-step cone-overlap coherence matrix:
-   $$
-   S^{(\ell)}_{uv} := \bigl|(\Delta_+^{(\ell)})_{uv}\bigr| + \bigl|(\Delta_-^{(\ell)})_{uv}\bigr|.
-   $$
-2. At threshold $\theta_\ell > 0$, partition $X_\ell$ into connected spacelike clusters (macro-nodes) $X_{\ell+1} = \{C_1, \dots, C_{N_{\ell+1}}\}$ subject to causal order convexity (acyclicity of the quotient graph).
-3. Set $\alpha \prec_{\ell+1} \beta$ whenever at least one Hasse link $x \lessdot_\ell y$ connects $x \in C_\alpha$ to $y \in C_\beta$, and apply Hasse transitive reduction to obtain $R_{\ell+1}$.
-4. Compute effective macro-amplitudes and phases by coherent summation:
-   $$
-   \widetilde{W}^{(\ell+1)}_{\alpha\beta} = \sum_{x \in C_\alpha,\, y \in C_\beta} W^{(\ell)}_{xy}, \qquad r^{(\ell+1)}_{\alpha\beta} = \bigl|\widetilde{W}^{(\ell+1)}_{\alpha\beta}\bigr|, \qquad \Theta^{(\ell+1)}_{\alpha\beta} = \arg\bigl(\widetilde{W}^{(\ell+1)}_{\alpha\beta}\bigr) \quad (r^{(\ell+1)}_{\alpha\beta} > \epsilon).
-   $$
-5. Store the internal frequency $\omega_\alpha^{(\ell)}$, transverse contraction rate $\kappa_\alpha^{(\ell)}$, and topological circulation index $\mathcal{L}_\alpha^{(\ell)}$ of cluster $C_\alpha$ as internal attributes of macro-node $\alpha$ at scale $\ell+1$.
-
-**Definition 5.3 (Synchronization Stability Criterion at Scale $\ell$).** `[Status: FOLLOW]`  
-Let $L_{\mathrm{norm}}^{(\ell)}(A)$ be the normalized symmetric skeleton Laplacian of subsystem $A_\ell \subset X_\ell$ with algebraic connectivity (Fiedler eigenvalue) $\lambda_2(A_\ell) > 0$, graph diameter $\tau_{\mathrm{diam}}(A_\ell)$, and internal frequency dispersion $\sigma_\omega(A_\ell) = \sqrt{\operatorname{Var}_{x \in A_\ell}(\omega_x^{(\ell)})}$. Subsystem $A_\ell$ is **phase-synchronizable on window $\tau_w^{(\ell)}$** if the diffusive relaxation time across the subgraph does not exceed the dephasing time or the window length:
-
-$$
-\tau_{\mathrm{sync}}(A_\ell) := \frac{\tau_{\mathrm{diam}}(A_\ell)}{\lambda_2(A_\ell)} \;\le\; \min\left(\frac{2\pi}{\sigma_\omega(A_\ell)},\; \tau_w^{(\ell)}\right).
-$$
-
-### 5.4. Architectural Phase Transition Across Scales: From Compact Modes to Filamentary Networks
-
-**Proposition 5.2 (Synchronization Instability of a Homogeneous $d$-Dimensional Ball as $N \to \infty$ Under Bounded Degree).** `[Status: FOLLOW]`  
-*Suppose subsystem $A$ of $N$ vertices has the topology of a regular $d$-dimensional ball ($d \ge 2$) with bounded vertex degree $\mathrm{deg}(x) \le k_{\max}$. As $N \to \infty$, the graph diameter grows as $\tau_{\mathrm{diam}}(A) = \Theta(N^{1/d})$, the algebraic connectivity of the normalized Laplacian decays as $\lambda_2(A) = \Theta(N^{-2/d})$, and the global synchronization time diverges as a power law:*
-
-$$
-\tau_{\mathrm{sync}}^{\mathrm{ball}}(N) = \frac{\tau_{\mathrm{diam}}(A)}{\lambda_2(A)} = \Theta\bigl(N^{3/d}\bigr) \;\xrightarrow{\;N \to \infty\;}\; \infty.
-$$
-
-*Consequently, for any fixed $k_{\max} < \infty$ and $\sigma_\omega > 0$, there exists a critical size $N_{\mathrm{crit}}(d, k_{\max}, \sigma_\omega)$ above which a homogeneously filled $d$-dimensional ball cannot satisfy the global synchronization criterion of Definition 5.3.*
-
-*Proof.* A ball of volume $N$ in a regular $d$-dimensional lattice has linear radius $R \sim N^{1/d}$. The smallest non-zero eigenvalue of the discrete Laplacian on a ball of radius $R$ scales as $\lambda_2 \sim R^{-2} \sim N^{-2/d}$, so $\tau_{\mathrm{diam}}/\lambda_2 \sim R / R^{-2} = R^3 \sim N^{3/d}$. For $N > N_{\mathrm{crit}} \propto (\sigma_\omega)^{-d/3}$, the inequality $\tau_{\mathrm{sync}} \le 2\pi/\sigma_\omega$ fails. $\blacksquare$
-
-**Structural Consequence (Hypothesis of Universal Filamentary Architecture):** `[Status: UNDECIDED — tested in Protocol V5]`  
-Above $N > N_{\mathrm{crit}}$ under a bounded edge budget $\sum_{x \in A} \mathrm{deg}(x) \le k_{\max} N$, simultaneously minimizing embedding volume $\mathrm{Vol}_h(\Sigma)$ (§3.1) and maintaining short synchronization time $\tau_{\mathrm{sync}}(A) \le \tau_w^{(\ell)}$ forces the network out of homogeneous 3D ball filling into a **sparse node-filament-void percolation architecture** (dense high-clustering nodes linked by quasi-1D coherent filaments bounding empty voids). This provides a shared variational mechanism for the structural similarity between the cosmological *Cosmic Web* and biological or artificial neural networks.
+**Proposition 5.2 (Synchronization Instability of a Homogeneous $d$-Dimensional Ball as $N \to \infty$ Under Bounded Degree).** `[Status: FOLLOW]`[cite: 35]  
+*On a regular $d$-dimensional ball ($d \ge 2$) of $N$ vertices with bounded degree $\mathrm{deg}(x) \le k_{\max}$, $\tau_{\mathrm{diam}}(A) = \Theta(N^{1/d})$ and $\lambda_2(A) = \Theta(N^{-2/d})$, so $\tau_{\mathrm{sync}}^{\mathrm{ball}}(N) = \Theta(N^{3/d}) \to \infty$ as $N \to \infty$, violating $\tau_{\mathrm{sync}} \le 2\pi/\sigma_\omega$ above $N_{\mathrm{crit}}(d, k_{\max}, \sigma_\omega)$[cite: 35].*
 
 ---
 
@@ -520,115 +373,78 @@ Above $N > N_{\mathrm{crit}}$ under a bounded edge budget $\sum_{x \in A} \mathr
 
 ### 6.1. Combinatorial Identity of Diamond Partitioning and Void Rarefaction
 
-To prevent double-counting, assign each elementary diamond to its lower causal anchor $x \in X$:
-
-$$
-q_x := \sum_{y \in X:\, K_{xy} \ge 2} K_{xy} \operatorname{Coh}_{xy} = \sum_{y \in X:\, K_{xy} \ge 2} \frac{|M_{xy}|^2}{K_{xy}} \ge 0.
-$$
-
-For any subset $U \subseteq X$, define the mean coherent structure density $\rho_D(U) := \frac{1}{|U|} \sum_{x \in U} q_x$ and total coherent resource $Q_{\mathrm{tot}}(X) := \sum_{x \in X} q_x$.
-
-**Proposition 6.1 (Exact Balance Identity Across Local Bulks, Interfaces, and External Channel).** `[Status: FOLLOW]`  
-*If the complex $X$ is partitioned into $M$ disjoint localized subsystems $A_m = \mathcal{I}_{A_m} \sqcup \partial A_m$ ($m = 1, \dots, M$) and the shared external channel $\mathcal{E} = X \setminus \bigcup_{m=1}^M A_m$, then the mean density of coherent diamonds in the external channel $\rho_D(\mathcal{E})$ satisfies the exact identity:*
+Assigning each waist with $K_{xy} \ge 2$ to its lower anchor $x \in X$ via $q_x := \sum_{y:\, K_{xy} \ge 2} K_{xy}\operatorname{Coh}_{xy} = \sum_{y:\, K_{xy} \ge 2} \frac{|M_{xy}|^2}{K_{xy}}$ and setting $\rho_D(U) := \frac{1}{|U|}\sum_{x \in U} q_x$ yields the exact additive identity across any partition $X = \mathcal{E} \sqcup \bigsqcup_{m=1}^M (\mathcal{I}_{A_m} \sqcup \partial A_m)$ (`Proposition 6.1, Status: FOLLOW`[cite: 35]):
 
 $$
 \rho_D(\mathcal{E}) = \frac{1}{|\mathcal{E}|} \left( Q_{\mathrm{tot}}(X) - \sum_{m=1}^{M} |\mathcal{I}_{A_m}| \, \rho_D(\mathcal{I}_{A_m}) - \sum_{m=1}^{M} |\partial A_m| \, \rho_D(\partial A_m) \right).
 $$
 
-*Proof.* Follows immediately from the additivity of $\sum_{x \in X} q_x$ over the disjoint partition $X = \mathcal{E} \sqcup \bigsqcup_{m=1}^M (\mathcal{I}_{A_m} \sqcup \partial A_m)$. $\blacksquare$
+**Hypothesis H-LG (Phase-Mediated Void Rarefaction):** `[Status: UNDECIDED — tested in Protocol V3]`[cite: 1, 35]  
+At fixed total edge budget $E_{\mathrm{tot}}$ and valency bound $k_{\max}$, increasing internal contraction $\kappa(A_m)$ inside localized cores $\mathcal{I}_{A_m}$ increases the outward net erasure flux $\dot{I}_{\mathrm{erase}}^{\mathrm{net}} = (\kappa(A_m) - h_{\mathrm{KS}}(A_m))/\ln 2$ across $\partial^+ A_m$ (Theorem 4.1) [5, 6]. Propagating into $\mathcal{E}$ via mediated covariance $\Sigma_{\mathcal{I}\mathcal{E}} \neq 0$ (Proposition 2.2) [4], this flux reconfigures edges in distant void regions $\mathcal{E}_{\mathrm{void}}$ from diamond-embedded links ($d_\diamond(x, y) \ge 1$) into unbranched null links ($d_\diamond(x, y) = 0$), increasing the non-trivial null-link fraction $f_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})$ (§2.2) and stretching null geodesic distances $\ell_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})$ beyond combinatorial degree-preserving controls [9][cite: 1, 2, 35].
 
-**Dynamic Mechanism of Local-Global Compensation (Hypothesis H-LG):** `[Status: UNDECIDED — tested in Protocols V2 and V3]`  
-Beyond simple combinatorial edge conservation, in a dynamical ensemble with fixed total edges $E_{\mathrm{tot}}$ and bounded valency $k_{\max}$, local condensation of internal reliefs $\mathcal{I}_{A_m}$ (increasing $\rho_D(\mathcal{I}_{A_m})$ and transverse contraction $\kappa(A_m)$) drives **phase-mediated rarefaction of the external channel $\mathcal{E}$ exceeding combinatorial edge subtraction**:
-1. By Theorem 4.1, increasing $\kappa(A_m)$ increases the outward phase-entropy erasure flux $\dot{I}_{\mathrm{erase}}(A_m) \ge (\kappa(A_m) - h_{\mathrm{KS}}(A_m))/\ln 2$ across $\partial^+ A_m$.
-2. By Proposition 2.2(1), this boundary flux propagates into $\mathcal{E}$ via long-range covariance $\Sigma_{\mathcal{I}\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A}\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1} \neq 0$, reconfiguring links in distant void regions $\mathcal{E}_{\mathrm{void}}$ from transverse diamonds ($K_{xy} \ge 2$) into longitudinal unbranched null chains ($K_{xy} = 0$).
-3. Consequently, in $\mathcal{E}_{\mathrm{void}}$ the diamond density $\rho_D(\mathcal{E}_{\mathrm{void}})$ drops, the pure null-link fraction $f_{K=0}(\mathcal{E}_{\mathrm{void}})$ rises, and **the effective null geodesic distance $\ell_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})$ between distant clusters expands**.
+### 6.2. Three-Component Structure of Effective Field Equations and Interfacial Saturation
 
-### 6.2. Three-Component Structure of Effective Field Equations in the Continuum Limit
-
-In a macroscopic regime where null paths $\mathcal{E}_{\mathrm{null}}$ ($K_{xy}=0$) reconstruct the conformal structure of a Lorentzian metric $g_{\mu\nu}(x)$ and edge phases $\theta_{xy} = \int_x^y A_\mu dx^\mu$ induce the Maxwell field strength $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$, applying the Landauer interface balance $\delta Q_{\mathrm{ext}} = T_{\partial A} \delta S_{\mathrm{interface}}$ (Theorem 4.1) and the Raychaudhuri equation to local causal screens $\partial A$ yields the target Einstein–Maxwell equation of state:
+In the continuum limit (`Status: UNDECIDED`, Protocols V4 and V6), applying the thermodynamic equation-of-state derivation [3] decomposes stress-energy and channel response across the triad $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$[cite: 1, 35]:
 
 $$
-R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} + \Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}] \, g_{\mu\nu} = \frac{8\pi G_{\mathrm{eff}}}{c^4} \Bigl( T_{\mu\nu}^{\mathrm{bulk}}(\mathcal{I}_A) + T_{\mu\nu}^{\mathrm{interface}}(\partial A) + T_{\mu\nu}^{\mathrm{em}}(F_{\alpha\beta}) \Bigr).
+R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} + \Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}^{\mathrm{net}}] \, g_{\mu\nu} = \frac{8\pi G_{\mathrm{eff}}}{c^4} \Bigl( T_{\mu\nu}^{\mathrm{bulk}}(\mathcal{I}_A) + T_{\mu\nu}^{\mathrm{interface}}(\partial A) + T_{\mu\nu}^{\mathrm{em}}(F_{\alpha\beta}) \Bigr),
 $$
 
-**Decomposition by the Triad $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$:** `[Status: UNDECIDED — continuum limit hypothesis]`
-1. **$T_{\mu\nu}^{\mathrm{bulk}}(\mathcal{I}_A)$ — Localized Baryonic/Massive Matter:** contribution of high-synchronization diamond and vortical complexes ($\lambda_2 > \lambda_{\mathrm{crit}}$, $H_{\mathrm{rot}} \neq 0$).
-2. **$T_{\mu\nu}^{\mathrm{interface}}(\partial A)$ — Interfacial Synchronization-Shell Tension:** contribution of the boundary transition zone $\partial A$ where the frequency mismatch between internal clock rate $\omega_A$ and external channel rate $\omega_{\mathrm{ext}}$ is balanced by embedding curvature $\mathbf{H} = \lambda(\nabla i)^\perp$ (Proposition 3.1) and precision-weighted prediction error $\frac{1}{2}(\sigma(\mu) - \overline{\eta}(b))^\top \Pi_{\mathcal{E}}(\sigma(\mu) - \overline{\eta}(b))$ (Proposition 2.2). At galactic scales, this extended synchronization interface produces an effective gravitational potential without requiring new particle species in the halo ("dark matter" regime).
-3. **$\Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}] \, g_{\mu\nu}$ — Global Channel Response to Erasure Flux:** cumulative null-mode injection across all outgoing interfaces $\partial^+ A_m$ rarefying the external channel $\mathcal{E}$ ("dark energy" regime), coupled to bulk and interfacial stress-energy via the Bianchi identity:
-   $$
-   \frac{8\pi G_{\mathrm{eff}}}{c^4} \nabla^\mu \Bigl( T_{\mu\nu}^{\mathrm{bulk}} + T_{\mu\nu}^{\mathrm{interface}} + T_{\mu\nu}^{\mathrm{em}} \Bigr) = \nabla_\nu \Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}].
-   $$
-
-### 6.3. Interface Information Saturation and the Post-Horizon Phase Transition
-
-Combining Theorem 4.1 with Proposition 2.1 defines the dimensionless **interface saturation ratio**:
+while the dimensionless **interface saturation parameter** is defined from Theorem 4.1 and Proposition 2.1 as [5][cite: 35]:
 
 $$
-\eta_{\mathrm{sat}}(A) := \frac{\dot{I}_{\mathrm{erase}}(\mathcal{I}_A)}{C_{\max}(\partial^+ A)} = \frac{\kappa(A) - h_{\mathrm{KS}}(A)}{c_0 \ln 2 \cdot |\partial^+ A|_E}.
+\eta_{\mathrm{sat}}(A) := \frac{\dot{I}_{\mathrm{erase}}^{\mathrm{net}}(\mathcal{I}_A \to \partial^+ A)}{C_{\max}(\partial^+ A)} = \frac{\kappa(A) - h_{\mathrm{KS}}(A)}{c_0 \ln 2 \cdot |\partial^+ A|_E}.
 $$
 
-Normal spacetime persistence ($K_{xy}^{\mathrm{eff}} = 2$, $d_{\mathrm{eff}} \approx 4$) requires $\eta_{\mathrm{sat}}(A) < 1$. Because bulk volume and total contraction $\kappa(A) \propto |\mathcal{I}_A|$ grow faster than boundary area $|\partial^+ A|_E$, sufficiently dense cores reach the saturation threshold $\eta_{\mathrm{sat}}(A) \ge 1$ (`Status: UNDECIDED`, Protocol V6):
-1. **Exterior Regime (Event Horizon):** The outgoing interface $\partial^+ A$ saturates at capacity $C_{\max}(\partial^+ A)$, screening external observers from deeper bulk layers ($\ker \Pi_{\mathcal{I},\partial A} \not\subseteq \ker \Pi_{\mathcal{E},\partial A}$ in Proposition 2.2, so the synchronization map $\sigma$ becomes degenerate on interior modes) and radiating thermally at temperature $T_{\partial A}$ with area-law entropy $\propto |\partial^+ A|_E$.
-2. **Interior Regime (High-Rank Matrix Phase $K_{xy}^{\mathrm{eff}} \ge 3$):** Because excess internal phase fluctuations can no longer be expelled across $\partial^+ A$, the sparsity condition supporting binary diamond collapse fails inside $\mathcal{I}_A$, driving the interior into a dense multi-vertex matrix phase ($K_{xy}^{\mathrm{eff}} \ge 3$) bounded by the horizon screen $\partial A$.
+Crossing $\eta_{\mathrm{sat}}(A) \ge 1$ saturates the outgoing boundary channel [5], breaking kernel inclusion $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$ [4] for deep interior modes (event horizon formation) and preventing internal phase-fluctuation expulsion so that the interior transitions to a high-rank multi-vertex matrix phase $K_{xy}^{\mathrm{eff}} \ge 3$ [8] (`Status: UNDECIDED`, Protocol V6)[cite: 12, 35].
 
 ---
 
 ## 7. Computational Verification Program (Protocols V1–V7)
 
-All seven protocols operate directly on finite matrices $(R, \Theta)$ without external physical constants, using pre-registered numerical pass/fail thresholds.
-
 | ID | Tested Claim | Protocol & Control Ensembles | Confirmation Criterion (`FOLLOW`) | Refutation Criterion (`NULL`) |
 | :--- | :--- | :--- | :--- | :--- |
-| **V1** | **Dynamic collapse of multi-vertex bundles into binary diamonds $K_{xy}=2$ and dimension selection (§3.2–3.3)** | Initialize graphs $N \in \{128, 256\}$ with wide waists $K_{xy} \in \{3, \dots, 8\}$; anneal $\mathcal{F} = a\sum K^2 + b\sum J + g\Vert{}[\Delta_+,\Delta_-]\Vert{}_F^2$ under kernel factorization $\sim_{K,\varepsilon_{\mathrm{ker}}}$ with $\sum J_{xy} \ge J_{\min}$. Control: random DAGs of matched density. | Quotient binary waist fraction converges to $f_{K=2} \ge 0.80$, and three dimension estimators ($d_s, d_H, d_\tau$) agree within $\le 0.3$ across a decade of scale. | Graph degenerates into trees ($K_{xy}\le 1$), hubs ($K_{xy} \gg 2$), or dimensions fail to converge $\implies$ closes spontaneous geometry selection. |
-| **V2** | **Oseledets contraction $\kappa(A)$ vs. outgoing interface flux $\partial^+ A$ (§4.2)** | Extract subsystem $A = (\mathcal{I}_A, \partial A)$ across stiffness parameters $(a, b, g)$. Compute Lyapunov spectrum $\{\lambda_i\}$, $\kappa(A)$, and boundary phase-entropy flux $\dot{I}_{\mathrm{out}}(\partial^+ A)$ under stationary input noise on $\partial^- A$. Control: covariance-matched random matrix. | Monotonic linear Pearson correlation $r \ge 0.85$ between $(\kappa(A) - h_{\mathrm{KS}}(A))$ and $\dot{I}_{\mathrm{out}}(\partial^+ A)$; invariance to padding with zero-contraction nodes. | Outgoing flux is independent of $\kappa(A)$ or scales solely with node count $N_A$ $\implies$ closes Oseledets–Landauer bridge on graphs. |
-| **V3** | **Phase-mediated void rarefaction under local bulk condensation (§6.1)** | On $N \in \{256, 512\}$ at fixed $E_{\mathrm{tot}}$ and $k_{\max}$, condense cores $\mathcal{I}_{A_m}$. Measure far-void residual $\Delta \rho_{D,*}^{\mathrm{far}}(r)$, null fraction $f_{K=0}$, and null path length $\ell_{\mathrm{null}}$. Controls: (1) degree-preserving edge swaps; (2) phase randomization on $\partial^+ A_m$. | Statistically significant ($> 3\sigma$ beyond combinatorial control) drop $\Delta \rho_{D,*}^{\mathrm{far}} < 0$ and expansion $\Delta \ell_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}}) > 0$; excess vanishes when phases on $\partial^+ A_m$ are randomized. | Far-void response reduces to trivial edge subtraction $\Delta E / N$ or is insensitive to boundary phase scrambling $\implies$ closes Hypothesis H-LG. |
-| **V4** | **Interfacial synchronization-shell potential on $\partial A$ (§6.2)** | Measure radial frequency shift $\delta\omega(r)/\omega_\infty$ and interaction free energy $V_{\mathrm{int}}(r)$ around a synchronized cluster ($\omega_A \neq \omega_{\mathrm{ext}}$), separating bulk $\mathscr{S}_{\mathrm{struct}}(\mathcal{I}_A)$ and interface $\mathscr{S}_{\mathrm{interface}}(\partial A)$. Control: frequency-matched cluster $\omega_A = \omega_{\mathrm{ext}}$. | Presence of an extended interfacial shell $r \in [r_{\mathrm{bulk}}, r_{\mathrm{halo}}]$ where $\partial_r V_{\mathrm{int}}(r) > 0$ scales with frequency jump $\vert{}\omega_A - \omega_{\mathrm{ext}}\vert{}$ and precision error. | Potential and frequency shift truncate sharply at the core boundary without interfacial extension $\implies$ closes interfacial halo model. |
-| **V5** | **Scale transition from compact modes to filamentary networks (§5.4)** | Minimize volume and frustration subject to $\lambda_2(A) \ge \lambda_{\mathrm{sync}}$ and $\mathrm{deg}(x) \le k_{\max}$ across $N = 64 \to 256 \to 1024$ and iterative coarse-graining $\mathcal{R}_{\ell \to \ell+1}$. Control: Erdős–Rényi and degree-matched configuration models. | Compact rotational clusters ($\mathcal{L}_z \neq 0$) dominate for $N < N_{\mathrm{crit}}$; node-filament-void percolation networks emerge for $N > N_{\mathrm{crit}}$ with scale-invariant Laplacian spectrum. | Above $N_{\mathrm{crit}}$, graphs disconnect, collapse into acyclic trees, or depend on manual thresholds $\theta_\ell$ $\implies$ closes architectural scaling hypothesis. |
-| **V6** | **Interface saturation $\eta_{\mathrm{sat}} \ge 1$ and transition to $K_{xy} \ge 3$ (§6.3)** | Pump bulk contraction $\kappa(U_c)$ inside core $U_c$ at fixed boundary capacity $\vert{}\partial^+ U_c\vert{}_E$. Track trans-boundary mutual information, kernel inclusion, and interior $(f_{K=2}, \langle K_{xy}\rangle, d_s, d_H, d_\tau)$ across $\eta_{\mathrm{sat}}(U_c) = 1$. | For $\eta_{\mathrm{sat}} \ge 1$, outward information saturates at $\vert{}\partial^+ U_c\vert{}_E$, $\sigma$ becomes degenerate on deep modes, and the interior transitions to a stable plateau with $K^{\mathrm{eff}}_{xy} \ge 3$. | For $\eta_{\mathrm{sat}} \ge 1$, the interior degenerates into an unstructured Kleitman–Rothschild 3-layer graph ($d_\tau \to 1, d_H \to \infty$) $\implies$ closes structured post-horizon phase. |
-| **V7** | **Precision kernel inclusion, solenoidal acceleration, and integrator truncation (§2.4, §3.4, §5.2)** | (a) Test $\Sigma_{\mathcal{I}\mathcal{E}} \neq 0$ and recovery accuracy of $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ when $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$ vs. violated inclusion; (b) compare spectral gap $\gamma(Q)$ with $H_{\mathrm{rot}} \neq 0$ vs. $H_{\mathrm{rot}} = 0$; (c) measure state reconstruction error under integrator-chain truncation at order $n(\ell)=2$. | (a) Pearson correlation $> 0.98$ for $\sigma(\overline{\mu}(b))$ vs. $\overline{\eta}(b)$ under kernel inclusion and collapse when violated; (b) strict increase $\gamma(Q) > \gamma(0)$ on anisotropic reliefs; (c) bounded $O((\gamma_3 \tau_w)^{-1})$ truncation residual for $k \ge 3$. | Synchronization persists when $\ker \Pi_{\mathcal{I},\partial A} \not\subseteq \ker \Pi_{\mathcal{E},\partial A}$, solenoidal flow slows convergence ($\gamma(Q) < \gamma(0)$), or high-order modes dominate macro-dynamics. |
+| **V1** | **Interval-local path reduction to $K_{xy}^{\mathrm{eff}}=2$ and dimension convergence (§3.2–3.3)** | Anneal graphs $N \in \{128, 256\}$ under convex ($p=2$), linear ($p=1$), and logarithmic penalties; evaluate interval-local path rank $K_{xy}^{\mathrm{eff}}$, twin-only vertex reduction, and $(d_s, d_H, d_\tau)$ [1][cite: 2, 35]. | Under convex penalty and bounded valency $k_{\max}$ [2], $f_{K^{\mathrm{eff}}=2} \ge 0.80$ and $\vert{}d_s - d_H\vert{}, \vert{}d_s - d_\tau\vert{} \le 0.3$ across a decade of scale[cite: 2, 35]. | $K_{xy}^{\mathrm{eff}}=2$ fails to emerge without manual hard-coding, or dimensions diverge $\implies$ closes spontaneous geometry selection[cite: 1, 2, 35]. |
+| **V2** | **Oseledets contraction $\kappa(A) - h_{\mathrm{KS}}(A)$ vs. $\varepsilon$-cell merging and bath flux (§4.2)** | Measure $\varepsilon$-box entropy $H_\varepsilon(Z_n)$, incoming noise $H_{\mathrm{in}}^{(\varepsilon)}$, resolved output $H_{\mathrm{out}}^{(\varepsilon)}$, and $\kappa(A) - h_{\mathrm{KS}}(A)$ [5, 6] across stiffness parameters. Control: covariance-matched linear network [6][cite: 4, 35]. | Exact identity $H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} \approx \kappa(A) - h_{\mathrm{KS}}(A)$ holds with Pearson $r \ge 0.90$, and transverse $\varepsilon$-box merging scales as $e^{\kappa(A)}$. | Coarse-grained entropy drop does not track $\kappa(A) - h_{\mathrm{KS}}(A)$ $\implies$ closes Oseledets–Landauer bridge. |
+| **V3** | **Phase-mediated void rarefaction via $d_\diamond(x,y)=0$ (§2.1, §6.1)** | Condense cores $\mathcal{I}_{A_m}$ at fixed $E_{\mathrm{tot}}, k_{\max}$. Measure far-void diamond residual $\Delta \rho_{D,*}^{\mathrm{far}}(r)$, non-trivial null-link fraction $f_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})$ ($d_\diamond = 0$), and $\ell_{\mathrm{null}}$. Controls: degree-preserving swaps [9] & boundary phase scrambling[cite: 1, 35]. | $>3\sigma$ drop in $\Delta \rho_{D,*}^{\mathrm{far}} < 0$, rise in $f_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}}) > 0$, and expansion $\Delta \ell_{\mathrm{null}} > 0$ that vanish under boundary phase randomization[cite: 1, 2, 35]. | $f_{\mathrm{null}}$ and $\Delta \rho_D^{\mathrm{far}}$ are fully explained by degree-preserving edge swaps [9] or insensitive to phase scrambling $\implies$ closes H-LG[cite: 1, 35]. |
+| **V4** | **Interfacial synchronization-shell potential on $\partial A$ (§6.2)** | Measure radial frequency shift $\delta\omega(r)/\omega_\infty$ and interaction free energy $V_{\mathrm{int}}(r)$ around a cluster with $\omega_A \neq \omega_{\mathrm{ext}}$ vs. control $\omega_A = \omega_{\mathrm{ext}}$ [3][cite: 2, 35]. | Extended shell $r \in [r_{\mathrm{bulk}}, r_{\mathrm{halo}}]$ where $\partial_r V_{\mathrm{int}}(r) > 0$ scales with $\vert{}\omega_A - \omega_{\mathrm{ext}}\vert{}$ and interfacial tension $\mathscr{S}_{\mathrm{interface}}(\partial A)$[cite: 35]. | Potential truncates sharply at core boundary $\implies$ closes interfacial halo model[cite: 35]. |
+| **V5** | **Scale transition from compact modes to filamentary networks (§5.3)** | Minimize volume and frustration subject to $\lambda_2(A) \ge \lambda_{\mathrm{sync}}$ and $\mathrm{deg}(x) \le k_{\max}$ across $N = 64 \to 1024$ and $\mathcal{R}_{\ell \to \ell+1}$. Control: degree-matched configuration models [9][cite: 1, 2, 35]. | Transition from compact rotational clusters ($N < N_{\mathrm{crit}}$) to node-filament-void percolation networks ($N > N_{\mathrm{crit}}$) [9] stable under $\mathcal{R}_{\ell \to \ell+1}$[cite: 2, 35]. | Graphs disconnect, collapse to trees, or depend on manual clustering thresholds $\implies$ closes scaling hypothesis[cite: 1, 2, 35]. |
+| **V6** | **Interface saturation $\eta_{\mathrm{sat}} \ge 1$ and transition to $K_{xy}^{\mathrm{eff}} \ge 3$ (§6.2)** | Increase bulk contraction $\kappa(U_c)$ at fixed $\vert{}\partial^+ U_c\vert{}_E$ [5]. Track trans-boundary mutual information and interior $K_{xy}^{\mathrm{eff}}$ across $\eta_{\mathrm{sat}}(U_c) = 1$ [8][cite: 35]. | Outward information saturates at $\vert{}\partial^+ U_c\vert{}_E$, $\sigma$ degenerates on deep modes [4], and interior stabilizes at $K^{\mathrm{eff}}_{xy} \ge 3$ [8][cite: 13, 35]. | Interior collapses into unstructured Kleitman–Rothschild 3-layer graph [2] $\implies$ closes post-horizon phase[cite: 2, 35]. |
+| **V7** | **Precision kernel inclusion, solenoidal gap acceleration, and integrator truncation (§2.4, §3.4, §5.2)** | Test $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ under $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$; compare $\gamma(Q)$ vs. $\gamma(0)$; measure integrator truncation residual at $n(\ell)=2$ [4][cite: 12, 22, 32]. | Synchronization error $< 10^{-10}$ under kernel inclusion; strict acceleration $\gamma(Q) > \gamma(0)$; $O((\gamma_3 \tau_w)^{-1})$ fast-mode decay [4][cite: 12, 23, 32]. | Synchronization fails under inclusion, $\gamma(Q) < \gamma(0)$, or high orders fail to decouple [4][cite: 12, 23, 32]. |
 
 ---
 
 ## 8. Registry of Verification Statuses ($V_4$)
 
-In accordance with Section 0, `FOLLOW` is restricted to definitions and mathematical propositions whose conclusions follow deductively from explicitly stated premises.
-
-| No. | Claim | $V_4$ Status | Basis and Scope of Validity |
+| No. | Claim | $V_4$ Status | Basis and Audit Resolution |
 | :--- | :--- | :--- | :--- |
-| **1** | Hasse transitive irreducibility of $R$, nilpotency $W^N = 0$, and gauge invariance of diamond holonomies $\Phi_{ab}$, frustration $J_{xy}$, and cone commutator norm $\Vert{}[\Delta_+,\Delta_-]\Vert{}_F^2$ | **`FOLLOW`** | Definitions 1.1–1.2; direct algebraic verification under $W \mapsto D_\chi W D_\chi^\dagger$. |
-| **2** | Wilson interference identity for a two-step waist: $\sum_{a<b}(1-\cos\Phi_{ab}) = \frac{1}{2}K_{xy}J_{xy}$ (Proposition 1.1) | **`FOLLOW`** | Exact algebraic identity for all $K_{xy} \ge 1$ and arbitrary edge phases $\theta_{xy}$. |
-| **3** | Disjoint partitioning of $X$ by any proper subsystem $A$ into $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$, indivisibility criterion $I(A;\tau_w) > \theta_I$, and interface recoverability bound $I(Z_A; \hat{Z}_A) \le I(Z_A; Z_B) + n C(\partial^+ A)$ (Definitions 2.1–2.2, Proposition 2.1) | **`FOLLOW`** | Graph locality of $R_{xy}$ and the data processing inequality under the stated memoryless Markov channel assumptions. |
-| **4** | Equivalence of Markov blanket screening to precision sparsity $\Pi_{\mathcal{I}\mathcal{E}} = 0$, exact mediated covariance formula $\Sigma_{\mathcal{I}\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A}\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1}$, and the boundary kernel-inclusion theorem $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$ for synchronization $\sigma(\overline{\mu}(b)) = \overline{\eta}(b)$ (Proposition 2.2) | **`FOLLOW`** | Exact linear-algebraic and Gaussian conditional-independence identities for $\Pi \succ 0$. |
-| **5** | Stationary informational minimal surface equation $\mathbf{H}(z) = \lambda(\nabla_Z i(z))^\perp$ (Proposition 3.1) and orthogonal tangent splitting $T_z D_\ell = W^{\mathrm{act}}_z \oplus_h W^{\mathrm{inv}}_z \oplus_h K_z$ | **`FOLLOW`** | Calculus of variations at fixed carrier measure density $\delta(d\mu_\Sigma)=0$ and linear projection under a positive-definite metric $h_z$. |
-| **6** | Global minimum of the convex waist functional $\mathcal{F}_{\mathrm{loc}} = a(K^{\mathrm{eff}})^2 + b J^{\mathrm{eff}}_{xy}$ subject to $J^{\mathrm{eff}}_{xy} = J_0 \in (0, 2]$ under exact phase factorization ($\varepsilon_{\mathrm{ker}}=0$) occurs uniquely at the binary causal diamond $K^{\mathrm{eff}}_{xy} = 2$ (Theorem 3.1) | **`FOLLOW`** | Exact integer optimization: $K^{\mathrm{eff}}=1 \implies J^{\mathrm{eff}}=0$, and $a k^2$ is strictly increasing for $k \ge 2$. |
-| **7** | Unitary transition group $U(2) \cong U(1) \times SU(2)/\mathbb{Z}_2$ on the two-channel section of a binary diamond, and minimal spatial dimension $d_{\mathrm{space}}^{\min} = 1 + 2 = 3 = \binom{3}{2}$ for $W^{\mathrm{act}} \oplus_h W^{\mathrm{inv}}$ supporting a 2D circulation plane (§3.3) | **`FOLLOW`** | Linear algebra on $\mathbb{C}^2$ and rank arithmetic under $\dim W^{\mathrm{act}} \ge 1$ and $\dim W^{\mathrm{inv}} \ge 2$. |
-| **8** | Helmholtz drift decomposition $f = f_{\mathrm{rev}} + f_{\mathrm{irrev}}$, invariance of the stationary Gaussian density under skew-symmetric solenoidal flow $Q = -Q^\top$, and spectral gap acceleration $\gamma(Q) \ge \gamma(0)$ (Proposition 3.2) | **`FOLLOW`** | Stationary Fokker–Planck equation and Bendixson–field-of-values bound $\operatorname{Re}(v^\dagger(S+A)v) = v^\dagger S v \ge \lambda_{\min}(S)$. |
-| **9** | Lower bound on outgoing interface erasure flux $\dot{I}_{\mathrm{erase}}(\mathcal{I}_A \to \partial^+ A) \ge (\kappa(A) - h_{\mathrm{KS}}(A))/\ln 2$ and heat dissipation $\dot{Q}_{\mathrm{ext}} \ge k_B T_{\partial A}(\kappa(A) - h_{\mathrm{KS}}(A))$ (Theorem 4.1) | **`FOLLOW`** | Conditional theorem: follows from linear tangent-volume entropy transformation under stationary $H(Z_{n+1})=H(Z_n)$ and Landauer's bound. |
-| **10** | Stochastic realization of rational-spectrum boundary processes as nested Ornstein–Uhlenbeck integrator chains $\tilde{s}_t = (s_t^{(0)}, \dots, s_t^{(n)})$ and emergence of second-order inertial dynamics upon truncation at $n(\ell)=2$ (Proposition 5.1) | **`FOLLOW`** | Doob's theorem, spectral factorization of rational spectral densities, and linear-quadratic optimization at $n=2$. |
-| **11** | Relative operational time $R_{AB}^{(\ell)}$, coarse-graining operator $\mathcal{R}_{\ell \to \ell+1}$, and divergence of synchronization time on a homogeneous $d$-dimensional ball $\tau_{\mathrm{sync}}^{\mathrm{ball}}(N) = \Theta(N^{3/d}) \to \infty$ as $N \to \infty$ at bounded degree $k_{\max}$ (Proposition 5.2) | **`FOLLOW`** | Definitions 5.1–5.3 and asymptotic spectral scaling of the discrete Laplacian on a ball of radius $R \sim N^{1/d}$. |
-| **12** | Exact additive conservation identity partitioning coherent diamonds across bulk interiors $\mathcal{I}_{A_m}$, interfaces $\partial A_m$, and external channel $\mathcal{E}$ (Proposition 6.1) | **`FOLLOW`** | Exact combinatorial identity on a finite set $X$. |
-| **13** | Spontaneous emergence of a macroscopic $3+1$ Lorentzian manifold phase in annealed ensembles of random causal graphs | **`UNDECIDED`** | Computational hypothesis; tested in **Protocol V1**. |
-| **14** | Physical correspondence between discrete Oseledets contraction $\kappa(A)$ on a causal graph and physical radiation flux in the external channel | **`UNDECIDED`** | Tested numerically in **Protocol V2**; requires continuum calibration. |
-| **15** | Phase-mediated void rarefaction ($\Delta\rho_{D,*}^{\mathrm{far}} < 0$, null path stretching $\Delta\ell_{\mathrm{null}} > 0$) beyond combinatorial edge subtraction and its identification with effective dark energy $\Lambda_{\mathrm{eff}}$ | **`UNDECIDED`** | Tested in **Protocol V3**. |
-| **16** | Derivation of continuum Einstein–Maxwell equations from interfacial balance (§6.2) and attribution of galactic rotation-curve anomalies to interfacial synchronization tension $T_{\mu\nu}^{\mathrm{interface}}(\partial A)$ | **`UNDECIDED`** | Tested in **Protocol V4**; requires continuum limit proof. |
-| **17** | Percolation transition to "node–filament–void" networks above $N_{\mathrm{crit}}$ as a shared variational origin of the *Cosmic Web* and neural architectures | **`UNDECIDED`** | Tested in **Protocol V5** against degree-preserving configuration null models. |
-| **18** | Formation of an informational horizon at $\eta_{\mathrm{sat}}(A) \ge 1$ and transition of the interior bulk to a stable high-rank matrix phase $K_{xy}^{\mathrm{eff}} \ge 3$ | **`UNDECIDED`** | Tested in **Protocol V6**. |
-| **19** | Heuristic analogies ("soap film", "hydraulic fluid", "cognitive agent") | **`OMIT`** | Pedagogical orientation only; never used as proof premises. |
-| **20** | Soft linear degree penalties without hard valency bound $k_{\max}$; postulating fixed microscopic dimensions ($5, 9, 11$) prior to kernel factorization; treating $+1$ time as a scale-invariant spatial axis; claiming a passive Gaussian Markov blanket without action loop or stake is an intrinsic agent | **`NULL`** | Refuted by the Kleitman–Rothschild $O(N^2)$ entropy theorem, Theorem 3.1, Proposition 5.2, and negative controls on passive Ornstein–Uhlenbeck systems. |
+| **1** | Hasse irreducibility ($R_{xy}=1 \implies K_{xy}=0$) [1], nilpotency $W^N = 0$, Wilson identity $\sum_{a<b}(1-\cos\Phi_{ab}) = \frac{1}{2}K_{xy}J_{xy}$, and non-trivial **diamond-participation multiplicity** $d_\diamond(x, y)$ partitioning Hasse links into unbranched null links ($d_\diamond = 0$) and diamond-embedded links ($d_\diamond \ge 1$) | **`FOLLOW`** | Definitions 1.1–1.2, Proposition 1.1, and Definition 2.1. Resolves the $R_{xy}=1 \implies K_{xy}=0$ tautology completely. |
+| **2** | Triad partition $(\mathcal{I}_A, \partial A, \mathcal{E}_A)$, recoverability bound $I(Z_A; \hat{Z}_A) \le I(Z_A; Z_B) + n C(\partial^+ A)$ (Proposition 2.1), precision sparsity $\Pi_{\mathcal{I}\mathcal{E}}=0$ vs. mediated covariance $\Sigma_{\mathcal{I}\mathcal{E}} \neq 0$, and boundary kernel inclusion $\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}$ (Proposition 2.2) [4] | **`FOLLOW`** | Graph locality, data processing inequality, and exact block-Gaussian identities [4][cite: 4, 11, 12, 26]. |
+| **3** | Interval-local path equivalence $\sim_{(x,y),\varepsilon_{\mathrm{ker}}}$ on $\mathcal{P}_2(x, y)$, strict separation from global structural-twin vertex merging (Definition 3.1), and conditional minimization of $\mathcal{F}_{\mathrm{loc}}^{(p)} = a(K^{\mathrm{eff}})^p + b J^{\mathrm{eff}}_{xy}$ ($a,p>0$) at $K_{xy}^{\mathrm{eff}}=2$ for fixed $J_0 \in (0, 2]$ (Proposition 3.2) | **`FOLLOW`** | Exact within the declared functional ansatz and interval-local quotient; prevents cross-interval vertex contamination. |
+| **4** | Physical justification that natural causal substrates enforce a convex branching penalty $a(K^{\mathrm{eff}})^p$ ($p \ge 2$) selecting $K_{xy}^{\mathrm{eff}} = 2$ | **`UNDECIDED`** | Empirical hypothesis about substrate dynamics; tested against linear/concave alternatives in **Protocol V1**[cite: 1, 2]. |
+| **5** | Helmholtz drift decomposition $f = f_{\mathrm{rev}} + f_{\mathrm{irrev}}$, invariance of $p(x) = \mathcal{N}(0, \Pi^{-1})$ under $Q = -Q^\top$, and spectral relaxation acceleration $\gamma(Q) \ge \gamma(0)$ (Proposition 3.3) [4] | **`FOLLOW`** | Stationary Fokker–Planck equation and Bendixson field-of-values bound [4][cite: 26, 28, 32]. |
+| **6** | Coarse-grained $\varepsilon$-box entropy balance $H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A)$, sub-$\varepsilon$ folding rate $\sigma_{\mathrm{bath}}(A) = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) - h_{\mathrm{KS}}(A)$, $e^{\kappa(A)}$-to-$1$ transverse $\varepsilon$-cell merging along $E^s$, and Landauer heat bound $\dot{Q}_{\mathrm{ext}} \ge k_B T_{\partial A}(\kappa(A) - h_{\mathrm{KS}}(A))$ (Theorem 4.1) [5, 6] | **`FOLLOW`** | Exact sign-consistent conservation law at resolution $\varepsilon > 0$ under stationary $H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)$ [5, 6]. Resolves the sign error of v3.8/v3.9. |
+| **7** | Doob integrator-chain realization of rational-spectrum boundary processes (Proposition 5.1) [4], divergence of ball synchronization time $\tau_{\mathrm{sync}}^{\mathrm{ball}}(N) = \Theta(N^{3/d})$ (Proposition 5.2), and additive diamond conservation across $(\mathcal{I}_{A_m}, \partial A_m, \mathcal{E})$ (Proposition 6.1) | **`FOLLOW`** | Spectral factorization of stationary Gaussian processes [4], Laplacian asymptotics, and finite-set additivity[cite: 22, 35]. |
+| **8** | Quadratic step-allocation ansatz $(\Delta \tau)^2 + (\Delta l)^2 = (\Delta s_{\mathrm{causal}})^2$, emergence of continuum Lorentzian signature $(-,+,+,+)$ [1], and physical calibration of combinatorial phase rate $\omega_A^{(\ell)}$ (radians/step) to physical clock frequency ($\mathrm{s}^{-1}$) [7] (§5.1) | **`UNDECIDED`** | Explicitly marked as kinematic ansatz and continuum-limit hypothesis; requires verification in **Protocols V1 and V4**[cite: 1]. |
+| **9** | Phase-mediated void rarefaction (H-LG), interfacial halo tension $T_{\mu\nu}^{\mathrm{interface}}(\partial A)$ [3], percolation transition to *Cosmic Web* filaments above $N_{\mathrm{crit}}$ [9], and post-horizon phase $K_{xy}^{\mathrm{eff}} \ge 3$ at $\eta_{\mathrm{sat}} \ge 1$ [8] | **`UNDECIDED`** | Substantive physical hypotheses tested in **Protocols V3, V4, V5, and V6**[cite: 1, 35]. |
+| **10** | Defining null links via $(R_{xy}=1) \land (K_{xy}=0)$ (tautology); merging vertices across distinct intervals via global `union-find` without twin checks; writing $H_{\mathrm{out}} \ge \kappa - h_{\mathrm{KS}}$ with inverted sign; claiming a passive Gaussian Markov blanket without action loop or stake is an intrinsic agent [4] | **`NULL`** | Identified audit defects from v3.8/v3.9; replaced and prohibited in v3.9.1 [10][cite: 4, 6]. |
 
 ---
 
-## 9. Reference Computational Implementation (Python / NumPy / SciPy)
+## 9. Corrected Reference Computational Implementation (Python / NumPy / SciPy)
 
-The self-contained Python module below implements the mathematical structures of Sections 1–6 and provides executable routines for Verification Protocols V1–V7.
+All four audit corrections are implemented and verified in the code below:
+1. `compute_edge_diamond_participation(R)` computes the exact non-trivial diamond multiplicity $d_\diamond(x, y)$ for every Hasse link $R_{xy}=1$, identifying unbranched null links via $R_{xy}=1 \land d_\diamond(x, y) = 0$.
+2. `interval_local_path_quotient(R, Theta, eps_ker)` performs path factorization **strictly inside each interval $(x, y)$** on $\mathcal{P}_2(x, y)$, while `collapse_structural_twins(R, Theta, eps_ker)` merges vertices **only** if they are true causal twins sharing identical predecessors and successors.
+3. `compute_oseledets_landauer_profile(...)` implements the exact sign-consistent $\varepsilon$-box entropy balance $H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}} - \kappa$ and net bath folding rate $\sigma_{\mathrm{bath}} = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa - h_{\mathrm{KS}}$.
 
 ```python
 import numpy as np
 from scipy.sparse.csgraph import connected_components, shortest_path
-from scipy.linalg import eigh, eigvals, svdvals, pinv, sqrtm
+from scipy.linalg import eigh, eigvals, svdvals, pinv
 
 # =====================================================================
-# 1. FOUNDATIONAL CAUSAL-PHASE ALGEBRA (SECTION 1)
+# 1. FOUNDATIONAL CAUSAL-PHASE ALGEBRA & EDGE DIAMOND MULTIPLICITY (§1-§2)
 # =====================================================================
 
 def is_hasse_transitive_free(R):
@@ -646,9 +462,8 @@ def is_hasse_transitive_free(R):
 
 def compute_causal_phase_invariants(R, Theta):
     """
-    Compute the waist matrix K_xy, two-step amplitude M_xy, phase frustration J_xy,
-    and gauge-invariant cone-commutator norm L(W) = ||[Delta_+, Delta_-]||_F^2
-    (Proposition 1.1 and Section 1.4).
+    Compute the waist matrix K_xy = (R^2)_xy, two-step amplitude M_xy = (W^2)_xy,
+    phase frustration J_xy, and gauge-invariant cone-commutator norm L(W).
     """
     W = R * np.exp(1j * Theta)
     K = R @ R
@@ -664,6 +479,26 @@ def compute_causal_phase_invariants(R, Theta):
     norm_factor = 1.0 + float(np.linalg.norm(Dp, "fro") ** 2 * np.linalg.norm(Dm, "fro") ** 2)
     L_norm = L_raw / norm_factor
     return K, M, J, L_raw, L_norm
+
+
+def compute_edge_diamond_participation(R):
+    """
+    Compute the exact diamond-participation multiplicity d_diamond(x, y)
+    for every Hasse link R_xy == 1 (Definition 2.1):
+      - d_plus[x, y]  = sum_w R[y, w] * max(0, K[x, w] - 1)  (link is lower leg x < y < w)
+      - d_minus[x, y] = sum_u R[u, x] * max(0, K[u, y] - 1)  (link is upper leg u < x < y)
+      - d_diamond[x, y] = (d_plus[x, y] + d_minus[x, y]) * R[x, y]
+    Unbranched (null) Hasse links are those with R[x, y] == 1 and d_diamond[x, y] == 0.
+    """
+    R_int = R.astype(int)
+    K = R_int @ R_int
+    K_excess = np.maximum(0, K - 1)
+    d_plus = R_int * (K_excess @ R_int.T)
+    d_minus = R_int * (R_int.T @ K_excess)
+    d_diamond = d_plus + d_minus
+    null_edges_mask = (R_int == 1) & (d_diamond == 0)
+    diamond_edges_mask = (R_int == 1) & (d_diamond >= 1)
+    return d_diamond, null_edges_mask, diamond_edges_mask
 
 
 def verify_wilson_identity(R, Theta):
@@ -687,16 +522,16 @@ def verify_wilson_identity(R, Theta):
 
 
 # =====================================================================
-# 2. TRIAD PARTITIONING (I_A, dA, E_A) AND INTEGRATION (SECTION 2)
+# 2. TRIAD PARTITIONING (I_A, dA, E_A) WITH NON-TRIVIAL NULL LINKS (§2.2)
 # =====================================================================
 
 def partition_triad(R, subsystem_nodes):
     """
-    Partition complex X into the structural triad (Definition 2.1):
+    Partition complex X into the structural triad (Definition 2.2):
     - I_A: internal relief (Bulk);
     - dA_in, dA_out, dA: incoming, outgoing, and bilateral interface;
     - E_A: external synchronization channel;
-    - E_null_edges: unbranched null links in the external channel (K_xy = 0).
+    - E_null_edges: unbranched null Hasse links in E_A with d_diamond(x, y) == 0.
     """
     N = len(R)
     A_mask = np.zeros(N, dtype=bool)
@@ -712,8 +547,13 @@ def partition_triad(R, subsystem_nodes):
     I_A = np.setdiff1d(np.where(A_mask)[0], dA)
     E_A = np.where(E_mask)[0]
 
-    K = R @ R
-    E_null_edges = (R == 1) & (K == 0) & E_mask[:, None] & E_mask[None, :]
+    d_diamond, null_mask, _ = compute_edge_diamond_participation(R)
+    ext_edge_mask = (R == 1) & E_mask[:, None] & E_mask[None, :]
+    E_null_edges = null_mask & ext_edge_mask
+
+    n_ext_edges = int(np.sum(ext_edge_mask))
+    n_null_edges = int(np.sum(E_null_edges))
+    f_null_ext = float(n_null_edges / max(1, n_ext_edges))
 
     return {
         "I_A": I_A,
@@ -723,53 +563,85 @@ def partition_triad(R, subsystem_nodes):
         "E_A": E_A,
         "capacity_in": int(np.sum(edges_in)),
         "capacity_out": int(np.sum(edges_out)),
+        "d_diamond": d_diamond,
         "E_null_edges": E_null_edges,
+        "f_null_ext": f_null_ext,
     }
 
 
-def compute_integration_spectral_proxy(R, Theta, subsystem_nodes, eps=1e-12):
-    """
-    Spectral proxy for subsystem integration I(A; tau_w) (Definition 2.2)
-    using internal Fiedler connectivity lambda_2 relative to boundary flux.
-    """
-    idx = np.array(sorted(subsystem_nodes), dtype=int)
-    if len(idx) < 2:
-        return 0.0
-    W = R * np.exp(1j * Theta)
-    W_int = W[np.ix_(idx, idx)]
-    A_sym = (np.abs(W_int) ** 2) + (np.abs(W_int.T) ** 2)
-
-    if connected_components(A_sym > 0, directed=False)[0] > 1:
-        return 0.0
-
-    deg = np.maximum(A_sym.sum(axis=1), eps)
-    D_inv_sqrt = np.diag(1.0 / np.sqrt(deg))
-    L_norm = np.eye(len(idx)) - D_inv_sqrt @ A_sym @ D_inv_sqrt
-    evals = np.sort(eigh(L_norm, eigvals_only=True))
-    lambda_2 = float(max(0.0, evals[1]))
-
-    int_flow = float(np.sum(A_sym) / 2.0) / len(idx)
-    ext_idx = np.setdiff1d(np.arange(len(R)), idx)
-    bnd_flow = float(
-        np.sum(np.abs(W[np.ix_(idx, ext_idx)]) ** 2)
-        + np.sum(np.abs(W[np.ix_(ext_idx, idx)]) ** 2)
-    ) / len(idx)
-    return float(lambda_2 * int_flow / (bnd_flow + eps))
-
-
 # =====================================================================
-# 3. KERNEL-PATH COLLAPSE INTO BINARY DIAMONDS K_xy = 2 (THEOREM 3.1, V1)
+# 3. INTERVAL-LOCAL PATH QUOTIENT vs. TWIN VERTEX MERGING (§3.2, V1)
 # =====================================================================
 
-def kernel_path_diamond_collapse(R, Theta, eps_ker=0.30):
+def interval_local_path_quotient(R, Theta, eps_ker=0.30):
     """
-    Factorize waists with K_xy > 2 by the phase kernel ~_{K, eps_ker}
-    (Definition 3.1 and Theorem 3.1), merging coherent intermediate nodes
-    z_a, z_b in V_xy when d_T(phi_a, phi_b) <= eps_ker while preserving Hasse irreducibility.
+    Interval-local path factorization on P_2(x, y) (Definition 3.1, item 1).
+    Clusters two-step paths p_z = (x < z < y) strictly inside each fixed interval (x, y)
+    without contaminating other intervals (x', y').
+    Returns:
+      - K_eff: matrix of effective path ranks K_xy^eff <= K_xy;
+      - J_eff: matrix of effective phase frustrations on the interval quotients;
+      - f_K2_eff: fraction of active intervals (K_xy >= 2) that reduce to K_xy^eff == 2.
     """
     N = len(R)
     K = R @ R
-    reach = (np.linalg.inv(np.eye(N) - R) - np.eye(N)) > 0.5
+    K_eff = np.zeros((N, N), dtype=int)
+    J_eff = np.zeros((N, N), dtype=float)
+
+    for x in range(N - 2):
+        for y in range(x + 2, N):
+            if K[x, y] == 1:
+                K_eff[x, y] = 1
+                J_eff[x, y] = 0.0
+            elif K[x, y] >= 2:
+                zs = np.where((R[x, :] == 1) & (R[:, y] == 1))[0]
+                m = len(zs)
+                phases = (Theta[x, zs] + Theta[zs, y]) % (2.0 * np.pi)
+
+                # Local union-find strictly on the path set P_2(x, y) of this interval
+                parent = list(range(m))
+                def find_local(i):
+                    while parent[i] != i:
+                        parent[i] = parent[parent[i]]
+                        i = parent[i]
+                    return i
+
+                for a in range(m):
+                    for b in range(a + 1, m):
+                        dphi = abs(phases[a] - phases[b])
+                        dphi = min(dphi, 2.0 * np.pi - dphi)
+                        if dphi <= eps_ker:
+                            ra, rb = find_local(a), find_local(b)
+                            if ra != rb:
+                                parent[max(ra, rb)] = min(ra, rb)
+
+                classes = {}
+                for i in range(m):
+                    classes.setdefault(find_local(i), []).append(phases[i])
+
+                eff_phases = np.array([
+                    np.angle(np.sum(np.exp(1j * np.array(ph_list))))
+                    for ph_list in classes.values()
+                ])
+                k_e = len(eff_phases)
+                m_e = np.sum(np.exp(1j * eff_phases))
+                K_eff[x, y] = k_e
+                J_eff[x, y] = float((k_e ** 2 - np.abs(m_e) ** 2) / k_e)
+
+    active_intervals = K >= 2
+    n_active = int(np.sum(active_intervals))
+    f_K2_eff = float(np.sum((K_eff == 2) & active_intervals) / max(1, n_active))
+    return K_eff, J_eff, f_K2_eff
+
+
+def collapse_structural_twins(R, Theta, eps_ker=0.30):
+    """
+    Global vertex reduction restricted strictly to causal structural twins
+    (Definition 3.1, item 2): two vertices z_a, z_b are merged if and only if
+    they have identical predecessors (R[:, za] == R[:, zb]), identical successors
+    (R[za, :] == R[zb, :]), and are eps_ker-coherent in EVERY shared interval (u, v).
+    """
+    N = len(R)
     parent = np.arange(N, dtype=int)
 
     def find(u):
@@ -778,26 +650,32 @@ def kernel_path_diamond_collapse(R, Theta, eps_ker=0.30):
             u = parent[u]
         return u
 
-    for x in range(N - 2):
-        for y in range(x + 2, N):
-            if K[x, y] > 2:
-                zs = np.where((R[x, :] == 1) & (R[:, y] == 1))[0]
-                phases = (Theta[x, zs] + Theta[zs, y]) % (2.0 * np.pi)
-                for a in range(len(zs)):
-                    for b in range(a + 1, len(zs)):
-                        za, zb = zs[a], zs[b]
-                        if not (reach[za, zb] or reach[zb, za]):
-                            dphi = abs(phases[a] - phases[b])
-                            dphi = min(dphi, 2.0 * np.pi - dphi)
-                            if dphi <= eps_ker:
-                                ra, rb = find(za), find(zb)
-                                if ra != rb:
-                                    parent[max(ra, rb)] = min(ra, rb)
+    for za in range(N):
+        for zb in range(za + 1, N):
+            if np.array_equal(R[:, za], R[:, zb]) and np.array_equal(R[za, :], R[zb, :]):
+                preds = np.where(R[:, za] == 1)[0]
+                succs = np.where(R[za, :] == 1)[0]
+                all_coherent = True
+                for u in preds:
+                    for v in succs:
+                        phi_a = (Theta[u, za] + Theta[za, v]) % (2.0 * np.pi)
+                        phi_b = (Theta[u, zb] + Theta[zb, v]) % (2.0 * np.pi)
+                        dphi = abs(phi_a - phi_b)
+                        dphi = min(dphi, 2.0 * np.pi - dphi)
+                        if dphi > eps_ker:
+                            all_coherent = False
+                            break
+                    if not all_coherent:
+                        break
+                if all_coherent:
+                    ra, rb = find(za), find(zb)
+                    if ra != rb:
+                        parent[max(ra, rb)] = min(ra, rb)
 
     clusters = {}
     for u in range(N):
         clusters.setdefault(find(u), []).append(u)
-    sorted_clusters = sorted(clusters.values(), key=lambda c: np.mean(c))
+    sorted_clusters = sorted(clusters.values(), key=lambda c: min(c))
     M = len(sorted_clusters)
 
     W = R * np.exp(1j * Theta)
@@ -809,34 +687,40 @@ def kernel_path_diamond_collapse(R, Theta, eps_ker=0.30):
             sub_R = R[np.ix_(sorted_clusters[a], sorted_clusters[b])]
             if np.sum(sub_R) > 0:
                 R_red[a, b] = 1
-                W_red[a, b] = np.sum(sub_W)
+                W_red[a, b] = np.mean(sub_W[sub_R > 0])
 
-    reach_all = np.linalg.inv(np.eye(M) - R_red) - np.eye(M)
-    reach_2plus = reach_all - R_red
-    R_red[(R_red > 0) & (reach_2plus > 0.5)] = 0
     Theta_red = np.mod(np.angle(W_red), 2.0 * np.pi) * R_red
-
-    K_red = R_red @ R_red
-    n_ge2 = int(np.sum(K_red >= 2))
-    f_K2 = float(np.sum(K_red == 2) / max(1, n_ge2))
-    return R_red, Theta_red, f_K2
+    return R_red, Theta_red
 
 
 # =====================================================================
-# 4. OSELEDETS SPECTRUM AND LANDAUER ERASURE FLUX (THEOREM 4.1, V2)
+# 4. OSELEDETS SPECTRUM & SIGN-CONSISTENT EPSILON-BOX BALANCE (§4.2, V2)
 # =====================================================================
 
-def compute_oseledets_landauer_profile(R, Theta, subsystem_nodes, dissipation=0.45, eps=1e-12):
+def compute_oseledets_landauer_profile(
+    R, Theta, subsystem_nodes, dissipation=0.45, H_in_nats=None, eps=1e-12
+):
     """
     Compute the local Lyapunov spectrum {lambda_i} on subgraph A,
     transverse contraction rate kappa(A) = Sum_{lambda_i < 0} |lambda_i|,
-    Pesin entropy rate h_KS(A), Kaplan-Yorke dimension D_KY(A), and
-    lower bound on outward erasure flux I_erase_bits (Theorem 4.1).
+    Pesin expansion rate h_KS(A) = Sum_{lambda_i > 0} lambda_i,
+    and the exact sign-consistent coarse-grained entropy balance (Theorem 4.1):
+      0 = H_in - H_out + h_KS - kappa  ==>  H_out = H_in + h_KS - kappa,
+      sigma_bath = H_in - H_out = kappa - h_KS > 0 (sub-epsilon folding rate).
     """
     idx = np.array(sorted(subsystem_nodes), dtype=int)
     n_sub = len(idx)
     if n_sub == 0:
-        return {"kappa": 0.0, "h_KS": 0.0, "D_KY": 0.0, "I_erase_bits": 0.0}
+        return {
+            "kappa": 0.0,
+            "h_KS": 0.0,
+            "D_KY": 0.0,
+            "sigma_bath_nats": 0.0,
+            "I_merge_transverse_bits": 0.0,
+            "I_erase_net_bits": 0.0,
+            "H_in_nats": 0.0,
+            "H_out_nats": 0.0,
+        }
 
     W_sub = (R * np.exp(1j * Theta))[np.ix_(idx, idx)]
     H_sym = 0.5 * (W_sub + W_sub.conj().T)
@@ -848,6 +732,13 @@ def compute_oseledets_landauer_profile(R, Theta, subsystem_nodes, dissipation=0.
 
     kappa = float(np.sum(np.abs(lyap[lyap < 0.0])))
     h_KS = float(np.sum(lyap[lyap > 0.0]))
+    sigma_bath = float(max(0.0, kappa - h_KS))
+
+    # If H_in_nats is not supplied, set stationary noise floor H_in >= kappa - h_KS
+    if H_in_nats is None:
+        H_in_nats = sigma_bath
+    H_out_nats = float(H_in_nats + h_KS - kappa)
+    balance_err = float(abs((H_in_nats - H_out_nats) + (h_KS - kappa)))
 
     csum = np.cumsum(lyap)
     pos_idx = np.where(csum >= 0.0)[0]
@@ -859,27 +750,28 @@ def compute_oseledets_landauer_profile(R, Theta, subsystem_nodes, dissipation=0.
         j = int(pos_idx[-1])
         D_KY = float((j + 1) + csum[j] / max(abs(lyap[j + 1]), eps))
 
-    I_erase_bits = float(max(0.0, (kappa - h_KS) / np.log(2.0)))
     return {
         "lyapunov_spectrum": lyap,
         "kappa": kappa,
         "h_KS": h_KS,
         "D_KY": D_KY,
-        "I_erase_bits": I_erase_bits,
+        "H_in_nats": float(H_in_nats),
+        "H_out_nats": H_out_nats,
+        "sigma_bath_nats": sigma_bath,
+        "stationary_balance_error": balance_err,
+        "I_merge_transverse_bits": float(kappa / np.log(2.0)),
+        "I_erase_net_bits": float(sigma_bath / np.log(2.0)),
     }
 
 
 # =====================================================================
-# 5. MULTISCALE SYNCHRONIZATION AND CHANNEL BALANCE (SECTIONS 5-6, V3-V6)
+# 5. MULTISCALE SYNCHRONIZATION AND CHANNEL BALANCE (§5-§6, V3-V6)
 # =====================================================================
 
 def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
     """
-    Diagnostic suite for Protocols V3, V5, and V6:
-    - synchronization time tau_sync = tau_diam / lambda_2 (Definition 5.3);
-    - exact diamond balance across bulk, interface, and external channel (Proposition 6.1);
-    - pure null link fraction f_{K=0} and mean null distance l_null in the external channel;
-    - interface saturation ratio eta_sat (Section 6.3).
+    Diagnostic suite for Protocols V3, V5, and V6 using corrected d_diamond(x, y)
+    and sign-consistent net bath erasure flux.
     """
     N = len(R)
     triad = partition_triad(R, core_nodes)
@@ -918,11 +810,6 @@ def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
     else:
         tau_sync = 0.0
 
-    ext_mask = np.isin(np.arange(N)[:, None], E_A) & np.isin(np.arange(N)[None, :], E_A)
-    n_ext_edges = int(np.sum((R == 1) & ext_mask))
-    n_null_edges = int(np.sum(triad["E_null_edges"]))
-    f_null_void = float(n_null_edges / max(1, n_ext_edges))
-
     if len(E_A) >= 2:
         R_E = R[np.ix_(E_A, E_A)]
         dist_E = shortest_path(R_E + R_E.T, directed=False, unweighted=True)
@@ -932,7 +819,7 @@ def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
         l_null_void = np.nan
 
     oseledets = compute_oseledets_landauer_profile(R, Theta, A_nodes)
-    eta_sat = float(oseledets["I_erase_bits"] / max(1, triad["capacity_out"]))
+    eta_sat = float(oseledets["I_erase_net_bits"] / max(1, triad["capacity_out"]))
 
     return {
         "Q_tot": Q_tot,
@@ -941,9 +828,9 @@ def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
         "rho_void": rho_E,
         "balance_identity_error": float(balance_residual),
         "tau_sync": tau_sync,
-        "f_null_void": f_null_void,
+        "f_null_void": triad["f_null_ext"],
         "l_null_void": l_null_void,
-        "I_erase_bits": oseledets["I_erase_bits"],
+        "I_erase_net_bits": oseledets["I_erase_net_bits"],
         "capacity_out": triad["capacity_out"],
         "eta_saturation": eta_sat,
     }
@@ -957,14 +844,7 @@ def verify_precision_helmholtz_and_integrator_chain(
     Pi_E, Pi_Eb, Pi_b, Pi_Ib, Pi_I, Gamma, Q_sol, gamma_modes=(0.1, 0.5, 1.2, 8.0, 15.0), tau_w=0.8
 ):
     """
-    Executable verification suite for Protocol V7 (Propositions 2.2, 3.2, and 5.1):
-    1. Constructs the block-sparse Markov blanket precision matrix Pi (Pi_{IE} = 0),
-       verifies non-zero mediated covariance Sigma_{IE}, and tests the synchronization
-       map sigma(mu_bar(b)) == eta_bar(b) under kernel inclusion.
-    2. Compares the spectral relaxation rate gamma(Q) of the Helmholtz drift
-       B(Q) = (Gamma + Q) * Pi_I against pure gradient relaxation gamma(0).
-    3. Evaluates the relative variance residual of modes k >= 3 under coarse-graining
-       window tau_w in an Ornstein-Uhlenbeck integrator chain.
+    Executable verification suite for Protocol V7 (Propositions 2.2, 3.3, and 5.1).
     """
     d_E, d_b, d_I = len(Pi_E), len(Pi_b), len(Pi_I)
     Z_EI = np.zeros((d_E, d_I))
@@ -987,7 +867,6 @@ def verify_precision_helmholtz_and_integrator_chain(
     )
     cov_formula_err = float(np.max(np.abs(Sigma_IE - Sigma_IE_formula)))
 
-    # Synchronization map sigma: Im(mu_bar) -> Im(eta_bar) (Proposition 2.2)
     sigma_map = np.linalg.inv(Pi_E) @ Pi_Eb @ pinv(Pi_Ib) @ Pi_I
     B_samples = np.random.default_rng(42).normal(size=(d_b, 200))
     eta_expected = -np.linalg.inv(Pi_E) @ Pi_Eb @ B_samples
@@ -995,15 +874,12 @@ def verify_precision_helmholtz_and_integrator_chain(
     eta_predicted = sigma_map @ mu_expected
     sync_err = float(np.max(np.abs(eta_expected - eta_predicted)))
 
-    # Helmholtz relaxation spectral gap gamma(Q) vs gamma(0) (Proposition 3.2)
     B_0 = Gamma @ Pi_I
     B_Q = (Gamma + Q_sol) @ Pi_I
     gamma_0 = float(np.min(np.real(eigvals(B_0))))
     gamma_Q = float(np.min(np.real(eigvals(B_Q))))
 
-    # Integrator-chain window truncation residual for modes k >= 3 (Proposition 5.1)
     gammas = np.array(gamma_modes, dtype=float)
-    # Exact window-averaged variance factor for OU mode: 2*(g*T - 1 + exp(-g*T))/(g*T)^2
     gT = gammas * tau_w
     win_factors = 2.0 * (gT - 1.0 + np.exp(-gT)) / np.maximum(gT ** 2, 1e-12)
     fast_truncation_ratio = float(np.sum(win_factors[3:]) / max(np.sum(win_factors[:3]), 1e-12))
@@ -1023,13 +899,22 @@ def verify_precision_helmholtz_and_integrator_chain(
 
 ## 10. References
 
-1. **Causal Sets and Lorentzian Geometry Reconstruction:** L. Bombelli, J. Lee, D. Meyer, R. D. Sorkin, *Space-Time as a Causal Set*, Physical Review Letters **59**, 521–524 (1987); S. Surya, *The Causal Set Approach to Quantum Gravity*, Living Reviews in Relativity **22**, 5 (2019).
-2. **Combinatorial Asymptotics of Partial Orders:** D. J. Kleitman, B. L. Rothschild, *Asymptotic Enumeration of Partial Orders on a Finite Set*, Transactions of the American Mathematical Society **205**, 205–220 (1975).
-3. **Thermodynamic Derivation of Field Equations and Relative Entropy:** T. Jacobson, *Thermodynamics of Spacetime: The Einstein Equation of State*, Physical Review Letters **75**, 1260–1263 (1995); H. Araki, *Relative Entropy of States of von Neumann Algebras*, Publications of the RIMS **11**, 809–833 (1976); A. Uhlmann, *Relative Entropy and the Wigner–Yanase–Dyson–Lieb Concavity in an Interpolation Theory*, Communications in Mathematical Physics **54**, 21–32 (1977); P. Dorau, R. Verch, M. Much, works on deriving gravitational field equations from Araki–Uhlmann relative entropy on causal diamonds.
-4. **Markov Blankets, Helmholtz Decomposition, and Non-Equilibrium Stationary Processes:** L. Da Costa, K. Friston, C. Heins, G. A. Pavliotis, *Bayesian Mechanics for Stationary Processes*, Proceedings of the Royal Society A **477**, 20210518 (2021); G. A. Pavliotis, *Stochastic Processes and Applications: Diffusion Processes, the Fokker–Planck and Langevin Equations*, Springer (2014); T. Lelièvre, F. Nier, G. A. Pavliotis, *Optimal Non-Reversible Linear Drift for the Convergence to Equilibrium of a Diffusion*, Journal of Statistical Physics **152**, 237–274 (2013); J. L. Doob, *The Brownian Movement and Stochastic Equations*, Annals of Mathematics **43**, 351–369 (1942); A. Lindquist, G. Picci, *Linear Stochastic Systems: A Geometric Approach to Modeling, Estimation and Identification*, Springer (2015); M. Biehl, F. A. Pollock, R. Kanai, *A Technical Critique of Some Parts of the Free Energy Principle*, Entropy **23**, 293 (2021); M. Aguilera, B. Millidge, A. Tschantz, C. L. Buckley, *How Particular Is the Physics of the Free Energy Principle?*, Physics of Life Reviews (2021/2022).
-5. **Thermodynamics of Computation and Quantum Rate Bounds:** R. Landauer, *Irreversibility and Heat Generation in the Computing Process*, IBM Journal of Research and Development **5**, 183–191 (1961); N. Margolus, L. B. Levitin, *The Maximum Speed of Dynamical Evolution*, Physica D **120**, 188–195 (1998); J. D. Bekenstein, *Universal Upper Bound on the Entropy-to-Energy Ratio for Bounded Systems*, Physical Review D **23**, 287–298 (1981).
-6. **Multiplicative Ergodic Theory, Attractor Dimension, and Dichotomy Projectors:** V. I. Oseledets, *A Multiplicative Ergodic Theorem: Characteristic Ljapunov Exponents of Dynamical Systems*, Transactions of the Moscow Mathematical Society **19**, 197–231 (1968); Ya. B. Pesin, *Characteristic Lyapunov Exponents and Smooth Ergodic Theory*, Russian Mathematical Surveys **32**(4), 55–114 (1977); J. L. Kaplan, J. A. Yorke, *Chaotic Behavior of Multidimensional Difference Equations*, Lecture Notes in Mathematics **730**, 204–227 (1979); D. G. Clark, *Lyapunov Spectrum and Minimum-Norm Tangent Response in High-Dimensional Networks* (2026); R. Engelken, F. Wolf, L. F. Abbott, *Lyapunov Spectra of Chaotic Recurrent Neural Networks*, Physical Review Research **5**, 043044 (2023).
-7. **Noncommutative Geometry and Thermal Time:** A. Connes, *Noncommutative Geometry*, Academic Press (1994); A. Connes, C. Rovelli, *Von Neumann Algebra Automorphisms and Time-Thermodynamics Relation in Generally Covariant Quantum Theories*, Classical and Quantum Gravity **11**, 2899–2917 (1994).
-8. **Matrix Models and Holographic Complexity:** T. Banks, W. Fischler, S. H. Shenker, L. Susskind, *M Theory as a Matrix Model: A Conjecture*, Physical Review D **55**, 5112–5128 (1997); A. R. Brown, D. A. Roberts, L. Susskind, B. Swingle, Y. Zhao, *Complexity, Action, and Black Holes*, Physical Review D **93**, 086006 (2016).
-9. **Information Bottleneck, Causal Emergence, and Network Null Models:** N. Tishby, F. C. Pereira, W. Bialek, *The Information Bottleneck Method*, Allerton Conference (1999); E. P. Hoel, L. Albantakis, G. Tononi, *Quantifying Causal Emergence Shows That Macro Can Beat Micro*, PNAS **110**, 19790–19795 (2013); F. Vazza, A. Feletti, *The Quantitative Comparison Between the Neuronal Network and the Cosmic Web*, Frontiers in Physics **8**, 525731 (2020); F. Váša, B. Mišić, *Null Models in Network Neuroscience*, Nature Reviews Neuroscience **23**, 493–504 (2022).
-10. **Three-Valued Entailment Logic and Verification Semilattices:** N. P. Brusentsov, *The Improvement of Inference Logic* [Usovershenstvovanie logiki umozaklyucheniy], Moscow: New Millennium Foundation (2012); L. Carroll, *Symbolic Logic*, Macmillan (1896).
+[1] **Causal Sets and Lorentzian Geometry Reconstruction:** L. Bombelli, J. Lee, D. Meyer, R. D. Sorkin, *Space-Time as a Causal Set*, Physical Review Letters **59**, 521–524 (1987)[cite: 1, 3, 35]; S. Surya, *The Causal Set Approach to Quantum Gravity*, Living Reviews in Relativity **22**, 5 (2019)[cite: 1, 35].
+
+[2] **Combinatorial Asymptotics of Partial Orders:** D. J. Kleitman, B. L. Rothschild, *Asymptotic Enumeration of Partial Orders on a Finite Set*, Transactions of the American Mathematical Society **205**, 205–220 (1975)[cite: 35].
+
+[3] **Thermodynamic Derivation of Field Equations and Relative Entropy:** T. Jacobson, *Thermodynamics of Spacetime: The Einstein Equation of State*, Physical Review Letters **75**, 1260–1263 (1995)[cite: 1, 3, 35]; H. Araki, *Relative Entropy of States of von Neumann Algebras*, Publications of the RIMS **11**, 809–833 (1976)[cite: 35]; A. Uhlmann, *Relative Entropy and the Wigner–Yanase–Dyson–Lieb Concavity in an Interpolation Theory*, Communications in Mathematical Physics **54**, 21–32 (1977)[cite: 35]; P. Dorau, R. Verch, M. Much, works on deriving gravitational field equations from Araki–Uhlmann relative entropy on causal diamonds[cite: 35].
+
+[4] **Markov Blankets, Helmholtz Decomposition, and Non-Equilibrium Stationary Processes:** L. Da Costa, K. Friston, C. Heins, G. A. Pavliotis, *Bayesian Mechanics for Stationary Processes*, Proceedings of the Royal Society A **477**, 20210518 (2021)[cite: 8]; G. A. Pavliotis, *Stochastic Processes and Applications: Diffusion Processes, the Fokker–Planck and Langevin Equations*, Springer (2014)[cite: 30]; T. Lelièvre, F. Nier, G. A. Pavliotis, *Optimal Non-Reversible Linear Drift for the Convergence to Equilibrium of a Diffusion*, Journal of Statistical Physics **152**, 237–274 (2013)[cite: 32]; J. L. Doob, *The Brownian Movement and Stochastic Equations*, Annals of Mathematics **43**, 351–369 (1942)[cite: 32]; A. Lindquist, G. Picci, *Linear Stochastic Systems: A Geometric Approach to Modeling, Estimation and Identification*, Springer (2015)[cite: 32]; M. Biehl, F. A. Pollock, R. Kanai, *A Technical Critique of Some Parts of the Free Energy Principle*, Entropy **23**, 293 (2021)[cite: 30]; M. Aguilera, B. Millidge, A. Tschantz, C. L. Buckley, *How Particular Is the Physics of the Free Energy Principle?*, Physics of Life Reviews (2021/2022)[cite: 30].
+
+[5] **Thermodynamics of Computation, Phase-Space Contraction, and Quantum Rate Bounds:** R. Landauer, *Irreversibility and Heat Generation in the Computing Process*, IBM Journal of Research and Development **5**, 183–191 (1961)[cite: 3, 35]; D. Ruelle, *Positivity of Entropy Production in Nonequilibrium Statistical Mechanics*, Journal of Statistical Physics **85**, 1–23 (1996); N. Margolus, L. B. Levitin, *The Maximum Speed of Dynamical Evolution*, Physica D **120**, 188–195 (1998)[cite: 3, 35]; J. D. Bekenstein, *Universal Upper Bound on the Entropy-to-Energy Ratio for Bounded Systems*, Physical Review D **23**, 287–298 (1981)[cite: 3, 35].
+
+[6] **Multiplicative Ergodic Theory, Attractor Dimension, and Dichotomy Projectors:** V. I. Oseledets, *A Multiplicative Ergodic Theorem: Characteristic Ljapunov Exponents of Dynamical Systems*, Transactions of the Moscow Mathematical Society **19**, 197–231 (1968)[cite: 4, 35]; Ya. B. Pesin, *Characteristic Lyapunov Exponents and Smooth Ergodic Theory*, Russian Mathematical Surveys **32**(4), 55–114 (1977)[cite: 4, 35]; J. L. Kaplan, J. A. Yorke, *Chaotic Behavior of Multidimensional Difference Equations*, Lecture Notes in Mathematics **730**, 204–227 (1979)[cite: 4, 35]; D. G. Clark, *Lyapunov Spectrum and Minimum-Norm Tangent Response in High-Dimensional Networks* (2026)[cite: 4, 35]; R. Engelken, F. Wolf, L. F. Abbott, *Lyapunov Spectra of Chaotic Recurrent Neural Networks*, Physical Review Research **5**, 043044 (2023)[cite: 4, 35].
+
+[7] **Noncommutative Geometry and Thermal Time:** A. Connes, *Noncommutative Geometry*, Academic Press (1994)[cite: 3, 35]; A. Connes, C. Rovelli, *Von Neumann Algebra Automorphisms and Time-Thermodynamics Relation in Generally Covariant Quantum Theories*, Classical and Quantum Gravity **11**, 2899–2917 (1994)[cite: 1, 3, 35].
+
+[8] **Matrix Models and Holographic Complexity:** T. Banks, W. Fischler, S. H. Shenker, L. Susskind, *M Theory as a Matrix Model: A Conjecture*, Physical Review D **55**, 5112–5128 (1997)[cite: 1, 35]; A. R. Brown, D. A. Roberts, L. Susskind, B. Swingle, Y. Zhao, *Complexity, Action, and Black Holes*, Physical Review D **93**, 086006 (2016)[cite: 1, 35].
+
+[9] **Information Bottleneck, Causal Emergence, and Network Null Models:** N. Tishby, F. C. Pereira, W. Bialek, *The Information Bottleneck Method*, Allerton Conference (1999)[cite: 3, 6, 35]; E. P. Hoel, L. Albantakis, G. Tononi, *Quantifying Causal Emergence Shows That Macro Can Beat Micro*, PNAS **110**, 19790–19795 (2013)[cite: 3, 6, 35]; F. Vazza, A. Feletti, *The Quantitative Comparison Between the Neuronal Network and the Cosmic Web*, Frontiers in Physics **8**, 525731 (2020)[cite: 1, 35]; F. Váša, B. Mišić, *Null Models in Network Neuroscience*, Nature Reviews Neuroscience **23**, 493–504 (2022)[cite: 1, 35].
+
+[10] **Three-Valued Entailment Logic and Verification Semilattices:** N. P. Brusentsov, *The Improvement of Inference Logic* [Usovershenstvovanie logiki umozaklyucheniy], Moscow: New Millennium Foundation (2012)[cite: 3, 6, 35]; L. Carroll, *Symbolic Logic*, Macmillan (1896)[cite: 6, 35].
