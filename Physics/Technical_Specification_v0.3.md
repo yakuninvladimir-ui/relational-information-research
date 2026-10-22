@@ -35,10 +35,10 @@ it implements the v3.9 protocol suite.
 | Protocol | What is computed | §9 functions used | New code required |
 |---|---|---|---|
 | V1 | $`K_{xy}^{\mathrm{eff}}`$ distribution, twin reduction rate, spectral dimensions $`(d_s, d_H, d_\tau)`$ | `interval_local_path_quotient`, `collapse_structural_twins`, `is_hasse_transitive_free` | Graph generator with penalty exponent $`p`$; annealing schedule; Myrheim–Meyer dimension estimator |
-| V2 | $`\kappa(A)`$, $`h_{\mathrm{KS}}(A)`$, $`\varepsilon`$-box entropy $`H_\varepsilon`$, $`H_{\mathrm{in}}`$, $`H_{\mathrm{out}}`$, $`\sigma_{\mathrm{bath}}`$ | `compute_oseledets_landauer_profile` | $`\varepsilon`$-partition entropy estimator; noise injection harness; linear-network control |
+| V2 | $`\kappa(A)`$, $`h_{\mathrm{KS}}(A)`$, $`\varepsilon`$-box entropy $`H_\varepsilon`$, $`H_{\mathrm{in}}`$, $`H_{\mathrm{out}}`$, $`\sigma_{\mathrm{bath}}`$ | `compute_oseledets_landauer_profile`, `epsilon_box_entropy` | Noise-injection harness with bisection calibration (§4.1); $`\varepsilon`$-ladder and offset-averaging wrapper around §9 `epsilon_box_entropy` (§4.2); noise-free push-forward measurement of $`\Delta H_{\mathrm{dyn}}^{(\varepsilon)}`$ (§4.3); linear-network control |
 | V3 | $`f_{\mathrm{null}}(\mathcal{E})`$, $`\Delta\rho_D^{\mathrm{far}}`$, $`\ell_{\mathrm{null}}`$, diamond residual profile | `compute_edge_diamond_participation`, `evaluate_synchronization_and_balance`, `partition_triad` | Core condensation driver; degree-preserving swap control; phase-scrambling control |
 | V4 | $`\delta\omega(r)/\omega_\infty`$, $`V_{\mathrm{int}}(r)`$, shell extent | `evaluate_synchronization_and_balance` | Radial frequency profiler; interaction free-energy estimator; $`\omega_A = \omega_{\mathrm{ext}}`$ control |
-| V5 | Network topology transition $`N_{\mathrm{crit}}`$, $`\lambda_2`$ under degree bound | `evaluate_synchronization_and_balance` | Volume/frustration minimizer with $`\lambda_2`$ constraint; degree-matched configuration-model control |
+| V5 | Network topology transition $`N_{\mathrm{crit}}`$, $`\lambda_2`$ under degree bound | `evaluate_synchronization_and_balance` | Volume/frustration minimizer with $`\lambda_2`$ constraint; topology classifier and spectral-exponent fit (§7.2); degree-matched configuration-model control |
 | V6 | $`\eta_{\mathrm{sat}}`$, mutual information across $`\partial^+ A`$, interior $`K^{\mathrm{eff}}`$ at $`\eta_{\mathrm{sat}} \ge 1`$ | `compute_oseledets_landauer_profile`, `interval_local_path_quotient`, `partition_triad` | Bulk-contraction driver; trans-boundary MI estimator |
 | V7 | Synchronization error, $`\gamma(Q)`$ vs $`\gamma(0)`$, integrator truncation residual | `verify_precision_helmholtz_and_integrator_chain` | (Minimal new code; §9 function is near-complete) |
 
@@ -141,8 +141,8 @@ For each graph, run simulated annealing on the phase configuration $`\{\theta_{x
 \mathcal{F}^{(p)}_{\mathrm{loc}} = a \sum_{(x,y): K_{xy} \ge 2} (K^{\mathrm{eff}}_{xy})^p + b \sum_{(x,y): K_{xy} \ge 2} J^{\mathrm{eff}}_{xy}
 ```
 
-Penalty exponents: $`p \in \{2, 1, 0.5\}`$ (convex, linear, concave).
-Parameters: $`a = 1.0`$, $`b \in \{0.0, 0.1, 1.0\}`$, $`T_{\mathrm{init}} = 5.0`$, $`T_{\mathrm{final}} = 0.01`$, geometric cooling rate $`0.995`$, $`10^4`$ sweeps per temperature.
+Penalty families (the control set prescribed by CPP v3.9 §3.2 scope note and Protocol V1): convex $`(K^{\mathrm{eff}}_{xy})^2`$ ($`p = 2`$), linear $`K^{\mathrm{eff}}_{xy}`$ ($`p = 1`$), and concave logarithmic $`\ln(1 + K^{\mathrm{eff}}_{xy})`$ (for the logarithmic leg, $`\mathcal{F}^{(p)}_{\mathrm{loc}}`$ is replaced by $`a \sum \ln(1 + K^{\mathrm{eff}}_{xy}) + b \sum J^{\mathrm{eff}}_{xy}`$).
+Parameters: $`a = 1.0`$, $`b \in \{0.0, 0.1, 1.0\}`$, $`T_{\mathrm{init}} = 5.0`$, $`T_{\mathrm{final}} = 0.01`$, geometric cooling rate $`0.995`$ (≈1240 temperature levels). **Total budget: $`10^4`$ sweeps per annealing run**, distributed geometrically across levels (≈8 sweeps per level) — not per temperature.
 
 **Key constraint:** vertex valency bounded by $`k_{\max} \in \{4, 6, 8\}`$. Proposals violating $`k_{\max}`$ are rejected.
 
@@ -181,7 +181,7 @@ Select a connected subgraph $`A \subset X`$ (output of V1 annealing or a synthet
 z(n+1) = G_R(z(n)) = M_{\mathrm{jac}} \cdot z(n) + \xi(n)
 ```
 
-where $`M_{\mathrm{jac}}`$ is constructed as in §9 (`compute_oseledets_landauer_profile`) and $`\xi(n)`$ is stationary Gaussian noise with variance calibrated to maintain $`H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)`$.
+where $`M_{\mathrm{jac}}`$ is constructed as in §9 (`compute_oseledets_landauer_profile`) and $`\xi(n) \sim \mathcal{N}(0, \sigma_\xi^2 I)`$ is stationary Gaussian noise whose amplitude is **calibrated by bisection on $`\sigma_\xi`$**: for each candidate amplitude, integrate $`10^4`$ steps and measure the drift $`\Delta \bar{H}_\varepsilon`$ as the difference of window-averaged $`H_\varepsilon(Z_n)`$ over the second and first halves of the trajectory; accept the smallest bracket with $`\vert{}\Delta \bar{H}_\varepsilon\vert{} < 0.01`$ nats/step, else halve the bracket (max 12 iterations). The calibrated $`\sigma_\xi`$ is logged per stiffness point.
 
 ### **4.2 ε-box entropy estimator**
 
@@ -200,14 +200,18 @@ def epsilon_box_entropy(trajectory, lyapunov_basis, epsilon):
     return -np.sum(probs * np.log(probs))
 ```
 
+All reported $`H_\varepsilon`$ values are averaged over $`n_{\mathrm{off}} = 8`$ uniformly random offsets of the $`\varepsilon`$-partition (grid-alignment bias control) and measured on the ladder $`\varepsilon \in \{\varepsilon_0, \varepsilon_0/2, \varepsilon_0/4, \varepsilon_0/8\}`$, with $`\varepsilon_0`$ chosen so that the coarsest level retains ≥ 5 samples per occupied box. Single-scale entropies are not admissible in V2-N1 (grid coarsening biases the slope; pilot measurement: ≈1.78 instead of 2 for a unit 2-D Gaussian across $`\varepsilon \in [0.1, 0.5]`$).
+
 ### **4.3 Observables**
 
 | Observable | Formula | Confirmation criterion |
 |---|---|---|
 | $`\kappa(A) - h_{\mathrm{KS}}(A)`$ | From Lyapunov spectrum | Positive (dissipative confinement) |
-| $`H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)}`$ | From entropy balance | Pearson $`r \ge 0.90`$ with $`\kappa - h_{\mathrm{KS}}`$ across stiffness sweep |
+| $`\Delta H_{\mathrm{dyn}}^{(\varepsilon)} := H_\varepsilon(G_R(Z)) - H_\varepsilon(Z)`$ | Noise-free one-step push-forward of the stationary ensemble (§4.2 estimator, offset-averaged) | Pearson $`r \ge 0.90`$ of $`-\Delta H_{\mathrm{dyn}}^{(\varepsilon)}`$ with $`\kappa - h_{\mathrm{KS}}`$ across stiffness sweep |
 | Transverse merging rate | $`\exp(\kappa(A))`$ | $`\varepsilon`$-box count ratio scales as $`e^{\kappa}`$ |
-| $`\sigma_{\mathrm{bath}}`$ | $`H_{\mathrm{in}} - H_{\mathrm{out}}`$ | $`> 0`$ and equals $`\kappa - h_{\mathrm{KS}}`$ within 5% |
+| $`\sigma_{\mathrm{bath}}`$ | $`-\Delta H_{\mathrm{dyn}}^{(\varepsilon)}`$ (measured); independently cross-checked by trajectory stationarity $`\vert{}\mathbb{E}[H_\varepsilon(Z_{n+1}) - H_\varepsilon(Z_n)]\vert{} < 0.01`$ nats/step | $`> 0`$ and equals $`\kappa - h_{\mathrm{KS}}`$ within 5% |
+
+**Measurement channels (non-circular).** $`H_{\mathrm{in}}^{(\varepsilon)}`$ is measured from the injected noise draws alone (per-step $`\varepsilon`$-box occupancy entropy of $`\xi(n)`$ on the same grid); $`\Delta H_{\mathrm{dyn}}^{(\varepsilon)}`$ from the noise-free push-forward above. $`H_{\mathrm{out}}^{(\varepsilon)}`$ is **not** read off the §9 algebraic identity — that identity holds by construction and serves only as a bookkeeping check; the balance predicts $`H_{\mathrm{out}} = H_{\mathrm{in}} + \Delta H_{\mathrm{dyn}}`$, and its empirical content is confirmed by the calibrated-noise stationarity of the full trajectory (§4.1) together with the folding-vs-spectrum correlation above.
 
 ### **4.4 Control**
 
@@ -217,7 +221,7 @@ def epsilon_box_entropy(trajectory, lyapunov_basis, epsilon):
 
 | ID | Test | Pass criterion |
 |---|---|---|
-| V2-N1 | $`\varepsilon \to 0`$: entropy diverges (consistency) | $`H_\varepsilon \sim -d \log \varepsilon`$ |
+| V2-N1 | $`\varepsilon \to 0`$: entropy diverges (consistency) | Least-squares slope of $`H_\varepsilon`$ vs $`-\ln \varepsilon`$ over the §4.2 ladder (two finest levels, offset-averaged) matches the effective occupancy dimension $`d_{\mathrm{eff}}`$ (count of stationary-covariance eigenvalues above the noise floor $`(2\sigma_\xi)^2`$) within 10% |
 | V2-N2 | $`\varepsilon \to \infty`$: entropy $`\to 0`$ | Exact |
 | V2-N3 | No noise ($`H_{\mathrm{in}} = 0`$): system contracts to a point | $`H_\varepsilon \to 0`$ monotonically |
 | V2-N4 | Linear control: $`\kappa - h_{\mathrm{KS}}`$ should NOT track entropy balance | $`r < 0.5`$ |
@@ -283,8 +287,11 @@ $`f_{\mathrm{null}}`$ and $`\Delta\rho_D^{\mathrm{far}}`$ are fully explained by
 
 Select a cluster $`A`$ with internal phase rate $`\omega_A \neq \omega_{\mathrm{ext}}`$. Measure:
 
-1. Radial frequency shift $`\delta\omega(r)/\omega_\infty`$ as a function of distance $`r`$ from cluster boundary.
-2. Interaction free energy $`V_{\mathrm{int}}(r) = -\log \langle e^{-\Delta S(r)} \rangle`$ where $`\Delta S(r)`$ is the action cost of placing a test diamond at distance $`r`$.
+1. Radial frequency shift $`\delta\omega(r)/\omega_\infty`$ as a function of graph distance $`r`$ from the cluster boundary, where $`\omega(r)`$ is the proper phase rate of Definition 5.1 (CPP v3.9) computed on the shell $`\{v : d_{\mathrm{graph}}(v, \partial A) = r\}`$ and $`\omega_\infty`$ is its far-field plateau (mean over the outermost three shells).
+2. Interaction free energy $`V_{\mathrm{int}}(r) = -\log \langle e^{-\Delta S(r)} \rangle`$ with
+   $`\Delta S(r) := \mathcal{F}^{(2)}[G \oplus \diamond_r] - \mathcal{F}^{(2)}[G]`$
+   evaluated on the convex functional of §3.2, where $`G \oplus \diamond_r`$ is the annealed graph with one **test binary diamond grafted at distance $`r`$**: two new vertices $`z_1, z_2`$ completing a two-step corridor $`x \to z_a \to y`$ whose nearest boundary vertex lies at distance $`r`$ from $`\partial A`$ (valency bound $`k_{\max}`$ respected; grafts rejected otherwise). $`\langle \cdot \rangle`$ is taken over heat-bath phase samples at the final annealing temperature ($`\ge 10^3`$ samples) and $`\ge 4`$ graft positions per shell; $`r`$ is binned into 20 shells.
+3. Shell extents from the smoothed profile $`V_{\mathrm{int}}(r)`$ (Savitzky–Golay, 5-bin window): $`r_{\mathrm{bulk}}`$ := smallest $`r`$ with $`\partial_r V_{\mathrm{int}} > 0`$; $`r_{\mathrm{halo}}`$ := smallest $`r \ge r_{\mathrm{bulk}}`$ such that $`\vert{}\partial_r V_{\mathrm{int}}\vert{} < 2\sigma_{\mathrm{noise}}`$ for all larger $`r`$ (shell bootstrap CIs).
 
 ### **6.2 Observables**
 
@@ -307,7 +314,7 @@ Potential truncates sharply at core boundary with no extended shell.
 
 ### **7.1 Setup**
 
-Minimize volume + frustration subject to:
+Minimize the §3.2 convex functional $`\mathcal{F}^{(2)} = a \sum (K^{\mathrm{eff}}_{xy})^2 + b \sum J^{\mathrm{eff}}_{xy}`$ (volume + frustration) with the same annealer as §3.2, subject to:
 - $`\lambda_2(A) \ge \lambda_{\mathrm{sync}}`$ (synchronization connectivity)
 - $`\deg(x) \le k_{\max}`$ (bounded degree)
 
@@ -315,9 +322,17 @@ Across $`N = 64, 128, 256, 512, 1024`$.
 
 ### **7.2 Observables**
 
+The topology class is decided by a **pre-registered estimator** on the symmetric skeleton (all thresholds live in `config.yaml`):
+
+1. **Chain fraction** $`f_{\mathrm{chain}} := \vert{}\{v : \deg(v) \le 2\}\vert{} / N`$.
+2. **Core clustering ratio** $`C_{\mathrm{ratio}}`$ := mean local clustering coefficient of the top-decile-degree vertices ÷ the same statistic on degree-matched configuration models (10 realizations).
+3. **Distance bimodality** $`b`$ := bimodality coefficient of the pairwise BFS-distance histogram (Sarle’s coefficient $`b = (\gamma^2 + 1)/\kappa`$, where $`\gamma`$ and $`\kappa`$ are the skewness and kurtosis of the histogram — not to be confused with the contraction rate $`\kappa(A)`$; $`b > 0.555`$ indicates bimodality).
+
+**Class assignment:** `compact` if $`f_{\mathrm{chain}} < 0.25`$ and $`C_{\mathrm{ratio}} < 2`$; `filamentary-void` if $`f_{\mathrm{chain}} \ge 0.5`$ and $`C_{\mathrm{ratio}} \ge 3`$ and $`b > 0.555`$; otherwise the sample is class-`UNDECIDED` (excluded from $`N_{\mathrm{crit}}`$ estimation and logged). $`N_{\mathrm{crit}}`$ := the smallest $`N`$ for which the class is `filamentary-void` at every $`N' \ge N`$ of the sweep, confirmed in ascending **and** descending $`N`$ order (hysteresis check). **Spectral scale-invariance:** fit $`\rho(\lambda) \propto \lambda^{\alpha}`$ to the normalized-Laplacian spectral density on $`\lambda \in (0, \lambda_{\mathrm{sync}}]`$; criterion: $`\alpha`$ varies by ≤ 0.15 across $`N \in \{256, 512, 1024\}`$.
+
 | Observable | Confirmation criterion |
 |---|---|
-| Topology class: compact ball vs node-filament-void | Transition at $`N_{\mathrm{crit}}`$ |
+| Topology class (estimator above): compact ball vs node-filament-void | Transition at $`N_{\mathrm{crit}}`$ |
 | $`\lambda_2(N)`$ scaling | Violates $`\tau_{\mathrm{sync}} \le 2\pi/\sigma_\omega`$ above $`N_{\mathrm{crit}}`$ |
 | Stability under $`\mathcal{R}_{\ell \to \ell+1}`$ | Coarse-graining preserves topology class |
 
@@ -363,7 +378,7 @@ This protocol is the most directly executable: §9 function `verify_precision_he
 
 Additional requirements:
 - Generate random positive-definite $`\Pi_{\mathcal{E}}, \Pi_{\mathcal{I}}, \Pi_b`$ of dimensions $`(d_E, d_b, d_I) \in \{(10,5,10), (20,10,20), (50,20,50)\}`$.
-- Generate $`\Pi_{\mathcal{E},b}, \Pi_{\mathcal{I},b}`$ satisfying (and separately violating) kernel inclusion.
+- Generate $`\Pi_{\mathcal{E},b}, \Pi_{\mathcal{I},b}`$ satisfying kernel inclusion ($`\Pi_{\mathcal{E},b} = C\,\Pi_{\mathcal{I},b}`$, random $`C`$) and separately violating it. **The violating branch must be constructed rank-deficiently:** for an injective (full-column-rank) $`\Pi_{\mathcal{I},b}`$ the inclusion $`\ker \Pi_{\mathcal{I},b} \subseteq \ker \Pi_{\mathcal{E},b}`$ holds vacuously and no violation exists — verified: with $`d_I \ge d_b`$ and generic random $`\Pi_{\mathcal{E},b}`$ the synchronization error stays at machine precision ($`\approx 5 \times 10^{-15}`$). Construct violations either with inverted dimension pairs $`(d_E, d_b, d_I) \in \{(10, 10, 5), (20, 20, 10)\}`$, or with $`\Pi_{\mathcal{I},b} = U \Sigma V^\top`$ carrying at least one zero singular value and $`\Pi_{\mathcal{E},b}`$ not vanishing on $`\ker \Pi_{\mathcal{I},b}`$ (pilot detection magnitude $`\approx 3`$).
 - Generate $`\Gamma \succ 0`$ and $`Q = -Q^\top`$.
 
 ### **9.2 Observables**
@@ -394,7 +409,7 @@ Synchronization fails under inclusion, $`\gamma(Q) < \gamma(0)`$, or high orders
 
 | Protocol | Estimated wall-clock | Dominant cost |
 |---|---|---|
-| V1 | 2–4 hours | Annealing at $`N = 256`$, $`10^4`$ sweeps × 5 temperatures × 3 penalties × 4 seeds |
+| V1 | 2–4 hours | Annealing at $`N = 256`$ (spot checks $`N \in \{64, 512\}`$): $`10^4`$ total sweeps per run across ≈1240 geometric temperature levels (§3.2) × 3 penalty families × 4 seeds |
 | V2 | 1–2 hours | Trajectory integration $`10^5`$ steps × 6 stiffness values × 4 seeds |
 | V3 | 2–3 hours | Rewiring $`10^5`$ steps × 4 condensation levels × 4 seeds |
 | V4 | 1–2 hours | Radial profiling at 20 distance bins × 4 seeds |
