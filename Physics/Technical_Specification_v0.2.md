@@ -1,13 +1,13 @@
 # Technical Specification v0.2 (CONSOLIDATED)
 
-> **STATUS: FROZEN — historical specification (October 21, 2026); never executed.** The active verification program of the physics corpus is now Protocols V1–V7 of *Causal Phase Program v3.9* (`Physics/Causal_Phase_Program_v3.md`). Technical Specification **v0.3**, implementing V1–V7 on the v3.9 reference implementation, is planned and not yet created. Mode B of this document targeted the same local-condensation / void-rarefaction mechanism now tested by Protocol V3, but under the v2.0 $D_{\rm KL} \le c \cdot N_\partial$ mechanics; the document is retained for continuity of the pilot design (observables, null tests D1–D8, resource budget) and is not an active deliverable.
+> **STATUS: FROZEN — historical specification (October 21, 2026); executed with outcome `UNDECIDED`; superseded by Technical Specification v0.3 (October 22, 2026).** This specification was executed and returned **`UNDECIDED`**: divergence of the autocorrelation time (glassy freezing) in the Mode B link-rewiring ensemble, and finite-size ambiguity across $L = 12, 16, 20$ preventing a clean core–void separation. That outcome motivated the theoretical rework into *Causal Phase Program v3.9* (`Physics/Causal_Phase_Program_v3.md`). The mechanism targeted by Mode B is now covered by Protocol V3; **Technical Specification v0.3** does not re-run v0.2 — it implements the v3.9 protocol suite (V1–V7). This document is retained for continuity of the pilot design (observables, null tests D1–D8, resource budget); it is not an active deliverable.
 
 ## Software Complex for Stochastic Verification of Local Condensation and Global Decompression on a Budget-Constrained Causal-Phase Graph
 
 **Version:** 0.2.0 (consolidates v0.1 static baseline and v0.2 dynamic-topology test)  
 **Date:** 17 October 2026  
 **Author:** Vladimir Yakunin  
-**Status:** Frozen — historical specification; superseded as the active pilot track by Causal Phase Program v3.9 (Protocols V1–V7; Technical Specification v0.3 pending)  
+**Status:** Frozen — historical specification; executed with outcome `UNDECIDED` (glassy freezing in Mode B; finite-size ambiguity); superseded by Technical Specification v0.3 (active)  
 **Target Hardware:** AMD Ryzen 5 5500 (6c/12t), 16 GB RAM, RX 6650 XT (CPU + Numba FP64 pipeline; GPU optional/not required)  
 
 **Primary Scientific Question:**  

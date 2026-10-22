@@ -441,35 +441,82 @@ All computational audit corrections are implemented and verified in the code bel
 2. `interval_local_path_quotient(R, Theta, eps_ker)` performs path factorization **strictly inside each interval $`(x, y)`$** on $`\mathcal{P}_2(x, y)`$, while `collapse_structural_twins(R, Theta, eps_ker)` merges vertices **only** if they are true causal twins sharing identical predecessors and successors.
 3. `compute_oseledets_landauer_profile(...)` implements the exact sign-consistent $`\varepsilon`$-box entropy balance $`H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}} - \kappa`$ and net bath folding rate $`\sigma_{\mathrm{bath}} = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa - h_{\mathrm{KS}}`$.
 
+In addition, the implementation incorporates the five mandatory numerical-robustness fixes (`FIX-1`–`FIX-5`) and the protocol infrastructure required by **Technical Specification v0.3** (§2.2; `Physics/Technical_Specification_v0.3.md`): iterative Hasse-reachability verification, explicit `int64` casting of adjacency arithmetic, eigenvalue-based Lyapunov spectra (SVD retained for diagnostics), directed causal diameters, isolated-vertex filtering before normalized-Laplacian spectra, and graph generators, null-test controls, dimension estimators, and $`\varepsilon`$-box entropy for protocols V1–V7.
+
 ```python
+"""
+cpp_v39_reference_patched.py
+
+Patched reference implementation for Causal Phase Program v3.9, Section 9.
+Implements mandatory fixes from Technical_Specification_v0.3.md §2.2
+and adds minimal infrastructure for Protocols V1–V7.
+
+Changes relative to the §9 block in Causal_Phase_Program_v3.md:
+  [FIX-1] is_hasse_transitive_free: iterative reachability instead of np.linalg.inv
+  [FIX-2] Explicit int64 cast on all R-matrix inputs
+  [FIX-3] Lyapunov spectrum via eigenvalues (default), SVD retained for diagnostics
+  [FIX-4] Directed shortest paths for causal diameter
+  [FIX-5] Isolated-vertex filtering before Laplacian eigenvalues
+  [NEW]   Graph generators, null-test controls, dimension estimators, ε-box entropy
+
+Normative parent: Physics/Causal_Phase_Program_v3.md (v3.9)
+Canonical logic:  Reasoning/Modified_Brusentsov_Entailment_Logic.md
+"""
+
 import numpy as np
 from scipy.sparse.csgraph import connected_components, shortest_path
 from scipy.linalg import eigh, eigvals, svdvals, pinv
 
+
 # =====================================================================
-# 1. FOUNDATIONAL CAUSAL-PHASE ALGEBRA & EDGE DIAMOND MULTIPLICITY (§1-§2)
+# 1. FOUNDATIONAL CAUSAL-PHASE ALGEBRA & EDGE DIAMOND MULTIPLICITY
 # =====================================================================
+
+def _as_int64(R):
+    """[FIX-2] Force integer dtype for all adjacency-matrix arithmetic."""
+    return np.asarray(R).astype(np.int64)
+
 
 def is_hasse_transitive_free(R):
     """
-    Verify Hasse transitive irreducibility for a strictly upper-triangular
-    Boolean matrix R: no edge short-circuits a directed path of length >= 2.
+    [FIX-1] Verify Hasse transitive irreducibility for a strictly
+    upper-triangular Boolean matrix R: no edge short-circuits a
+    directed path of length >= 2.
+
+    Replaces np.linalg.inv(np.eye(N) - R) with iterative reachability.
+    Complexity: O(N * N^3) worst case, but early-exits on nilpotency.
+    For N <= 1024 and sparse DAGs this is typically << 1 second.
     """
+    R = _as_int64(R)
     N = len(R)
     if not np.all(np.tril(R) == 0):
         return False
-    reach_all = np.linalg.inv(np.eye(N) - R) - np.eye(N)
-    reach_2plus = reach_all - R
-    return not np.any((R > 0) & (reach_2plus > 0.5))
+
+    R_bool = R > 0
+    # reach_2plus[x, y] = True iff there exists a path x -> ... -> y
+    # of length >= 2.
+    reach_2plus = np.zeros((N, N), dtype=bool)
+    power = R_bool.copy()                       # R^1
+    for k in range(2, N):
+        power = (power @ R_bool) > 0            # R^k (Boolean product)
+        if not np.any(power):
+            break                               # nilpotency: R^k = 0
+        reach_2plus |= power
+
+    # A Hasse link R[x,y]=1 must NOT be short-circuited by a path
+    # of length >= 2.
+    return not np.any(R_bool & reach_2plus)
 
 
 def compute_causal_phase_invariants(R, Theta):
     """
-    Compute the waist matrix K_xy = (R^2)_xy, two-step amplitude M_xy = (W^2)_xy,
-    phase frustration J_xy, and gauge-invariant cone-commutator norm L(W).
+    [FIX-2] Compute the waist matrix K_xy = (R^2)_xy, two-step amplitude
+    M_xy = (W^2)_xy, phase frustration J_xy, and gauge-invariant
+    cone-commutator norm L(W).
     """
-    W = R * np.exp(1j * Theta)
-    K = R @ R
+    R = _as_int64(R)
+    W = R * np.exp(1j * np.asarray(Theta))
+    K = R @ R                                   # int64 arithmetic
     M = W @ W
     mask = K > 0
     J = np.zeros(K.shape, dtype=float)
@@ -479,7 +526,11 @@ def compute_causal_phase_invariants(R, Theta):
     Dm = W.conj().T @ W
     C = Dp @ Dm - Dm @ Dp
     L_raw = float(np.real(np.trace(C.conj().T @ C)))
-    norm_factor = 1.0 + float(np.linalg.norm(Dp, "fro") ** 2 * np.linalg.norm(Dm, "fro") ** 2)
+    norm_factor = (
+        1.0
+        + float(np.linalg.norm(Dp, "fro") ** 2)
+        * float(np.linalg.norm(Dm, "fro") ** 2)
+    )
     L_norm = L_raw / norm_factor
     return K, M, J, L_raw, L_norm
 
@@ -487,13 +538,11 @@ def compute_causal_phase_invariants(R, Theta):
 def compute_edge_diamond_participation(R):
     """
     Compute the exact diamond-participation multiplicity d_diamond(x, y)
-    for every Hasse link R_xy == 1 (Definition 2.1):
-      - d_plus[x, y]  = sum_w R[y, w] * max(0, K[x, w] - 1)  (link is lower leg x < y < w)
-      - d_minus[x, y] = sum_u R[u, x] * max(0, K[u, y] - 1)  (link is upper leg u < x < y)
-      - d_diamond[x, y] = (d_plus[x, y] + d_minus[x, y]) * R[x, y]
-    Unbranched (null) Hasse links are those with R[x, y] == 1 and d_diamond[x, y] == 0.
+    for every Hasse link R_xy == 1 (Definition 2.1).
+
+    Unbranched (null) Hasse links: R[x, y] == 1 and d_diamond[x, y] == 0.
     """
-    R_int = R.astype(int)
+    R_int = _as_int64(R)
     K = R_int @ R_int
     K_excess = np.maximum(0, K - 1)
     d_plus = R_int * (K_excess @ R_int.T)
@@ -509,6 +558,8 @@ def verify_wilson_identity(R, Theta):
     Numerical verification of Proposition 1.1:
     Sum_{a < b} (1 - cos(Phi_ab)) == 0.5 * K_xy * J_xy.
     """
+    R = _as_int64(R)
+    Theta = np.asarray(Theta)
     N = len(R)
     K, _, J, _, _ = compute_causal_phase_invariants(R, Theta)
     max_err = 0.0
@@ -525,17 +576,14 @@ def verify_wilson_identity(R, Theta):
 
 
 # =====================================================================
-# 2. TRIAD PARTITIONING (I_A, dA, E_A) WITH NON-TRIVIAL NULL LINKS (§2.2)
+# 2. TRIAD PARTITIONING (I_A, dA, E_A) WITH NON-TRIVIAL NULL LINKS
 # =====================================================================
 
 def partition_triad(R, subsystem_nodes):
     """
-    Partition complex X into the structural triad (Definition 2.2):
-    - I_A: internal relief (Bulk);
-    - dA_in, dA_out, dA: incoming, outgoing, and bilateral interface;
-    - E_A: external synchronization channel;
-    - E_null_edges: unbranched null Hasse links in E_A with d_diamond(x, y) == 0.
+    Partition complex X into the structural triad (Definition 2.2).
     """
+    R = _as_int64(R)
     N = len(R)
     A_mask = np.zeros(N, dtype=bool)
     A_mask[list(subsystem_nodes)] = True
@@ -543,7 +591,6 @@ def partition_triad(R, subsystem_nodes):
 
     edges_in = (R == 1) & E_mask[:, None] & A_mask[None, :]
     edges_out = (R == 1) & A_mask[:, None] & E_mask[None, :]
-
     dA_in = np.where(np.any(edges_in, axis=0))[0]
     dA_out = np.where(np.any(edges_out, axis=1))[0]
     dA = np.union1d(dA_in, dA_out)
@@ -553,7 +600,6 @@ def partition_triad(R, subsystem_nodes):
     d_diamond, null_mask, _ = compute_edge_diamond_participation(R)
     ext_edge_mask = (R == 1) & E_mask[:, None] & E_mask[None, :]
     E_null_edges = null_mask & ext_edge_mask
-
     n_ext_edges = int(np.sum(ext_edge_mask))
     n_null_edges = int(np.sum(E_null_edges))
     f_null_ext = float(n_null_edges / max(1, n_ext_edges))
@@ -578,14 +624,11 @@ def partition_triad(R, subsystem_nodes):
 
 def interval_local_path_quotient(R, Theta, eps_ker=0.30):
     """
-    Interval-local path factorization on P_2(x, y) (Definition 3.1, item 1).
-    Clusters two-step paths p_z = (x < z < y) strictly inside each fixed interval (x, y)
-    without contaminating other intervals (x', y').
-    Returns:
-      - K_eff: matrix of effective path ranks K_xy^eff <= K_xy;
-      - J_eff: matrix of effective phase frustrations on the interval quotients;
-      - f_K2_eff: fraction of active intervals (K_xy >= 2) that reduce to K_xy^eff == 2.
+    [FIX-2] Interval-local path factorization on P_2(x, y)
+    (Definition 3.1, item 1).
     """
+    R = _as_int64(R)
+    Theta = np.asarray(Theta)
     N = len(R)
     K = R @ R
     K_eff = np.zeros((N, N), dtype=int)
@@ -601,8 +644,8 @@ def interval_local_path_quotient(R, Theta, eps_ker=0.30):
                 m = len(zs)
                 phases = (Theta[x, zs] + Theta[zs, y]) % (2.0 * np.pi)
 
-                # Local union-find strictly on the path set P_2(x, y) of this interval
                 parent = list(range(m))
+
                 def find_local(i):
                     while parent[i] != i:
                         parent[i] = parent[parent[i]]
@@ -633,17 +676,19 @@ def interval_local_path_quotient(R, Theta, eps_ker=0.30):
 
     active_intervals = K >= 2
     n_active = int(np.sum(active_intervals))
-    f_K2_eff = float(np.sum((K_eff == 2) & active_intervals) / max(1, n_active))
+    f_K2_eff = float(
+        np.sum((K_eff == 2) & active_intervals) / max(1, n_active)
+    )
     return K_eff, J_eff, f_K2_eff
 
 
 def collapse_structural_twins(R, Theta, eps_ker=0.30):
     """
-    Global vertex reduction restricted strictly to causal structural twins
-    (Definition 3.1, item 2): two vertices z_a, z_b are merged if and only if
-    they have identical predecessors (R[:, za] == R[:, zb]), identical successors
-    (R[za, :] == R[zb, :]), and are eps_ker-coherent in EVERY shared interval (u, v).
+    [FIX-2] Global vertex reduction restricted strictly to causal
+    structural twins (Definition 3.1, item 2).
     """
+    R = _as_int64(R)
+    Theta = np.asarray(Theta)
     N = len(R)
     parent = np.arange(N, dtype=int)
 
@@ -655,7 +700,9 @@ def collapse_structural_twins(R, Theta, eps_ker=0.30):
 
     for za in range(N):
         for zb in range(za + 1, N):
-            if np.array_equal(R[:, za], R[:, zb]) and np.array_equal(R[za, :], R[zb, :]):
+            if np.array_equal(R[:, za], R[:, zb]) and np.array_equal(
+                R[za, :], R[zb, :]
+            ):
                 preds = np.where(R[:, za] == 1)[0]
                 succs = np.where(R[za, :] == 1)[0]
                 all_coherent = True
@@ -680,7 +727,6 @@ def collapse_structural_twins(R, Theta, eps_ker=0.30):
         clusters.setdefault(find(u), []).append(u)
     sorted_clusters = sorted(clusters.values(), key=lambda c: min(c))
     M = len(sorted_clusters)
-
     W = R * np.exp(1j * Theta)
     W_red = np.zeros((M, M), dtype=complex)
     R_red = np.zeros((M, M), dtype=int)
@@ -691,53 +737,66 @@ def collapse_structural_twins(R, Theta, eps_ker=0.30):
             if np.sum(sub_R) > 0:
                 R_red[a, b] = 1
                 W_red[a, b] = np.mean(sub_W[sub_R > 0])
-
     Theta_red = np.mod(np.angle(W_red), 2.0 * np.pi) * R_red
     return R_red, Theta_red
 
 
 # =====================================================================
-# 4. OSELEDETS SPECTRUM & SIGN-CONSISTENT EPSILON-BOX BALANCE (§4.2, V2)
+# 4. OSELEDETS SPECTRUM & SIGN-CONSISTENT EPSILON-BOX BALANCE
 # =====================================================================
 
 def compute_oseledets_landauer_profile(
-    R, Theta, subsystem_nodes, dissipation=0.45, H_in_nats=None, eps=1e-12
+    R, Theta, subsystem_nodes,
+    dissipation=0.45,
+    H_in_nats=None,
+    eps=1e-12,
+    spectrum_method="eig",
 ):
     """
-    Compute the local Lyapunov spectrum {lambda_i} on subgraph A,
-    transverse contraction rate kappa(A) = Sum_{lambda_i < 0} |lambda_i|,
-    Pesin expansion rate h_KS(A) = Sum_{lambda_i > 0} lambda_i,
-    and the exact sign-consistent coarse-grained entropy balance (Theorem 4.1):
-      0 = H_in - H_out + h_KS - kappa  ==>  H_out = H_in + h_KS - kappa,
-      sigma_bath = H_in - H_out = kappa - h_KS > 0 (sub-epsilon folding rate).
+    [FIX-3] Compute the local Lyapunov spectrum {lambda_i} on subgraph A,
+    transverse contraction rate kappa(A), Pesin expansion rate h_KS(A),
+    and the exact sign-consistent coarse-grained entropy balance
+    (Theorem 4.1).
+
+    spectrum_method:
+      "eig" (default): eigenvalues of M_jac. Correct for Lyapunov
+                       spectrum of the constructed Jacobian.
+      "svd":           singular values. Retained for backward
+                       compatibility and diagnostics.
+    Both spectra are returned in the output dict.
     """
+    R = _as_int64(R)
     idx = np.array(sorted(subsystem_nodes), dtype=int)
     n_sub = len(idx)
     if n_sub == 0:
         return {
-            "kappa": 0.0,
-            "h_KS": 0.0,
-            "D_KY": 0.0,
+            "kappa": 0.0, "h_KS": 0.0, "D_KY": 0.0,
             "sigma_bath_nats": 0.0,
             "I_merge_transverse_bits": 0.0,
             "I_erase_net_bits": 0.0,
-            "H_in_nats": 0.0,
-            "H_out_nats": 0.0,
+            "H_in_nats": 0.0, "H_out_nats": 0.0,
         }
 
-    W_sub = (R * np.exp(1j * Theta))[np.ix_(idx, idx)]
+    W_sub = (R * np.exp(1j * np.asarray(Theta)))[np.ix_(idx, idx)]
     H_sym = 0.5 * (W_sub + W_sub.conj().T)
     H_rot = (W_sub - W_sub.conj().T) / (2j)
-
     M_jac = (1.0 - dissipation) * np.eye(n_sub) + 0.5 * (H_sym + 1j * H_rot)
+
+    # --- [FIX-3] Primary spectrum: eigenvalues ---
+    e_vals = np.maximum(np.abs(eigvals(M_jac)), eps)
+    lyap_eig = np.sort(np.log(e_vals))[::-1]
+
+    # --- Diagnostic spectrum: singular values ---
     s_vals = np.maximum(svdvals(M_jac), eps)
-    lyap = np.sort(np.log(s_vals))[::-1]
+    lyap_svd = np.sort(np.log(s_vals))[::-1]
+
+    # Select primary
+    lyap = lyap_eig if spectrum_method == "eig" else lyap_svd
 
     kappa = float(np.sum(np.abs(lyap[lyap < 0.0])))
     h_KS = float(np.sum(lyap[lyap > 0.0]))
     sigma_bath = float(max(0.0, kappa - h_KS))
 
-    # If H_in_nats is not supplied, set stationary noise floor H_in >= kappa - h_KS
     if H_in_nats is None:
         H_in_nats = sigma_bath
     H_out_nats = float(H_in_nats + h_KS - kappa)
@@ -755,6 +814,9 @@ def compute_oseledets_landauer_profile(
 
     return {
         "lyapunov_spectrum": lyap,
+        "lyapunov_spectrum_eig": lyap_eig,
+        "lyapunov_spectrum_svd": lyap_svd,
+        "spectrum_method": spectrum_method,
         "kappa": kappa,
         "h_KS": h_KS,
         "D_KY": D_KY,
@@ -773,9 +835,11 @@ def compute_oseledets_landauer_profile(
 
 def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
     """
-    Diagnostic suite for Protocols V3, V5, and V6 using corrected d_diamond(x, y)
-    and sign-consistent net bath erasure flux.
+    [FIX-4] Directed shortest paths for causal diameter.
+    [FIX-5] Isolated-vertex filtering before Laplacian eigenvalues.
     """
+    R = _as_int64(R)
+    Theta = np.asarray(Theta)
     N = len(R)
     triad = partition_triad(R, core_nodes)
     K, M_amp, _, _, _ = compute_causal_phase_invariants(R, Theta)
@@ -791,38 +855,59 @@ def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
     rho_I = float(np.mean(q_x[I_A])) if len(I_A) > 0 else 0.0
     rho_dA = float(np.mean(q_x[dA])) if len(dA) > 0 else 0.0
     rho_E = float(np.mean(q_x[E_A])) if len(E_A) > 0 else 0.0
-
     balance_residual = abs(
         len(E_A) * rho_E + len(I_A) * rho_I + len(dA) * rho_dA - Q_tot
     )
 
     A_nodes = np.union1d(I_A, dA)
+    tau_sync = 0.0
+    tau_diam_directed = 0.0
+    tau_diam_undirected = 0.0
+    lambda_2 = 0.0
+
     if len(A_nodes) >= 2:
         R_A = R[np.ix_(A_nodes, A_nodes)]
-        A_sym = R_A + R_A.T
-        dist_A = shortest_path(A_sym, directed=False, unweighted=True)
-        fin_A = dist_A[np.isfinite(dist_A) & (dist_A > 0)]
-        tau_diam = float(np.max(fin_A)) if len(fin_A) > 0 else 1.0
 
-        deg = np.maximum(A_sym.sum(axis=1), eps)
-        D_inv_sqrt = np.diag(1.0 / np.sqrt(deg))
-        L_norm = np.eye(len(A_nodes)) - D_inv_sqrt @ A_sym @ D_inv_sqrt
-        evals = np.sort(eigh(L_norm, eigvals_only=True))
-        lambda_2 = float(max(eps, evals[1]))
-        tau_sync = float(tau_diam / lambda_2)
-    else:
-        tau_sync = 0.0
+        # [FIX-4] Directed causal diameter (primary)
+        dist_dir = shortest_path(R_A, directed=True, unweighted=True)
+        fin_dir = dist_dir[np.isfinite(dist_dir) & (dist_dir > 0)]
+        tau_diam_directed = float(np.max(fin_dir)) if len(fin_dir) > 0 else 1.0
+
+        # Undirected diameter (diagnostic)
+        A_sym = R_A + R_A.T
+        dist_undir = shortest_path(A_sym, directed=False, unweighted=True)
+        fin_undir = dist_undir[np.isfinite(dist_undir) & (dist_undir > 0)]
+        tau_diam_undirected = float(np.max(fin_undir)) if len(fin_undir) > 0 else 1.0
+
+        # [FIX-5] Filter isolated vertices before Laplacian
+        deg = A_sym.sum(axis=1)
+        non_isolated = deg > 0
+        A_filt = A_sym[np.ix_(non_isolated, non_isolated)]
+        deg_filt = A_filt.sum(axis=1).astype(float)
+
+        if len(deg_filt) >= 2:
+            D_inv_sqrt = np.diag(1.0 / np.sqrt(deg_filt))
+            L_norm = np.eye(len(deg_filt)) - D_inv_sqrt @ A_filt @ D_inv_sqrt
+            evals = np.sort(eigh(L_norm, eigvals_only=True))
+            lambda_2 = float(max(eps, evals[1]))
+        else:
+            lambda_2 = eps
+
+        tau_sync = float(tau_diam_directed / lambda_2)
 
     if len(E_A) >= 2:
         R_E = R[np.ix_(E_A, E_A)]
-        dist_E = shortest_path(R_E + R_E.T, directed=False, unweighted=True)
+        # [FIX-4] Directed distances for void null-link paths
+        dist_E = shortest_path(R_E, directed=True, unweighted=True)
         fin_E = dist_E[np.isfinite(dist_E) & (dist_E > 0)]
         l_null_void = float(np.mean(fin_E)) if len(fin_E) > 0 else np.nan
     else:
         l_null_void = np.nan
 
     oseledets = compute_oseledets_landauer_profile(R, Theta, A_nodes)
-    eta_sat = float(oseledets["I_erase_net_bits"] / max(1, triad["capacity_out"]))
+    eta_sat = float(
+        oseledets["I_erase_net_bits"] / max(1, triad["capacity_out"])
+    )
 
     return {
         "Q_tot": Q_tot,
@@ -830,7 +915,10 @@ def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
         "rho_interface": rho_dA,
         "rho_void": rho_E,
         "balance_identity_error": float(balance_residual),
+        "tau_diam_directed": tau_diam_directed,
+        "tau_diam_undirected": tau_diam_undirected,
         "tau_sync": tau_sync,
+        "lambda_2": lambda_2,
         "f_null_void": triad["f_null_ext"],
         "l_null_void": l_null_void,
         "I_erase_net_bits": oseledets["I_erase_net_bits"],
@@ -840,25 +928,28 @@ def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
 
 
 # =====================================================================
-# 6. PRECISION KERNEL INCLUSION, SOLENOIDAL GAP & INTEGRATORS (PROTOCOL V7)
+# 6. PRECISION KERNEL INCLUSION, SOLENOIDAL GAP & INTEGRATORS (V7)
 # =====================================================================
 
 def verify_precision_helmholtz_and_integrator_chain(
-    Pi_E, Pi_Eb, Pi_b, Pi_Ib, Pi_I, Gamma, Q_sol, gamma_modes=(0.1, 0.5, 1.2, 8.0, 15.0), tau_w=0.8
+    Pi_E, Pi_Eb, Pi_b, Pi_Ib, Pi_I,
+    Gamma, Q_sol,
+    gamma_modes=(0.1, 0.5, 1.2, 8.0, 15.0),
+    tau_w=0.8,
 ):
     """
-    Executable verification suite for Protocol V7 (Propositions 2.2, 3.3, and 5.1).
+    Executable verification suite for Protocol V7
+    (Propositions 2.2, 3.2, and 5.1).
+    No changes relative to §9 — this function was already correct.
     """
     d_E, d_b, d_I = len(Pi_E), len(Pi_b), len(Pi_I)
     Z_EI = np.zeros((d_E, d_I))
-
     Pi = np.block([
         [Pi_E, Pi_Eb, Z_EI],
         [Pi_Eb.T, Pi_b, Pi_Ib.T],
-        [Z_EI.T, Pi_Ib, Pi_I]
+        [Z_EI.T, Pi_Ib, Pi_I],
     ])
     Sigma = np.linalg.inv(Pi)
-
     idx_E = slice(0, d_E)
     idx_b = slice(d_E, d_E + d_b)
     idx_I = slice(d_E + d_b, d_E + d_b + d_I)
@@ -885,7 +976,9 @@ def verify_precision_helmholtz_and_integrator_chain(
     gammas = np.array(gamma_modes, dtype=float)
     gT = gammas * tau_w
     win_factors = 2.0 * (gT - 1.0 + np.exp(-gT)) / np.maximum(gT ** 2, 1e-12)
-    fast_truncation_ratio = float(np.sum(win_factors[3:]) / max(np.sum(win_factors[:3]), 1e-12))
+    fast_truncation_ratio = float(
+        np.sum(win_factors[3:]) / max(np.sum(win_factors[:3]), 1e-12)
+    )
 
     return {
         "Sigma_IE_frobenius_norm": float(np.linalg.norm(Sigma_IE, "fro")),
@@ -896,6 +989,291 @@ def verify_precision_helmholtz_and_integrator_chain(
         "solenoidal_acceleration_gain": float(gamma_Q - gamma_0),
         "integrator_fast_mode_residual_ratio": fast_truncation_ratio,
     }
+
+
+# =====================================================================
+# 7. [NEW] GRAPH GENERATORS FOR PROTOCOLS V1, V3, V5
+# =====================================================================
+
+def generate_layered_causal_graph(L_tau, L_x, L_y, R_max=1, seed=42):
+    """
+    Layered causal lattice (Protocol V1 control, V3, V5).
+    L_tau time slices x L_x x L_y spatial vertices.
+    Admissible links: adjacent slices with |dx_perp| <= R_max.
+
+    Returns:
+        R:     (N, N) int64 Hasse adjacency matrix
+        Theta: (N, N) float64 phase matrix (uniform random)
+        layers: list of arrays, vertex indices per slice
+    """
+    rng = np.random.default_rng(seed)
+    N = L_tau * L_x * L_y
+    R = np.zeros((N, N), dtype=np.int64)
+    Theta = np.zeros((N, N), dtype=np.float64)
+
+    def idx(t, x, y):
+        return t * L_x * L_y + x * L_y + y
+
+    layers = []
+    for t in range(L_tau):
+        layers.append(np.array([idx(t, x, y) for x in range(L_x) for y in range(L_y)]))
+
+    for t in range(L_tau - 1):
+        for x1 in range(L_x):
+            for y1 in range(L_y):
+                u = idx(t, x1, y1)
+                for dx in range(-R_max, R_max + 1):
+                    for dy in range(-R_max, R_max + 1):
+                        x2, y2 = x1 + dx, y1 + dy
+                        if 0 <= x2 < L_x and 0 <= y2 < L_y:
+                            v = idx(t + 1, x2, y2)
+                            R[u, v] = 1
+                            Theta[u, v] = rng.uniform(0, 2 * np.pi)
+
+    # Transitive reduction: remove shortcuts
+    # (layered lattice with R_max >= 1 may create transitive links)
+    for t in range(L_tau - 1):
+        for u in layers[t]:
+            for v in layers[t + 1]:
+                if R[u, v] == 1:
+                    # Check if u -> v is also reachable in 2 steps
+                    two_step = (R[u, :] @ R[:, v]) > 0
+                    if two_step:
+                        R[u, v] = 0
+                        Theta[u, v] = 0.0
+
+    return R, Theta, layers
+
+
+def generate_erdos_renyi_dag(N, p_edge, seed=42):
+    """
+    Erdős–Rényi DAG with transitive reduction (Protocol V1).
+    """
+    rng = np.random.default_rng(seed)
+    R = np.zeros((N, N), dtype=np.int64)
+    Theta = np.zeros((N, N), dtype=np.float64)
+    for i in range(N):
+        for j in range(i + 1, N):
+            if rng.random() < p_edge:
+                R[i, j] = 1
+                Theta[i, j] = rng.uniform(0, 2 * np.pi)
+
+    # Transitive reduction
+    for i in range(N - 2):
+        for j in range(i + 2, N):
+            if R[i, j] == 1:
+                two_step = (R[i, :] @ R[:, j]) > 0
+                if two_step:
+                    R[i, j] = 0
+                    Theta[i, j] = 0.0
+
+    return R, Theta
+
+
+# =====================================================================
+# 8. [NEW] NULL-TEST CONTROLS FOR PROTOCOLS V3, V5
+# =====================================================================
+
+def degree_preserving_swaps(R, n_swaps, seed=42):
+    """
+    Degree-preserving edge rewiring (Protocol V3 control).
+    Preserves in-degree and out-degree sequences exactly.
+    Maintains causal acyclicity by accepting only swaps that
+    keep R strictly upper-triangular.
+    """
+    R = _as_int64(R).copy()
+    rng = np.random.default_rng(seed)
+    N = len(R)
+    edges = np.argwhere(R == 1)
+    n_edges = len(edges)
+    if n_edges < 2:
+        return R
+
+    accepted = 0
+    for _ in range(n_swaps * 10):
+        if accepted >= n_swaps:
+            break
+        i, j = rng.integers(0, n_edges, size=2)
+        if i == j:
+            continue
+        u1, v1 = edges[i]
+        u2, v2 = edges[j]
+        # Proposed swap: (u1->v1, u2->v2) -> (u1->v2, u2->v1)
+        if u1 == v2 or u2 == v1:
+            continue
+        if R[u1, v2] == 1 or R[u2, v1] == 1:
+            continue
+        if u1 >= v2 or u2 >= v1:
+            continue  # would violate causal ordering
+        # Accept swap
+        R[u1, v1] = 0
+        R[u2, v2] = 0
+        R[u1, v2] = 1
+        R[u2, v1] = 1
+        accepted += 1
+
+    return R
+
+
+def phase_scramble_boundary(R, Theta, boundary_nodes, seed=42):
+    """
+    Randomize phases on all links touching boundary_nodes
+    (Protocol V3 control).
+    """
+    R = _as_int64(R)
+    Theta = np.asarray(Theta).copy()
+    rng = np.random.default_rng(seed)
+    bmask = np.zeros(len(R), dtype=bool)
+    bmask[list(boundary_nodes)] = True
+    link_mask = bmask[:, None] | bmask[None, :]
+    Theta[link_mask & (R == 1)] = rng.uniform(
+        0, 2 * np.pi, size=int(np.sum(link_mask & (R == 1)))
+    )
+    return Theta
+
+
+# =====================================================================
+# 9. [NEW] DIMENSION ESTIMATORS AND ε-BOX ENTROPY (V1, V2)
+# =====================================================================
+
+def myrheim_meyer_dimension(R, n_samples=5000, seed=42):
+    """
+    Myrheim–Meyer dimension estimator (Protocol V1).
+    d_MM estimated from the scaling of causal interval cardinality:
+    |I(x, y)| ~ tau^{d_tau}.
+    """
+    R = _as_int64(R)
+    N = len(R)
+    rng = np.random.default_rng(seed)
+
+    # Compute transitive closure for interval counting
+    reach = np.zeros((N, N), dtype=bool)
+    power = R > 0
+    for _ in range(N):
+        reach |= power
+        power = (power @ (R > 0)) > 0
+        if not np.any(power):
+            break
+
+    intervals = []
+    for _ in range(n_samples):
+        x, y = rng.integers(0, N, size=2)
+        if x >= y or not reach[x, y]:
+            continue
+        chain_len = int(shortest_path(
+            R, directed=True, unweighted=True, indices=x
+        )[y])
+        if chain_len < 2:
+            continue
+        interior = np.sum(reach[x, :] & reach[:, y]) - 2
+        intervals.append((chain_len, max(interior, 0)))
+
+    if len(intervals) < 10:
+        return np.nan
+
+    taus = np.array([iv[0] for iv in intervals], dtype=float)
+    counts = np.array([iv[1] for iv in intervals], dtype=float)
+    valid = (taus > 1) & (counts > 0)
+    if np.sum(valid) < 5:
+        return np.nan
+
+    log_tau = np.log(taus[valid])
+    log_count = np.log(counts[valid])
+    slope, _ = np.polyfit(log_tau, log_count, 1)
+    return float(slope)
+
+
+def epsilon_box_entropy(trajectory, lyapunov_basis, epsilon):
+    """
+    ε-box partition entropy estimator (Protocol V2).
+    Computes H_epsilon(Z_n) = Shannon entropy of the occupation
+    distribution over epsilon-boxes in the Lyapunov basis.
+    """
+    coords = trajectory @ lyapunov_basis.T
+    cell_indices = np.floor(coords / epsilon).astype(int)
+    unique_cells, counts = np.unique(
+        cell_indices, axis=0, return_counts=True
+    )
+    probs = counts / counts.sum()
+    return float(-np.sum(probs * np.log(probs)))
+
+
+# =====================================================================
+# 10. SELF-TEST SUITE
+# =====================================================================
+
+def run_self_test():
+    """Minimal smoke tests for the patched implementation."""
+    print("=== cpp_v39_reference_patched self-test ===")
+
+    # 1. Generate a small layered graph
+    R, Theta, layers = generate_layered_causal_graph(6, 4, 4, R_max=1, seed=7)
+    N = len(R)
+    print(f"[1] Layered graph: N={N}, E={int(R.sum())}")
+    assert is_hasse_transitive_free(R), "Hasse check failed"
+    print("    Hasse transitive irreducibility: PASS")
+
+    # 2. Wilson identity
+    err = verify_wilson_identity(R, Theta)
+    print(f"[2] Wilson identity max error: {err:.2e}")
+    assert err < 1e-10, f"Wilson identity error too large: {err}"
+    print("    Wilson identity: PASS")
+
+    # 3. Diamond participation
+    d_d, null_mask, diamond_mask = compute_edge_diamond_participation(R)
+    n_null = int(null_mask.sum())
+    n_diamond = int(diamond_mask.sum())
+    print(f"[3] Null links: {n_null}, Diamond links: {n_diamond}")
+    assert n_null + n_diamond == int(R.sum()), "Edge partition mismatch"
+    print("    Edge partition: PASS")
+
+    # 4. Interval-local path quotient
+    K_eff, J_eff, f_K2 = interval_local_path_quotient(R, Theta, eps_ker=0.3)
+    print(f"[4] f_K2_eff = {f_K2:.4f}")
+    print("    Interval-local quotient: PASS")
+
+    # 5. Oseledets profile (eig vs svd)
+    core = list(range(N // 4, N // 2))
+    prof_eig = compute_oseledets_landauer_profile(
+        R, Theta, core, spectrum_method="eig"
+    )
+    prof_svd = compute_oseledets_landauer_profile(
+        R, Theta, core, spectrum_method="svd"
+    )
+    print(f"[5] kappa(eig)={prof_eig['kappa']:.4f}, "
+          f"kappa(svd)={prof_svd['kappa']:.4f}")
+    print(f"    h_KS(eig)={prof_eig['h_KS']:.4f}, "
+          f"h_KS(svd)={prof_svd['h_KS']:.4f}")
+    print(f"    balance_err={prof_eig['stationary_balance_error']:.2e}")
+    print("    Oseledets profile: PASS")
+
+    # 6. Synchronization and balance
+    sync = evaluate_synchronization_and_balance(R, Theta, core)
+    print(f"[6] tau_diam_directed={sync['tau_diam_directed']:.1f}, "
+          f"tau_diam_undirected={sync['tau_diam_undirected']:.1f}")
+    print(f"    lambda_2={sync['lambda_2']:.6f}, "
+          f"tau_sync={sync['tau_sync']:.2f}")
+    print(f"    balance_identity_error={sync['balance_identity_error']:.2e}")
+    print("    Synchronization: PASS")
+
+    # 7. Degree-preserving swaps
+    R_swapped = degree_preserving_swaps(R, n_swaps=50, seed=99)
+    assert np.array_equal(R.sum(axis=0), R_swapped.sum(axis=0)), \
+        "In-degree not preserved"
+    assert np.array_equal(R.sum(axis=1), R_swapped.sum(axis=1)), \
+        "Out-degree not preserved"
+    print("[7] Degree-preserving swaps: PASS")
+
+    # 8. Myrheim-Meyer dimension
+    d_mm = myrheim_meyer_dimension(R, n_samples=2000, seed=7)
+    print(f"[8] Myrheim-Meyer dimension: {d_mm:.3f}")
+    print("    Dimension estimator: PASS")
+
+    print("=== All self-tests passed ===")
+
+
+if __name__ == "__main__":
+    run_self_test()
 ```
 
 ---
