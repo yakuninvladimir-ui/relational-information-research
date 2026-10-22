@@ -70,21 +70,21 @@ Possible operational approximations:
 
 1. **Fisher metric via an external decoder:** $`P(Y|z) := D(z)`$, where $`D: Z \to \Delta(Y)`$ [3].
 
-   ```math
-   g^{(D)}_{ij}(z) = \mathbb{E}_{y \sim D(z)} \left[ \partial_i \log D(y|z) \cdot \partial_j \log D(y|z) \right].
-   ```
+```math
+g^{(D)}_{ij}(z) = \mathbb{E}_{y \sim D(z)} \left[ \partial_i \log D(y|z) \cdot \partial_j \log D(y|z) \right].
+```
 
 2. **Metric via the Hessian of the training loss:**
 
-   ```math
-   g^{(\mathcal{L})}_{ij}(z) = \mathbb{E} \left[ \partial_i \partial_j \mathcal{L}_{\mathrm{task}}(z, y) \right].
-   ```
+```math
+g^{(\mathcal{L})}_{ij}(z) = \mathbb{E} \left[ \partial_i \partial_j \mathcal{L}_{\mathrm{task}}(z, y) \right].
+```
 
 3. **Local activation covariance metric:**
 
-   ```math
-   g^{(\mathrm{cov})}(z) = \left( C(z) + \varepsilon I \right)^{-1}.
-   ```
+```math
+g^{(\mathrm{cov})}(z) = \left( C(z) + \varepsilon I \right)^{-1}.
+```
 
 4. **NTK-induced metric:** based on the tangent kernel $`\Theta_E`$.
 

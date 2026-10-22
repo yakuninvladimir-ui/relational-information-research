@@ -158,14 +158,14 @@ X = \mathcal{I}_A \sqcup \partial A \sqcup \mathcal{E}_A,
 
 where:
 - **Bilateral Interface $`\partial A := \partial^- A \cup \partial^+ A`$:** the boundary vertices of $`A`$ sharing immediate Hasse links with the complement $`\mathcal{E}_A := X \setminus A`$:
-  ```math
-  \partial^- A := \{y \in A \mid \exists x \in \mathcal{E}_A : R_{xy} = 1\}, \qquad \partial^+ A := \{x \in A \mid \exists y \in \mathcal{E}_A : R_{xy} = 1\}.
-  ```
+```math
+\partial^- A := \{y \in A \mid \exists x \in \mathcal{E}_A : R_{xy} = 1\}, \qquad \partial^+ A := \{x \in A \mid \exists y \in \mathcal{E}_A : R_{xy} = 1\}.
+```
 - **Internal Relief (Bulk) $`\mathcal{I}_A := A \setminus \partial A`$:** the interior core of $`A`$, which has no direct Hasse links to $`\mathcal{E}_A`$ and interacts with $`\mathcal{E}_A`$ solely through $`\partial A`$ [4].
 - **External Synchronization Channel $`\mathcal{E}_A := X \setminus A`$:** the exterior environment coupling $`A`$ to other subsystems. The **external null-link fraction** in $`\mathcal{E}_A`$ is the non-trivial observable:
-  ```math
-  f_{\mathrm{null}}(\mathcal{E}_A) := \frac{\bigl|\{(x, y) \in \mathcal{E}_A \times \mathcal{E}_A \mid R_{xy} = 1 \land d_\diamond(x, y) = 0\}\bigr|}{\bigl|\{(x, y) \in \mathcal{E}_A \times \mathcal{E}_A \mid R_{xy} = 1\}\bigr|} \in [0, 1].
-  ```
+```math
+f_{\mathrm{null}}(\mathcal{E}_A) := \frac{\bigl|\{(x, y) \in \mathcal{E}_A \times \mathcal{E}_A \mid R_{xy} = 1 \land d_\diamond(x, y) = 0\}\bigr|}{\bigl|\{(x, y) \in \mathcal{E}_A \times \mathcal{E}_A \mid R_{xy} = 1\}\bigr|} \in [0, 1].
+```
 
 The incoming and outgoing combinatorial capacities of the interface are $`|\partial^- A|_E := \sum_{x \in \mathcal{E}_A, y \in \partial^- A} R_{xy}`$ and $`|\partial^+ A|_E := \sum_{x \in \partial^+ A, y \in \mathcal{E}_A} R_{xy}`$.
 
@@ -194,13 +194,13 @@ Consider stationary Gaussian fluctuations $`x = (\eta, b, \mu) \in \mathcal{E}_A
 **Proposition 2.2 (Precision Sparsity, Long-Range Covariance, and Boundary Kernel Inclusion).** `[Status: FOLLOW]` [4]  
 For $`p(\eta, b, \mu) = \mathcal{N}(0, \Pi^{-1})`$ with $`\Pi \succ 0`$:
 1. **Precision Sparsity vs. Mediated Covariance:** Conditional independence $`\eta \perp \mu \mid b`$ holds if and only if $`\Pi_{\mathcal{I}\mathcal{E}} = 0`$ and $`\Pi_{\mathcal{E}\mathcal{I}} = 0`$ [4]. Under this condition, the marginal covariance between internal relief and external channel is mediated across the interface via:
-   ```math
-   \Sigma_{\mathcal{I}\mathcal{E}} = \Sigma_{\mathcal{I},\partial A}\,\Sigma_{\partial A}^{-1}\,\Sigma_{\partial A,\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\,\Sigma_{\partial A}\,\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1}.
-   ```
+```math
+\Sigma_{\mathcal{I}\mathcal{E}} = \Sigma_{\mathcal{I},\partial A}\,\Sigma_{\partial A}^{-1}\,\Sigma_{\partial A,\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\,\Sigma_{\partial A}\,\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1}.
+```
 2. **Boundary Kernel-Inclusion Criterion:** A linear synchronization map $`\sigma: \mathrm{Im}(\overline{\mu}) \to \mathrm{Im}(\overline{\eta})`$ satisfying $`\sigma(\overline{\mu}(b)) = \overline{\eta}(b)`$ for all $`b \in \partial A`$ exists if and only if [4]:
-   ```math
-   \ker \Sigma_{\mathcal{I},\partial A} \subseteq \ker \Sigma_{\mathcal{E},\partial A} \quad \Longleftrightarrow \quad \ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}.
-   ```
+```math
+\ker \Sigma_{\mathcal{I},\partial A} \subseteq \ker \Sigma_{\mathcal{E},\partial A} \quad \Longleftrightarrow \quad \ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}.
+```
    When satisfied, $`\sigma(\mu) = \Pi_{\mathcal{E}}^{-1}\Pi_{\mathcal{E},\partial A}\Pi_{\mathcal{I},\partial A}^{-}\Pi_{\mathcal{I}}\mu`$ [4], and $`\overline{\mu}(b)`$ uniquely minimizes $`D_{\mathrm{KL}}\bigl[\mathcal{N}(\eta; \sigma(\mu), \Pi_{\mathcal{E}}^{-1}) \;\|\; p(\eta \mid b)\bigr] = \frac{1}{2}\bigl(\sigma(\mu) - \overline{\eta}(b)\bigr)^\top \Pi_{\mathcal{E}} \bigl(\sigma(\mu) - \overline{\eta}(b)\bigr)`$ [4].
 
 *Proof.* Established in [4] via block inversion $`\Pi \Sigma = I`$ and Gaussian conditional factorization. `∎`
@@ -229,14 +229,14 @@ In earlier formulations, phase equivalence of intermediate paths inside a waist 
 
 **Definition 3.1 (Interval-Local Path Equivalence vs. Global Twin Reduction).** `[Status: FOLLOW]`
 1. **Interval-Local Path Quotient:** Fix a single pair of events $`(x, y)`$ with $`K_{xy} \ge 2`$ and let $`\mathcal{P}_2(x, y) = \{p_z = (x \lessdot z \lessdot y) \mid z \in V_{xy}\}`$ be the set of two-step paths between $`x`$ and $`y`$, where path $`p_z`$ carries total phase $`\phi_{xy}(z) := (\theta_{xz} + \theta_{zy}) \bmod 2\pi`$. Given tolerance $`\varepsilon_{\mathrm{ker}} \ge 0`$, two paths $`p_{z_a}, p_{z_b} \in \mathcal{P}_2(x, y)`$ are $`\varepsilon_{\mathrm{ker}}`$-coherent in $`(x, y)`$ if:
-   ```math
-   d_{\mathbb{T}}\bigl(\phi_{xy}(z_a), \phi_{xy}(z_b)\bigr) := \min\bigl(|\phi_{xy}(z_a) - \phi_{xy}(z_b)|,\; 2\pi - |\phi_{xy}(z_a) - \phi_{xy}(z_b)|\bigr) \le \varepsilon_{\mathrm{ker}}.
-   ```
+```math
+d_{\mathbb{T}}\bigl(\phi_{xy}(z_a), \phi_{xy}(z_b)\bigr) := \min\bigl(|\phi_{xy}(z_a) - \phi_{xy}(z_b)|,\; 2\pi - |\phi_{xy}(z_a) - \phi_{xy}(z_b)|\bigr) \le \varepsilon_{\mathrm{ker}}.
+```
    Single-linkage transitive closure on $`\mathcal{P}_2(x, y)`$ defines an equivalence relation $`\sim_{(x,y),\varepsilon_{\mathrm{ker}}}`$ **strictly local to the pair $`(x, y)`$**. The quotient path set $`\widetilde{\mathcal{P}}_2(x, y) := \mathcal{P}_2(x, y) / \!\sim_{(x,y),\varepsilon_{\mathrm{ker}}}`$ has **effective interval channel rank** $`K_{xy}^{\mathrm{eff}} := |\widetilde{\mathcal{P}}_2(x, y)| \in \{1, \dots, K_{xy}\}`$ and class phases $`\widetilde{\phi}_\alpha = \arg\bigl(\sum_{z \in C_\alpha} e^{i\phi_{xy}(z)}\bigr)`$ without altering any other interval $`(x', y') \neq (x, y)`$.
 2. **Global Structural-Twin Vertex Merging:** Two distinct vertices $`z_a \neq z_b \in X`$ are **causal structural twins** if they are causally incomparable and share identical sets of immediate predecessors and successors in $`R`$:
-   ```math
-   \forall u \in X:\; R_{u z_a} = R_{u z_b} \quad \text{and} \quad \forall v \in X:\; R_{z_a v} = R_{z_b v}.
-   ```
+```math
+\forall u \in X:\; R_{u z_a} = R_{u z_b} \quad \text{and} \quad \forall v \in X:\; R_{z_a v} = R_{z_b v}.
+```
    Global vertex merging $`z_a \equiv z_b`$ on the graph $`X`$ is admissible at tolerance $`\varepsilon_{\mathrm{ker}}`$ if and only if $`z_a, z_b`$ are causal structural twins **and** $`d_{\mathbb{T}}(\phi_{uv}(z_a), \phi_{uv}(z_b)) \le \varepsilon_{\mathrm{ker}}`$ holds across **every** interval $`(u, v)`$ containing $`\{z_a, z_b\}`$.
 
 Consider now a model family of interval cost functionals parameterized by a branching exponent $`p > 0`$:
@@ -297,9 +297,9 @@ To rigorously connect continuous phase-space contraction to **logically erased b
 
 1. **Exact Sign Balance of Coarse-Grained Entropy:**  
    Let $`H_\varepsilon(Z_n)`$ denote the Shannon entropy (in nats) of the state distribution over $`\varepsilon`$-cells at step $`n`$. In one step, the deterministic map $`G_R`$ expands volume along $`E^u`$ by $`e^{h_{\mathrm{KS}}(A)}`$ and contracts volume along $`E^s`$ by $`e^{-\kappa(A)}`$ [6], changing the internal entropy by $`\Delta H_{\mathrm{dyn}} = h_{\mathrm{KS}}(A) - \kappa(A) < 0`$. Suppose external perturbations entering across $`\partial^- A`$ inject entropy $`H_{\mathrm{in}}^{(\varepsilon)} \ge 0`$ per step, while outgoing signals across $`\partial^+ A`$ carry away coarse-grained state entropy $`H_{\mathrm{out}}^{(\varepsilon)} \ge 0`$ per step. Then the stationary balance $`H_\varepsilon(Z_{n+1}) - H_\varepsilon(Z_n) = 0`$ is:
-   ```math
-   0 = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A) \quad \Longleftrightarrow \quad H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) - h_{\mathrm{KS}}(A) > 0.
-   ```
+```math
+0 = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A) \quad \Longleftrightarrow \quad H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) - h_{\mathrm{KS}}(A) > 0.
+```
    Notice what this exact balance says: the coarse-grained Shannon entropy carried away by the macroscopic signal $`H_{\mathrm{out}}^{(\varepsilon)}`$ is **smaller** than $`H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A)`$ by the exact amount $`\Delta S_{\mathrm{fold}}(A) := \kappa(A) > 0`$ (and smaller than $`H_{\mathrm{in}}^{(\varepsilon)}`$ by the net contraction $`\sigma_{\mathrm{bath}}(A) := \kappa(A) - h_{\mathrm{KS}}(A) > 0`$). Where did the missing information $`\sigma_{\mathrm{bath}}(A)`$ go? It was compressed to sub-$`\varepsilon`$ scales below the resolution limit—that is, **erased from the $`\varepsilon`$-resolved macro-state and dumped into microscopic heat/radiation modes of the boundary bath** (Ruelle’s phase-space contraction identity [5]).
 
 2. **Why Transverse Contraction $`\kappa(A)`$ Represents Logical Bit Erasure at Resolution $`\varepsilon`$:**  
@@ -308,21 +308,21 @@ To rigorously connect continuous phase-space contraction to **logically erased b
 **Theorem 4.1 (Coarse-Grained Entropy Balance and $`\varepsilon`$-Resolution Landauer Erasure Rate).** `[Status: FOLLOW (under the stated ε-partition and stationarity assumptions)]` [5, 6]  
 Suppose subsystem $`\mathcal{I}_A`$ is partitioned into distinguishable states at resolution scale $`\varepsilon > 0`$, evolves with linearized Jacobian rates $`h_{\mathrm{KS}}(A) = \sum_{\lambda_i > 0}\lambda_i`$ and $`\kappa(A) = \sum_{\lambda_i < 0}|\lambda_i|`$ ($`\kappa(A) > h_{\mathrm{KS}}(A)`$) [6], and is driven across $`\partial^- A`$ by stationary perturbations of resolution-$`\varepsilon`$ entropy rate $`H_{\mathrm{in}}^{(\varepsilon)}`$ that continually repopulate the transverse subspace $`E^s`$ so that the coarse-grained entropy remains stationary ($`H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)`$). Then:
 1. **Exact Stationary Entropy Balance:** The resolved outgoing signal entropy $`H_{\mathrm{out}}^{(\varepsilon)}`$ and the unresolved sub-$`\varepsilon`$ folding rate $`\Delta S_{\mathrm{fold}}(A)`$ satisfy the exact conservation equations (in nats per step):
-   ```math
-   H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A) \ge 0, \qquad \Delta S_{\mathrm{fold}}(A) := H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) > 0,
-   ```
+```math
+H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A) \ge 0, \qquad \Delta S_{\mathrm{fold}}(A) := H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) > 0,
+```
    and the net phase-space contraction (net entropy exported to the sub-$`\varepsilon`$ boundary bath per step [5]) is:
-   ```math
-   \sigma_{\mathrm{bath}}(A) := H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) - h_{\mathrm{KS}}(A) = \sum_{i=1}^{N_A} (-\lambda_i) > 0.
-   ```
+```math
+\sigma_{\mathrm{bath}}(A) := H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa(A) - h_{\mathrm{KS}}(A) = \sum_{i=1}^{N_A} (-\lambda_i) > 0.
+```
 2. **Logical Bit-Merging Rate and Landauer Dissipation Bound:** Along $`E^s`$, the dynamics merge $`\exp(\kappa(A))`$ distinguishable transverse $`\varepsilon`$-states into $`1`$ state per step, corresponding to a gross transverse bit-erasure rate of $`\dot{I}_{\mathrm{merge}}(E^s) = \frac{\kappa(A)}{\ln 2}`$ bits/step, and a net bath bit-export rate (accounting for expansion along $`E^u`$) of:
-   ```math
-   \dot{I}_{\mathrm{erase}}^{\mathrm{net}}(\mathcal{I}_A \to \partial^+ A) = \frac{\sigma_{\mathrm{bath}}(A)}{\ln 2} = \frac{\kappa(A) - h_{\mathrm{KS}}(A)}{\ln 2} \;\text{bits/step}.
-   ```
+```math
+\dot{I}_{\mathrm{erase}}^{\mathrm{net}}(\mathcal{I}_A \to \partial^+ A) = \frac{\sigma_{\mathrm{bath}}(A)}{\ln 2} = \frac{\kappa(A) - h_{\mathrm{KS}}(A)}{\ln 2} \;\text{bits/step}.
+```
    If the sub-$`\varepsilon`$ degrees of freedom on $`\partial^+ A`$ equilibrate with an external channel bath at temperature $`T_{\partial A} > 0`$, the minimum heat/action power dissipated into the bath per step is bounded below by [5]:
-   ```math
-   \dot{Q}_{\mathrm{ext}}(\partial^+ A) \;\ge\; k_B T_{\partial A} \ln 2 \cdot \dot{I}_{\mathrm{erase}}^{\mathrm{net}} = k_B T_{\partial A} \bigl(\kappa(A) - h_{\mathrm{KS}}(A)\bigr).
-   ```
+```math
+\dot{Q}_{\mathrm{ext}}(\partial^+ A) \;\ge\; k_B T_{\partial A} \ln 2 \cdot \dot{I}_{\mathrm{erase}}^{\mathrm{net}} = k_B T_{\partial A} \bigl(\kappa(A) - h_{\mathrm{KS}}(A)\bigr).
+```
 
 *Proof.* (1) Partition a local neighborhood into $`\varepsilon`$-boxes aligned with $`E^u \oplus E^s`$ [6]. Under one step of $`G_R`$, each box stretches by $`e^{\lambda_i}`$ along $`i \in E^u`$ (increasing the number of occupied $`\varepsilon`$-boxes along $`E^u`$ by factor $`e^{h_{\mathrm{KS}}(A)}`$, adding $`+h_{\mathrm{KS}}(A)`$ nats) and contracts by $`e^{-|\lambda_i|}`$ along $`i \in E^s`$ (merging $`e^{\kappa(A)}`$ boxes along $`E^s`$ into one box of width $`\varepsilon`$, removing $`\kappa(A)`$ nats from the $`\varepsilon`$-resolved state description). Adding the newly injected perturbation entropy $`H_{\mathrm{in}}^{(\varepsilon)}`$ and subtracting the resolved entropy $`H_{\mathrm{out}}^{(\varepsilon)}`$ exported as macro-signals gives $`H_\varepsilon(Z_{n+1}) - H_\varepsilon(Z_n) = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A)`$. Setting $`H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)`$ yields both identities in item (1) immediately. (2) Because $`e^{\kappa(A)}`$ distinct $`\varepsilon`$-cells along $`E^s`$ collapse into a single $`\varepsilon`$-cell at each step while $`e^{h_{\mathrm{KS}}(A)}`$ new cells open along $`E^u`$, the net number of distinguishable $`\varepsilon`$-cells eliminated from the resolved phase space per step is factor $`e^{\kappa(A) - h_{\mathrm{KS}}(A)}`$, which equals $`\frac{\kappa(A) - h_{\mathrm{KS}}(A)}{\ln 2}`$ bits/step. Applying Landauer’s bound $`k_B T_{\partial A} \ln 2`$ per net erased bit [5] gives $`\dot{Q}_{\mathrm{ext}}(\partial^+ A) \ge k_B T_{\partial A}(\kappa(A) - h_{\mathrm{KS}}(A))`$. `∎`
 
@@ -336,14 +336,14 @@ In $`(X, \prec)`$, no external global time parameter exists; only the causal ord
 
 **Definition 5.1 (Proper Phase Rate and Relative Operational Time Ratio).** `[Status: FOLLOW]`
 1. For a localized worldtube $`A`$ composed of antichains $`S_0 \prec S_1 \prec \dots \prec S_m`$ with non-empty diamond sets $`\mathcal{D}_A(k)`$ between $`S_k`$ and $`S_{k+2}`$, define the complex order parameter $`z_A(k) := \frac{1}{|\mathcal{D}_A(k)|} \sum_{D \in \mathcal{D}_A(k)} e^{i\Phi_D}`$. When $`|z_A(k)| \ge \theta_{\mathrm{coh}} > 0`$, the **dimensionless internal phase rate per causal step** is:
-   ```math
-   \omega_A^{(\ell)} := \frac{1}{m} \sum_{k=0}^{m-1} \arg z_A(k) \quad \text{(radians per two-step causal layer)},
-   ```
+```math
+\omega_A^{(\ell)} := \frac{1}{m} \sum_{k=0}^{m-1} \arg z_A(k) \quad \text{(radians per two-step causal layer)},
+```
    and the accumulated phase-cycle count is $`\Delta N_A^{(\ell)} = \frac{m}{2\pi} \omega_A^{(\ell)}`$.
 2. For two subsystems $`A`$ and $`B`$ exchanging signals via unbranched null chains ($`d_\diamond = 0`$, along which no internal diamonds close: $`\Delta N_{\mathrm{null}} = 0`$), the **relative operational time ratio** between successive exchanges is the dimensionless ratio:
-   ```math
-   R_{AB}^{(\ell)} := \frac{\Delta N_A^{(\ell)}}{\Delta N_B^{(\ell)}} = \frac{\omega_A^{(\ell)} \Delta m_A}{\omega_B^{(\ell)} \Delta m_B}.
-   ```
+```math
+R_{AB}^{(\ell)} := \frac{\Delta N_A^{(\ell)}}{\Delta N_B^{(\ell)}} = \frac{\omega_A^{(\ell)} \Delta m_A}{\omega_B^{(\ell)} \Delta m_B}.
+```
 
 **Explicit Distinction Between Combinatorial Phase Rate and Physical Time:** `[Status: UNDECIDED]`  
 By Definition 5.1, $`\omega_A^{(\ell)}`$ is measured in radians per discrete causal step, **not** in inverse seconds ($`\mathrm{s}^{-1}`$). Identifying $`R_{AB}^{(\ell)}`$ with the physical clock redshift ratio $`d\tau_A / d\tau_B`$ requires establishing in the continuum limit [1, 7] that the internal diamond-cycle counter $`\Delta N_A^{(\ell)}`$ is proportional to the Lorentzian proper-time integral $`\int \sqrt{-g_{\mu\nu}dx^\mu dx^\nu}`$.
