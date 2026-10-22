@@ -98,7 +98,9 @@ Information is not primarily data. Information is **restriction**.
 
 Let $`\Omega`$ be the space of possible states of a system. Information acts by reducing the admissible domain:
 
-$$\Omega \rightarrow \Omega' \subset \Omega$$
+```math
+\Omega \rightarrow \Omega' \subset \Omega
+```
 
 Thus information is not merely something *contained* in a system. It is the principle by which the system becomes non-arbitrary. Without informational restriction, energy disperses into undirected entropy; with it, energy condenses into stable structure.
 
@@ -118,7 +120,9 @@ The consequence is a triad rather than a monad. The fundamental quantities are *
 
 This forces a precision about time that the first edition lacked. In the companion physical program there is no external global time: proper time is defined along worldlines, and in the discrete kinematics it is estimated by the length of a maximal causal chain [6, 7]. What physics ever measures is not time as an axis but **ratios of rates**. The general redshift formula of that program makes this explicit:
 
-$$1 + z = \frac{(-u^\mu k_\mu)_{\mathrm{em}}}{(-u^\mu k_\mu)_{\mathrm{obs}}}$$
+```math
+1 + z = \frac{(-u^\mu k_\mu)_{\mathrm{em}}}{(-u^\mu k_\mu)_{\mathrm{obs}}}
+```
 
 The observed frequency $`\omega = -u^\mu k_\mu`$ is observer-relative; the redshift is literally a comparison of two clocks — the null phase transport against the local temporal directions of emitter and observer [6]. The “delta of frequencies” between two families of clocks — the metric clock of the causal base and the phase clock of the $`U(1)`$ layer — is precisely what the physical program formalizes. The philosophical text should therefore treat rate comparison as its anchor, not as a new intuition: **the operational content of time is the ratio of rates; the time axis is derived bookkeeping.**
 
@@ -128,7 +132,9 @@ An algebraic counterpart of this claim exists, and it belongs to the lineage of 
 
 The first edition wrote $`d\mathcal{T} = (dI/E)\cdot\eta(M)`$ as a heuristic for operational time. Dimensionally this is not a time, and the present edition withdraws it. An honest schematic, anchored in Margolus–Levitin, reads: a system generating $`N`$ orthogonal distinctions at mean energy $`E`$ requires
 
-$$d\mathcal{T} \;\propto\; \frac{\hbar\, dN}{E}\, \eta(M)$$
+```math
+d\mathcal{T} \;\propto\; \frac{\hbar\, dN}{E}\, \eta(M)
+```
 
 where $`\eta(M)`$ is the efficiency of the architecture — the fraction of the physical rate bound it actually achieves. The bound itself is physics; the architecture factor is not, and is offered as a schema. Operational time is the accumulated count of distinctions a system can afford: a simple system has little internal time, and a complex mind contains many layers of simultaneous temporal structure, each layer paying for its tempo from the same envelope.
 
@@ -146,7 +152,9 @@ Structure emerges not from unrestricted possibility, but from **constrained gene
 
 Self-structuring may be expressed as:
 
-$$\text{Self-Structuring} = \text{Generation} + \text{Constraint} + \text{Selection}$$
+```math
+\text{Self-Structuring} = \text{Generation} + \text{Constraint} + \text{Selection}
+```
 
 Generation produces candidate forms. Constraint narrows the admissible space. Selection stabilizes coherent survivors.
 
@@ -170,7 +178,9 @@ The deepest question is not only how structure appears, but why structures devel
 
 Systems do not tend toward maximal complexity in the naive sense. They tend toward **scaling**:
 
-$$\text{Scaling} = \text{Expansion of Expressive Capacity} + \text{Preservation of Coherence}$$
+```math
+\text{Scaling} = \text{Expansion of Expressive Capacity} + \text{Preservation of Coherence}
+```
 
 Scaling is growth under pruning.
 
@@ -192,7 +202,9 @@ Development is not produced by order alone, nor by freedom alone. A system becom
 
 Dynamic balance is the regulated proportion between generative freedom and constraining order that allows a system to increase expressive capacity without losing coherence:
 
-$$\mathcal{B} = \mathcal{V}(G, C, E, S)$$
+```math
+\mathcal{B} = \mathcal{V}(G, C, E, S)
+```
 
 where $`G`$ is generative freedom, $`C`$ is constraint, $`E`$ is entropic pressure, $`S`$ is structural coherence, and $`\mathcal{V}`$ is the viable range within which the system persists.
 
@@ -208,7 +220,9 @@ The same pattern repeats across levels: physical systems stabilize through lawfu
 
 Fractals, waves, cycles, proportions, and living forms are not separate mysteries. They are different manifestations of constrained motion preserving coherence across change. The logic of being is therefore not merely distinction → constraint → compression; it requires proportion:
 
-$$\text{Distinction} \rightarrow \text{Constraint} \rightarrow \text{Balance} \rightarrow \text{Structure} \rightarrow \text{Meaning}$$
+```math
+\text{Distinction} \rightarrow \text{Constraint} \rightarrow \text{Balance} \rightarrow \text{Structure} \rightarrow \text{Meaning}
+```
 
 Without balance, constraint becomes rigidity; without balance, generation becomes chaos.
 
@@ -250,7 +264,9 @@ Self-structuring unfolds through hierarchical levels, each preserving something 
 
 A simplified hierarchy may be described as:
 
-$$\text{Difference} \rightarrow \text{Order} \rightarrow \text{Code} \rightarrow \text{Meaning} \rightarrow \text{Model} \rightarrow \text{Reflection}$$
+```math
+\text{Difference} \rightarrow \text{Order} \rightarrow \text{Code} \rightarrow \text{Meaning} \rightarrow \text{Model} \rightarrow \text{Reflection}
+```
 
 More concretely:
 
@@ -276,7 +292,9 @@ This hierarchy is not a rigid ladder. It is a pattern of recursive emergence. Ea
 
 The same architecture repeats across scales:
 
-$$\text{Structure} \rightarrow \text{Compression} \rightarrow \text{New Degrees of Freedom}$$
+```math
+\text{Structure} \rightarrow \text{Compression} \rightarrow \text{New Degrees of Freedom}
+```
 
 ---
 
@@ -286,11 +304,15 @@ $$\text{Structure} \rightarrow \text{Compression} \rightarrow \text{New Degrees 
 
 Meaning emerges through **semantic compression**, and compression has a precise shape. Coarse-graining is a many-to-one map:
 
-$$\pi:\ \Omega_{\mathrm{micro}} \rightarrow \Omega_{\mathrm{macro}}$$
+```math
+\pi:\ \Omega_{\mathrm{micro}} \rightarrow \Omega_{\mathrm{macro}}
+```
 
 Everything that falls into the kernel of $`\pi`$ — every micro-distinction that the macro-description cannot see — is, for that description, **irrelevant**. The stable content of a description is what survives the quotient. Meaning may accordingly be interpreted as:
 
-$$\text{Meaning} \approx \text{Compressed Relational Structure preserved across contexts}$$
+```math
+\text{Meaning} \approx \text{Compressed Relational Structure preserved across contexts}
+```
 
 Physics already uses the word. In the renormalization group, *irrelevant operators* are those whose couplings flow to zero under repeated coarse-graining, while the fixed points of the flow are the stabilized macro-structures — the durable forms. In the companion physical program, the candidate fixed point $`g^\star`$ of coarse-graining plays exactly this role [6]: a stationary large-scale regime toward which statistical distance decreases even while total entropy grows. The convergence of terminology is not a metaphor imposed from outside; it is the same quotient structure appearing at two levels of description.
 
@@ -308,7 +330,9 @@ Both are quotient constructions. They differ only in what indexes the quotient. 
 
 Binary logic operates with $`\{0, 1\}`$. Cognition requires a third operator:
 
-$$\{0, 1, \emptyset\}$$
+```math
+\{0, 1, \emptyset\}
+```
 
 where $`\emptyset`$ denotes **irrelevance**, not falsehood. The irrelevant is not false. It is outside the active structure of attention — outside the quotient currently in force.
 
@@ -491,11 +515,15 @@ Reality appears less like static substance and more like **constrained self-stru
 
 The Algorithm of Being may be summarized as:
 
-$$\text{Distinction} \rightarrow \text{Constraint} \rightarrow \text{Balance} \rightarrow \text{Compression} \rightarrow \text{Meaning} \rightarrow \text{Modeling} \rightarrow \text{Certification} \rightarrow \text{Self-Correction}$$
+```math
+\text{Distinction} \rightarrow \text{Constraint} \rightarrow \text{Balance} \rightarrow \text{Compression} \rightarrow \text{Meaning} \rightarrow \text{Modeling} \rightarrow \text{Certification} \rightarrow \text{Self-Correction}
+```
 
 Or, in compressed form:
 
-$$\text{Relation} \rightarrow \text{Restriction} \rightarrow \text{Structure} \rightarrow \text{Semantics} \rightarrow \text{Intelligence}$$
+```math
+\text{Relation} \rightarrow \text{Restriction} \rightarrow \text{Structure} \rightarrow \text{Semantics} \rightarrow \text{Intelligence}
+```
 
 ### **Reflection**
 
