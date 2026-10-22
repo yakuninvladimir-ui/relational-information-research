@@ -115,7 +115,7 @@ from cpp_v39_reference import (
 | `shortest_path(A_sym, directed=False)` uses undirected graph for causal diameter | Add `directed=True` option; report both and flag discrepancy |
 | Isolated vertices produce `1/sqrt(eps)` blowup in normalized Laplacian | Filter isolated vertices before $`\lambda_2`$ computation |
 
-These fixes are **mandatory** before any protocol run. They are versioned as `cpp_v39_reference_patched.py`.
+These fixes are **mandatory** before any protocol run. They are versioned as `cpp_v39_reference.py`.
 
 ---
 
