@@ -79,7 +79,7 @@ R_{xy} = 1 \implies K_{xy} := (R^2)_{xy} = 0.
 Each Hasse link $`x \lessdot y`$ carries a phase $`\theta_{xy} \in [0, 2\pi)`$ and unitary transport factor $`U_{xy} = e^{i\theta_{xy}} \in U(1)`$ (with $`U_{yx} = U_{xy}^{-1} = e^{-i\theta_{xy}}`$ along comparison loops).
 
 **Definition 1.2 (Causal-Phase Transport Matrix).** `[Status: FOLLOW]`  
-The nilpotent complex transport matrix $`W \in \mathbb{C}^{N \times N}`$ is defined by $`W_{xy} := R_{xy} e^{i\theta_{xy}}`$ ($`W^N = 0`$). Under local vertex gauge transformations $`D_\chi = \mathop{diag}(e^{i\chi_1}, \dots, e^{i\chi_N})`$:
+The nilpotent complex transport matrix $`W \in \mathbb{C}^{N \times N}`$ is defined by $`W_{xy} := R_{xy} e^{i\theta_{xy}}`$ ($`W^N = 0`$). Under local vertex gauge transformations $`D_\chi = \mathrm{diag}(e^{i\chi_1}, \dots, e^{i\chi_N})`$:
 
 ```math
 W \longmapsto W' = D_\chi W D_\chi^\dagger, \qquad \theta_{xy} \longmapsto \theta'_{xy} = (\theta_{xy} + \chi_x - \chi_y) \bmod 2\pi.
@@ -96,7 +96,7 @@ V_{xy} := \{z \in X \mid R_{xz} R_{zy} = 1\}, \qquad K_{xy} := |V_{xy}| = (R^2)_
 Note that by Hasse irreducibility (§1.1), $`K_{xy} > 0 \implies R_{xy} = 0`$. The two-step amplitude, waist coherence, and phase frustration (activity) are defined for $`K_{xy} > 0`$ as:
 
 ```math
-M_{xy} := (W^2)_{xy} = \sum_{z \in V_{xy}} e^{i(\theta_{xz} + \theta_{zy})}, \qquad \mathop{Coh}_{xy} := \frac{|M_{xy}|^2}{K_{xy}^2} \in [0, 1], \qquad J_{xy} := K_{xy}\bigl(1 - \mathop{Coh}_{xy}\bigr) = \frac{K_{xy}^2 - |M_{xy}|^2}{K_{xy}} \ge 0.
+M_{xy} := (W^2)_{xy} = \sum_{z \in V_{xy}} e^{i(\theta_{xz} + \theta_{zy})}, \qquad \mathrm{Coh}_{xy} := \frac{|M_{xy}|^2}{K_{xy}^2} \in [0, 1], \qquad J_{xy} := K_{xy}\bigl(1 - \mathrm{Coh}_{xy}\bigr) = \frac{K_{xy}^2 - |M_{xy}|^2}{K_{xy}} \ge 0.
 ```
 
 Whenever $`K_{xy} \ge 2`$, any unordered pair of distinct intermediate vertices $`\{z_a, z_b\} \subset V_{xy}`$ ($`z_a \neq z_b`$) forms an **elementary causal diamond** $`D(x; z_a, z_b; y)`$ with gauge-invariant holonomy:
@@ -197,7 +197,7 @@ For $`p(\eta, b, \mu) = \mathcal{N}(0, \Pi^{-1})`$ with $`\Pi \succ 0`$:
    ```math
    \Sigma_{\mathcal{I}\mathcal{E}} = \Sigma_{\mathcal{I},\partial A}\,\Sigma_{\partial A}^{-1}\,\Sigma_{\partial A,\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\,\Sigma_{\partial A}\,\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1}.
    ```
-2. **Boundary Kernel-Inclusion Criterion:** A linear synchronization map $`\sigma: \mathop{Im}(\overline{\mu}) \to \mathop{Im}(\overline{\eta})`$ satisfying $`\sigma(\overline{\mu}(b)) = \overline{\eta}(b)`$ for all $`b \in \partial A`$ exists if and only if [4]:
+2. **Boundary Kernel-Inclusion Criterion:** A linear synchronization map $`\sigma: \mathrm{Im}(\overline{\mu}) \to \mathrm{Im}(\overline{\eta})`$ satisfying $`\sigma(\overline{\mu}(b)) = \overline{\eta}(b)`$ for all $`b \in \partial A`$ exists if and only if [4]:
    ```math
    \ker \Sigma_{\mathcal{I},\partial A} \subseteq \ker \Sigma_{\mathcal{E},\partial A} \quad \Longleftrightarrow \quad \ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}.
    ```
@@ -273,11 +273,11 @@ accommodating at least one longitudinal active transport direction ($`\dim W^{\m
 ### **3.4. Helmholtz Decomposition and Solenoidal Acceleration of Relaxation**
 
 **Proposition 3.2 (Solenoidal Preservation of Stationary Measure and Acceleration of Relaxation).** `[Status: FOLLOW]` [4]  
-For a linear Langevin process $`dx_t = -(\Gamma + Q)\Pi x_t\,dt + \sqrt{2\Gamma}\,dW_t`$ on $`\mathbb{R}^n`$ with $`\Pi \succ 0`$, $`\Gamma \succ 0`$, and skew-symmetric solenoidal matrix $`Q = -Q^\top`$, let $`B(Q) := (\Gamma + Q)\Pi`$ and $`\gamma(Q) := \min\{\mathop{Re}\mu : \mu \in \mathop{spec}(B(Q))\}`$. Then:
+For a linear Langevin process $`dx_t = -(\Gamma + Q)\Pi x_t\,dt + \sqrt{2\Gamma}\,dW_t`$ on $`\mathbb{R}^n`$ with $`\Pi \succ 0`$, $`\Gamma \succ 0`$, and skew-symmetric solenoidal matrix $`Q = -Q^\top`$, let $`B(Q) := (\Gamma + Q)\Pi`$ and $`\gamma(Q) := \min\{\mathrm{Re}\mu : \mu \in \mathrm{spec}(B(Q))\}`$. Then:
 1. The solenoidal drift $`f_{\mathrm{irrev}}(x) = -Q\Pi x`$ is divergence-free with respect to $`p(x) = \mathcal{N}(0, \Pi^{-1})`$ ($`\nabla \cdot (f_{\mathrm{irrev}} p) = 0`$) and leaves the stationary measure invariant [4].
-2. The spectral relaxation rate satisfies $`\gamma(Q) \ge \gamma(0) = \lambda_{\min}(\Pi^{1/2}\Gamma\Pi^{1/2}) > 0`$ with constant trace $`\mathop{Tr} B(Q) = \mathop{Tr}(\Gamma\Pi)`$ [4]. Whenever $`\Pi^{1/2}\Gamma\Pi^{1/2}`$ is anisotropic, there exist skew-symmetric matrices $`Q \neq 0`$ such that $`\gamma(Q) > \gamma(0)`$ strictly, up to $`\gamma_{\max} = \frac{1}{n}\mathop{Tr}(\Gamma\Pi)`$ [4].
+2. The spectral relaxation rate satisfies $`\gamma(Q) \ge \gamma(0) = \lambda_{\min}(\Pi^{1/2}\Gamma\Pi^{1/2}) > 0`$ with constant trace $`\mathrm{Tr} B(Q) = \mathrm{Tr}(\Gamma\Pi)`$ [4]. Whenever $`\Pi^{1/2}\Gamma\Pi^{1/2}`$ is anisotropic, there exist skew-symmetric matrices $`Q \neq 0`$ such that $`\gamma(Q) > \gamma(0)`$ strictly, up to $`\gamma_{\max} = \frac{1}{n}\mathrm{Tr}(\Gamma\Pi)`$ [4].
 
-*Proof.* (1) $`\nabla \cdot (f_{\mathrm{irrev}}p) = -p\mathop{Tr}(Q\Pi) + p(\Pi x)^\top Q^\top (\Pi x) = 0`$ by skew-symmetry of $`Q`$ [4]. (2) For $`\widetilde{B}(Q) = \Pi^{1/2}B(Q)\Pi^{-1/2} = S + A`$ with $`S = \Pi^{1/2}\Gamma\Pi^{1/2} \succ 0`$ and $`A = \Pi^{1/2}Q\Pi^{1/2} = -A^\top`$, any unit eigenvector $`v`$ of $`S+A`$ with eigenvalue $`\mu`$ satisfies $`\mathop{Re}\mu = v^\dagger S v \ge \lambda_{\min}(S) = \gamma(0)`$ [4]. `∎`
+*Proof.* (1) $`\nabla \cdot (f_{\mathrm{irrev}}p) = -p\mathrm{Tr}(Q\Pi) + p(\Pi x)^\top Q^\top (\Pi x) = 0`$ by skew-symmetry of $`Q`$ [4]. (2) For $`\widetilde{B}(Q) = \Pi^{1/2}B(Q)\Pi^{-1/2} = S + A`$ with $`S = \Pi^{1/2}\Gamma\Pi^{1/2} \succ 0`$ and $`A = \Pi^{1/2}Q\Pi^{1/2} = -A^\top`$, any unit eigenvector $`v`$ of $`S+A`$ with eigenvalue $`\mu`$ satisfies $`\mathrm{Re}\mu = v^\dagger S v \ge \lambda_{\min}(S) = \gamma(0)`$ [4]. `∎`
 
 ---
 
@@ -358,7 +358,7 @@ Let $`s_t`$ be a mean-zero stationary Gaussian process on $`\partial^- A`$ with 
 1. By Doob’s theorem and linear stochastic realization theory [4], $`s_t = F_0 s_t^{(0)}`$ is the marginal output of a Markovian integrator chain $`\tilde{s}_t = (s_t^{(0)}, s_t^{(1)}, \dots, s_t^{(n)})`$ of generalized coordinates of motion satisfying $`ds_t^{(k)} = (-A_k s_t^{(k)} + B_k s_t^{(k+1)})\,dt + \varsigma_k\,dW_t^{(k)}`$ ($`0 \le k < n`$) and $`ds_t^{(n)} = -A_n s_t^{(n)}\,dt + \varsigma_n\,dW_t^{(n)}`$.
 2. Under timescale separation $`0 < \gamma_0 \le \gamma_1 \le \gamma_2 \ll \gamma_3 \le \dots \le \gamma_n`$, coarse-graining over a window $`\tau_w^{(\ell)} \in (\gamma_2^{-1}, \gamma_3^{-1})`$ suppresses the window-averaged variance of orders $`k \ge 3`$ as $`O((\gamma_k \tau_w^{(\ell)})^{-1})`$, truncating the boundary state to $`\tilde{s}_t^{(\le 2)} = (s_t^{(0)}, s_t^{(1)}, s_t^{(2)})`$ and yielding a second-order linear-quadratic control law (effective inertia, damping, and restoring force) [4].
 
-*Proof.* Follows from minimum-phase spectral factorization $`S(\omega) = H(i\omega)H(-i\omega)^\top`$ into block-companion form and exact Ornstein–Uhlenbeck window-variance integration $`\mathop{Var}\bigl(\frac{1}{\tau_w}\int_0^{\tau_w} s_t^{(k)}dt\bigr) \propto \frac{2(\gamma_k\tau_w - 1 + e^{-\gamma_k\tau_w})}{(\gamma_k\tau_w)^2} = O((\gamma_k\tau_w)^{-1})`$ [4]. `∎`
+*Proof.* Follows from minimum-phase spectral factorization $`S(\omega) = H(i\omega)H(-i\omega)^\top`$ into block-companion form and exact Ornstein–Uhlenbeck window-variance integration $`\mathrm{Var}\bigl(\frac{1}{\tau_w}\int_0^{\tau_w} s_t^{(k)}dt\bigr) \propto \frac{2(\gamma_k\tau_w - 1 + e^{-\gamma_k\tau_w})}{(\gamma_k\tau_w)^2} = O((\gamma_k\tau_w)^{-1})`$ [4]. `∎`
 
 ### **5.3. Multiscale Coarse-Graining Operator `ℛ_{ℓ→ℓ+1}` and Architectural Transition**
 
@@ -375,7 +375,7 @@ On a regular $`d`$-dimensional ball ($`d \ge 2`$) of $`N`$ vertices with bounded
 ### **6.1. Combinatorial Identity of Diamond Partitioning and Void Rarefaction**
 
 **Proposition 6.1 (Additive Diamond Partition Identity).** `[Status: FOLLOW]`  
-Assigning each waist with $`K_{xy} \ge 2`$ to its lower anchor $`x \in X`$ via $`q_x := \sum_{y:\, K_{xy} \ge 2} K_{xy}\mathop{Coh}_{xy} = \sum_{y:\, K_{xy} \ge 2} \frac{|M_{xy}|^2}{K_{xy}}`$ and setting $`\rho_D(U) := \frac{1}{|U|}\sum_{x \in U} q_x`$ yields the exact additive identity across any partition $`X = \mathcal{E} \sqcup \bigsqcup_{m=1}^M (\mathcal{I}_{A_m} \sqcup \partial A_m)`$:
+Assigning each waist with $`K_{xy} \ge 2`$ to its lower anchor $`x \in X`$ via $`q_x := \sum_{y:\, K_{xy} \ge 2} K_{xy}\mathrm{Coh}_{xy} = \sum_{y:\, K_{xy} \ge 2} \frac{|M_{xy}|^2}{K_{xy}}`$ and setting $`\rho_D(U) := \frac{1}{|U|}\sum_{x \in U} q_x`$ yields the exact additive identity across any partition $`X = \mathcal{E} \sqcup \bigsqcup_{m=1}^M (\mathcal{I}_{A_m} \sqcup \partial A_m)`$:
 
 ```math
 \rho_D(\mathcal{E}) = \frac{1}{|\mathcal{E}|} \left( Q_{\mathrm{tot}}(X) - \sum_{m=1}^{M} |\mathcal{I}_{A_m}| \, \rho_D(\mathcal{I}_{A_m}) - \sum_{m=1}^{M} |\partial A_m| \, \rho_D(\partial A_m) \right).
