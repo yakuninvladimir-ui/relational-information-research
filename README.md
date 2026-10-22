@@ -35,7 +35,7 @@ Earlier and superseded materials remain archived on Zenodo.
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
 │   ├── Self_Developing_Runtime_Research_Program.md
-│   ├── latent_information_structuring.md             # geometry of latent representations (EN)
+│   ├── Latent_Information_Structuring.md             # geometry of latent representations (EN)
 │   ├── Latent_Agency_Framework.md
 │   └── Draft/                                        # working drafts, not formal deliverables
 │       ├── ternary_judge.md
@@ -64,7 +64,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Reasoning | [Unified Implementable Model](Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
 | Reasoning | [External Ternary Judge Adapter](Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
 | Reasoning | [Self-Developing Runtime Research Program](Reasoning/Self_Developing_Runtime_Research_Program.md) | Pre-implementation research program (v0.2): controlled self-development of an LLM under an external verifier |
-| Reasoning | [Latent Information Structuring](Reasoning/latent_information_structuring.md) | Geometric theory of latent representations (EN); active experimental program E1–E5 |
+| Reasoning | [Latent Information Structuring](Reasoning/Latent_Information_Structuring.md) | Geometric theory of latent representations (EN); active experimental program E1–E5 |
 | Reasoning | [Latent Agency Framework](Reasoning/Latent_Agency_Framework.md) | Working hypothesis (v2.1): graded agency via integration, persistence, informational autonomy; relief vs budget; recoverability bound and kernel-inclusion synchronization; Helmholtz decomposition and integrator-chain truncation of boundary dynamics; ten measurable predictions; hard problem bracketed |
 | Reasoning (drafts) | [Propose, Judge, Commit](Reasoning/Draft/ternary_judge.md) | Draft paper; includes preliminary live MVP results on a controlled corpus (FalseFollowRate 0.362 → 0.035) |
 | Reasoning (drafts) | [Hierarchical Ternary KG as RAG Alternative](Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: ternary hierarchical knowledge graph as an alternative to RAG |
