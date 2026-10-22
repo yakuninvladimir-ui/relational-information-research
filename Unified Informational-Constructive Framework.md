@@ -41,7 +41,7 @@ The fundamental quantities: **distinction** (the bit), **action** ($`E \cdot t`$
 
 ### **2.3. Time: rate, not axis**
 
-The archive’s physics program admits no external global time: proper time is defined along worldlines, and in discrete kinematics is estimated by maximal-chain length [6, 7]. Only **ratios of rates** are observable. The general redshift formula is literally a comparison of two clocks (null-transported phase against the local time directions of emitter and observer):
+The archive’s physics program admits no external global time: proper time is defined along worldlines; in discrete kinematics it is estimated by an internal combinatorial clock — accumulated phase cycles in CPP v3.9 (§5.1) [6], maximal-chain length in the earlier continuum-oriented formulations (CPG v2.0, historical). Only **ratios of rates** are observable. The general redshift formula of the continuum limit (CPG v2.0 §2.3, historical; its discrete counterpart is the phase-cycle ratio $`R^{(\ell)}_{AB}`$ of [6]) is literally a comparison of two clocks (null-transported phase against the local time directions of emitter and observer):
 
 ```math
 1+z = \frac{(-u^\mu k_\mu)_{\mathrm{em}}}{(-u^\mu k_\mu)_{\mathrm{obs}}}
@@ -145,7 +145,7 @@ R_{\mu\nu} - \tfrac{1}{2} R\, g_{\mu\nu} + \Lambda_{\mathrm{eff}}[I_{\mathrm{era
 
 1. **$`T^{\mathrm{bulk}}_{\mu\nu}(\mathcal{I}_A)`$ — localized massive matter:** the contribution of high-synchronization diamond and vortical complexes ($`\lambda_2>\lambda_{\mathrm{crit}}`$, $`H_{\mathrm{rot}}\ne0`$).
 2. **$`T^{\mathrm{interface}}_{\mu\nu}(\partial A)`$ — synchronization-shell tension ("dark matter" regime):** the boundary transition zone where the frequency mismatch between the internal clock $`\omega_A`$ and the external channel is balanced by embedding curvature $`\mathbf H=\lambda(\nabla i)^\perp`$ (§3.1 of v3.9) and precision-weighted prediction error (Prop 2.2). At galactic scales this extended interface produces an effective gravitational potential without new particle species in the halo.
-3. **$`\Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}^{\mathrm{net}}]\,g_{\mu\nu}`$ — global channel response ("dark energy" regime):** cumulative null-mode injection across all outgoing interfaces rarefies the external channel (H-LG), coupled to bulk and interface stress-energy via the Bianchi identity.
+3. **$`\Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}^{\mathrm{net}}]\,g_{\mu\nu}`$ — global channel response ("dark energy" regime):** cumulative null-mode injection across all outgoing interfaces rarefies the external channel (H-LG).
 
 The dimensionless saturation ratio $`\eta_{\mathrm{sat}}(A)=(\kappa(A)-h_{\mathrm{KS}}(A))/(c_0\ln 2\cdot\vert{}\partial^+ A\vert{}_E)`$ delimits the regime: crossing $`\eta_{\mathrm{sat}}\ge1`$ saturates the outgoing channel, breaks kernel inclusion for deep interior modes (event-horizon regime with area-law entropy $`\propto\vert{}\partial^+ A\vert{}_E`$), and drives the interior into a high-rank matrix phase $`K^{\mathrm{eff}}_{xy}\ge3`$ (§6.2 of v3.9; UNDECIDED — Protocol V6).
 
@@ -388,7 +388,7 @@ The philosophical level has no direct experiment but has an indirect one: **cons
 | :--- | :--- | :--- | :--- |
 | The Algorithm of Being (Revised) | Ontology | EN | The philosophical frame: triad, kernel, consciousness under verification, substrate envelope |
 | Causal Phase Program v3.9 (Oct 21, 2026; `Physics/Causal_Phase_Program_v3.md`) | Physics | EN | Active formal specification and research program: structuring triad $`(\mathcal{I}_A,\partial A,\mathcal{E}_A)`$, binary-diamond selection $`K^{\mathrm{eff}}=2`$, Oseledets–Ruelle–Landauer bridge, three-component Einstein–Maxwell decomposition, horizon saturation, protocols V1–V7, $`V_4`$ registry, reference implementation; supersedes CPG v2.0 |
-| Causal-Phase Geometry Research Program v2.0 (Oct 17, 2026) | Physics | EN | Historical predecessor of v3.9; source of the $`\Gamma_{\mathrm{corr}}`$ continuum formulation, the $`\mathrm{sLSE}_T`$ aggregation bridge, and the observational falsification criteria (SPARC / DESI / DES-SN5YR) |
+| Causal-Phase Geometry Research Program v2.0 (Oct 17, 2026) | Physics | EN | Historical predecessor of v3.9; source of the $`\Gamma_{\mathrm{corr}}`$ continuum formulation and the observational falsification criteria (SPARC / DESI / DES-SN5YR) |
 | Technical Specification v0.3 (Oct 22, 2026) | Physics | EN | Active executable specification of protocols V1–V7: scope and software architecture (`Physics/v0.3_protocols/`), per-protocol observables, null tests, controls, and refutation criteria; mandatory numerical fixes of the §9 reference implementation (`FIX-1`–`FIX-5`); execution plan and resource budget (≈12–20 h); $`V_4`$ decision rules per MBEL; automated `REPORT_v0.3.md` |
 | Technical Specification v0.2 (consolidated) | Physics | EN | Frozen historical pilot design: Mode A (frozen topology) + Mode B (budget-conserving rewiring); observables $`\Delta F`$, $`\Delta N_\partial`$, $`\delta\rho_{\mathrm{void}}`$, $`z_{\mathrm{void}}^{\mathrm{eff}}`$; null tests D1–D8; executed with outcome UNDECIDED (glassy freezing in Mode B; finite-size ambiguity); superseded by v0.3 |
 | KK–Jacobson Commutativity Note | Physics | EN | Historical (5D route frozen August 2026; NULL per §7; in CPP v3.9 dimensionality is derived, not postulated) |

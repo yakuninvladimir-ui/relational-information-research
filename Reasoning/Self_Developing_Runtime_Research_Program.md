@@ -5,7 +5,7 @@
 **Version:** 0.2  
 **Date:** 2026-09-11  
 **Status:** Research program specification (pre-implementation)  
-**Alignment:** Unified Informational-Constructive Framework v1.8 (originally aligned to v1.1 as of 2026-09-11); Modified Brusentsov Entailment Logic (`Reasoning/Modified_Brusentsov_Entailment_Logic.md` — canonical verdict semantics); Unified Implementable Model; External Ternary Judge Adapter
+**Alignment:** Unified Informational-Constructive Framework (current edition; originally aligned to v1.1 as of 2026-09-11); Modified Brusentsov Entailment Logic (`Reasoning/Modified_Brusentsov_Entailment_Logic.md` — canonical verdict semantics); Unified Implementable Model; External Ternary Judge Adapter
 
 ---
 

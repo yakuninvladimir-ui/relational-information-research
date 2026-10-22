@@ -42,7 +42,7 @@ These domains appear separate only at the surface. At a deeper level they conver
 
 This text does not claim to answer the question completely. It attempts to give it a coherent direction.
 
-One feature of this edition should be stated at the outset. The work is written against the background of a companion technical corpus in which several of its theses are formalized, implemented, or tested: a causal-phase research program in fundamental physics [6], a note on the thermodynamic origin of the Einstein–Maxwell system [7], a formal specification of modified Brusentsov entailment logic and the four-valued verdict calculus [25], a verifier-centered architecture for embodied agents [8], an external ternary judge for language-model reasoning [9], and the specifications of an ARC-AGI-3 interactive reasoning agent [10]. Where a philosophical claim has a formal counterpart in that corpus, the counterpart is cited. Where it does not, the claim is explicitly marked as open. A philosophy that proposes verification as a first-class category should accept verification as a standard for itself.
+One feature of this edition should be stated at the outset. The work is written against the background of a companion technical corpus in which several of its theses are formalized, implemented, or tested: a causal-phase research program in fundamental physics [6] (its current formal specification is maintained in the physics corpus of the companion repository), a historical note on the thermodynamic origin of the Einstein–Maxwell system [7], a formal specification of modified Brusentsov entailment logic and the four-valued verdict calculus [25], a verifier-centered architecture for embodied agents [8], an external ternary judge for language-model reasoning [9], and the specifications of an ARC-AGI-3 interactive reasoning agent [10]. Where a philosophical claim has a formal counterpart in that corpus, the counterpart is cited. Where it does not, the claim is explicitly marked as open. A philosophy that proposes verification as a first-class category should accept verification as a standard for itself.
 
 ---
 
@@ -73,10 +73,10 @@ Accordingly, this text works with an explicit stack, and the Space of Algebras i
 | Layer | Object | Status |
 | :--- | :--- | :--- |
 | Level 0 — algebraic substrate | Space of Algebras (Connes lineage; two candidate formalizations: noncommutative algebras of observables, or process categories of distinctions) | Conjectured; formalization deferred |
-| Level 1 — causal-phase network | Discrete causal order with $`U(1)`$ holonomies on links; Wilson-type functionals; continuum limits | Active research program with explicit falsification criteria [6, 7] |
+| Level 1 — causal-phase network | Discrete causal order with $`U(1)`$ holonomies on links; Wilson-type functionals; continuum limits | Active research program with explicit falsification criteria; the current formal specification is maintained in the repository’s physics corpus [6] |
 | Level 2 — continuum geometry | Lorentzian metric, gauge connection, thermodynamic equation of state | Established structures [2, 4] |
 
-The construction is consonant with the causal set program [4], where spacetime emerges from locally finite partial orders, and with the relational stance in quantum gravity developed by Smolin [5]. The transition from discrete causal kinematics to continuum geometry, explored in the Causal Phase Geometry framework [6], shows how Lorentzian metric, volume measure, and gauge connection may arise jointly from a single microstructure: causal order plus $`U(1)`$ holonomies on oriented links.
+The construction is consonant with the causal set program [4], where spacetime emerges from locally finite partial orders, and with the relational stance in quantum gravity developed by Smolin [5]. The transition from discrete causal kinematics to continuum geometry, explored in the causal-phase program [6], shows how Lorentzian metric, volume measure, and gauge connection may arise jointly from a single microstructure: causal order plus $`U(1)`$ holonomies on oriented links.
 
 Wheeler’s “it from bit” [1] followed the same trajectory: for decades a regulative idea, productive only when it acquired concrete intermediate layers — quantum information, holography. The fate of a regulative idea is decided by whether it generates intermediate layers. This one has: the causal-phase program is the intermediate layer through which the conjecture must pass or fail. Until it delivers, the Space of Algebras remains what this text’s own standard calls $`UNDECIDED`$ (Section 15).
 
@@ -118,7 +118,7 @@ The consequence is a triad rather than a monad. The fundamental quantities are *
 
 ### **3.3 Time: rate, not axis**
 
-This forces a precision about time that the first edition lacked. In the companion physical program there is no external global time: proper time is defined along worldlines, and in the discrete kinematics it is estimated by the length of a maximal causal chain [6, 7]. What physics ever measures is not time as an axis but **ratios of rates**. The general redshift formula of that program makes this explicit:
+This forces a precision about time that the first edition lacked. In the companion physical program there is no external global time: proper time is defined along worldlines, and in the discrete kinematics it is estimated by an internal combinatorial clock of the causal order (maximal chain length or accumulated phase cycles, depending on the formulation) [6]. What physics ever measures is not time as an axis but **ratios of rates**. The general redshift formula of that program makes this explicit:
 
 ```math
 1 + z = \frac{(-u^\mu k_\mu)_{\mathrm{em}}}{(-u^\mu k_\mu)_{\mathrm{obs}}}
@@ -471,7 +471,7 @@ Phenomenal consciousness is declared out of scope (Section 10.3). This is a boun
 
 ### **14.3 Falsifiability**
 
-“Constrained relational dynamics” risks functioning as a total metaphor — compatible with everything and therefore predictive of nothing. Three things would damage the framework, and stating them is the honest antidote: (i) a demonstrated case of cognition with no energy–information trade-offs, which would break the triad; (ii) failure of the formal counterparts — the companion physics program carries explicit falsification criteria, including breakdown of its commutativity condition and conflict with cosmological or laboratory data [6, 7]; (iii) a demonstration that irrelevance is reducible to binary logic without loss in implemented reasoning systems, which would dissolve Section 9's claim that the third operator is foundational rather than convenient.
+“Constrained relational dynamics” risks functioning as a total metaphor — compatible with everything and therefore predictive of nothing. Three things would damage the framework, and stating them is the honest antidote: (i) a demonstrated case of cognition with no energy–information trade-offs, which would break the triad; (ii) failure of the formal counterparts — the companion physics program carries explicit falsification criteria, including conflict with cosmological or laboratory data [6]; (iii) a demonstration that irrelevance is reducible to binary logic without loss in implemented reasoning systems, which would dissolve Section 9's claim that the third operator is foundational rather than convenient.
 
 ### **14.4 Anthropomorphic projection**
 
@@ -479,7 +479,7 @@ The categories used here — constraint, compression, proposer, verifier — wer
 
 ### **14.5 Status of the Space of Algebras**
 
-As detailed in Section 2, the Space of Algebras is a conjectured Level-0 layer with a named lineage (Gelfand duality, spectral triples, thermal time) and an open fork of formalizations — noncommutative algebras of observables versus process categories. Its fate is tied to the intermediate layer: if causal structures with local $`U(1)`$ holonomies prove to have no Lorentz-invariant continuum limit, or if the causal-phase program fails its own falsification criteria [6, 7], the conjecture loses its physical anchor and should be demoted from regulative idea to historical note.
+As detailed in Section 2, the Space of Algebras is a conjectured Level-0 layer with a named lineage (Gelfand duality, spectral triples, thermal time) and an open fork of formalizations — noncommutative algebras of observables versus process categories. Its fate is tied to the intermediate layer: if causal structures with local $`U(1)`$ holonomies prove to have no Lorentz-invariant continuum limit, or if the causal-phase program fails its own falsification criteria [6], the conjecture loses its physical anchor and should be demoted from regulative idea to historical note.
 
 ---
 
@@ -498,7 +498,7 @@ The companion engineering corpus classifies every candidate claim as $`FOLLOW`$ 
 | Consciousness requires an external certification channel | UNDECIDED | Strong engineering evidence [8, 9, 10]; no necessity proof for biological minds |
 | Specific envelope parameters are necessary for consciousness | UNDECIDED | No justified thresholds (Section 11.4) |
 | Consciousness-like architectures may recur at cosmic scale | UNDECIDED | Retained as an open question (Section 12) |
-| The Space of Algebras as fundamental ontology | UNDECIDED | Regulative idea with a theorem-level lineage [22–24]; intermediate layer is the causal-phase program [6, 7]; formalization deferred (Sections 2, 14.5) |
+| The Space of Algebras as fundamental ontology | UNDECIDED | Regulative idea with a theorem-level lineage [22–24]; intermediate layer is the causal-phase program [6]; formalization deferred (Sections 2, 14.5) |
 | The aphorisms retained in this text | OMIT (admitted) | Inessential by this text’s own standard; kept for orientation, not for argument |
 
 A philosophy that files some of its own sentences under $`OMIT`$ is, at least, practicing what it proposes.
@@ -557,7 +557,7 @@ The task of philosophy in the informational age is not to replace science, mathe
 3. J. M. Maldacena, “The Large N Limit of Superconformal Field Theories and Supergravity,” *Advances in Theoretical and Mathematical Physics* 2, 231–252 (1998).
 4. L. Bombelli, J. Lee, D. Meyer, R. D. Sorkin, “Space-Time as a Causal Set,” *Physical Review Letters* 59, 521–524 (1987).
 5. L. Smolin, *Three Roads to Quantum Gravity*, Basic Books, 2001; “The Case for Background Independence,” in *The Structural Foundations of Quantum Gravity*, D. Rickles et al. (eds.), Oxford University Press, 2006.
-6. V. Yakunin, *Causal Phase Geometry Research Program: Minimal Draft, Competing Interpretations of the Phase Layer, and a Program of Experimental Tests* (2026).
+6. V. Yakunin, *Causal-Phase Research Program in Fundamental Physics* — successive specifications since the minimal draft of 2026; the current formal specification is maintained in the physics corpus of the companion repository.
 7. V. Yakunin, *KK–Jacobson Commutativity Note: Discrete Causal Structure, U(1) Holonomies, and the Thermodynamic Origin of the Einstein–Maxwell System* (2026).
 8. V. Yakunin, *Unified Implementable Model, Version 2.0: Verifier-Centered Latent World Models with Evidence-Grounded Three-Way Semantics* (2026).
 9. V. Yakunin, *External Ternary Judge Adapter for OpenClaw and DeepSeek V4 API: Engineering Whitepaper* (2026).

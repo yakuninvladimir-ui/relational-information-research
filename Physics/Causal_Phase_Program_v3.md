@@ -4,7 +4,7 @@
 **Version:** 3.9  
 **Date:** 2026-10-21  
 **Status:** Self-contained formal specification and research program. Strictly separates definitions, mathematical consequences within the model, and empirically testable physical hypotheses.  
-**Supersedes:** `Causal_Phase_Geometry_Research_Program_v2.md` (v2.0, October 17, 2026), retained in the repository as the historical source of the $`\Gamma_{\mathrm{corr}}`$ continuum formulation, the $`\mathrm{sLSE}_T`$ aggregation bridge, and the observational falsification criteria (SPARC / DESI / DES-SN5YR).  
+**Supersedes:** `Causal_Phase_Geometry_Research_Program_v2.md` (v2.0, October 17, 2026), retained in the repository as the historical source of the $`\Gamma_{\mathrm{corr}}`$ continuum formulation and the observational falsification criteria (SPARC / DESI / DES-SN5YR).  
 **Companion:** *Latent Agency Framework v2.1* (`Reasoning/Latent_Agency_Framework.md`, October 21, 2026) — shared mathematical apparatus: Markov blankets and boundary kernel inclusion, Helmholtz decomposition, integrator chains of generalized coordinates.  
 **Normative parent (verdict semantics):** *Modified Brusentsov Entailment Logic* (`Reasoning/Modified_Brusentsov_Entailment_Logic.md`). Section 0 and Section 8 of this document are a domain instantiation of the canonical four-valued verdict calculus $`V_4`$ and must not contradict it.
 
@@ -17,11 +17,11 @@ This specification formulates a mathematical framework for studying how multisca
 Any persistent localized subsystem at a selected temporal window and resolution scale is represented as a triad $`(\mathcal{I}_A, \partial A, \mathcal{E}_A)`$: an internal relief (bulk) $`\mathcal{I}_A`$, a bilateral interface $`\partial A`$ of finite capacity, and an external causal synchronization channel $`\mathcal{E}_A`$. The total system description decomposes into three distinct components: (1) the structural functional of the internal relief, (2) the kinematic scaffold of the external channel (unbranched null causal links with zero diamond-participation multiplicity), and (3) the thermodynamic entropy production and coarse-grained state-merging flux across the interface.
 
 Within this formalism, seven core mathematical results and corresponding empirical protocols are established:
-1. **Interval-Local Path Factorization and Binary Diamond Selection ($`K_{xy}^{\mathrm{eff}} = 2`$):** An equivalence relation is defined strictly on the set of two-step paths $`\mathcal{P}_2(x, y)`$ inside each fixed causal interval $`(x, y)`$ via phase-mismatch tolerance. For a strictly convex branching-cost ansatz on the interval quotient, the minimum cost subject to preserving non-zero gauge-invariant phase frustration is achieved at effective path rank $`K_{xy}^{\mathrm{eff}} = 2`$. Vertex-level merging is restricted to structural twins sharing identical causal pasts and futures. Whether physical microdynamics enforce this convex branching penalty is isolated as an empirical hypothesis (`UNDECIDED`).
+1. **Interval-Local Path Factorization and Binary Diamond Selection ($`K_{xy}^{\mathrm{eff}} = 2`$):** An equivalence relation is defined strictly on the set of two-step paths $`\mathcal{P}_2(x, y)`$ inside each fixed causal interval $`(x, y)`$ via phase-mismatch tolerance. For a strictly convex branching-cost ansatz on the interval quotient, the minimum cost subject to preserving non-zero gauge-invariant phase frustration is achieved at effective path rank $`K_{xy}^{\mathrm{eff}} = 2`$. Vertex-level merging is restricted to structural twins sharing identical causal pasts and futures. Both premises of this minimization — the convex branching-cost ansatz and the externally imposed constraint of preserving non-zero gauge-invariant phase frustration — are isolated as empirical hypotheses about substrate dynamics (`UNDECIDED`).
 2. **Diamond-Participation Multiplicity of Hasse Links:** Because Hasse transitive irreducibility implies $`(R^2)_{xy} = K_{xy} = 0`$ for every direct link $`R_{xy}=1`$, embeddedness in interference structures is defined via the **diamond-participation multiplicity** $`d_\diamond(x, y)`$, counting all elementary causal diamonds containing the link $`x \lessdot y`$. Pure unbranched (null) channel links are rigorously characterized by $`R_{xy}=1 \land d_\diamond(x, y) = 0`$.
 3. **Precision Sparsity and the Boundary Kernel-Inclusion Theorem:** In a stationary Gaussian regime across $`(\mathcal{I}_A, \partial A, \mathcal{E}_A)`$, Markov screening [4] corresponds to block sparsity of the precision operator ($`\Pi_{\mathcal{I}\mathcal{E}} = 0`$) while inducing non-zero mediated covariance $`\Sigma_{\mathcal{I}\mathcal{E}} = \Pi_{\mathcal{I}}^{-1}\Pi_{\mathcal{I},\partial A}\Sigma_{\partial A}\Pi_{\partial A,\mathcal{E}}\Pi_{\mathcal{E}}^{-1} \neq 0`$. A well-defined synchronization map $`\sigma(\overline{\mu}(b)) = \overline{\eta}(b)`$ across the interface exists if and only if $`\ker \Pi_{\mathcal{I},\partial A} \subseteq \ker \Pi_{\mathcal{E},\partial A}`$ [4].
 4. **Helmholtz Decomposition and Solenoidal Acceleration of Relaxation:** Splitting the transport operator $`W`$ into its symmetric part $`H_{\mathrm{sym}} = \frac{1}{2}(W + W^\dagger)`$ and skew-Hermitian rotational part $`H_{\mathrm{rot}} = \frac{1}{2i}(W - W^\dagger)`$ mirrors the continuous Helmholtz decomposition into dissipative ($`\Gamma \succeq 0`$) and solenoidal ($`Q = -Q^\top`$) flows [4]. Non-zero solenoidal circulation preserves the stationary measure while satisfying the spectral gap inequality $`\gamma(Q) \ge \gamma(0)`$ [4].
-5. **Oseledets Contraction, $`\varepsilon`$-Cell Merging, and the Oseledets–Ruelle–Landauer Bridge:** Using a finite resolution partition of scale $`\varepsilon > 0`$ around an attractor where $`\kappa(A) = \sum_{\lambda_i < 0}\vert{}\lambda_i\vert{} > h_{\mathrm{KS}}(A)`$ [6], the map $`G_R`$ acts along the stable subspace $`E^s`$ as an $`\exp(\kappa(A))`$-to-$`1`$ logical state merger [5]. Under stationary noise injection $`H_{\mathrm{in}}^{(\varepsilon)}`$ maintaining constant coarse-grained entropy $`H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)`$, the exact balance $`0 = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A)`$ separates reversible throughput from irreversible phase-space folding $`\Delta S_{\mathrm{fold}} = \kappa(A) - h_{\mathrm{KS}}(A) \ge 0`$ [5, 6].
+5. **Oseledets Contraction, $`\varepsilon`$-Cell Merging, and the Oseledets–Ruelle–Landauer Bridge:** Using a finite resolution partition of scale $`\varepsilon > 0`$ around an attractor where $`\kappa(A) = \sum_{\lambda_i < 0}\vert{}\lambda_i\vert{} > h_{\mathrm{KS}}(A)`$ [6], the map $`G_R`$ acts along the stable subspace $`E^s`$ as an $`\exp(\kappa(A))`$-to-$`1`$ logical state merger [5]. Under stationary noise injection $`H_{\mathrm{in}}^{(\varepsilon)}`$ maintaining constant coarse-grained entropy $`H_\varepsilon(Z_{n+1}) = H_\varepsilon(Z_n)`$, the exact balance $`0 = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} + h_{\mathrm{KS}}(A) - \kappa(A)`$ separates reversible throughput from irreversible phase-space folding at rate $`\Delta S_{\mathrm{fold}} = \kappa(A) > 0`$, the net export to the boundary bath being $`\sigma_{\mathrm{bath}} = \kappa(A) - h_{\mathrm{KS}}(A) \ge 0`$ [5, 6].
 6. **Stochastic Realization of Boundary Spectra and Multiscale Network Transition:** Multi-frequency stationary processes on $`\partial A`$ admit a Markovian realization as nested integrator chains $`\tilde{s}_t = (s_t^{(0)}, \dots, s_t^{(n)})`$, where coarse-graining $`\mathcal{R}_{\ell \to \ell+1}`$ truncates high-order derivatives [4]. At large graph sizes $`N > N_{\mathrm{crit}}`$, maintaining synchronization connectivity $`\lambda_2`$ under bounded degree $`k_{\max}`$ [2] forces a transition from homogeneous balls to node-filament-void networks [9].
 7. **Local-Global Balance and Horizon Saturation:** An exact combinatorial identity governs diamond partitioning across bulks, interfaces, and voids, framing falsifiable hypotheses for phase-mediated void rarefaction [3] and horizon saturation ($`\eta_{\mathrm{sat}} \ge 1`$) [5, 8].
 
@@ -114,12 +114,12 @@ For every pair $`(x, y)`$ with $`K_{xy} \ge 1`$, the sum of pairwise Wilson acti
 
 *Proof.* Setting $`\phi_a = \theta_{xz_a} + \theta_{z_a y}`$, expanding $`|M_{xy}|^2 = \left|\sum_{a=1}^{K_{xy}} e^{i\phi_a}\right|^2 = K_{xy} + 2\sum_{a < b} \cos\Phi_{ab}`$ and subtracting from $`K_{xy}^2 = K_{xy} + 2\sum_{a < b} 1`$ yields the identity. `∎`
 
-### **1.4. Cone-Overlap Operators and Irregularity Measure**
+### **1.4. Cone-Overlap Operators**
 
-The Hermitian positive-semidefinite one-step future and past cone-overlap operators and their skew-Hermitian commutator are:
+The Hermitian positive-semidefinite one-step future and past cone-overlap operators are:
 
 ```math
-\Delta_+ := W W^\dagger, \qquad \Delta_- := W^\dagger W, \qquad C := [\Delta_+, \Delta_-], \qquad \bar{L}(W) := \frac{\|C\|_F^2}{1 + \|\Delta_+\|_F^2 \|\Delta_-\|_F^2} \ge 0.
+\Delta_+ := W W^\dagger, \qquad \Delta_- := W^\dagger W.
 ```
 
 ---
@@ -175,6 +175,8 @@ With symmetric coupling flux $`\mathrm{Dep}(U \leftrightarrow V) := \sum_{u \in 
 ```math
 I(A; \tau_w) := \min_{(A_1, A_2)} \frac{\mathrm{Dep}(A_1 \leftrightarrow A_2) / \min(|A_1|, |A_2|)}{\mathrm{Dep}(A \leftrightarrow \mathcal{E}_A) / |A|} > \theta_I.
 ```
+
+This criterion is a weighted graph-cut ratio (a conductance-type quantity certifying that internal coupling flux dominates boundary coupling flux); it does not measure informational integration in the sense of mutual-information or $`\Phi`$-type functionals, and *integrated* refers here exclusively to cut-dominance at threshold $`\theta_I`$.
 
 ### **2.3. Recoverability Bound Across the Interface**
 
@@ -258,9 +260,9 @@ For a fixed pair $`(x, y)`$, suppose $`\mathcal{F}_{\mathrm{loc}}^{(p)}`$ ($`a >
 *Proof.* Items (1) and (2) follow immediately from $`J^{\mathrm{eff}}_{xy}(K^{\mathrm{eff}}=1) = 0`$, the strict monotonicity of $`a k^p`$ for $`k \ge 2`$, and $`J^{\mathrm{eff}}_{xy}(K^{\mathrm{eff}}=2) = 1 - \cos\Phi_{12} \in [0, 2]`$. Item (3) follows by direct evaluation of the branching penalty in each regime: $`a K^p`$ versus $`m\,a\,2^p`$ with $`m = \binom{K}{2}`$ (diamond-preserving) and versus $`\frac{K}{2}\,a\,2^p`$ (balanced binary regrouping) [2]. `∎`
 
 **Scope Note on Proposition 3.1:**  
-Proposition 3.1 is a mathematical property of the chosen cost functional $`\mathcal{F}_{\mathrm{loc}}^{(p)}`$. It does **not** prove a priori that nature implements $`\mathcal{F}_{\mathrm{loc}}^{(p)}`$. Why an underlying substrate penalizes path proliferation convexly (e.g., due to finite vertex valency $`k_{\max}`$ preventing Kleitman–Rothschild combinatorial collapse [2] and phase-decoherence noise across multi-slit bundles) is an empirical hypothesis `[Status: UNDECIDED]`, tested in Protocol V1 by comparing convex ($`p=2`$), linear ($`p=1`$), and concave ($`\ln(1+K)`$) penalties.
+Proposition 3.1 is a mathematical property of the chosen cost functional $`\mathcal{F}_{\mathrm{loc}}^{(p)}`$. It does **not** prove a priori that nature implements $`\mathcal{F}_{\mathrm{loc}}^{(p)}`$. Why an underlying substrate penalizes path proliferation convexly (e.g., due to finite vertex valency $`k_{\max}`$ preventing Kleitman–Rothschild combinatorial collapse [2] and phase-decoherence noise across multi-slit bundles) is an empirical hypothesis `[Status: UNDECIDED]`, tested in Protocol V1 by comparing convex ($`p=2`$), linear ($`p=1`$), and concave ($`\ln(1+K)`$) penalties. The constraint of fixed non-zero frustration $`J_0 \in (0, 2]`$ is likewise an external premise of the minimization, not a derived property of the substrate: were frustration free to relax to zero, the single-path configuration $`K^{\mathrm{eff}}_{xy} = 1`$ would be cheaper under any positive penalty. No derivation of this constraint is offered here; its physical justification is part of the same empirical hypothesis tested in Protocol V1.
 
-### **3.3. Transverse Algebra of the Binary Diamond and Selection of `3+1` Directions**
+### **3.3. Transverse Algebra of the Binary Diamond and Conditional Minimality of `3+1` Directions**
 
 On a binary diamond $`K^{\mathrm{eff}}_{xy} = 2`$ with transverse section $`S_\perp = \{z_1, z_2\}`$, the two-channel amplitude space is $`\mathbb{C}^2`$ with unitary transition group $`U(2) \cong U(1) \times SU(2) / \mathbb{Z}_2`$, where $`\dim_{\mathbb{R}} \mathfrak{su}(2) = 3`$ double-covers $`SO(3)`$ `[Status: FOLLOW]`. Under the Hermitian/skew-Hermitian splitting
 
@@ -268,7 +270,7 @@ On a binary diamond $`K^{\mathrm{eff}}_{xy} = 2`$ with transverse section $`S_\p
 H_{\mathrm{sym}} := \frac{1}{2}(W + W^\dagger), \qquad H_{\mathrm{rot}} := \frac{1}{2i}(W - W^\dagger),
 ```
 
-accommodating at least one longitudinal active transport direction ($`\dim W^{\mathrm{act}}_z \ge 1`$) and an orthogonal two-dimensional invariant plane of rotational circulation ($`\dim W^{\mathrm{inv}}_z \ge 2`$ for a conjugate eigenvalue pair $`\pm\lambda_\alpha`$ of $`H_{\mathrm{rot}}`$) requires minimal spatial dimension $`d_{\mathrm{space}}^{\min} = 1 + 2 = 3 = \binom{3}{2}`$ `[Status: FOLLOW]` under the stated rank requirements; spontaneous emergence in graph ensembles is `[Status: UNDECIDED]` (Protocol V1).
+accommodating at least one longitudinal active transport direction ($`\dim W^{\mathrm{act}}_z \ge 1`$) and an orthogonal two-dimensional invariant plane of rotational circulation ($`\dim W^{\mathrm{inv}}_z \ge 2`$ for a conjugate eigenvalue pair $`\pm\lambda_\alpha`$ of $`H_{\mathrm{rot}}`$) requires minimal spatial dimension $`d_{\mathrm{space}}^{\min} = 1 + 2 = 3 = \binom{3}{2}`$ `[Status: FOLLOW]` under the stated rank requirements; spontaneous emergence in graph ensembles is `[Status: UNDECIDED]` (Protocol V1). The two rank requirements are physical premises of the program, not consequences of it: structures with $`\dim W^{\mathrm{inv}}_z \le 1`$ (no conserved transverse circulation) are excluded by assumption rather than by theorem, and the integer coincidence $`\binom{3}{2} = 3`$ is a consistency observation, not a selection mechanism.
 
 ### **3.4. Helmholtz Decomposition and Solenoidal Acceleration of Relaxation**
 
@@ -382,11 +384,11 @@ Assigning each waist with $`K_{xy} \ge 2`$ to its lower anchor $`x \in X`$ via $
 ```
 
 **Hypothesis H-LG (Phase-Mediated Void Rarefaction):** `[Status: UNDECIDED — tested in Protocol V3]`  
-At fixed total edge budget $`E_{\mathrm{tot}}`$ and valency bound $`k_{\max}`$, increasing internal contraction $`\kappa(A_m)`$ inside localized cores $`\mathcal{I}_{A_m}`$ increases the outward net erasure flux $`\dot{I}_{\mathrm{erase}}^{\mathrm{net}} = (\kappa(A_m) - h_{\mathrm{KS}}(A_m))/\ln 2`$ across $`\partial^+ A_m`$ (Theorem 4.1) [5, 6]. Propagating into $`\mathcal{E}`$ via mediated covariance $`\Sigma_{\mathcal{I}\mathcal{E}} \neq 0`$ (Proposition 2.2) [4], this flux reconfigures edges in distant void regions $`\mathcal{E}_{\mathrm{void}}`$ from diamond-embedded links ($`d_\diamond(x, y) \ge 1`$) into unbranched null links ($`d_\diamond(x, y) = 0`$), increasing the non-trivial null-link fraction $`f_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})`$ (§2.2) and stretching null geodesic distances $`\ell_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})`$ beyond combinatorial degree-preserving controls [9].
+At fixed total edge budget $`E_{\mathrm{tot}}`$ and valency bound $`k_{\max}`$, increasing internal contraction $`\kappa(A_m)`$ inside localized cores $`\mathcal{I}_{A_m}`$ increases the outward net erasure flux $`\dot{I}_{\mathrm{erase}}^{\mathrm{net}} = (\kappa(A_m) - h_{\mathrm{KS}}(A_m))/\ln 2`$ across $`\partial^+ A_m`$ (Theorem 4.1) [5, 6]. Propagating into $`\mathcal{E}`$ via mediated covariance $`\Sigma_{\mathcal{I}\mathcal{E}} \neq 0`$ (Proposition 2.2) [4] — a static covariance channel whose dynamical rewiring counterpart is not derived in this document — this flux is hypothesized to reconfigure edges in distant void regions $`\mathcal{E}_{\mathrm{void}}`$ from diamond-embedded links ($`d_\diamond(x, y) \ge 1`$) into unbranched null links ($`d_\diamond(x, y) = 0`$), increasing the non-trivial null-link fraction $`f_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})`$ (§2.2) and stretching null geodesic distances $`\ell_{\mathrm{null}}(\mathcal{E}_{\mathrm{void}})`$ beyond combinatorial degree-preserving controls [9].
 
 ### **6.2. Three-Component Structure of Effective Field Equations and Interfacial Saturation**
 
-In the continuum limit `[Status: UNDECIDED]` (Protocols V4 and V6), applying the thermodynamic equation-of-state derivation [3] decomposes stress-energy and channel response across the triad $`(\mathcal{I}_A, \partial A, \mathcal{E}_A)`$:
+In the continuum limit `[Status: UNDECIDED]` (Protocols V4 and V6), the thermodynamic equation-of-state route [3] motivates — rather than derives; no closure relation for $`\Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}^{\mathrm{net}}]`$ is given in this document — the decomposition of stress-energy and channel response across the triad $`(\mathcal{I}_A, \partial A, \mathcal{E}_A)`$:
 
 ```math
 R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu} + \Lambda_{\mathrm{eff}}[I_{\mathrm{erase}}^{\mathrm{net}}] \, g_{\mu\nu} = \frac{8\pi G_{\mathrm{eff}}}{c^4} \Bigl( T_{\mu\nu}^{\mathrm{bulk}}(\mathcal{I}_A) + T_{\mu\nu}^{\mathrm{interface}}(\partial A) + T_{\mu\nu}^{\mathrm{em}}(F_{\alpha\beta}) \Bigr),
@@ -439,7 +441,7 @@ Crossing $`\eta_{\mathrm{sat}}(A) \ge 1`$ saturates the outgoing boundary channe
 All computational audit corrections are implemented and verified in the code below (the fourth audit defect catalogued in §8, row 11 — the intrinsic-agent claim — is conceptual and is resolved at the framework level rather than in code):
 1. `compute_edge_diamond_participation(R)` computes the exact non-trivial diamond multiplicity $`d_\diamond(x, y)`$ for every Hasse link $`R_{xy}=1`$, identifying unbranched null links via $`R_{xy}=1 \land d_\diamond(x, y) = 0`$.
 2. `interval_local_path_quotient(R, Theta, eps_ker)` performs path factorization **strictly inside each interval $`(x, y)`$** on $`\mathcal{P}_2(x, y)`$, while `collapse_structural_twins(R, Theta, eps_ker)` merges vertices **only** if they are true causal twins sharing identical predecessors and successors.
-3. `compute_oseledets_landauer_profile(...)` implements the exact sign-consistent $`\varepsilon`$-box entropy balance $`H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}} - \kappa`$ and net bath folding rate $`\sigma_{\mathrm{bath}} = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa - h_{\mathrm{KS}}`$.
+3. `compute_oseledets_landauer_profile(...)` implements the sign-consistent $`\varepsilon`$-box entropy bookkeeping of Theorem 4.1 — $`H_{\mathrm{out}}^{(\varepsilon)} = H_{\mathrm{in}}^{(\varepsilon)} + h_{\mathrm{KS}} - \kappa`$ and net bath folding rate $`\sigma_{\mathrm{bath}} = H_{\mathrm{in}}^{(\varepsilon)} - H_{\mathrm{out}}^{(\varepsilon)} = \kappa - h_{\mathrm{KS}}`$ — as an exact algebraic identity on the computed spectrum; empirical measurement of $`H_{\mathrm{in}}^{(\varepsilon)}`$, $`H_{\mathrm{out}}^{(\varepsilon)}`$ on simulated noisy trajectories is the task of the Protocol V2 harness (Technical Specification v0.3, §4).
 
 In addition, the implementation incorporates the five mandatory numerical-robustness fixes (`FIX-1`–`FIX-5`) and the protocol infrastructure required by **Technical Specification v0.3** (§2.2; `Physics/Technical_Specification_v0.3.md`): iterative Hasse-reachability verification, explicit `int64` casting of adjacency arithmetic, eigenvalue-based Lyapunov spectra (SVD retained for diagnostics), directed causal diameters, isolated-vertex filtering before normalized-Laplacian spectra, and graph generators, null-test controls, dimension estimators, and $`\varepsilon`$-box entropy for protocols V1–V7.
 
@@ -511,8 +513,7 @@ def is_hasse_transitive_free(R):
 def compute_causal_phase_invariants(R, Theta):
     """
     [FIX-2] Compute the waist matrix K_xy = (R^2)_xy, two-step amplitude
-    M_xy = (W^2)_xy, phase frustration J_xy, and gauge-invariant
-    cone-commutator norm L(W).
+    M_xy = (W^2)_xy, and phase frustration J_xy.
     """
     R = _as_int64(R)
     W = R * np.exp(1j * np.asarray(Theta))
@@ -521,18 +522,7 @@ def compute_causal_phase_invariants(R, Theta):
     mask = K > 0
     J = np.zeros(K.shape, dtype=float)
     J[mask] = (K[mask] ** 2 - np.abs(M[mask]) ** 2) / K[mask]
-
-    Dp = W @ W.conj().T
-    Dm = W.conj().T @ W
-    C = Dp @ Dm - Dm @ Dp
-    L_raw = float(np.real(np.trace(C.conj().T @ C)))
-    norm_factor = (
-        1.0
-        + float(np.linalg.norm(Dp, "fro") ** 2)
-        * float(np.linalg.norm(Dm, "fro") ** 2)
-    )
-    L_norm = L_raw / norm_factor
-    return K, M, J, L_raw, L_norm
+    return K, M, J
 
 
 def compute_edge_diamond_participation(R):
@@ -561,7 +551,7 @@ def verify_wilson_identity(R, Theta):
     R = _as_int64(R)
     Theta = np.asarray(Theta)
     N = len(R)
-    K, _, J, _, _ = compute_causal_phase_invariants(R, Theta)
+    K, _, J = compute_causal_phase_invariants(R, Theta)
     max_err = 0.0
     for x in range(N - 2):
         for y in range(x + 2, N):
@@ -842,7 +832,7 @@ def evaluate_synchronization_and_balance(R, Theta, core_nodes, eps=1e-12):
     Theta = np.asarray(Theta)
     N = len(R)
     triad = partition_triad(R, core_nodes)
-    K, M_amp, _, _, _ = compute_causal_phase_invariants(R, Theta)
+    K, M_amp, _ = compute_causal_phase_invariants(R, Theta)
 
     q_x = np.zeros(N, dtype=float)
     for x in range(N - 2):
@@ -1058,14 +1048,22 @@ def generate_erdos_renyi_dag(N, p_edge, seed=42):
                 R[i, j] = 1
                 Theta[i, j] = rng.uniform(0, 2 * np.pi)
 
-    # Transitive reduction
-    for i in range(N - 2):
-        for j in range(i + 2, N):
-            if R[i, j] == 1:
-                two_step = (R[i, :] @ R[:, j]) > 0
-                if two_step:
-                    R[i, j] = 0
-                    Theta[i, j] = 0.0
+    # Transitive reduction against the ORIGINAL reachability: an edge (i, j)
+    # is kept iff no directed path of length >= 2 connects i to j in the
+    # unreduced graph (the transitive reduction of a DAG is unique).
+    # Sequential edge-by-edge deletion against the partially reduced graph
+    # can leave length >= 3 shortcuts and break the Hasse property.
+    R_bool = R > 0
+    reach_2plus = np.zeros((N, N), dtype=bool)
+    power = R_bool.copy()
+    for k in range(2, N):
+        power = (power @ R_bool) > 0
+        if not np.any(power):
+            break
+        reach_2plus |= power
+    keep = R_bool & ~reach_2plus
+    R = keep.astype(np.int64)
+    Theta = np.where(keep, Theta, 0.0)
 
     return R, Theta
 
@@ -1077,21 +1075,24 @@ def generate_erdos_renyi_dag(N, p_edge, seed=42):
 def degree_preserving_swaps(R, n_swaps, seed=42):
     """
     Degree-preserving edge rewiring (Protocol V3 control).
-    Preserves in-degree and out-degree sequences exactly.
-    Maintains causal acyclicity by accepting only swaps that
-    keep R strictly upper-triangular.
+    Preserves in-degree and out-degree sequences exactly: every
+    accepted swap removes two live edges and adds two new ones.
+    Maintains causal acyclicity (strict upper-triangular form) and
+    the Hasse property: a proposed swap is accepted only if the
+    rewired graph remains transitively irreducible (Protocol V3-N3).
+    The edge list is rebuilt after every accepted swap; a stale list
+    would delete already-removed edges and break degree conservation.
     """
     R = _as_int64(R).copy()
     rng = np.random.default_rng(seed)
-    N = len(R)
-    edges = np.argwhere(R == 1)
-    n_edges = len(edges)
-    if n_edges < 2:
-        return R
 
     accepted = 0
-    for _ in range(n_swaps * 10):
-        if accepted >= n_swaps:
+    attempts = 0
+    while accepted < n_swaps and attempts < n_swaps * 20:
+        attempts += 1
+        edges = np.argwhere(R == 1)          # rebuilt fresh on every attempt
+        n_edges = len(edges)
+        if n_edges < 2:
             break
         i, j = rng.integers(0, n_edges, size=2)
         if i == j:
@@ -1099,17 +1100,22 @@ def degree_preserving_swaps(R, n_swaps, seed=42):
         u1, v1 = edges[i]
         u2, v2 = edges[j]
         # Proposed swap: (u1->v1, u2->v2) -> (u1->v2, u2->v1)
+        if u1 == u2 or v1 == v2:
+            continue                          # degenerate: no-op swap
         if u1 == v2 or u2 == v1:
             continue
         if R[u1, v2] == 1 or R[u2, v1] == 1:
             continue
         if u1 >= v2 or u2 >= v1:
             continue  # would violate causal ordering
-        # Accept swap
-        R[u1, v1] = 0
-        R[u2, v2] = 0
-        R[u1, v2] = 1
-        R[u2, v1] = 1
+        R_try = R.copy()
+        R_try[u1, v1] = 0
+        R_try[u2, v2] = 0
+        R_try[u1, v2] = 1
+        R_try[u2, v1] = 1
+        if not is_hasse_transitive_free(R_try):
+            continue  # would short-circuit a directed path of length >= 2
+        R = R_try
         accepted += 1
 
     return R
