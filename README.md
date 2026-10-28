@@ -31,6 +31,7 @@ Earlier and superseded materials remain archived on Zenodo.
 ├── Reasoning/
 │   ├── Modified_Brusentsov_Entailment_Logic.md       # canonical formal-logical foundation (verdict semantics)
 │   ├── Spectral_and_Matrix_Realization_of_V4.md      # geometric/matrix realization of V4 in latent spaces
+│   ├── Boundary_Projection_Theorem.md                # geometric core of the verdict layer (point/ball semantics)
 │   ├── Unified_Implementable_Model.md
 │   ├── External_Ternary_Judge_Adapter.md
 │   ├── Self_Developing_Runtime_Research_Program.md
@@ -59,6 +60,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Physics | [KK–Jacobson Commutativity Note](Physics/KK_Jacobson_Commutativity_Note.md) | Technical note on the 5D→4D thermodynamic bridge (5D route frozen; historical) |
 | Reasoning | [Modified Brusentsov Entailment Logic](Reasoning/Modified_Brusentsov_Entailment_Logic.md) | **Canonical formal-logical foundation**: modified Brusentsov DNF, four-valued verdict calculus (FOLLOW / OMIT / NULL / UNDECIDED), typed certificates, ensemble law quantifiers, metric/box/graph semantics; normative reference for verdict semantics across the corpus |
 | Reasoning | [Spectral and Matrix Realization of V₄](Reasoning/Spectral_and_Matrix_Realization_of_V4.md) | Mathematical realization of V₄ in latent spaces: kernel-path quotients, tangent-space diagnostics, four-channel semilattice aggregation and smooth surrogates; normative parent = MBEL §§3–6; related foundations = latent information structuring + Latent Agency Framework |
+| Reasoning | [Boundary Projection Theorem](Reasoning/Boundary_Projection_Theorem.md) | Derived geometric semantics of the verdict layer (point/ball level): four-verdict theorem from the ball–region trichotomy, refinement monotonicity and geometric non-promotion, stratified `OMIT` kernel, cross-layer kernel-inclusion form; normative parent = MBEL; sibling of the Spectral realization |
 | Reasoning | [Unified Implementable Model](Reasoning/Unified_Implementable_Model.md) | Theoretical architecture (verifier-centered latent world models) |
 | Reasoning | [External Ternary Judge Adapter](Reasoning/External_Ternary_Judge_Adapter.md) | Technology assessment / protocol for external verification |
 | Reasoning | [Self-Developing Runtime Research Program](Reasoning/Self_Developing_Runtime_Research_Program.md) | Pre-implementation research program (v0.2): controlled self-development of an LLM under an external verifier |
@@ -66,7 +68,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Reasoning | [Latent Agency Framework](Reasoning/Latent_Agency_Framework.md) | Working hypothesis (v2.1): graded agency via integration, persistence, informational autonomy; relief vs budget; recoverability bound and kernel-inclusion synchronization; Helmholtz decomposition and integrator-chain truncation of boundary dynamics; ten measurable predictions; hard problem bracketed |
 | Reasoning (drafts) | [Propose, Judge, Commit](Reasoning/Draft/ternary_judge.md) | Draft paper; includes preliminary live MVP results on a controlled corpus (FalseFollowRate 0.362 → 0.035) |
 | Reasoning (drafts) | [Hierarchical Ternary KG as RAG Alternative](Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: ternary hierarchical knowledge graph as an alternative to RAG |
-| Engineering | [ARCHITECTURAL\_SPECIFICATION](Engineering/architectural_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): architectural specification; verdict semantics aligned to the canonical logic specification
+| Engineering | [ARCHITECTURAL\_SPECIFICATION](Engineering/architectural_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): architectural specification; verdict semantics aligned to the canonical logic specification |
 | Engineering | [ENGINEERING\_SPECIFICATION](Engineering/engineering_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): engineering specification |
 
 ### Physics/old_test

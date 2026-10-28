@@ -6,7 +6,7 @@
 **Date:** 2026-10-17  
 **Status:** Formal results are conditional on the assumptions stated below; the existence and learnability of the required geometry remain empirical hypotheses.  
 **Normative parent:** *Modified Brusentsov Entailment Logic and Four-Valued Verdict Calculus for External State-Control Systems*, especially §§3–6.  
-**Related foundations:** *The Law of Useful Information Structuring in Model Latent Spaces*; *Latent Agency Framework*.
+**Related foundations:** *The Law of Useful Information Structuring in Model Latent Spaces*; *Latent Agency Framework*; *Boundary Projection Theorem* (point/ball-level geometric core of the verdict layer; sibling document — this specification provides the feature-space realization and the aggregation theorems it imports).
 
 ---
 
