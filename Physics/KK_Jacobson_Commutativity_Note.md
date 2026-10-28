@@ -14,7 +14,7 @@ V. Yakunin
 
 July 15, 2026
 
-H_R`$) / literal 5D Kaluza–Klein route recorded in this note is frozen. It is superseded by the current program *Causal Phase Program v3.9* (`Causal_Phase_Program_v3.md`, October 2026), in which spatial dimensionality is derived rather than postulated (transverse algebra of the binary diamond, §3.3), and it is catalogued as **NULL (frozen August 2026)** in the Unified Informational-Constructive Framework, §7, and in the self-assessment of CPG v2.0 (§5.2). Kept for provenance; not an active research direction.
+H_R`$) / literal 5D Kaluza–Klein route recorded in this note is frozen. It is superseded by the current program *Causal Phase Program v4.0* (`Causal_Phase_Program_v4.md`, October 2026), in which spatial dimensionality is not postulated but measured empirically (Protocol V1), and it is catalogued as **NULL (frozen August 2026)** in the Unified Informational-Constructive Framework, §7. Kept for provenance; not an active research direction.
 
 ---
 

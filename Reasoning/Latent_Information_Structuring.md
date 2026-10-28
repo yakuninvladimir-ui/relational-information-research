@@ -4,7 +4,7 @@
 **Version:** 1.0  
 **Date:** 2026-09  
 **Document Status:** Working theoretical specification (Reasoning layer): variational principle + upper surrogates (VIM) + mean curvature equation + NTK-filtered dynamics + operational protocol + explicit non-claims.  
-**Role in Repository:** Variational theory of informational minimal surfaces in model latent spaces; continuous-space counterpart of the informational minimal-surface construction used in the Causal Phase Program (`Physics/Causal_Phase_Program_v3.md`, §3.1). Defines the experimental verification program E1–E5.  
+**Role in Repository:** Variational theory of informational minimal surfaces in model latent spaces; continuous-space counterpart of the informational minimal-surface construction used in the Causal Phase Program (`Physics/Causal_Phase_Program_v4.md`, §3.1; marked OMIT-context there). Defines the experimental verification program E1–E5.  
 **Domain:** Information geometry, variational principles, neural tangent kernel theory, latent representation learning (English, standard mathematical notation).
 
 ---
