@@ -42,7 +42,8 @@ Earlier and superseded materials remain archived on Zenodo.
 │       └── Hierarchical_Ternary_KG_as_RAG_Alternative.md
 ├── Engineering/
 │   ├── architectural_specification_v10_9.md                # Version 10.9
-│   └── engineering_specification_v10_9.md                  # Version 10.9
+│   ├── engineering_specification_v10_9.md                  # Version 10.9
+│   └── cpsa_emergent_symbolic_layer_v2_3.md                # CPSA 2.3 (interface-native symbolic layer)
 ├── LICENSE                                           # CC BY 4.0
 └── README.md
 ```
@@ -70,6 +71,7 @@ Earlier and superseded materials remain archived on Zenodo.
 | Reasoning (drafts) | [Hierarchical Ternary KG as RAG Alternative](Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: ternary hierarchical knowledge graph as an alternative to RAG |
 | Engineering | [ARCHITECTURAL\_SPECIFICATION](Engineering/architectural_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): architectural specification; verdict semantics aligned to the canonical logic specification |
 | Engineering | [ENGINEERING\_SPECIFICATION](Engineering/engineering_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): engineering specification |
+| Engineering | [CPSA: The Emergent Symbolic Layer at the Agent–Environment Interface](Engineering/cpsa_emergent_symbolic_layer_v2_3.md) | **Active** ARC-AGI-3 agent architecture (Continuous Python-Symbolic Agent, Version 2.3): the interface-native paradigm — the symbolic layer for verification and control is not constructed but emerges at the agent–game boundary (a Python sandbox) as agent-authored world models certified by a deterministic V₄ Judge against an append-only transition journal; three-mode guarded execution, boundary projection (π_K) world models with kernel-inclusion certification, write-back non-promotion, zero-cost consolidation; verdict semantics instantiate the canonical specification (MBEL); implementation: [arc3-cpsa-agent](https://github.com/yakuninvladimir-ui/arc3-cpsa-agent) |
 
 ### Physics/old_test
 
