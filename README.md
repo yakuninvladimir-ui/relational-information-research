@@ -37,6 +37,12 @@ Earlier and superseded materials remain archived on Zenodo.
 │   ├── Self_Developing_Runtime_Research_Program.md
 │   ├── Latent_Information_Structuring.md             # geometry of latent representations (EN)
 │   ├── Latent_Agency_Framework.md
+│   ├── ML/                                           # ML Engineering Editions (practitioner adaptations)
+│   │   ├── Modified_Brusentsov_Entailment_Logic.md
+│   │   ├── Spectral_and_Matrix_Realization_of_V4.md
+│   │   ├── Boundary_Projection_Theorem.md
+│   │   ├── Latent_Information_Structuring.md
+│   │   └── Latent_Agency_Framework.md
 │   └── Draft/                                        # working drafts, not formal deliverables
 │       ├── ternary_judge.md
 │       └── Hierarchical_Ternary_KG_as_RAG_Alternative.md
@@ -67,6 +73,9 @@ Earlier and superseded materials remain archived on Zenodo.
 | Reasoning | [Self-Developing Runtime Research Program](Reasoning/Self_Developing_Runtime_Research_Program.md) | Pre-implementation research program (v0.2): controlled self-development of an LLM under an external verifier |
 | Reasoning | [Latent Information Structuring](Reasoning/Latent_Information_Structuring.md) | Geometric theory of latent representations (EN); active experimental program E1–E5 |
 | Reasoning | [Latent Agency Framework](Reasoning/Latent_Agency_Framework.md) | Working hypothesis (v2.1): graded agency via integration, persistence, informational autonomy; relief vs budget; recoverability bound and kernel-inclusion synchronization; Helmholtz decomposition and integrator-chain truncation of boundary dynamics; ten measurable predictions; hard problem bracketed |
+| Reasoning (ML) | [ML Engineering Editions](Reasoning/ML/) | Practitioner adaptations of the five core Reasoning documents (MBEL, Spectral V₄, Boundary Projection Theorem, Latent Information Structuring, Latent Agency Framework). Full structural and mathematical fidelity; added engineering intuition, code sketches, and ML-facing explanations. Not integrated into the Unified Framework synthesis. |
+
+
 | Reasoning (drafts) | [Propose, Judge, Commit](Reasoning/Draft/ternary_judge.md) | Draft paper; includes preliminary live MVP results on a controlled corpus (FalseFollowRate 0.362 → 0.035) |
 | Reasoning (drafts) | [Hierarchical Ternary KG as RAG Alternative](Reasoning/Draft/Hierarchical_Ternary_KG_as_RAG_Alternative.md) | Draft: ternary hierarchical knowledge graph as an alternative to RAG |
 | Engineering | [ARCHITECTURAL\_SPECIFICATION](Engineering/architectural_specification_v10_9.md) | ARC-AGI-3 LCLD Agent (Version 10.9): architectural specification; verdict semantics aligned to the canonical logic specification |
