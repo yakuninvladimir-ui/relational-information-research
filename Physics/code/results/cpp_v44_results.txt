@@ -1,0 +1,55 @@
+CPP v4.4 results log: C:\cpp\cpp_v44_results_20261106_172351.txt
+Mode: all
+Started: 2026-11-06T17:23:51
+========================================================================
+=== cpp_v44_reference Self-Test Suite (CPP v4.4 Section 12.1, 19 checks) ===
+[1] d_diamond vs brute force on 40 Hasse graphs (N=24): mismatches = 0; K_{2,2} crown: max(d_diamond)=0, Phi_mag(pi)=0.2503 (> 0)
+[2] Wilson identity max error: 1.55e-15
+[3] Gauge invariance: max|dJ| = 1.55e-15, |d||C||^2| = 5.68e-14
+[4] Flat connection & Lemma 2.4.1: sum J = 1.78e-15, |d ln det Pi| = 0.00e+00, sym_err = 0.0e+00, causal-rev |d ln det Pi| = 0.0e+00, Q_W flip err = 0.0e+00
+[5] hypercube d=2: Hasse=True, K_max=2, interior K=2 counts=[1] (expect [1])
+[5] hypercube d=3: Hasse=True, K_max=2, interior K=2 counts=[3] (expect [3])
+[5] hypercube d=4: Hasse=True, K_max=2, interior K=2 counts=[6] (expect [6])
+[5] hypercube d=5: Hasse=True, K_max=2, interior K=2 counts=[10] (expect [10])
+[6] Pi model (49 nodes): hermiticity = 0.0e+00, lambda_min = 0.856 (>= 0.5), screening = 0.0e+00, cov formula err = 1.79e-17
+[7] Kernel inclusion: |I|=54, |dA|=9; typical violation = 4.58e-16 (expect 0); block-corner region = 1.4142 (expect sqrt(2) = 1.4142)
+[8] Helmholtz: anti-hermiticity = 0.0e+00, covariance residual = 1.33e-15, gamma(0) = 0.856, gamma(Q_W) = 1.199
+[9] Balance: lambda = [-0.103, -0.107, -0.689, -0.702], -sum(lambda) = 1.602, -E ln|det DG| = 1.602, Delta_noise = 1.607, stationarity gap = 0.0001
+[10] Gaussian control: -ln|det A| = 6.3027, direct entropy difference = 6.3027, k-NN estimate = 6.3156
+[11] Rank-1 factorization err = 4.1e-17; Woodbury 0.914720437643 vs direct 0.914720437643
+[12] Loop expansion: worst dev = 8.88e-16; 30x30 torus pi-plaquette: exact = 0.0372, l=4 term = 0.0098 (26.3% from l=4, 73.7% from l>=6)
+[13] Schur: decomposition error = 7.11e-15, S_interface = 2.2083 (> 0)
+[14] f_K2 diagnostics (8x8): aligned = 0.000, noise(0.1) = 0.184, random = 0.980
+[15] Admissibility: lattice(nu=0.5,k=8) = True; sparse random(k=4) = False; two-layer KR sector = False
+[16] Cross-Wilson identity (Prop. 6.5): W_cross = 0.5401 (>= 0), identity err = 1.95e-14
+[17] Schur-Haar & Prop. 7.3: Tr(Q_orth W_orth) = 0.0e+00, |[Q_I, G_3]| = 0.0e+00, Haar |Q_err| = 2.9e-15, Haar |W_err| = 1.8e-14, chain |Cov(ker Pi_bI, E)| = 0.1882 vs |Cov(Pi_I ker Pi_bI, E)| = 5.6e-17, ||[K_int, K_ext]||_F = 0.6212
+[18] L5 & Landau interpolation: 0.03*Th6 L5=True (max|U-1|=0.324), 0.05*Th6 L5=False (max|U-1|=0.535 > 0.5), random L5=False, Gauss-Legendre holonomy err=8.33e-17 (< 1e-12), trapezoid(401) err=1.95e-06
+[19] Schur boundary gap scaling (L=12, m^2=0.5):
+     half |A| |dA| |I|   M_eff    gamma_bdry  gamma_bdry0   d_gamma
+        2   16   12    4    1.982      2.5404      2.8962  -0.3558
+        3   36   20   16    4.132      2.7164      3.0878  -0.3714
+        4   64   28   36    6.292      2.4628      3.0050  -0.5423
+        5  100   36   64    8.466      2.3460      2.6644  -0.3183
+     m^2 dependence (half=3):
+       m^2=0.2: M_eff=4.557, d_gamma=-0.3819
+       m^2=0.5: M_eff=4.132, d_gamma=-0.3714
+       m^2=1.0: M_eff=3.595, d_gamma=-0.2524
+       m^2=2.0: M_eff=2.879, d_gamma=-0.1542
+       m^2=5.0: M_eff=1.836, d_gamma=-0.0808
+     OK: M_eff grows, d_gamma < 0, |d_gamma| falls with m^2
+=== All 19 self-tests passed successfully ===
+
+[Sec 12.2] Group U(1) : violations = 0/120, strictly positive = 120/120, min W_cross = 0.00e+00
+[Sec 12.2] Group Z_2  : violations = 0/120, strictly positive = 118/120, min W_cross = 0.00e+00
+[Sec 12.2] Group U(2) : violations = 0/120, strictly positive = 120/120, min W_cross = 0.00e+00
+[Sec 12.2] Group SU(3): violations = 0/120, strictly positive = 120/120, min W_cross = 0.00e+00
+[Sec 12.2 Area Law m^2=0.2] secant(|dA|=36): a0=0.2504, kappa_sigma=0.2315 (ratio=3.82); slope(|dA|=20..52): a0=0.2557, kappa_sigma=0.2705 (ratio=4.46)
+[Sec 12.2 Area Law m^2=0.5] secant(|dA|=36): a0=0.1794, kappa_sigma=0.0507 (ratio=2.85); slope(|dA|=20..52): a0=0.1808, kappa_sigma=0.0549 (ratio=3.08)
+[Sec 12.2 Area Law m^2=2.0] secant(|dA|=36): a0=0.0724, kappa_sigma=0.0037 (ratio=2.18); slope(|dA|=20..52): a0=0.0726, kappa_sigma=0.0037 (ratio=2.20)
+[Sec 12.2 U(1)/SU(2) m^2=0.2] sigma_U(1) / sigma_SU(2) = 2.49
+[Sec 12.2 U(1)/SU(2) m^2=0.5] sigma_U(1) / sigma_SU(2) = 1.85
+[Sec 12.2 U(1)/SU(2) m^2=2.0] sigma_U(1) / sigma_SU(2) = 1.23
+[Sec 12.3 V3/V4 Driver] eta_field=1.0 (n_bos=2.0), max Woodbury drift=0.00e+00: Delta f_null = +0.0037 +/- 0.0097 (z=+0.38 sigma -> UNDECIDED), W_cross = +0.4821 +/- 0.0287 (> 0)
+========================================================================
+Finished: 2026-11-06T17:24:07
+Results saved to: C:\cpp\cpp_v44_results_20261106_172351.txt
