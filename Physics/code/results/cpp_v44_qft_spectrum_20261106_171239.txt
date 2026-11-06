@@ -1,0 +1,82 @@
+CPP v4.4 P-QFT-1 (v1.1) log: C:\cpp\cpp_v44_qft_spectrum_20261106_171239.txt
+Started: 2026-11-06T17:12:39
+Parameters: N=64, seeds=10, m2=0.5, theta=flat
+================================================================================================================
+=== P-QFT-1 Block A+D: Spectrum, Propagators & Schur Boundary Shift (N=64, m^2=0.5, theta=flat, seeds=10) ===
+-------------------------------------------------------------------------------------------------------------
+Ensemble      |     gap | (1/N)ln det | G_time(3) | G_space(3) | PJ_time(3) | PJ_spc_max |   M_eff |  d_gamma
+-------------------------------------------------------------------------------------------------------------
+Hypercube_2D  |  0.1522 |      1.2168 |    0.0349 |     0.0428 |     0.0071 |   0.00e+00 |   1.997 |  -0.8324
+Minkowski_2D  |  0.6894 |      1.6616 |    0.0225 |     0.0223 |     0.0015 |   0.00e+00 |   1.754 |  -0.2873
+Minkowski_3D  |  0.5109 |      1.7547 |    0.0245 |     0.0231 |     0.0007 |   0.00e+00 |   1.010 |  -0.0262
+KR_T3         |  8.2534 |      2.7289 |       nan |     0.0287 |        nan |   0.00e+00 |   6.786 |  -3.2905
+KR_T2         |  8.1877 |      2.7269 |       nan |     0.0287 |        nan |   0.00e+00 |   0.969 |  -0.9689
+Random_DAG    |  0.0626 |      1.1943 |    0.0305 |     0.0428 |     0.0043 |   0.00e+00 |   4.170 |  -0.3726
+-------------------------------------------------------------------------------------------------------------
+
+=== P-QFT-1 Block B: Euclidean Sigma vs Causal Pauli-Jordan Delta_PJ (N=64, m^2=0.5, theta=flat) ===
+  Hypercube_2D:
+      r |  Sigma_all |  Sigma_time | Sigma_space ||     PJ_time |    PJ_space
+      1 |    0.14290 |     0.14290 |         nan ||     0.06280 |         nan
+      2 |    0.07154 |     0.06749 |     0.08352 ||     0.01998 |     0.00000
+      3 |    0.03756 |     0.03488 |     0.04278 ||     0.00709 |     0.00000
+      4 |    0.02048 |     0.01900 |     0.02285 ||     0.00269 |     0.00000
+      5 |    0.01157 |     0.01080 |     0.01265 ||     0.00107 |     0.00000
+      6 |    0.00680 |     0.00643 |     0.00726 ||     0.00045 |     0.00000
+
+  Minkowski_2D:
+      r |  Sigma_all |  Sigma_time | Sigma_space ||     PJ_time |    PJ_space
+      1 |    0.06299 |     0.06299 |         nan ||     0.02718 |         nan
+      2 |    0.03208 |     0.03159 |     0.03259 ||     0.00591 |     0.00000
+      3 |    0.02218 |     0.02263 |     0.02189 ||     0.00157 |     0.00000
+      4 |    0.01677 |     0.01767 |     0.01647 ||     0.00067 |     0.00000
+      5 |    0.01273 |     0.01279 |     0.01260 ||     0.00034 |     0.00000
+      6 |    0.00578 |         nan |     0.00578 ||         nan |     0.00000
+
+  KR_T3:
+      r |  Sigma_all |  Sigma_time | Sigma_space ||     PJ_time |    PJ_space
+      1 |    0.03264 |     0.03264 |         nan ||     0.00352 |         nan
+      2 |    0.02978 |     0.02979 |     0.02978 ||     0.00169 |     0.00000
+      3 |    0.02878 |         nan |     0.02878 ||         nan |     0.00000
+      4 |    0.02736 |         nan |     0.02736 ||         nan |     0.00000
+      5 |        nan |         nan |         nan ||         nan |         nan
+      6 |        nan |         nan |         nan ||         nan |         nan
+
+  KR_T2:
+      r |  Sigma_all |  Sigma_time | Sigma_space ||     PJ_time |    PJ_space
+      1 |    0.03278 |     0.03278 |         nan ||     0.00370 |         nan
+      2 |    0.02974 |         nan |     0.02974 ||         nan |     0.00000
+      3 |    0.02871 |         nan |     0.02871 ||         nan |     0.00000
+      4 |        nan |         nan |         nan ||         nan |         nan
+      5 |        nan |         nan |         nan ||         nan |         nan
+      6 |        nan |         nan |         nan ||         nan |         nan
+
+=== P-QFT-1 Block C: m^2 Trajectory (N=64, theta=flat, seeds=6) ===
+  m^2 = 0.05
+    Hypercube_2D  : (1/N)ln det=0.9870, M_eff=2.294, d_gamma=-0.7491, Sigma(3)=0.3745, PJ_time(3)=0.0115
+    Minkowski_2D  : (1/N)ln det=1.4976, M_eff=2.522, d_gamma=-0.4469, Sigma(3)=0.3017, PJ_time(3)=0.0022
+    KR_T3         : (1/N)ln det=2.6640, M_eff=6.978, d_gamma=-3.3613, Sigma(3)=0.3098, PJ_time(3)=nan
+  m^2 = 0.20
+    Hypercube_2D  : (1/N)ln det=1.0835, M_eff=2.184, d_gamma=-0.8070, Sigma(3)=0.1045, PJ_time(3)=0.0097
+    Minkowski_2D  : (1/N)ln det=1.5594, M_eff=2.429, d_gamma=-0.4002, Sigma(3)=0.0677, PJ_time(3)=0.0019
+    KR_T3         : (1/N)ln det=2.6954, M_eff=6.912, d_gamma=-3.3268, Sigma(3)=0.0755, PJ_time(3)=nan
+  m^2 = 0.50
+    Hypercube_2D  : (1/N)ln det=1.2168, M_eff=1.997, d_gamma=-0.8324, Sigma(3)=0.0376, PJ_time(3)=0.0071
+    Minkowski_2D  : (1/N)ln det=1.6434, M_eff=2.264, d_gamma=-0.2853, Sigma(3)=0.0222, PJ_time(3)=0.0015
+    KR_T3         : (1/N)ln det=2.7289, M_eff=6.784, d_gamma=-3.2597, Sigma(3)=0.0287, PJ_time(3)=nan
+  m^2 = 1.00
+    Hypercube_2D  : (1/N)ln det=1.3837, M_eff=1.752, d_gamma=-0.7275, Sigma(3)=0.0142, PJ_time(3)=0.0044
+    Minkowski_2D  : (1/N)ln det=1.7556, M_eff=2.040, d_gamma=-0.1156, Sigma(3)=0.0084, PJ_time(3)=0.0011
+    KR_T3         : (1/N)ln det=2.7708, M_eff=6.581, d_gamma=-3.1527, Sigma(3)=0.0132, PJ_time(3)=nan
+  m^2 = 2.00
+    Hypercube_2D  : (1/N)ln det=1.6317, M_eff=1.417, d_gamma=-0.4548, Sigma(3)=0.0042, PJ_time(3)=0.0020
+    Minkowski_2D  : (1/N)ln det=1.9353, M_eff=1.710, d_gamma=-0.0481, Sigma(3)=0.0026, PJ_time(3)=0.0006
+    KR_T3         : (1/N)ln det=2.8408, M_eff=6.210, d_gamma=-2.9549, Sigma(3)=0.0057, PJ_time(3)=nan
+  m^2 = 5.00
+    Hypercube_2D  : (1/N)ln det=2.1121, M_eff=0.912, d_gamma=-0.1956, Sigma(3)=0.0005, PJ_time(3)=0.0004
+    Minkowski_2D  : (1/N)ln det=2.3156, M_eff=1.163, d_gamma=-0.0239, Sigma(3)=0.0004, PJ_time(3)=0.0001
+    KR_T3         : (1/N)ln det=3.0130, M_eff=5.317, d_gamma=-2.4594, Sigma(3)=0.0015, PJ_time(3)=nan
+
+================================================================================================================
+Finished: 2026-11-06T17:12:40
+Results saved to: C:\cpp\cpp_v44_qft_spectrum_20261106_171239.txt
