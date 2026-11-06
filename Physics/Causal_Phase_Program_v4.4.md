@@ -7,6 +7,7 @@
 **Заменяет:** `Causal_Phase_Program_v4.3_complete.md` (v4.3 от 05.11.2026), `Causal_Phase_Program_v4.md` (v4.0 от 22.10.2026) и `Causal_Phase_Program_v3.md` (v3.9).  
 **Связанные нормативные документы:**  
 * `Technical_Specification_v0.4.md` — вычислительная спецификация протоколов верификации;  
+* `code/cpp_v44_reference.py` — эталонная реализация (§§1–8, self-test [1]–[19], benchmarks §12.2–12.3); канонический лог: `code/results/cpp_v44_results_all.txt`;  
 * `Boundary_Projection_Theorem.md` (v1.0) и *Spectral and Matrix Realization of $V_4$ in Latent Spaces* — геометрическая семантика доверительного эллипсоида $B_t$, стратификация ядра незначимости $\ker\pi_K$ и кумулятивная агрегация $\mathrm{sLSE}_T$;  
 * `Latent_Agency_Framework.md` (v2.1) — одеяла Маркова, граничное включение ядер, разложение Гельмгольца и стохастические реализации граничных спектров;  
 * `Modified_Brusentsov_Entailment_Logic.md` (MBEL) — каноническое четырёхзначное исчисление вердиктов $V_4$;  

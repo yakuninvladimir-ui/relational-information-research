@@ -1,8 +1,8 @@
-# **Technical Specification v0.4 — Computational Verification of Protocols V1–V7 of Causal Phase Program v4.0**
+# **Technical Specification v0.4 — Computational Verification of Protocols V1–V7 of Causal Phase Program v4.4**
 
-**STATUS: ACTIVE — supersedes Technical Specification v0.3 (superseded before execution by the v4.0 revision; removed from the repository).**  
-**Implements:** Protocols V1–V7 of *Causal Phase Program v4.0* (`Physics/Causal_Phase_Program_v4.md`).  
-**Reference implementation baseline:** §9 of CPP v4.0 (`cpp_v40_reference.py`, including the `run_self_test()` driver that reproduces the §10 verification table).  
+**STATUS: ACTIVE — supersedes Technical Specification v0.3 (removed). Normative parent updated to CPP v4.4.**  
+**Implements:** Protocols V1–V7 of *Causal Phase Program v4.4* (`Physics/Causal_Phase_Program_v4.4.md`).  
+**Reference implementation baseline:** `Physics/code/cpp_v44_reference.py` (self-test [1]–[19] reproducing §12.1; full log in `Physics/code/results/`).  
 **Author:** Vladimir Yakunin  
 **Version:** 0.4.0  
 **Date:** 2026-10-22  
@@ -16,10 +16,10 @@
 
 | Document | Status | Role in v0.4 |
 |---|---|---|
-| `Causal_Phase_Program_v4.md` §7 | ACTIVE | Defines protocols V1–V7 with confirmation/refutation criteria. This document specifies HOW to execute them. |
-| `Causal_Phase_Program_v4.md` §9 | ACTIVE | Frozen reference baseline (`cpp_v40_reference.py`). v0.4 extends it with ensemble movers, estimators, controls, and reporting. |
-| `Causal_Phase_Program_v4.md` §10 | ACTIVE | Executed identity-level checks; the self-test driver passing is a hard gate (Phase 0) before any protocol run. |
-| `Modified_Brusentsov_Entailment_Logic.md` | CANON | All final verdicts are classified in $`V_4`$ per CPP v4.0 §7–§8 and MBEL §§4–5 (including the non-promotion rule for `UNDECIDED`). |
+| `Causal_Phase_Program_v4.4.md` §7 | ACTIVE | Defines protocols V1–V7 with confirmation/refutation criteria. This document specifies HOW to execute them. |
+| `Causal_Phase_Program_v4.4.md` §9 | ACTIVE | Frozen reference baseline (`cpp_v44_reference.py`). v0.4 extends it with ensemble movers, estimators, controls, and reporting. |
+| `Causal_Phase_Program_v4.4.md` §10 | ACTIVE | Executed identity-level checks; the self-test driver passing is a hard gate (Phase 0) before any protocol run. |
+| `Modified_Brusentsov_Entailment_Logic.md` | CANON | All final verdicts are classified in $`V_4`$ per CPP v4.4 §7–§8 and MBEL §§4–5 (including the non-promotion rule for `UNDECIDED`). |
 | Technical Specifications v0.2 / v0.3 | REMOVED | Historical predecessors; outcomes and lessons recorded above and in §14. |
 
 ---
@@ -40,9 +40,9 @@
 
 ### **1.2 Explicitly excluded**
 
-- Continuum extrapolations: Einstein equations with $`\Lambda_{\mathrm{eff}}`$, post-horizon phase, mean-curvature balance (CPP v4.0 Registry row 17, `OMIT`).
+- Continuum extrapolations: Einstein equations with $`\Lambda_{\mathrm{eff}}`$, post-horizon phase, mean-curvature balance (CPP v4.4 Registry row 17, `OMIT`).
 - Fitting SPARC / DESI / DES-SN5YR data — outside the current program scope.
-- Poisson sprinklings of causal sets — excluded from the ensemble class by the bounded-valency constraint (L3) (CPP v4.0 §3.2, “price of the choice”).
+- Poisson sprinklings of causal sets — excluded from the ensemble class by the bounded-valency constraint (L3) (CPP v4.4 §3.2, “price of the choice”).
 - Full quantum Araki–Uhlmann modular computations; 5D Kaluza–Klein geometry (permanently `NULL`).
 
 ---
@@ -56,7 +56,7 @@ Physics/v0.4_protocols/
 ├── config.yaml                    # Single source of truth for all run parameters and thresholds
 ├── run_protocol.py                # CLI: python run_protocol.py --protocol V1 --seed 42
 ├── src/
-│   ├── cpp_v40_reference.py       # Frozen §9 baseline (copied verbatim from CPP v4.0 §9)
+│   ├── cpp_v44_reference.py       # Frozen §9 baseline (copied verbatim from CPP v4.4 §9)
 │   ├── ensemble.py                # M1/M2/M3 moves, admissibility gates, Hastings corrections
 │   ├── annealing.py               # Metropolis over F_struct / F_joint with exact Woodbury ratios
 │   ├── dimensions.py              # d_s, d_H, d_tau estimators with validity guards
@@ -83,14 +83,14 @@ Physics/v0.4_protocols/
 
 ### **2.2 Baseline discipline and mandatory additions**
 
-All functions of `cpp_v40_reference.py` are imported as a **frozen baseline**; the Phase 0 gate requires `run_self_test()` to pass (all 15 checks, reproducing CPP v4.0 §10) before any protocol run. Mandatory additions on top of the baseline (lessons of the v3.9-era code audit):
+All functions of `cpp_v44_reference.py` are imported as a **frozen baseline**; the Phase 0 gate requires `run_self_test()` to pass (all 15 checks, reproducing CPP v4.4 §10) before any protocol run. Mandatory additions on top of the baseline (lessons of the v3.9-era code audit):
 
 | Issue | Requirement |
 |---|---|
 | Control rewiring can silently break degree conservation | Degree-preserving swap control rebuilds its edge list after every accepted mutation and gates every proposal by `is_hasse_irreducible` |
 | Random-DAG controls can violate the Hasse property | Any ER-DAG-style control generator applies **closure-based** transitive reduction against the original reachability (sequential deletion is prohibited) |
 | Myrheim–Meyer estimator is undefined off-domain | $`d_\tau`$ returns an explicit validity flag; negative or non-finite values are recorded as `estimator-invalid`, never as dimensions |
-| ε-box entropy bias | Not used: V2 employs the Kozachenko–Leonenko $`k`$-NN estimator of the baseline (bias documented in §10 of CPP v4.0) |
+| ε-box entropy bias | Not used: V2 employs the Kozachenko–Leonenko $`k`$-NN estimator of the baseline (bias documented in §10 of CPP v4.4) |
 | Numba porting | M1/M2/M3 inner loops and the annealer are ported to `@njit` FP64 with results cross-checked against the NumPy baseline to $`<10^{-12}`$ on $`N=64`$ |
 
 ---
@@ -99,11 +99,11 @@ All functions of `cpp_v40_reference.py` are imported as a **frozen baseline**; t
 
 ### **3.1 Ensemble and moves**
 
-States are $`(R,\Theta) \in \mathcal{A}(\nu, k_{\max})`$ (Definition 3.1 of CPP v4.0): (L0) Hasse, (L1) diamond covering, (L2) connectivity, (L3) $`\deg \le k_{\max}`$, (L4) $`N_D \ge \nu N`$. Moves: **M1** single edge replacement (accepted only if the result is admissible; field coupling uses the exact Woodbury ratio, §5), **M2** diamond corner flip with the Hastings correction $`|\mathcal{C}(R)|/|\mathcal{C}(R')|`$ and a direct recount of $`N_D`$, **M3** transposition of adjacent incomparable indices. Phases: uniform redraw on the circle per move. Sizes $`N \in \{64,128,256\}`$, $`\nu \in \{0.5,1,2,3\}`$, $`k_{\max} \in \{6,8\}`$.
+States are $`(R,\Theta) \in \mathcal{A}(\nu, k_{\max})`$ (Definition 3.1 of CPP v4.4): (L0) Hasse, (L1) diamond covering, (L2) connectivity, (L3) $`\deg \le k_{\max}`$, (L4) $`N_D \ge \nu N`$. Moves: **M1** single edge replacement (accepted only if the result is admissible; field coupling uses the exact Woodbury ratio, §5), **M2** diamond corner flip with the Hastings correction $`|\mathcal{C}(R)|/|\mathcal{C}(R')|`$ and a direct recount of $`N_D`$, **M3** transposition of adjacent incomparable indices. Phases: uniform redraw on the circle per move. Sizes $`N \in \{64,128,256\}`$, $`\nu \in \{0.5,1,2,3\}`$, $`k_{\max} \in \{6,8\}`$.
 
 ### **3.2 Annealing**
 
-Cost functional $`F_{\mathrm{struct}} = a\sum K^p + b\sum J + g\Vert C\Vert_F^2`$ with the three penalty families prescribed by CPP v4.0: convex $`p=2`$, linear $`p=1`$, concave $`\ln(1+K)`$. Parameters: $`a=1.0`$, $`b \in \{0.0, 0.1, 1.0\}`$, $`g \in \{0, 0.1, 0.3\}`$ (a 3-fold variation of $`a:b:g`$); geometric schedule $`T: 5.0 \to 0.01`$, rate $`0.995`$ (≈1240 levels), **total budget $`10^4`$ sweeps per run** distributed geometrically across levels. Because zero-temperature minimizers at free phases are gauge-flat (Proposition 1.2), $`T=0`$ minimizers and $`T>0`$ equilibrium samples are recorded **separately**; the $`K=2`$ fraction criterion is evaluated on $`T>0`$ samples (or at $`T=0`$ with frustrated boundary conditions).
+Cost functional $`F_{\mathrm{struct}} = a\sum K^p + b\sum J + g\Vert C\Vert_F^2`$ with the three penalty families prescribed by CPP v4.4: convex $`p=2`$, linear $`p=1`$, concave $`\ln(1+K)`$. Parameters: $`a=1.0`$, $`b \in \{0.0, 0.1, 1.0\}`$, $`g \in \{0, 0.1, 0.3\}`$ (a 3-fold variation of $`a:b:g`$); geometric schedule $`T: 5.0 \to 0.01`$, rate $`0.995`$ (≈1240 levels), **total budget $`10^4`$ sweeps per run** distributed geometrically across levels. Because zero-temperature minimizers at free phases are gauge-flat (Proposition 1.2), $`T=0`$ minimizers and $`T>0`$ equilibrium samples are recorded **separately**; the $`K=2`$ fraction criterion is evaluated on $`T>0`$ samples (or at $`T=0`$ with frustrated boundary conditions).
 
 ### **3.3 Observables and criteria**
 
@@ -144,7 +144,7 @@ Model of Definition 4.1 on subsystems with $`2N_A \le 8`$ real dimensions: $`G(\
 3. **Entropy channel:** $`\hat\Delta_{\mathrm{noise}} = \hat h(G(Z)+\xi) - \hat h(G(Z))`$ by Kozachenko–Leonenko $`k`$-NN ($`k=5`$) on the same samples.
 4. **Stationarity:** window-averaged drift of $`\hat h(Z_n)`$ (first vs second half).
 
-No channel may be computed from another: the balance identity is the *tested statement*, never an input (this was the v3.9 defect, CPP v4.0 Registry row 18).
+No channel may be computed from another: the balance identity is the *tested statement*, never an input (this was the v3.9 defect, CPP v4.4 Registry row 18).
 
 ### **4.3 Criteria**
 
@@ -329,7 +329,7 @@ Upon completion of `REPORT_v0.4.md`, each protocol receives a $`V_4`$ verdict pe
 - **`UNDECIDED` (epistemic insufficiency):** autocorrelation divergence; finite-size ambiguity; significance < 3σ despite a trend; control and treatment indistinguishable. **Critical rule (MBEL §5.4):** an `UNDECIDED` is NEVER overwritten to `NULL` on budget exhaustion.
 - **`OMIT` (not applicable):** preconditions unmet (e.g., V4 requires V3 to establish a coupled ensemble; if V3 returns `NULL` on the coupling itself, V4 pair-interaction is `OMIT`-ted with the reason logged).
 
-Registry updates: protocol outcomes map to CPP v4.0 Registry rows 6 (V1), 10-item-3 (V7), 11 (V2), 13b (V5), 16 (V3, V4); identity-level rows (1–5, 7, 8, 13, 15) are re-certified by the Phase 0–1 gates.
+Registry updates: protocol outcomes map to CPP v4.4 Registry rows 6 (V1), 10-item-3 (V7), 11 (V2), 13b (V5), 16 (V3, V4); identity-level rows (1–5, 7, 8, 13, 15) are re-certified by the Phase 0–1 gates.
 
 ---
 
@@ -337,7 +337,7 @@ Registry updates: protocol outcomes map to CPP v4.0 Registry rows 6 (V1), 10-ite
 
 `REPORT_v0.4.md` must contain:
 
-1. **Header:** date, code version, baseline hash (of `cpp_v40_reference.py`), `config.yaml` hash, self-test transcript.
+1. **Header:** date, code version, baseline hash (of `cpp_v44_reference.py`), `config.yaml` hash, self-test transcript.
 2. **Per-protocol section:** observables (mean ± std across seeds), null-test results with values, control comparisons, $`V_4`$ verdict with justification, plots (dimension scaling, entropy-balance scatter, $`\Delta f_{\mathrm{null}}`$ vs $`\eta_{\mathrm{field}}`$, $`V_{\mathrm{int}}(r)`$ profiles, topology-class maps).
 3. **Cross-protocol consistency:** do V3 restructuring statistics agree with the V1 ensemble structure? Do V6/V7 algebra gates hold on the V3 equilibrium samples? Does the V2 balance hold on subsystems extracted from V1 minimizers?
 4. **Resource log:** wall-clock, peak memory, seed list, rejected-move statistics.
@@ -348,7 +348,7 @@ Registry updates: protocol outcomes map to CPP v4.0 Registry rows 6 (V1), 10-ite
 ## **13. What This Specification Does Not Claim**
 
 - It does not claim the §9 baseline is bug-free beyond the 15 self-test checks; the Phase 0 gate is the operational bound.
-- It does not claim $`N \le 1024`$ suffices for continuum-limit conclusions; finite-size scaling is an observable, not an assumption (and the continuum layer is `OMIT` in CPP v4.0 anyway).
+- It does not claim $`N \le 1024`$ suffices for continuum-limit conclusions; finite-size scaling is an observable, not an assumption (and the continuum layer is `OMIT` in CPP v4.4 anyway).
 - It does not claim the annealing schedule or the V5 classifier thresholds are optimal; both are pre-registered to prevent post-hoc tuning, and sensitivity is itself measured (V1 penalty families, V5 hysteresis check).
 - It does not claim the Landauer reading (Hypothesis H-L) is tested: V2 tests the exact entropy balance (Theorem 4.3) only; the thermodynamic interpretation remains `UNDECIDED` (Registry row 12) and requires external physical calibration.
 - It does not claim protocols will return `FOLLOW`; any of V1, V3, V4, V5 may return `NULL` or `UNDECIDED`.
@@ -365,6 +365,6 @@ Registry updates: protocol outcomes map to CPP v4.0 Registry rows 6 (V1), 10-ite
 
 *End of Technical Specification v0.4.*
 
-*Normative parent: Causal Phase Program v4.0, §7–§10.*
+*Normative parent: Causal Phase Program v4.4, §12 (reference code: `Physics/code/cpp_v44_reference.py`).*
 
 *Canonical logic: Modified Brusentsov Entailment Logic, §§4–5.*
