@@ -1,5 +1,5 @@
-CPP v4.4 P-QFT-1 (v1.1) log: C:\cpp\cpp_v44_qft_spectrum_20261106_171239.txt
-Started: 2026-11-06T17:12:39
+CPP v4.4 P-QFT-1 (v1.1) log: C:\cpp\cpp_v44_qft_spectrum_20261107_082013.txt
+Started: 2026-11-07T08:20:13
 Parameters: N=64, seeds=10, m2=0.5, theta=flat
 ================================================================================================================
 === P-QFT-1 Block A+D: Spectrum, Propagators & Schur Boundary Shift (N=64, m^2=0.5, theta=flat, seeds=10) ===
@@ -78,5 +78,5 @@ Random_DAG    |  0.0626 |      1.1943 |    0.0305 |     0.0428 |     0.0043 |   
     KR_T3         : (1/N)ln det=3.0130, M_eff=5.317, d_gamma=-2.4594, Sigma(3)=0.0015, PJ_time(3)=nan
 
 ================================================================================================================
-Finished: 2026-11-06T17:12:40
-Results saved to: C:\cpp\cpp_v44_qft_spectrum_20261106_171239.txt
+Finished: 2026-11-07T08:20:15
+Results saved to: C:\cpp\cpp_v44_qft_spectrum_20261107_082013.txt

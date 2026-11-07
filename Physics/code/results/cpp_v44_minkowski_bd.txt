@@ -1,5 +1,5 @@
-CPP v4.4 Minkowski vs Benincasa-Dowker (v1.1) log: C:\cpp\cpp_v44_minkowski_bd_20261106_171246.txt
-Started: 2026-11-06T17:12:46
+CPP v4.4 Minkowski vs Benincasa-Dowker (v1.1) log: C:\cpp\cpp_v44_minkowski_bd_20261107_081854.txt
+Started: 2026-11-07T08:18:54
 ====================================================================================================================
 === CPP v4.4 vs Benincasa-Dowker & Schur Benchmark (N=64, seeds=20) ===
 Locked parameters: a=1.0, b=0.5, g=0.1, p=2.0, m^2=0.5, eta_field=1.0, T=0.5 (n_bos=2.0)
@@ -43,5 +43,5 @@ KR_2layer_T2           |         -1.34s |            +6.04s |         +6.93s |  
 ------------------------------------------------------------------------------------------------------
 
 ====================================================================================================================
-Finished: 2026-11-06T17:12:51
-Results saved to: C:\cpp\cpp_v44_minkowski_bd_20261106_171246.txt
+Finished: 2026-11-07T08:19:19
+Results saved to: C:\cpp\cpp_v44_minkowski_bd_20261107_081854.txt
