@@ -7,7 +7,7 @@
 | Файл | Описание |
 |------|----------|
 | `cpp_v44_reference.py` | Полный reference-код: алгебра §§1–8, self-test [1]–[19], benchmarks §12.2–12.3 |
-| `results/cpp_v44_results_all.txt` | Канонический лог прогона `--mode all` (19 checks + multigroup + area-law + V3/V4) |
+| `results/cpp_v44_results.txt` | Канонический лог прогона `--mode all` (19 checks + multigroup + area-law + V3/V4) |
 
 ## Зависимости
 
