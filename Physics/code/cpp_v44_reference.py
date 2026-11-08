@@ -20,6 +20,10 @@
 # Normative parent: Physics/Causal_Phase_Program_v4_4.md (v4.4)
 # Technical Spec:   Physics/Technical_Specification_v0.4.md (v0.4)
 # Canonical logic:  Reasoning/Modified_Brusentsov_Entailment_Logic.md (MBEL V_4)
+#
+# v4.4+patch: woodbury_edge_swap_ratio accepts optional keyword-only Sigma=Pi^{-1}
+# cache, enabling O(accept)-amortized M1 edge swaps in cpp_v44_v3_scaling_diagnosis.py
+# without any change to callers that omit Sigma (backward-compatible).
 
 import argparse
 from datetime import datetime
@@ -376,10 +380,33 @@ def dipole_vector(N, x, y, theta_xy):
     return v
 
 
-def woodbury_edge_swap_ratio(Pi, e_del, theta_del, e_add, theta_add):
-    """Exact 2x2 Woodbury ratio det(Pi') / det(Pi) for replacing edge e_del with e_add (Prop. 6.2)."""
+def woodbury_edge_swap_ratio(Pi, e_del, theta_del, e_add, theta_add, *, Sigma=None):
+    """
+    Exact 2x2 Woodbury ratio det(Pi') / det(Pi) for replacing edge e_del with e_add (Prop. 6.2).
+
+    Parameters
+    ----------
+    Pi : np.ndarray
+        Magnetic precision matrix (N x N, Hermitian positive-definite).
+    e_del : tuple(int, int)
+        Directed edge (x, y) to remove.
+    theta_del : float
+        Phase on the removed edge.
+    e_add : tuple(int, int)
+        Directed edge to add.
+    theta_add : float
+        Phase on the added edge.
+    Sigma : np.ndarray, optional
+        Precomputed inverse Sigma = Pi^{-1}. When supplied, avoids an O(N^3) inversion per call.
+        MUST equal np.linalg.inv(Pi) at the moment of the call; the driver
+        (cpp_v44_v3_scaling_diagnosis.py) guarantees this by recomputing Sigma_curr
+        whenever Pi_curr becomes stale (after any accepted phase/edge move and at the
+        periodic Woodbury audit step). When Sigma is None (default), behavior is identical
+        to the legacy implementation: Sigma = np.linalg.inv(Pi) is computed locally.
+    """
     N = len(Pi)
-    Sigma = np.linalg.inv(Pi)
+    if Sigma is None:
+        Sigma = np.linalg.inv(Pi)
     v_minus = dipole_vector(N, e_del[0], e_del[1], theta_del)
     v_plus = dipole_vector(N, e_add[0], e_add[1], theta_add)
     r_minus = float(np.real(v_minus.conj() @ Sigma @ v_minus))
