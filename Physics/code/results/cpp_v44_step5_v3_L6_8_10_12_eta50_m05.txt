@@ -1,4 +1,4 @@
-CPP v4.4 V3 Scaling Diagnosis log: C:\cpp\cpp_v44_v3_m05_eta11.txt
+CPP v4.4 V3 Scaling Diagnosis log: cpp_v44_step5_v3_L6_8_10_12_eta50_m05.txt
 Started: 2026-11-08T15:40:51
 L: [6, 8, 10, 12]
 eta: 50.0
